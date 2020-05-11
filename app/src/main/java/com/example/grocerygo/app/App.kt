@@ -10,13 +10,13 @@ class App : Application() {
         Log.d("TMLog","MyApplication`OnCreate")
         super.onCreate()
         instance = this
-        sessionManager = SessionManager()
+        sm = SessionManager()
     }
 
     companion object {
         lateinit var instance: App
             private set
-        lateinit var sessionManager :SessionManager
+        lateinit var sm :SessionManager
             private set
     }
 }

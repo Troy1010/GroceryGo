@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.grocerygo.activities_and_frags.ActivityLogin"
+    tools:context="com.example.grocerygo.activities_and_frags.ActivityRegister"
     android:orientation="vertical"
     android:gravity="center_horizontal"
     android:padding="16dp">
@@ -13,27 +13,26 @@
         android:id="@+id/text_view"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Login"/>
+        android:text="Register"/>
+    <EditText
+        android:hint="Name"
+        android:id="@+id/edit_text_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
     <EditText
         android:hint="Email"
         android:id="@+id/edit_text_email"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
     <EditText
-        android:hint="Password"
         android:inputType="textPassword"
+        android:hint="Password"
         android:id="@+id/edit_text_password"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
     <Button
-        android:id="@+id/button_login_send"
+        android:id="@+id/button_register_send"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Login"/>
-    <TextView
-        android:id="@+id/button_not_yet_registered"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Not yet registered? Click here!"
-        android:textColor="#0086bf"/>
+        android:text="Register"/>
 </LinearLayout>

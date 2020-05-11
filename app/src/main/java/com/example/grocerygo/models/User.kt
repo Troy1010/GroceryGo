@@ -7,7 +7,7 @@ data class User (
 ) {
     companion object {
         const val KEY_NAME = "NAME"
-        const val KEY_PASSOWRD = "PASSWORD"
+        const val KEY_PASSWORD = "PASSWORD"
         const val KEY_EMAIL = "EMAIL"
     }
 }

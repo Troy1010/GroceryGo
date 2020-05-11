@@ -26,7 +26,7 @@ class ActivityMain : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         Log.d("TMLog", "I'M ALIVE")
-        if(!App.sessionManager.isLoggedIn()){
+        if(!App.sm.isLoggedIn()){
             startActivity(Intent(this, ActivityLogin::class.java))
             finish()
         }
@@ -34,6 +34,8 @@ class ActivityMain : AppCompatActivity() {
     }
 
     private fun init() {
+        // get user name
+        text_view_hello.text = "Hello, " + App.sm.user.name
         // Picasso image_view
         Picasso
             .get()
