@@ -37,7 +37,7 @@ class SessionManager {
     fun isLoggedIn(): Boolean {
         var storedEmail = sharedPref.getString(User.KEY_EMAIL, null)
         var storedPassword = sharedPref.getString((User.KEY_PASSWORD), null)
-        return !((storedEmail == null) or (storedPassword == null))
+        return !((storedEmail == null) or (storedEmail == "") or (storedPassword == null) or (storedPassword == ""))
     }
 
     var user = User("", "", "")
@@ -47,10 +47,8 @@ class SessionManager {
             var storedPassword = sharedPref.getString(User.KEY_PASSWORD, null)
             return User(storedName?:"", storedEmail?: "", storedPassword?: "")
         }
-//    var data =  arrayListOf<Product>(Product(productName = "NAME"))
-//        set(value) {
-//            Log.d("TMLog","AdapterProducts`dataSetter`data`value:$value")
-//            field = value
-//            notifyDataSetChanged()
-//        }
+    fun logout() {
+        editor.clear()
+        editor.commit()
+    }
 }

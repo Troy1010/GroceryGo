@@ -36,6 +36,12 @@ class ActivityMain : AppCompatActivity() {
     private fun init() {
         // get user name
         text_view_hello.text = "Hello, " + App.sm.user.name
+        // buttons
+        button_logout.setOnClickListener {
+            App.sm.logout()
+            startActivity(Intent(this, ActivityLogin::class.java))
+            finish()
+        }
         // Picasso image_view
         Picasso
             .get()
