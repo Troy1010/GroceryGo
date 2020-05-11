@@ -47,7 +47,7 @@ class ActivityHome : AppCompatActivity() {
     private fun picassoImages() {
         Picasso
             .get()
-            .load(Config.DIRECT_ENDPOINT_HOME_IMAGE)
+            .load(Endpoints.HOME_IMAGE)
             .placeholder(R.drawable.not_found)
             .error(R.drawable.no_image_available_vector_illustration_260nw_744886198)
             .into(image_view)

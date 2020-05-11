@@ -1,21 +1,25 @@
 package com.example.grocerygo.extras
 
-class Endpoints {
-    companion object {
-        private const val CATEGORY = "category"
-        private const val SUBCATEGORY = "subcategory"
-        private const val PRODUCTS = "products"
+object Endpoints {
+    // public
+    const val HOME_IMAGE = Config.ENDPOINT_HOME_IMAGE
+    const val MAIN_ICON = Config.ENDPOINT_MAIN_ICON
 
-        val vCategoryEndpoint: String
-            get() = Config.BASE_URL + CATEGORY
+    // private
+    private const val URL_SUB_DIR_CATEGORY = "category"
+    private const val URL_SUB_DIR_SUBCATEGORY = "subcategory"
+    private const val URL_SUB_DIR_PRODUCTS = "products"
 
-        fun getSelectedProductsEndpoint(subCatIndex: Int): String {
-            return Config.BASE_URL + PRODUCTS + "/sub/$subCatIndex"
-        }
+    // derivative
+    val vCategoryEndpoint: String
+        get() = Config.BASE_URL + URL_SUB_DIR_CATEGORY
 
-        fun getSelectedSubCategoriesEndpoint(catIndex: Int): String {
-            return Config.BASE_URL + SUBCATEGORY + "/$catIndex"
-        }
+    fun getSelectedProductsEndpoint(subCatIndex: Int): String {
+        return Config.BASE_URL + URL_SUB_DIR_PRODUCTS + "/sub/$subCatIndex"
     }
 
+    fun getSelectedSubCategoriesEndpoint(catIndex: Int): String {
+        return Config.BASE_URL + URL_SUB_DIR_SUBCATEGORY + "/$catIndex"
+    }
 }
+
