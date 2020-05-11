@@ -22,6 +22,7 @@ import kotlinx.android.synthetic.main.activity_main.*
 
 class ActivityHome : AppCompatActivity() {
     var data = arrayListOf<Category>(Category(catName = "DEFAULT CAT NAME"))
+    lateinit var adapter: AdapterCategories
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -39,7 +40,8 @@ class ActivityHome : AppCompatActivity() {
     }
     private fun setupRecyclerView() {
         recycler_view.layoutManager = LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL,false)
-        recycler_view.adapter =AdapterCategories(this)
+        adapter = AdapterCategories(this)
+        recycler_view.adapter = adapter
     }
     private fun picassoImages() {
         Picasso
@@ -67,11 +69,7 @@ class ActivityHome : AppCompatActivity() {
             Response.Listener {response ->
                 var gson = GsonBuilder().create()
                 var allData = gson.fromJson(response.toString(),CategoryData::class.java)
-                data = allData.data
-                var mAdapter = recycler_view.adapter
-                if (mAdapter is AdapterCategories) {
-                    mAdapter.data = data
-                }
+                adapter.data = allData.data
             },
             Response.ErrorListener {
                 Log.d("TMLog", "Response.ErrorListener`it:$it")
