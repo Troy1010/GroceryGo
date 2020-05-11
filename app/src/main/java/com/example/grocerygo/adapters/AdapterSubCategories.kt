@@ -7,7 +7,7 @@ import androidx.fragment.app.FragmentPagerAdapter
 import com.example.grocerygo.activities_and_frags.FragProducts
 import com.example.grocerygo.models.SubCategory
 
-class AdapterSubCategories(var fm: FragmentManager):FragmentPagerAdapter(fm) {
+class AdapterSubCategories(var fm: FragmentManager):FragmentPagerAdapter(fm, BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT) {
     var data =  arrayListOf<SubCategory>()
         set(value) {
             // debug

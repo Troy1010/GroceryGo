@@ -19,17 +19,12 @@ import com.google.gson.GsonBuilder
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.activity_main.*
 
-class ActivityMain : AppCompatActivity() {
+class ActivityHome : AppCompatActivity() {
     var data = arrayListOf<Category>(Category(catName = "DEFAULT CAT NAME"))
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        Log.d("TMLog", "I'M ALIVE")
-        if(!App.sm.isLoggedIn()){
-            startActivity(Intent(this, ActivityLogin::class.java))
-            finish()
-        }
         init()
     }
 

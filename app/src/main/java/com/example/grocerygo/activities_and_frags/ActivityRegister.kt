@@ -22,7 +22,7 @@ class ActivityRegister : AppCompatActivity() {
             var email = edit_text_email.text.toString().trim()
             var password = edit_text_password.text.toString().trim()
             App.sm.register(User(name, email, password))
-            startActivity(Intent(this, ActivityMain::class.java))
+            startActivity(Intent(this, ActivityHome::class.java))
         }
     }
 }

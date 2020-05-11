@@ -24,7 +24,7 @@ class ActivityLogin : AppCompatActivity() {
         button_login_send.setOnClickListener {
             val user = LoginObject(edit_text_email.text.toString(), edit_text_password.text.toString())
             if (App.sm.attemptLogin(user)){
-                startActivity(Intent(this, ActivityMain::class.java))
+                startActivity(Intent(this, ActivityHome::class.java))
             } else {
                 Toast.makeText(this, "LOGIN FAILED", Toast.LENGTH_SHORT).show()
             }

@@ -12,12 +12,12 @@ import com.example.grocerygo.R
 import com.example.grocerygo.extras.Endpoints
 import com.example.grocerygo.models.SubCategoryData
 import com.google.gson.GsonBuilder
-import kotlinx.android.synthetic.main.activity_content.*
+import kotlinx.android.synthetic.main.activity_sub_cats_and_products.*
 
 class ActivitySubCatsAndProducts : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_content)
+        setContentView(R.layout.activity_sub_cats_and_products)
         init()
     }
 
