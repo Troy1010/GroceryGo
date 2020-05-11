@@ -10,4 +10,8 @@ data class User (
         const val KEY_PASSWORD = "PASSWORD"
         const val KEY_EMAIL = "EMAIL"
     }
+    var loginInfo = LoginObject()
+        get() {
+            return LoginObject(email, password)
+        }
 }

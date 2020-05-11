@@ -14,6 +14,12 @@
         android:text="Logout"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"/>
+    <TextView
+        android:id="@+id/button_logout_without_clearing_registration"
+        android:textSize="12sp"
+        android:text="Go to Logout without clearing registration"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
     <ImageView
         android:id="@+id/image_view"
         android:layout_width="match_parent"

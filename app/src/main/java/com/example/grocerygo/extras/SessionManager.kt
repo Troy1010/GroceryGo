@@ -1,7 +1,9 @@
 package com.example.grocerygo.extras
 
 import android.content.Context
+import android.util.Log
 import com.example.grocerygo.app.App
+import com.example.grocerygo.models.LoginObject
 import com.example.grocerygo.models.User
 
 class SessionManager {
@@ -10,9 +12,9 @@ class SessionManager {
         Context.MODE_PRIVATE
     )
     private var editor = sharedPref.edit()
-    fun attemptLogin(user: User): Boolean {
+    fun attemptLogin(loginObject: LoginObject): Boolean {
         var storedEmail = sharedPref.getString(User.KEY_EMAIL, null)
-        var storedPassword = sharedPref.getString((User.KEY_PASSWORD), null)
+        var storedPassword = sharedPref.getString(User.KEY_PASSWORD, null)
         return when {
             storedEmail == null -> {
                 false
@@ -21,7 +23,7 @@ class SessionManager {
                 false
             }
             else -> {
-                (user.email == storedEmail) and (user.password == storedPassword)
+                (loginObject.email == storedEmail) and (loginObject.password == storedPassword)
             }
         }
     }

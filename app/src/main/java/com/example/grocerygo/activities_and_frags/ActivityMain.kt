@@ -42,6 +42,9 @@ class ActivityMain : AppCompatActivity() {
             startActivity(Intent(this, ActivityLogin::class.java))
             finish()
         }
+        button_logout_without_clearing_registration.setOnClickListener( {
+            startActivity(Intent(this, ActivityLogin::class.java))
+        })
         // Picasso image_view
         Picasso
             .get()
