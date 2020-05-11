@@ -8,6 +8,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.android.volley.Request
 import com.android.volley.Response
 import com.android.volley.toolbox.JsonObjectRequest
+import com.android.volley.toolbox.StringRequest
 import com.android.volley.toolbox.Volley
 import com.example.grocerygo.adapters.AdapterCategories
 import com.example.grocerygo.R
@@ -65,11 +66,10 @@ class ActivityHome : AppCompatActivity() {
     private fun requestData() {
         Log.d("TMLog","requestData`endpoint:"+Endpoints.vCategoryEndpoint)
         var requestQueue = Volley.newRequestQueue(this)
-        var request = JsonObjectRequest(Request.Method.GET, Endpoints.vCategoryEndpoint, null,
+        var request = StringRequest(Request.Method.GET, Endpoints.vCategoryEndpoint,
             Response.Listener {response ->
-                var gson = GsonBuilder().create()
-                var allData = gson.fromJson(response.toString(),CategoryData::class.java)
-                adapter.data = allData.data
+                var allData = GsonBuilder().create().fromJson(response,CategoryData::class.java)
+                adapter.data = allData.data // TODO rename data to a more understandable name
             },
             Response.ErrorListener {
                 Log.d("TMLog", "Response.ErrorListener`it:$it")
