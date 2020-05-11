@@ -1,15 +1,14 @@
-package com.example.grocerygo_jsonparsingandconfig.activities_and_frags
+package com.example.grocerygo.activities_and_frags
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import com.example.grocerygo_jsonparsingandconfig.R
-import com.example.grocerygo_jsonparsingandconfig.extras.PRODUCT_KEY
-import com.example.grocerygo_jsonparsingandconfig.models.Product
+import com.example.grocerygo.R
+import com.example.grocerygo.extras.PRODUCT_KEY
+import com.example.grocerygo.models.Product
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.activity_details.*
-import kotlinx.android.synthetic.main.row_category.view.*
 
-class DetailsActivity : AppCompatActivity() {
+class ActivityDetails : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

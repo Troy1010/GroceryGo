@@ -1,4 +1,4 @@
-package com.example.grocerygo_jsonparsingandconfig.activities_and_frags
+package com.example.grocerygo.activities_and_frags
 
 import android.content.Context
 import android.os.Bundle
@@ -10,16 +10,14 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.android.volley.toolbox.JsonObjectRequest
 import com.android.volley.toolbox.Volley
-import com.example.grocerygo_jsonparsingandconfig.R
-import com.example.grocerygo_jsonparsingandconfig.adapters.AdapterProducts
-import com.example.grocerygo_jsonparsingandconfig.extras.Endpoints
-import com.example.grocerygo_jsonparsingandconfig.models.SubCategory
+import com.example.grocerygo.R
+import com.example.grocerygo.adapters.AdapterProducts
+import com.example.grocerygo.extras.Endpoints
 import kotlinx.android.synthetic.main.frag_products.*
 import com.android.volley.Request
 import com.android.volley.Response
-import com.example.grocerygo_jsonparsingandconfig.extras.SUB_ID_KEY
-import com.example.grocerygo_jsonparsingandconfig.models.Product
-import com.example.grocerygo_jsonparsingandconfig.models.ProductsData
+import com.example.grocerygo.extras.SUB_ID_KEY
+import com.example.grocerygo.models.ProductsData
 import com.google.gson.GsonBuilder
 
 class FragProducts : Fragment() {

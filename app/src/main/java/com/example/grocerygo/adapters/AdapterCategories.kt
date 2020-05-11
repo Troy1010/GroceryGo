@@ -1,4 +1,4 @@
-package com.example.grocerygo_jsonparsingandconfig.adapters
+package com.example.grocerygo.adapters
 
 import android.content.Context
 import android.content.Intent
@@ -7,9 +7,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.example.grocerygo_jsonparsingandconfig.R
-import com.example.grocerygo_jsonparsingandconfig.activities_and_frags.SecondActivity
-import com.example.grocerygo_jsonparsingandconfig.models.Category
+import com.example.grocerygo.R
+import com.example.grocerygo.activities_and_frags.ActivitySubCatsAndProducts
+import com.example.grocerygo.models.Category
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.row_category.view.*
 import kotlinx.android.synthetic.main.row_category.view.image_view
@@ -49,7 +49,7 @@ class AdapterCategories (var context: Context): RecyclerView.Adapter<AdapterCate
         }
         // link click listener
         holder.itemView.setOnClickListener {
-            var intent = Intent(context, SecondActivity::class.java)
+            var intent = Intent(context, ActivitySubCatsAndProducts::class.java)
             intent.putExtra("CATEGORYINDEX", position)
             context.startActivity(intent)
         }

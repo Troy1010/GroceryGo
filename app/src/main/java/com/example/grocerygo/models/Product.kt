@@ -1,4 +1,4 @@
-package com.example.grocerygo_jsonparsingandconfig.models
+package com.example.grocerygo.models
 
 import java.io.Serializable
 
