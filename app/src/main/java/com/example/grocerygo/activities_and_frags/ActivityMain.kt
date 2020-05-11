@@ -1,5 +1,6 @@
 package com.example.grocerygo.activities_and_frags
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -10,6 +11,7 @@ import com.android.volley.toolbox.JsonObjectRequest
 import com.android.volley.toolbox.Volley
 import com.example.grocerygo.adapters.AdapterCategories
 import com.example.grocerygo.R
+import com.example.grocerygo.app.App
 import com.example.grocerygo.extras.Endpoints
 import com.example.grocerygo.models.CategoryData
 import com.example.grocerygo.models.Category
@@ -24,6 +26,10 @@ class ActivityMain : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         Log.d("TMLog", "I'M ALIVE")
+        if(!App.sessionManager.isLoggedIn()){
+            startActivity(Intent(this, ActivityLogin::class.java))
+            finish()
+        }
         init()
     }
 
@@ -39,10 +45,7 @@ class ActivityMain : AppCompatActivity() {
         requestData()
         // setup recycler_view
         recycler_view.layoutManager = LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL,false)
-        recycler_view.adapter =
-            AdapterCategories(
-                this
-            )
+        recycler_view.adapter =AdapterCategories(this)
     }
 
     private fun requestData() {
