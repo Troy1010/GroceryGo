@@ -30,9 +30,26 @@ class ActivityHome : AppCompatActivity() {
     }
 
     private fun init() {
-        // get user name
+        setClickListeners()
+        picassoImages()
+        requestData()
+        setupRecyclerView()
+        // fake-bind text_view_hello
         text_view_hello.text = getString(R.string.hello_start, App.sm.user.name)
-        // buttons
+    }
+    private fun setupRecyclerView() {
+        recycler_view.layoutManager = LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL,false)
+        recycler_view.adapter =AdapterCategories(this)
+    }
+    private fun picassoImages() {
+        Picasso
+            .get()
+            .load(Config.DIRECT_ENDPOINT_HOME_IMAGE)
+            .placeholder(R.drawable.not_found)
+            .error(R.drawable.no_image_available_vector_illustration_260nw_744886198)
+            .into(image_view)
+    }
+    private fun setClickListeners() {
         button_logout.setOnClickListener {
             App.sm.logout()
             startActivity(Intent(this, ActivityLogin::class.java))
@@ -41,18 +58,6 @@ class ActivityHome : AppCompatActivity() {
         button_logout_without_clearing_registration.setOnClickListener {
             startActivity(Intent(this, ActivityLogin::class.java))
         }
-        // Picasso image_view
-        Picasso
-            .get()
-            .load(Config.DIRECT_ENDPOINT_HOME_IMAGE)
-            .placeholder(R.drawable.not_found)
-            .error(R.drawable.no_image_available_vector_illustration_260nw_744886198)
-            .into(image_view)
-        //
-        requestData()
-        // setup recycler_view
-        recycler_view.layoutManager = LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL,false)
-        recycler_view.adapter =AdapterCategories(this)
     }
 
     private fun requestData() {
