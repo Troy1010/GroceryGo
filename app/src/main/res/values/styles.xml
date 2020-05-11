@@ -1,0 +1,31 @@
+<resources>
+
+    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+        <!--        <item name="android:background">@color/colorBackgroundDark</item> &lt;!&ndash; This is not always perfect &ndash;&gt;-->
+        <item name="android:textSize">24sp</item>
+        <item name="android:layout_gravity">center_horizontal</item>
+        <item name="android:buttonStyle">@style/MyButtonStyle</item>
+        <item name="android:editTextStyle">@style/MyEditTextStyle</item>
+        <item name="android:textViewStyle">@style/MyTextViewStyle</item>
+    </style>
+    <style name="MyButtonStyle" parent="Theme.AppCompat.Light.DarkActionBar">
+        <item name="android:background">@color/colorAccent</item>
+        <item name="android:paddingLeft">16dp</item>
+        <item name="android:paddingRight">16dp</item>
+        <item name="android:paddingTop">8dp</item>
+        <item name="android:paddingBottom">8dp</item>
+    </style>
+    <style name="MyEditTextStyle" parent="AppTheme">
+        <item name="android:padding">16dp</item>
+        <item name="android:textColor">@color/colorTextDefault</item>
+    </style>
+    <style name="MyTextViewStyle" parent="AppTheme">
+        <item name="android:textSize">24dp</item>
+        <item name="android:textColor">@color/colorTextDefault</item>
+        <item name="android:padding">6dp</item>
+    </style>
+
+</resources>
