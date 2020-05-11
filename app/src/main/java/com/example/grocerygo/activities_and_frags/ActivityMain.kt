@@ -1,4 +1,4 @@
-package com.example.grocerygo_jsonparsingandconfig.activities_and_frags
+package com.example.grocerygo.activities_and_frags
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -8,16 +8,16 @@ import com.android.volley.Request
 import com.android.volley.Response
 import com.android.volley.toolbox.JsonObjectRequest
 import com.android.volley.toolbox.Volley
-import com.example.grocerygo_jsonparsingandconfig.adapters.AdapterCategories
-import com.example.grocerygo_jsonparsingandconfig.R
-import com.example.grocerygo_jsonparsingandconfig.extras.Endpoints
-import com.example.grocerygo_jsonparsingandconfig.models.CategoryData
-import com.example.grocerygo_jsonparsingandconfig.models.Category
+import com.example.grocerygo.adapters.AdapterCategories
+import com.example.grocerygo.R
+import com.example.grocerygo.extras.Endpoints
+import com.example.grocerygo.models.CategoryData
+import com.example.grocerygo.models.Category
 import com.google.gson.GsonBuilder
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.activity_main.*
 
-class MainActivity : AppCompatActivity() {
+class ActivityMain : AppCompatActivity() {
     var data = arrayListOf<Category>(Category(catName = "DEFAULT CAT NAME"))
 
     override fun onCreate(savedInstanceState: Bundle?) {

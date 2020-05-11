@@ -1,4 +1,4 @@
-package com.example.grocerygo_jsonparsingandconfig.activities_and_frags
+package com.example.grocerygo.activities_and_frags
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -8,16 +8,13 @@ import com.android.volley.Response
 import com.android.volley.toolbox.JsonObjectRequest
 import com.android.volley.toolbox.Volley
 import com.example.grocerygo.adapters.AdapterSubCategories
-import com.example.grocerygo_jsonparsingandconfig.R
-import com.example.grocerygo_jsonparsingandconfig.extras.Endpoints
-import com.example.grocerygo_jsonparsingandconfig.models.SubCategoryData
-import com.example.grocerygo_jsonparsingandconfig.models.Product
-import com.example.grocerygo_jsonparsingandconfig.models.SubCategory
-import com.google.android.material.tabs.TabLayout
+import com.example.grocerygo.R
+import com.example.grocerygo.extras.Endpoints
+import com.example.grocerygo.models.SubCategoryData
 import com.google.gson.GsonBuilder
 import kotlinx.android.synthetic.main.activity_content.*
 
-class SecondActivity : AppCompatActivity() {
+class ActivitySubCatsAndProducts : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_content)

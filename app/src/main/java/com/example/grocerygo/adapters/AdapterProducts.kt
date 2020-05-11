@@ -1,4 +1,4 @@
-package com.example.grocerygo_jsonparsingandconfig.adapters
+package com.example.grocerygo.adapters
 
 import android.content.Context
 import android.content.Intent
@@ -8,10 +8,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.example.grocerygo_jsonparsingandconfig.R
-import com.example.grocerygo_jsonparsingandconfig.activities_and_frags.DetailsActivity
-import com.example.grocerygo_jsonparsingandconfig.extras.PRODUCT_KEY
-import com.example.grocerygo_jsonparsingandconfig.models.Product
+import com.example.grocerygo.R
+import com.example.grocerygo.activities_and_frags.ActivityDetails
+import com.example.grocerygo.extras.PRODUCT_KEY
+import com.example.grocerygo.models.Product
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.row_category.view.image_view
 import kotlinx.android.synthetic.main.row_product.view.*
@@ -52,7 +52,7 @@ class AdapterProducts (var context: Context): RecyclerView.Adapter<AdapterProduc
         }
         //
         holder.itemView.setOnClickListener {
-            var intent = Intent(context, DetailsActivity::class.java)
+            var intent = Intent(context, ActivityDetails::class.java)
             var product = data[position]
             intent.putExtra(PRODUCT_KEY, product)
             context.startActivity(intent)

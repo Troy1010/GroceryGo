@@ -1,4 +1,4 @@
-package com.example.grocerygo_jsonparsingandconfig.extras
+package com.example.grocerygo.extras
 
 class Config {
     companion object {

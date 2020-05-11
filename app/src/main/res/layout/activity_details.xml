@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="@color/colorBackgroundDefault"
     android:orientation="vertical"
-    tools:context="com.example.grocerygo_jsonparsingandconfig.activities_and_frags.DetailsActivity">
+    tools:context="com.example.grocerygo.activities_and_frags.ActivityDetails">
 
     <ImageView
         android:id="@+id/image_view"
