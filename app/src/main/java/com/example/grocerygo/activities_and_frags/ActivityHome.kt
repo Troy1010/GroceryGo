@@ -12,6 +12,7 @@ import com.android.volley.toolbox.Volley
 import com.example.grocerygo.adapters.AdapterCategories
 import com.example.grocerygo.R
 import com.example.grocerygo.app.App
+import com.example.grocerygo.extras.Config
 import com.example.grocerygo.extras.Endpoints
 import com.example.grocerygo.models.CategoryData
 import com.example.grocerygo.models.Category
@@ -30,20 +31,20 @@ class ActivityHome : AppCompatActivity() {
 
     private fun init() {
         // get user name
-        text_view_hello.text = "Hello, " + App.sm.user.name
+        text_view_hello.text = getString(R.string.hello_start, App.sm.user.name)
         // buttons
         button_logout.setOnClickListener {
             App.sm.logout()
             startActivity(Intent(this, ActivityLogin::class.java))
             finish()
         }
-        button_logout_without_clearing_registration.setOnClickListener( {
+        button_logout_without_clearing_registration.setOnClickListener {
             startActivity(Intent(this, ActivityLogin::class.java))
-        })
+        }
         // Picasso image_view
         Picasso
             .get()
-            .load("https://www.incimages.com/uploaded_files/image/970x450/GettyImages-840253474_349532.jpg")
+            .load(Config.DIRECT_ENDPOINT_HOME_IMAGE)
             .placeholder(R.drawable.not_found)
             .error(R.drawable.no_image_available_vector_illustration_260nw_744886198)
             .into(image_view)
