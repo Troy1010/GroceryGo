@@ -1,4 +1,4 @@
-package com.example.grocerygo_jsonparsingandconfig.models
+package com.example.grocerygo.models
 
 data class Category(
     val __v: Int = 0,

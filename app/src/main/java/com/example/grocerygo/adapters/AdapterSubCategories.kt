@@ -4,13 +4,10 @@ import android.util.Log
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentPagerAdapter
-import com.example.grocerygo_jsonparsingandconfig.R
-import com.example.grocerygo_jsonparsingandconfig.activities_and_frags.FragProducts
-import com.example.grocerygo_jsonparsingandconfig.adapters.AdapterProducts
-import com.example.grocerygo_jsonparsingandconfig.models.SubCategory
-import kotlinx.android.synthetic.main.frag_products.*
+import com.example.grocerygo.activities_and_frags.FragProducts
+import com.example.grocerygo.models.SubCategory
 
-class AdapterSubCategories(var fm: FragmentManager):FragmentPagerAdapter(fm) {
+class AdapterSubCategories(var fm: FragmentManager):FragmentPagerAdapter(fm, BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT) {
     var data =  arrayListOf<SubCategory>()
         set(value) {
             // debug

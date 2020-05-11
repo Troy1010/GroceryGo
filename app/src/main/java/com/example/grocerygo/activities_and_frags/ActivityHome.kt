@@ -1,5 +1,6 @@
-package com.example.grocerygo_jsonparsingandconfig.activities_and_frags
+package com.example.grocerygo.activities_and_frags
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -8,26 +9,37 @@ import com.android.volley.Request
 import com.android.volley.Response
 import com.android.volley.toolbox.JsonObjectRequest
 import com.android.volley.toolbox.Volley
-import com.example.grocerygo_jsonparsingandconfig.adapters.AdapterCategories
-import com.example.grocerygo_jsonparsingandconfig.R
-import com.example.grocerygo_jsonparsingandconfig.extras.Endpoints
-import com.example.grocerygo_jsonparsingandconfig.models.CategoryData
-import com.example.grocerygo_jsonparsingandconfig.models.Category
+import com.example.grocerygo.adapters.AdapterCategories
+import com.example.grocerygo.R
+import com.example.grocerygo.app.App
+import com.example.grocerygo.extras.Endpoints
+import com.example.grocerygo.models.CategoryData
+import com.example.grocerygo.models.Category
 import com.google.gson.GsonBuilder
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.activity_main.*
 
-class MainActivity : AppCompatActivity() {
+class ActivityHome : AppCompatActivity() {
     var data = arrayListOf<Category>(Category(catName = "DEFAULT CAT NAME"))
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        Log.d("TMLog", "I'M ALIVE")
         init()
     }
 
     private fun init() {
+        // get user name
+        text_view_hello.text = "Hello, " + App.sm.user.name
+        // buttons
+        button_logout.setOnClickListener {
+            App.sm.logout()
+            startActivity(Intent(this, ActivityLogin::class.java))
+            finish()
+        }
+        button_logout_without_clearing_registration.setOnClickListener( {
+            startActivity(Intent(this, ActivityLogin::class.java))
+        })
         // Picasso image_view
         Picasso
             .get()
@@ -39,10 +51,7 @@ class MainActivity : AppCompatActivity() {
         requestData()
         // setup recycler_view
         recycler_view.layoutManager = LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL,false)
-        recycler_view.adapter =
-            AdapterCategories(
-                this
-            )
+        recycler_view.adapter =AdapterCategories(this)
     }
 
     private fun requestData() {
