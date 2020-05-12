@@ -15,6 +15,7 @@ import com.example.grocerygo.adapters.AdapterCategories
 import com.example.grocerygo.R
 import com.example.grocerygo.app.App
 import com.example.grocerygo.extras.Endpoints
+import com.example.grocerygo.extras.setup
 import com.example.grocerygo.models.CategoryData
 import com.example.grocerygo.models.Category
 import com.google.gson.GsonBuilder
@@ -40,7 +41,7 @@ class ActivityHome : AppCompatActivity() {
         // fake-bind text_view_hello
         text_view_hello.text = getString(R.string.hello_start, App.sm.user.name)
         //
-        setupToolbar("GroceryGo")
+        toolbar_top.setup(this, "GroceryGo")
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean { // TODO refactor
@@ -64,13 +65,6 @@ class ActivityHome : AppCompatActivity() {
             }
         }
         return true
-    }
-
-
-    private fun setupToolbar(title:String) { // TODO refactor this out
-        toolbar_top.title = title
-        setSupportActionBar(toolbar_top)
-        supportActionBar?.setDisplayHomeAsUpEnabled(true)
     }
 
     private fun setupRecyclerView() {

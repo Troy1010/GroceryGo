@@ -7,6 +7,7 @@ import android.view.Menu
 import android.view.MenuItem
 import com.example.grocerygo.R
 import com.example.grocerygo.app.App
+import com.example.grocerygo.extras.setup
 import kotlinx.android.synthetic.main.activity_profile.*
 import kotlinx.android.synthetic.main.activity_register.*
 import kotlinx.android.synthetic.main.app_toolbar.*
@@ -22,13 +23,7 @@ class ActivityProfile : AppCompatActivity() {
     private fun init() {
         initializeUserValues()
         setupListeners()
-        setupToolbar("Profile")
-    }
-
-    private fun setupToolbar(title:String) { // TODO refactor this out
-        toolbar_top.title = title
-        setSupportActionBar(toolbar_top)
-        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+        toolbar_top.setup(this, "Profile")
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean { // TODO refactor
@@ -38,17 +33,17 @@ class ActivityProfile : AppCompatActivity() {
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean { // TODO refactor
         when (item.itemId) {
-            android.R.id.home->{
+            android.R.id.home -> {
                 finish()
             }
             R.id.menu_cart -> {
-                Log.d("TMLog","OptionsMenu`Selected Cart")
+                Log.d("TMLog", "OptionsMenu`Selected Cart")
             }
             R.id.menu_profile -> {
-                Log.d("TMLog","OptionsMenu`Selected Profile")
+                Log.d("TMLog", "OptionsMenu`Selected Profile")
             }
             R.id.menu_settings -> {
-                Log.d("TMLog","OptionsMenu`Selected Settings")
+                Log.d("TMLog", "OptionsMenu`Selected Settings")
             }
         }
         return true
