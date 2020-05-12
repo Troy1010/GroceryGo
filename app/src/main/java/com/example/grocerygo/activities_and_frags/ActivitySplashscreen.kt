@@ -7,6 +7,10 @@ import android.os.Handler
 import android.util.Log
 import com.example.grocerygo.R
 import com.example.grocerygo.app.App
+import com.example.grocerygo.extras.Config
+import com.squareup.picasso.Picasso
+import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.android.synthetic.main.app_spashscreen.*
 
 class ActivitySplashscreen : AppCompatActivity() {
 

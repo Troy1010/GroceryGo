@@ -20,6 +20,7 @@ import com.example.grocerygo.models.Category
 import com.google.gson.GsonBuilder
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.android.synthetic.main.app_spashscreen.*
 
 class ActivityHome : AppCompatActivity() {
     var data = arrayListOf<Category>(Category(catName = "DEFAULT CAT NAME"))
@@ -57,9 +58,6 @@ class ActivityHome : AppCompatActivity() {
             App.sm.logout()
             startActivity(Intent(this, ActivityLogin::class.java))
             finish()
-        }
-        button_logout_without_clearing_registration.setOnClickListener {
-            startActivity(Intent(this, ActivityLogin::class.java))
         }
     }
 

@@ -3,7 +3,6 @@ package com.example.grocerygo.extras
 object Endpoints {
     // public
     const val HOME_IMAGE = Config.ENDPOINT_HOME_IMAGE
-    const val MAIN_ICON = Config.ENDPOINT_MAIN_ICON
 
     // private
     private const val URL_SUB_DIR_CATEGORY = "category"
