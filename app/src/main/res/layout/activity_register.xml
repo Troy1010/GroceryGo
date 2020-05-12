@@ -15,12 +15,6 @@
         android:padding="16dp"
         tools:context="com.example.grocerygo.activities_and_frags.ActivityRegister">
 
-        <TextView
-            android:id="@+id/text_view"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Register" />
-
         <EditText
             android:id="@+id/edit_text_name"
             android:layout_width="match_parent"
