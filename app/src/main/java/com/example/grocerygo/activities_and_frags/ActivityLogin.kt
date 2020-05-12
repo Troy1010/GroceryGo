@@ -8,6 +8,7 @@ import com.example.grocerygo.R
 import com.example.grocerygo.app.App
 import com.example.grocerygo.models.LoginObject
 import kotlinx.android.synthetic.main.activity_login.*
+import kotlinx.android.synthetic.main.app_toolbar.*
 
 class ActivityLogin : AppCompatActivity() {
 
@@ -18,6 +19,11 @@ class ActivityLogin : AppCompatActivity() {
     }
 
     private fun init() {
+        setupClickListeners()
+        setupToolbar("Login")
+    }
+
+    private fun setupClickListeners() {
         button_not_yet_registered.setOnClickListener {
             startActivity(Intent(this, ActivityRegister::class.java))
         }
@@ -29,5 +35,11 @@ class ActivityLogin : AppCompatActivity() {
                 Toast.makeText(this, "LOGIN FAILED", Toast.LENGTH_SHORT).show()
             }
         }
+    }
+
+    private fun setupToolbar(title:String) { // TODO refactor this out
+        toolbar_top.title = title
+        setSupportActionBar(toolbar_top)
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
     }
 }

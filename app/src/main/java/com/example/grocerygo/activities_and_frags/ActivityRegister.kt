@@ -7,6 +7,7 @@ import com.example.grocerygo.R
 import com.example.grocerygo.app.App
 import com.example.grocerygo.models.User
 import kotlinx.android.synthetic.main.activity_register.*
+import kotlinx.android.synthetic.main.app_toolbar.*
 
 class ActivityRegister : AppCompatActivity() {
 
@@ -24,5 +25,12 @@ class ActivityRegister : AppCompatActivity() {
             App.sm.register(User(name, email, password))
             startActivity(Intent(this, ActivityHome::class.java))
         }
+        setupToolbar("Register")
+    }
+
+    private fun setupToolbar(title:String) { // TODO refactor this out
+        toolbar_top.title = title
+        setSupportActionBar(toolbar_top)
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
     }
 }

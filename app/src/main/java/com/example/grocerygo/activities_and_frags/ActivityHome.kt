@@ -4,6 +4,7 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import androidx.appcompat.widget.Toolbar
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.android.volley.Request
@@ -22,6 +23,7 @@ import com.google.gson.GsonBuilder
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.app_spashscreen.*
+import kotlinx.android.synthetic.main.app_toolbar.*
 
 class ActivityHome : AppCompatActivity() {
     var data = arrayListOf<Category>(Category(catName = "DEFAULT CAT NAME"))
@@ -40,7 +42,17 @@ class ActivityHome : AppCompatActivity() {
         setupRecyclerView()
         // fake-bind text_view_hello
         text_view_hello.text = getString(R.string.hello_start, App.sm.user.name)
+        //
+        setupToolbar("GroceryGo")
     }
+
+
+    private fun setupToolbar(title:String) { // TODO refactor this out
+        toolbar_top.title = title
+        setSupportActionBar(toolbar_top)
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+    }
+
     private fun setupRecyclerView() {
         recycler_view.layoutManager = GridLayoutManager(this,2)
         adapter = AdapterCategories(this)

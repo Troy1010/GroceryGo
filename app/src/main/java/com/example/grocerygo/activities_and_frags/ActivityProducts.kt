@@ -3,6 +3,7 @@ package com.example.grocerygo.activities_and_frags
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import androidx.appcompat.widget.Toolbar
 import com.android.volley.Request
 import com.android.volley.Response
 import com.android.volley.toolbox.JsonObjectRequest
@@ -11,11 +12,13 @@ import com.example.grocerygo.adapters.AdapterSubCategories
 import com.example.grocerygo.R
 import com.example.grocerygo.extras.Endpoints
 import com.example.grocerygo.extras.KEY_CAT_ID
+import com.example.grocerygo.extras.KEY_SUB_TITLE
 import com.example.grocerygo.models.SubCategoryData
 import com.google.gson.GsonBuilder
 import kotlinx.android.synthetic.main.activity_sub_cats_and_products.*
+import kotlinx.android.synthetic.main.app_toolbar.*
 
-class ActivitySubCatsAndProducts : AppCompatActivity() {
+class ActivityProducts : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_sub_cats_and_products)
@@ -28,6 +31,14 @@ class ActivitySubCatsAndProducts : AppCompatActivity() {
         view_pager.adapter = AdapterSubCategories(supportFragmentManager)
         tab_layout.setupWithViewPager(view_pager)
         requestSubCategoryData(catID)
+        setupToolbar(intent.getStringExtra(KEY_SUB_TITLE) ?: "<No Title>")
+    }
+
+
+    private fun setupToolbar(title:String) { // TODO refactor this out
+        toolbar_top.title = title
+        setSupportActionBar(toolbar_top)
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
     }
 
     private fun requestSubCategoryData(selectedCatID:Int) {
