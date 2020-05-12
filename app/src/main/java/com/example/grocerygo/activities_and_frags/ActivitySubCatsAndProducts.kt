@@ -10,6 +10,7 @@ import com.android.volley.toolbox.Volley
 import com.example.grocerygo.adapters.AdapterSubCategories
 import com.example.grocerygo.R
 import com.example.grocerygo.extras.Endpoints
+import com.example.grocerygo.extras.KEY_CAT_ID
 import com.example.grocerygo.models.SubCategoryData
 import com.google.gson.GsonBuilder
 import kotlinx.android.synthetic.main.activity_sub_cats_and_products.*
@@ -22,18 +23,15 @@ class ActivitySubCatsAndProducts : AppCompatActivity() {
     }
 
     private fun init() {
-        var i = intent.getIntExtra("CATEGORYINDEX", 0)
-        Log.d("TMLog", "ActivityContent`init`index:${i}")
+        var catID = intent.getIntExtra(KEY_CAT_ID, 0)
+        Log.d("TMLog", "ActivitySubCatsAndProducts`init`index:${catID}")
         view_pager.adapter = AdapterSubCategories(supportFragmentManager)
         tab_layout.setupWithViewPager(view_pager)
-//        tab_layout.tabMode = TabLayout.MODE_SCROLLABLE
-
-        requestSubCategoryData(i)
-
+        requestSubCategoryData(catID)
     }
 
     private fun requestSubCategoryData(selectedCatID:Int) {
-        val endpoint = Endpoints.getSelectedSubCategoriesEndpoint(selectedCatID)
+        val endpoint = Endpoints.getSelectedSubCategoriesEndpoint(selectedCatID+1)
         Log.d("TMLog","requestSubCategoryData`endpoint:$endpoint")
         var requestQueue = Volley.newRequestQueue(this)
         var request = JsonObjectRequest(

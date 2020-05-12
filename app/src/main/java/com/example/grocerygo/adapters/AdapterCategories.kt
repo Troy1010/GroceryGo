@@ -9,6 +9,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.grocerygo.R
 import com.example.grocerygo.activities_and_frags.ActivitySubCatsAndProducts
+import com.example.grocerygo.extras.KEY_CAT_ID
 import com.example.grocerygo.models.Category
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.row_category.view.*
@@ -36,9 +37,7 @@ class AdapterCategories (var context: Context): RecyclerView.Adapter<AdapterCate
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.itemView.text_view.text = data[position].catName
         // Picasso image_view
-//        Log.d("TMLog","data[position].catImage:${data[position].catImage}")
-        var imagePath = "http://rjtmobile.com/grocery/images/" + data[position].catImage
-        Log.d("TMLog","imagepath:$imagePath")
+        var imagePath = "http://rjtmobile.com/grocery/images/" + data[position].catImage // TODO: fix endpoint
         if (data[position].catImage.isNotEmpty()) {
             Picasso
                 .get()
@@ -47,10 +46,10 @@ class AdapterCategories (var context: Context): RecyclerView.Adapter<AdapterCate
                 .error(R.drawable.no_image_available_vector_illustration_260nw_744886198)
                 .into(holder.itemView.image_view)
         }
-        // link click listener
+        // click listener
         holder.itemView.setOnClickListener {
             var intent = Intent(context, ActivitySubCatsAndProducts::class.java)
-            intent.putExtra("CATEGORYINDEX", position)
+            intent.putExtra(KEY_CAT_ID, position)
             context.startActivity(intent)
         }
     }

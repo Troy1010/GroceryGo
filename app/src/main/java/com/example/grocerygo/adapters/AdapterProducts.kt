@@ -10,7 +10,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.grocerygo.R
 import com.example.grocerygo.activities_and_frags.ActivityDetails
-import com.example.grocerygo.extras.PRODUCT_KEY
+import com.example.grocerygo.extras.KEY_PRODUCT
 import com.example.grocerygo.models.Product
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.row_category.view.image_view
@@ -54,7 +54,7 @@ class AdapterProducts (var context: Context): RecyclerView.Adapter<AdapterProduc
         holder.itemView.setOnClickListener {
             var intent = Intent(context, ActivityDetails::class.java)
             var product = data[position]
-            intent.putExtra(PRODUCT_KEY, product)
+            intent.putExtra(KEY_PRODUCT, product)
             context.startActivity(intent)
         }
     }

@@ -16,7 +16,7 @@ import com.example.grocerygo.extras.Endpoints
 import kotlinx.android.synthetic.main.frag_products.*
 import com.android.volley.Request
 import com.android.volley.Response
-import com.example.grocerygo.extras.SUB_ID_KEY
+import com.example.grocerygo.extras.KEY_SUB_ID
 import com.example.grocerygo.models.ProductsData
 import com.google.gson.GsonBuilder
 
@@ -25,7 +25,7 @@ class FragProducts : Fragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
-            subID = it.getInt(SUB_ID_KEY)
+            subID = it.getInt(KEY_SUB_ID)
         }
     }
     override fun onCreateView(
@@ -79,7 +79,7 @@ class FragProducts : Fragment() {
             FragProducts().apply {
                 Log.d("TMLog", "newInstance` param1:$param1")
                 arguments = Bundle().apply {
-                    putInt(SUB_ID_KEY, param1)
+                    putInt(KEY_SUB_ID, param1)
                 }
             }
     }

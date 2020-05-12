@@ -3,7 +3,7 @@ package com.example.grocerygo.activities_and_frags
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.example.grocerygo.R
-import com.example.grocerygo.extras.PRODUCT_KEY
+import com.example.grocerygo.extras.KEY_PRODUCT
 import com.example.grocerygo.models.Product
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.activity_details.*
@@ -17,7 +17,7 @@ class ActivityDetails : AppCompatActivity() {
     }
 
     private fun init() {
-        val product = intent.getSerializableExtra(PRODUCT_KEY) as Product
+        val product = intent.getSerializableExtra(KEY_PRODUCT) as Product
 
         text_view_name.text = product.productName
         text_view_price.text = "$"+product.price.toString()

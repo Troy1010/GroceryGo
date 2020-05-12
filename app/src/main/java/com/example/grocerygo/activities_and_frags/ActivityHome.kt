@@ -4,6 +4,7 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.android.volley.Request
 import com.android.volley.Response
@@ -41,7 +42,7 @@ class ActivityHome : AppCompatActivity() {
         text_view_hello.text = getString(R.string.hello_start, App.sm.user.name)
     }
     private fun setupRecyclerView() {
-        recycler_view.layoutManager = LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL,false)
+        recycler_view.layoutManager = GridLayoutManager(this,2)
         adapter = AdapterCategories(this)
         recycler_view.adapter = adapter
     }

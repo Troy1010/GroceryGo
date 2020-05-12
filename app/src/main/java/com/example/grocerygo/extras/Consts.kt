@@ -1,4 +1,5 @@
 package com.example.grocerygo.extras
 
-const val SUB_ID_KEY = "SUBID"
-const val PRODUCT_KEY = "PRODUCT"
+const val KEY_CAT_ID = "CATID"
+const val KEY_SUB_ID = "SUBID"
+const val KEY_PRODUCT = "PRODUCT"
