@@ -7,10 +7,6 @@ import android.os.Handler
 import android.util.Log
 import com.example.grocerygo.R
 import com.example.grocerygo.app.App
-import com.example.grocerygo.extras.Config
-import com.squareup.picasso.Picasso
-import kotlinx.android.synthetic.main.activity_home.*
-import kotlinx.android.synthetic.main.app_spashscreen.*
 
 class ActivitySplashscreen : AppCompatActivity() {
 
@@ -30,9 +26,9 @@ class ActivitySplashscreen : AppCompatActivity() {
 
     private fun startLandingActivity() {
         var intent = if(App.sm.isLoggedIn()) {
-            Intent(this, ActivityWithHome::class.java)
+            Intent(this, ActivityHome::class.java)
         } else {
-            Intent(this, ActivityWithLogin::class.java)
+            Intent(this, ActivityLogin::class.java)
         }
         startActivity(intent)
         finish()

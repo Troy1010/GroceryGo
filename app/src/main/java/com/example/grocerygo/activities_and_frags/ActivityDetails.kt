@@ -8,7 +8,7 @@ import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.activity_details.*
 import kotlinx.android.synthetic.main.app_toolbar.*
 
-class ActivityWithDetails : AppCompatActivityWithToolbarFunctionality() {
+class ActivityDetails : AppCompatActivityWithToolbarFunctionality() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

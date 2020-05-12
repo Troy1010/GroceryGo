@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.grocerygo.activities_and_frags.ActivityWithRegister"
+    tools:context="com.example.grocerygo.activities_and_frags.ActivityRegister"
     android:orientation="vertical"
     android:gravity="center_horizontal"
     android:padding="16dp">

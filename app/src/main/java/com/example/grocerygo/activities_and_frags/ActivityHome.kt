@@ -21,7 +21,7 @@ import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.activity_home.*
 import kotlinx.android.synthetic.main.app_toolbar.*
 
-class ActivityWithHome : AppCompatActivityWithToolbarFunctionality() {
+class ActivityHome : AppCompatActivityWithToolbarFunctionality() {
     var data = arrayListOf<Category>(Category(catName = "DEFAULT CAT NAME"))
     lateinit var adapter: AdapterCategories
 
@@ -58,7 +58,7 @@ class ActivityWithHome : AppCompatActivityWithToolbarFunctionality() {
     private fun setClickListeners() {
         button_logout.setOnClickListener {
             App.sm.logout()
-            startActivity(Intent(this, ActivityWithLogin::class.java))
+            startActivity(Intent(this, ActivityLogin::class.java))
             finish()
         }
     }

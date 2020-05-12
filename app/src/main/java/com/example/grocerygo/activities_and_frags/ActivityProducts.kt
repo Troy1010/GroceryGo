@@ -14,7 +14,7 @@ import com.google.gson.GsonBuilder
 import kotlinx.android.synthetic.main.activity_sub_cats_and_products.*
 import kotlinx.android.synthetic.main.app_toolbar.*
 
-class ActivityWithProducts : AppCompatActivityWithToolbarFunctionality() {
+class ActivityProducts : AppCompatActivityWithToolbarFunctionality() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_sub_cats_and_products)

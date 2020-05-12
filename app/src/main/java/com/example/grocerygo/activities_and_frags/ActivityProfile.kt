@@ -8,7 +8,7 @@ import com.example.grocerygo.extras.setup
 import kotlinx.android.synthetic.main.activity_profile.*
 import kotlinx.android.synthetic.main.app_toolbar.*
 
-class ActivityWithProfile : AppCompatActivityWithToolbarFunctionality() {
+class ActivityProfile : AppCompatActivityWithToolbarFunctionality() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

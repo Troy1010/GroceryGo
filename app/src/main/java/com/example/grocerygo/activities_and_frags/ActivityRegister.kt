@@ -10,7 +10,7 @@ import com.example.grocerygo.models.User
 import kotlinx.android.synthetic.main.activity_register.*
 import kotlinx.android.synthetic.main.app_toolbar.*
 
-class ActivityWithRegister : AppCompatActivityWithToolbarFunctionality() {
+class ActivityRegister : AppCompatActivityWithToolbarFunctionality() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -24,7 +24,7 @@ class ActivityWithRegister : AppCompatActivityWithToolbarFunctionality() {
             var email = edit_text_email.text.toString().trim()
             var password = edit_text_password.text.toString().trim()
             App.sm.register(User(name, email, password))
-            startActivity(Intent(this, ActivityWithHome::class.java))
+            startActivity(Intent(this, ActivityHome::class.java))
         }
         toolbar_top.setup(this, "Register")
     }
