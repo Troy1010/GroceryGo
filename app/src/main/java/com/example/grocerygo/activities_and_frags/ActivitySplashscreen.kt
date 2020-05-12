@@ -25,7 +25,7 @@ class ActivitySplashscreen : AppCompatActivity() {
         var handler = Handler()
         handler.postDelayed( {
             startLandingActivity()
-        }, 3000)
+        }, 1000)
     }
 
     private fun startLandingActivity() {
