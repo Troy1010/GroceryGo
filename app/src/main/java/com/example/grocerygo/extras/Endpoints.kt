@@ -11,14 +11,14 @@ object Endpoints {
 
     // derivative
     val vCategoryEndpoint: String
-        get() = Config.BASE_URL + URL_SUB_DIR_CATEGORY
+        get() = Config.BASE_URL_DATA + URL_SUB_DIR_CATEGORY
 
     fun getSelectedProductsEndpoint(subCatIndex: Int): String {
-        return Config.BASE_URL + URL_SUB_DIR_PRODUCTS + "/sub/$subCatIndex"
+        return Config.BASE_URL_DATA + URL_SUB_DIR_PRODUCTS + "/sub/$subCatIndex"
     }
 
     fun getSelectedSubCategoriesEndpoint(catIndex: Int): String {
-        return Config.BASE_URL + URL_SUB_DIR_SUBCATEGORY + "/$catIndex"
+        return Config.BASE_URL_DATA + URL_SUB_DIR_SUBCATEGORY + "/$catIndex"
     }
 }
 

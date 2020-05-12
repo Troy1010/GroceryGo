@@ -9,6 +9,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.grocerygo.R
 import com.example.grocerygo.activities_and_frags.ActivitySubCatsAndProducts
+import com.example.grocerygo.extras.Config
 import com.example.grocerygo.extras.KEY_CAT_ID
 import com.example.grocerygo.models.Category
 import com.squareup.picasso.Picasso
@@ -37,7 +38,7 @@ class AdapterCategories (var context: Context): RecyclerView.Adapter<AdapterCate
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.itemView.text_view.text = data[position].catName
         // Picasso image_view
-        var imagePath = "http://rjtmobile.com/grocery/images/" + data[position].catImage // TODO: fix endpoint
+        var imagePath = Config.BASE_URL_ITEM_IMAGES + data[position].catImage
         if (data[position].catImage.isNotEmpty()) {
             Picasso
                 .get()
