@@ -8,7 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.grocerygo.R
-import com.example.grocerygo.activities_and_frags.ActivityProducts
+import com.example.grocerygo.activities_and_frags.ActivityWithProducts
 import com.example.grocerygo.extras.Config
 import com.example.grocerygo.extras.KEY_CAT_ID
 import com.example.grocerygo.extras.KEY_SUB_TITLE
@@ -50,7 +50,7 @@ class AdapterCategories (var context: Context): RecyclerView.Adapter<AdapterCate
         }
         // click listener
         holder.itemView.setOnClickListener {
-            var intent = Intent(context, ActivityProducts::class.java)
+            var intent = Intent(context, ActivityWithProducts::class.java)
             intent.putExtra(KEY_CAT_ID, position)
             intent.putExtra(KEY_SUB_TITLE, data[position].catName)
             context.startActivity(intent)

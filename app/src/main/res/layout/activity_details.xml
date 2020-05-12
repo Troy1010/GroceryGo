@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="@color/colorBackgroundDefault"
     android:orientation="vertical"
-    tools:context="com.example.grocerygo.activities_and_frags.ActivityDetails">
+    tools:context="com.example.grocerygo.activities_and_frags.ActivityWithDetails">
 
     <include layout="@layout/app_toolbar" />
 

@@ -1,11 +1,8 @@
 package com.example.grocerygo.activities_and_frags
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
-import android.view.Menu
-import android.view.MenuItem
 import androidx.recyclerview.widget.GridLayoutManager
 import com.android.volley.Request
 import com.android.volley.Response
@@ -14,6 +11,7 @@ import com.android.volley.toolbox.Volley
 import com.example.grocerygo.adapters.AdapterCategories
 import com.example.grocerygo.R
 import com.example.grocerygo.app.App
+import com.example.grocerygo.extras.AppCompatActivityWithToolbarFunctionality
 import com.example.grocerygo.extras.Endpoints
 import com.example.grocerygo.extras.setup
 import com.example.grocerygo.models.CategoryData
@@ -23,7 +21,7 @@ import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.activity_home.*
 import kotlinx.android.synthetic.main.app_toolbar.*
 
-class ActivityHome : AppCompatActivity() {
+class ActivityWithHome : AppCompatActivityWithToolbarFunctionality() {
     var data = arrayListOf<Category>(Category(catName = "DEFAULT CAT NAME"))
     lateinit var adapter: AdapterCategories
 
@@ -44,29 +42,6 @@ class ActivityHome : AppCompatActivity() {
         toolbar_top.setup(this, "GroceryGo")
     }
 
-    override fun onCreateOptionsMenu(menu: Menu?): Boolean { // TODO refactor
-        menuInflater.inflate(R.menu.menu_main, menu)
-        return super.onCreateOptionsMenu(menu)
-    }
-
-    override fun onOptionsItemSelected(item: MenuItem): Boolean { // TODO refactor
-        when (item.itemId) {
-            android.R.id.home->{
-                finish()
-            }
-            R.id.menu_cart -> {
-                Log.d("TMLog","OptionsMenu`Selected Cart")
-            }
-            R.id.menu_profile -> {
-                Log.d("TMLog","OptionsMenu`Selected Profile")
-            }
-            R.id.menu_settings -> {
-                Log.d("TMLog","OptionsMenu`Selected Settings")
-            }
-        }
-        return true
-    }
-
     private fun setupRecyclerView() {
         recycler_view.layoutManager = GridLayoutManager(this,2)
         adapter = AdapterCategories(this)
@@ -83,7 +58,7 @@ class ActivityHome : AppCompatActivity() {
     private fun setClickListeners() {
         button_logout.setOnClickListener {
             App.sm.logout()
-            startActivity(Intent(this, ActivityLogin::class.java))
+            startActivity(Intent(this, ActivityWithLogin::class.java))
             finish()
         }
     }

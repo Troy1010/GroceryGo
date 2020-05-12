@@ -30,9 +30,9 @@ class ActivitySplashscreen : AppCompatActivity() {
 
     private fun startLandingActivity() {
         var intent = if(App.sm.isLoggedIn()) {
-            Intent(this, ActivityHome::class.java)
+            Intent(this, ActivityWithHome::class.java)
         } else {
-            Intent(this, ActivityLogin::class.java)
+            Intent(this, ActivityWithLogin::class.java)
         }
         startActivity(intent)
         finish()
