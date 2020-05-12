@@ -5,5 +5,5 @@
     <color name="colorAccent">#006e63</color>
     <color name="colorBackgroundDefault">#fff</color>
     <color name="colorTextDefault">#000</color>
-    <color name="colorTextClickable">#000</color>
+    <color name="colorTextClickable">#0086bf</color>
 </resources>

@@ -4,25 +4,20 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
-import androidx.appcompat.widget.Toolbar
 import androidx.recyclerview.widget.GridLayoutManager
-import androidx.recyclerview.widget.LinearLayoutManager
 import com.android.volley.Request
 import com.android.volley.Response
-import com.android.volley.toolbox.JsonObjectRequest
 import com.android.volley.toolbox.StringRequest
 import com.android.volley.toolbox.Volley
 import com.example.grocerygo.adapters.AdapterCategories
 import com.example.grocerygo.R
 import com.example.grocerygo.app.App
-import com.example.grocerygo.extras.Config
 import com.example.grocerygo.extras.Endpoints
 import com.example.grocerygo.models.CategoryData
 import com.example.grocerygo.models.Category
 import com.google.gson.GsonBuilder
 import com.squareup.picasso.Picasso
-import kotlinx.android.synthetic.main.activity_main.*
-import kotlinx.android.synthetic.main.app_spashscreen.*
+import kotlinx.android.synthetic.main.activity_home.*
 import kotlinx.android.synthetic.main.app_toolbar.*
 
 class ActivityHome : AppCompatActivity() {
@@ -31,7 +26,7 @@ class ActivityHome : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        setContentView(R.layout.activity_home)
         init()
     }
 

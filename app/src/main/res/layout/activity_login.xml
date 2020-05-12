@@ -36,5 +36,5 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Not yet registered? Click here!"
-        android:textColor="#0086bf"/>
+        android:textColor="@color/colorTextClickable"/>
 </LinearLayout>

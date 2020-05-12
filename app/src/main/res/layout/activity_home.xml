@@ -12,6 +12,7 @@
     <TextView
         android:id="@+id/button_logout"
         android:textSize="12sp"
+        android:textColor="@color/colorTextClickable"
         android:text="Sign out"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"/>
