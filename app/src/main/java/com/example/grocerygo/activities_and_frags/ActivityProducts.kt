@@ -1,5 +1,6 @@
 package com.example.grocerygo.activities_and_frags
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -57,7 +58,7 @@ class ActivityProducts : AppCompatActivity() {
                 Log.d("TMLog","OptionsMenu`Selected Cart")
             }
             R.id.menu_profile -> {
-                Log.d("TMLog","OptionsMenu`Selected Profile")
+                startActivity(Intent(this, ActivityProfile::class.java))
             }
             R.id.menu_settings -> {
                 Log.d("TMLog","OptionsMenu`Selected Settings")

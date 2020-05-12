@@ -36,6 +36,16 @@ class SessionManager {
         editor.commit()
     }
 
+    fun registerName(name:String) {
+        editor.putString(User.KEY_NAME, name)
+        editor.commit()
+    }
+
+    fun registerEmail(email:String) {
+        editor.putString(User.KEY_EMAIL, email)
+        editor.commit()
+    }
+
     fun isLoggedIn(): Boolean {
         var storedEmail = sharedPref.getString(User.KEY_EMAIL, null)
         var storedPassword = sharedPref.getString((User.KEY_PASSWORD), null)

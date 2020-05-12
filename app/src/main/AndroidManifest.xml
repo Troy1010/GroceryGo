@@ -12,6 +12,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity android:name=".activities_and_frags.ActivityProfile"></activity>
         <activity android:name=".activities_and_frags.ActivitySplashscreen">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -23,7 +24,7 @@
         <activity android:name=".activities_and_frags.ActivityLogin" />
         <activity android:name=".activities_and_frags.ActivityDetails" />
         <activity android:name=".activities_and_frags.ActivityProducts" />
-        <activity android:name=".activities_and_frags.ActivityHome"/>
+        <activity android:name=".activities_and_frags.ActivityHome" />
     </application>
 
 </manifest>
