@@ -1,86 +1,92 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="16dp"
-    tools:context="com.example.grocerygo.activities_and_frags.ActivityProfile">
+    android:orientation="vertical">
+    <include layout="@layout/app_toolbar"/>
+    <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="16dp"
+        tools:context="com.example.grocerygo.activities_and_frags.ActivityProfile">
 
-    <TextView
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        android:id="@+id/text_view_title_main"
-        android:text="Profile"
-        android:textSize="40dp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/>
+        <TextView
+            android:id="@+id/text_view_title_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="35dp"
+            android:layout_marginBottom="25dp"
+            android:text="Name"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-    <TextView
-        android:id="@+id/text_view_title_name"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="50dp"
-        android:layout_marginBottom="25dp"
-        android:text="Name"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/text_view_title_main" />
+        <TextView
+            android:id="@+id/text_view_title_email"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginVertical="25dp"
+            android:text="Email"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/text_view_title_name" />
 
-    <TextView
-        android:id="@+id/text_view_title_email"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginVertical="25dp"
-        android:text="Email"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/text_view_title_name" />
-
-    <TextView
-        android:id="@+id/text_view_title_password"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginVertical="25dp"
-        android:text="Password"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/text_view_title_email" />
+        <TextView
+            android:id="@+id/text_view_title_password"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginVertical="25dp"
+            android:text="Password"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/text_view_title_email" />
 
 
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guideline"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        app:layout_constraintGuide_begin="141dp" />
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_begin="141dp" />
 
-    <EditText
-        android:background="@null"
-        android:textColor="@color/colorTextClickable"
-        android:id="@+id/edit_text_user_name"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:text="&lt;NAME&gt;"
-        app:layout_constraintStart_toEndOf="@id/guideline"
-        app:layout_constraintTop_toTopOf="@id/text_view_title_name"
-        app:layout_constraintBottom_toBottomOf="@id/text_view_title_name"/>
+        <EditText
+            android:id="@+id/edit_text_user_name"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:background="@null"
+            android:text="&lt;NAME&gt;"
+            android:textColor="@color/colorTextClickable"
+            app:layout_constraintBottom_toBottomOf="@id/text_view_title_name"
+            app:layout_constraintStart_toEndOf="@id/guideline"
+            app:layout_constraintTop_toTopOf="@id/text_view_title_name" />
 
-    <EditText
-        android:background="@null"
-        android:textColor="@color/colorTextClickable"
-        android:id="@+id/edit_text_user_email"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:text="&lt;EMAIL&gt;"
-        app:layout_constraintStart_toEndOf="@id/guideline"
-        app:layout_constraintTop_toTopOf="@id/text_view_title_email"
-        app:layout_constraintBottom_toBottomOf="@id/text_view_title_email"/>
+        <EditText
+            android:id="@+id/edit_text_user_email"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:background="@null"
+            android:text="&lt;EMAIL&gt;"
+            android:textColor="@color/colorTextClickable"
+            app:layout_constraintBottom_toBottomOf="@id/text_view_title_email"
+            app:layout_constraintStart_toEndOf="@id/guideline"
+            app:layout_constraintTop_toTopOf="@id/text_view_title_email" />
 
-    <TextView
-        android:textColor="@color/colorTextClickable"
-        android:id="@+id/text_view_user_fake_password"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:text="******"
-        app:layout_constraintStart_toEndOf="@id/guideline"
-        app:layout_constraintTop_toTopOf="@id/text_view_title_password" />
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <TextView
+            android:id="@+id/text_view_user_fake_password"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="******"
+            android:textColor="@color/colorTextClickable"
+            app:layout_constraintStart_toEndOf="@id/guideline"
+            app:layout_constraintTop_toTopOf="@id/text_view_title_password" />
+
+        <Button
+            android:id="@+id/button_save"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="40dp"
+            android:text="Save"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/text_view_title_password" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</LinearLayout>
