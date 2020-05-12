@@ -22,17 +22,14 @@ class AdapterSubCategories(var fm: FragmentManager):FragmentPagerAdapter(fm, BEH
             notifyDataSetChanged()
         }
     override fun getItem(position: Int): Fragment {
-        Log.d("TMLog","AdapterSubCategories`getItem`position:$position subId:${data[position].subId}")
         return FragProducts.newInstance(data[position].subId)
     }
 
     override fun getCount(): Int {
-        Log.d("TMLog","AdapterSubCategories`getCount`data.size:${data.size}")
         return data.size
     }
 
     override fun getPageTitle(position: Int): CharSequence? {
-        Log.d("TMLog","AdapterSubCategories`getPageTitle`title:${data[position].subName}")
         return data[position].subName
     }
 }

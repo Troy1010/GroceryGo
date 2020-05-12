@@ -7,18 +7,21 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+import com.android.volley.Request
+import com.android.volley.Response
 import com.android.volley.toolbox.JsonObjectRequest
 import com.android.volley.toolbox.Volley
 import com.example.grocerygo.R
 import com.example.grocerygo.adapters.AdapterProducts
 import com.example.grocerygo.extras.Endpoints
-import kotlinx.android.synthetic.main.frag_products.*
-import com.android.volley.Request
-import com.android.volley.Response
 import com.example.grocerygo.extras.KEY_SUB_ID
 import com.example.grocerygo.models.ProductsData
 import com.google.gson.GsonBuilder
+import kotlinx.android.synthetic.main.frag_products.*
+
 
 class FragProducts : Fragment() {
     var subID = 0
@@ -46,10 +49,8 @@ class FragProducts : Fragment() {
         Log.d("TMLog", "FragProducts Init. subID:$subID")
         // setup recycler_view_products
         recycler_view_products.layoutManager = LinearLayoutManager(activity as Context)
-        recycler_view_products.adapter =
-            AdapterProducts(
-                activity as Context
-            )
+        recycler_view_products.adapter = AdapterProducts(activity as Context)
+        recycler_view_products.addItemDecoration(DividerItemDecoration(activity,RecyclerView.VERTICAL))
         requestProducts(subID)
     }
 
