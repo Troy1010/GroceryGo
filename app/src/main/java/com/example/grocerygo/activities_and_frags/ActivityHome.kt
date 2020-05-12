@@ -4,6 +4,8 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.view.Menu
+import android.view.MenuItem
 import androidx.recyclerview.widget.GridLayoutManager
 import com.android.volley.Request
 import com.android.volley.Response
@@ -39,6 +41,29 @@ class ActivityHome : AppCompatActivity() {
         text_view_hello.text = getString(R.string.hello_start, App.sm.user.name)
         //
         setupToolbar("GroceryGo")
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean { // TODO refactor
+        menuInflater.inflate(R.menu.menu_main, menu)
+        return super.onCreateOptionsMenu(menu)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean { // TODO refactor
+        when (item.itemId) {
+            android.R.id.home->{
+                finish()
+            }
+            R.id.menu_cart -> {
+                Log.d("TMLog","OptionsMenu`Selected Cart")
+            }
+            R.id.menu_profile -> {
+                Log.d("TMLog","OptionsMenu`Selected Profile")
+            }
+            R.id.menu_settings -> {
+                Log.d("TMLog","OptionsMenu`Selected Settings")
+            }
+        }
+        return true
     }
 
 

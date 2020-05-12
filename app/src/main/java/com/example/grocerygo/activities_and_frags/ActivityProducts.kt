@@ -3,6 +3,8 @@ package com.example.grocerygo.activities_and_frags
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.view.Menu
+import android.view.MenuItem
 import androidx.appcompat.widget.Toolbar
 import com.android.volley.Request
 import com.android.volley.Response
@@ -39,6 +41,29 @@ class ActivityProducts : AppCompatActivity() {
         toolbar_top.title = title
         setSupportActionBar(toolbar_top)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean { // TODO refactor
+        menuInflater.inflate(R.menu.menu_main, menu)
+        return super.onCreateOptionsMenu(menu)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean { // TODO refactor
+        when (item.itemId) {
+            android.R.id.home->{
+                finish()
+            }
+            R.id.menu_cart -> {
+                Log.d("TMLog","OptionsMenu`Selected Cart")
+            }
+            R.id.menu_profile -> {
+                Log.d("TMLog","OptionsMenu`Selected Profile")
+            }
+            R.id.menu_settings -> {
+                Log.d("TMLog","OptionsMenu`Selected Settings")
+            }
+        }
+        return true
     }
 
     private fun requestSubCategoryData(selectedCatID:Int) {
