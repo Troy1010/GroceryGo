@@ -55,7 +55,6 @@ class FragSearch : Fragment(), Title {
 
     private fun requestSubCategoryData(selectedCatID:Int) {
         val endpoint = Endpoints.getSelectedSubCategoriesEndpoint(selectedCatID+1)
-        Log.d("TMLog","requestSubCategoryData`endpoint:$endpoint")
         var requestQueue = Volley.newRequestQueue(context)
         var request = JsonObjectRequest(
             Request.Method.GET, endpoint, null,

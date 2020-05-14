@@ -66,7 +66,6 @@ class FragHome : Fragment(), Title {
     }
 
     private fun requestCategories() {
-        Log.d("TMLog","requestData`endpoint:"+Endpoints.vCategoryEndpoint)
         var requestQueue = Volley.newRequestQueue(activity!!)
         var request = StringRequest(Request.Method.GET, Endpoints.vCategoryEndpoint,
             Response.Listener {response ->
