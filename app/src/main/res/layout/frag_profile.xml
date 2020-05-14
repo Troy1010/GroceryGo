@@ -75,15 +75,15 @@
         app:layout_constraintStart_toEndOf="@id/guideline"
         app:layout_constraintTop_toTopOf="@id/text_view_title_password" />
 
-    <Button
-        android:textSize="24sp"
-        android:textColor="#fff"
-        android:id="@+id/button_save"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="40dp"
-        android:text="Save"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/text_view_title_password" />
+<!--    <Button-->
+<!--        android:textSize="24sp"-->
+<!--        android:textColor="#fff"-->
+<!--        android:id="@+id/button_save"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_marginTop="40dp"-->
+<!--        android:text="Save"-->
+<!--        app:layout_constraintLeft_toLeftOf="parent"-->
+<!--        app:layout_constraintRight_toRightOf="parent"-->
+<!--        app:layout_constraintTop_toBottomOf="@id/text_view_title_password" />-->
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -4,6 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
+import android.view.View
 import com.example.grocerygo.R
 import com.example.grocerygo.app.App
 import com.example.grocerygo.extras.AppCompatActivityWithToolbarFunctionality
@@ -15,7 +16,7 @@ import com.google.android.material.textfield.TextInputLayout
 import kotlinx.android.synthetic.main.activity_register.*
 import kotlinx.android.synthetic.main.app_toolbar.*
 
-class ActivityRegister : AppCompatActivityWithToolbarFunctionality() {
+class ActivityRegister : AppCompatActivityWithToolbarFunctionality(), View.OnClickListener {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_register)
@@ -23,26 +24,32 @@ class ActivityRegister : AppCompatActivityWithToolbarFunctionality() {
     }
 
     private fun init() {
-        button_register_send.setOnClickListener {
-            var name = text_input_name.text.toString().trim()
-            var email = text_input_email.text.toString().trim()
-            var password = text_input_password.text.toString().trim()
-            var mobile = text_input_mobile.text.toString().trim()
-            var errorHandler = ErrorHandler()
-            errorHandler.handle(FormValidator.name(name), text_input_layout_name)
-            errorHandler.handle(FormValidator.password(password), text_input_layout_password)
-            errorHandler.handle(FormValidator.email(email), text_input_layout_email)
-            errorHandler.handle(FormValidator.mobile(mobile), text_input_layout_mobile)
-            if (!errorHandler.foundError) {
-                App.sm.register(User(name, email, password)) // TODO take mobile
-                startActivity(Intent(this, FragHome::class.java))
-            }
-        }
+        button_register_send.setOnClickListener(this)
         text_input_email.addTextChangedListener(MyTextWater(text_input_layout_email, RegInputType.EMAIL))
         text_input_password.addTextChangedListener(MyTextWater(text_input_layout_password, RegInputType.PASSWORD))
         text_input_mobile.addTextChangedListener(MyTextWater(text_input_layout_mobile, RegInputType.MOBILE))
         text_input_name.addTextChangedListener(MyTextWater(text_input_layout_name, RegInputType.NAME))
         toolbar_top.setup(this, "Register")
+    }
+
+    override fun onClick(v: View?) {
+        when (v?.id) {
+            R.id.button_register_send -> {
+                var name = text_input_name.text.toString().trim()
+                var email = text_input_email.text.toString().trim()
+                var password = text_input_password.text.toString().trim()
+                var mobile = text_input_mobile.text.toString().trim()
+                var errorHandler = ErrorHandler()
+                errorHandler.handle(FormValidator.name(name), text_input_layout_name)
+                errorHandler.handle(FormValidator.password(password), text_input_layout_password)
+                errorHandler.handle(FormValidator.email(email), text_input_layout_email)
+                errorHandler.handle(FormValidator.mobile(mobile), text_input_layout_mobile)
+                if (!errorHandler.foundError) {
+                    App.sm.register(User(name, email, password)) // TODO take mobile
+                    startActivity(Intent(this, ActivityHost::class.java))
+                }
+            }
+        }
     }
 
 }

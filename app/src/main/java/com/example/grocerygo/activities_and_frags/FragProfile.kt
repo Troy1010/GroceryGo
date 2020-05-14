@@ -38,9 +38,9 @@ class FragProfile : Fragment() {
     }
 
     private fun setupListeners() {
-        button_save.setOnClickListener {
-            App.sm.registerName(edit_text_user_name.text.toString())
-            App.sm.registerEmail(edit_text_user_email.text.toString())
-        }
+//        button_save.setOnClickListener {
+//            App.sm.registerName(edit_text_user_name.text.toString())
+//            App.sm.registerEmail(edit_text_user_email.text.toString())
+//        }
     }
 }

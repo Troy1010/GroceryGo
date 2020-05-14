@@ -1,5 +1,6 @@
 package com.example.grocerygo.activities_and_frags
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -58,7 +59,7 @@ class FragHome : Fragment() {
     private fun setClickListeners() {
         button_logout.setOnClickListener {
             App.sm.logout()
-            // TODO navigate to login screen
+            startActivity(Intent(activity!!,ActivityLogin::class.java))
         }
     }
 
