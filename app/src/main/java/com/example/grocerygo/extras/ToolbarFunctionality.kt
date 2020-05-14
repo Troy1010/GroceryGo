@@ -1,15 +1,13 @@
 package com.example.grocerygo.extras
 
-import android.app.Activity
 import android.content.Intent
 import android.util.Log
 import android.view.Menu
-import android.view.MenuInflater
 import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatCallback
 import com.example.grocerygo.R
-import com.example.grocerygo.activities_and_frags.ActivityProfile
+import com.example.grocerygo.activities_and_frags.FragProfile
 
 abstract class AppCompatActivityWithToolbarFunctionality : AppCompatActivity(), AppCompatCallback {
 
@@ -28,7 +26,7 @@ abstract class AppCompatActivityWithToolbarFunctionality : AppCompatActivity(), 
                 Log.d("TMLog","OptionsMenu`Selected Cart")
             }
             R.id.menu_profile -> {
-                startActivity(Intent(this, ActivityProfile::class.java))
+                startActivity(Intent(this, FragProfile::class.java))
             }
             R.id.menu_settings -> {
                 Log.d("TMLog","OptionsMenu`Selected Settings")

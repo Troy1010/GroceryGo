@@ -13,7 +13,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".activities_and_frags.ActivityHost"></activity>
-        <activity android:name=".activities_and_frags.ActivityProfile" />
+        <activity android:name=".activities_and_frags.FragProfile" />
         <activity android:name=".activities_and_frags.ActivitySplashscreen">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
