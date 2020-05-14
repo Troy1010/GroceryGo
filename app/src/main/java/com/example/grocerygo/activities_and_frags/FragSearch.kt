@@ -2,6 +2,10 @@ package com.example.grocerygo.activities_and_frags
 
 import android.os.Bundle
 import android.util.Log
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 import com.android.volley.Request
 import com.android.volley.Response
 import com.android.volley.toolbox.JsonObjectRequest
@@ -11,29 +15,48 @@ import com.example.grocerygo.R
 import com.example.grocerygo.extras.*
 import com.example.grocerygo.models.SubCategoryData
 import com.google.gson.GsonBuilder
-import kotlinx.android.synthetic.main.activity_sub_cats_and_products.*
-import kotlinx.android.synthetic.main.app_toolbar.*
+import kotlinx.android.synthetic.main.frag_search.*
+import kotlinx.android.synthetic.main.frag_search.view.*
 
-class ActivityProducts : AppCompatActivityWithToolbarFunctionality() {
+class FragSearch : Fragment(), Title {
+    override val title = "Search"
+    private val viewPagerAdapter: AdapterSubCategories by lazy { AdapterSubCategories(activity!!.supportFragmentManager) }
+    var bundle:Bundle? = null
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_sub_cats_and_products)
+        bundle = savedInstanceState
+    }
+
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
+        return inflater.inflate(R.layout.frag_search,container,false)
+    }
+
+    override fun onStart() {
+        super.onStart()
         init()
     }
 
     private fun init() {
-        var catID = intent.getIntExtra(KEY_CAT_ID, 0)
-        Log.d("TMLog", "ActivitySubCatsAndProducts`init`index:${catID}")
-        view_pager.adapter = AdapterSubCategories(supportFragmentManager)
+        // receive catID
+        var catID = bundle?.getInt(KEY_CAT_ID, 0)
+        //
+        setupTabLayout()
+        requestSubCategoryData(catID?:0)
+    }
+    private fun setupTabLayout() {
+        view_pager.adapter = viewPagerAdapter
         tab_layout.setupWithViewPager(view_pager)
-        requestSubCategoryData(catID)
-        toolbar_top.setup(this, intent.getStringExtra(KEY_SUB_TITLE) ?: "<No Title>")
     }
 
     private fun requestSubCategoryData(selectedCatID:Int) {
         val endpoint = Endpoints.getSelectedSubCategoriesEndpoint(selectedCatID+1)
         Log.d("TMLog","requestSubCategoryData`endpoint:$endpoint")
-        var requestQueue = Volley.newRequestQueue(this)
+        var requestQueue = Volley.newRequestQueue(context)
         var request = JsonObjectRequest(
             Request.Method.GET, endpoint, null,
             Response.Listener { response ->

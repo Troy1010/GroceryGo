@@ -9,11 +9,13 @@ import androidx.fragment.app.Fragment
 import com.example.grocerygo.R
 import com.example.grocerygo.app.App
 import com.example.grocerygo.extras.AppCompatActivityWithToolbarFunctionality
+import com.example.grocerygo.extras.Title
 import com.example.grocerygo.extras.setup
 import kotlinx.android.synthetic.main.frag_profile.*
 import kotlinx.android.synthetic.main.app_toolbar.*
 
-class FragProfile : Fragment() {
+class FragProfile : Fragment(), Title {
+    override val title = "Profile"
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,

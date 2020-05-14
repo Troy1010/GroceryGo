@@ -8,10 +8,11 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.grocerygo.R
-import com.example.grocerygo.activities_and_frags.ActivityProducts
+import com.example.grocerygo.activities_and_frags.FragSearch
 import com.example.grocerygo.extras.Config
 import com.example.grocerygo.extras.KEY_CAT_ID
 import com.example.grocerygo.extras.KEY_SUB_TITLE
+import com.example.grocerygo.extras.logz
 import com.example.grocerygo.models.Category
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.row_category.view.*
@@ -50,10 +51,15 @@ class AdapterCategories (var context: Context): RecyclerView.Adapter<AdapterCate
         }
         // click listener
         holder.itemView.setOnClickListener {
-            var intent = Intent(context, ActivityProducts::class.java)
-            intent.putExtra(KEY_CAT_ID, position)
-            intent.putExtra(KEY_SUB_TITLE, data[position].catName)
-            context.startActivity(intent)
+//            var intent = Intent(context, FragSearch::class.java)
+//            intent.putExtra(KEY_CAT_ID, position)
+//            intent.putExtra(KEY_SUB_TITLE, data[position].catName)
+//            context.startActivity(intent)
+            logz("TODO")
+            // TODO navigate to profile page
+
+
+//            supportFragmentManager.beginTransaction().replace(R.id.frame_page_fragments,FragProfile()).commit()
         }
     }
 }

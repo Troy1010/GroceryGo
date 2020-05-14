@@ -24,7 +24,7 @@
         <activity android:name=".activities_and_frags.ActivityRegister" />
         <activity android:name=".activities_and_frags.ActivityLogin" />
         <activity android:name=".activities_and_frags.ActivityDetails" />
-        <activity android:name=".activities_and_frags.ActivityProducts" />
+        <activity android:name=".activities_and_frags.FragSearch" />
         <activity android:name=".activities_and_frags.FragHome" />
     </application>
 

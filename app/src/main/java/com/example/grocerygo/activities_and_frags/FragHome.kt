@@ -16,13 +16,15 @@ import com.example.grocerygo.adapters.AdapterCategories
 import com.example.grocerygo.R
 import com.example.grocerygo.app.App
 import com.example.grocerygo.extras.Endpoints
+import com.example.grocerygo.extras.Title
 import com.example.grocerygo.models.ReceivedCategoriesObject
 import com.example.grocerygo.models.Category
 import com.google.gson.GsonBuilder
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.frag_home.*
 
-class FragHome : Fragment() {
+class FragHome : Fragment(), Title {
+    override val title = "Home"
     private val recyclerAdapter: AdapterCategories by lazy { AdapterCategories(activity!!) }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {

@@ -1,11 +1,12 @@
 package com.example.grocerygo.activities_and_frags
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.MenuItem
+import androidx.fragment.app.Fragment
 import com.example.grocerygo.R
 import com.example.grocerygo.extras.AppCompatActivityWithToolbarFunctionality
-import com.example.grocerygo.extras.logz
+import com.example.grocerygo.extras.PageEnums
+import com.example.grocerygo.extras.Title
 import com.example.grocerygo.extras.setup
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import kotlinx.android.synthetic.main.activity_host.*
@@ -25,16 +26,30 @@ class ActivityHost : AppCompatActivityWithToolbarFunctionality(), BottomNavigati
         bottom_navigation_bar.setOnNavigationItemSelectedListener(this)
     }
 
+    fun navigateToPage(e:PageEnums) {
+        val frag:Fragment = when (e) {
+            PageEnums.SEARCH -> FragSearch()
+            PageEnums.PROFILE -> FragProfile()
+            else -> FragHome()
+        }
+        if (frag is Title) {
+            toolbar_top.title = frag.title
+        }
+        supportFragmentManager.beginTransaction().replace(R.id.frame_page_fragments,frag).commit()
+    }
+
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
         return when (item.itemId) {
             R.id.item_home -> {
-                toolbar_top.title = "Home"
-                supportFragmentManager.beginTransaction().replace(R.id.frame_page_fragments,FragHome()).commit()
+                navigateToPage(PageEnums.HOME)
                 true
             }
             R.id.item_profile -> {
-                toolbar_top.title = "Profile"
-                supportFragmentManager.beginTransaction().replace(R.id.frame_page_fragments,FragProfile()).commit()
+                navigateToPage(PageEnums.PROFILE)
+                true
+            }
+            R.id.item_search -> {
+                navigateToPage(PageEnums.SEARCH)
                 true
             }
             else -> {
