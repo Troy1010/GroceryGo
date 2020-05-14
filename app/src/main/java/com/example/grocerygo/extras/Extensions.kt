@@ -14,3 +14,21 @@ fun Toolbar.setup(activity: AppCompatActivity, title:String) {
 fun Context.easyToast (s:String) {
     Toast.makeText(this,s, Toast.LENGTH_SHORT).show()
 }
+
+fun String.hasDigit () : Boolean {
+    for (ch in this) {
+        if (ch.isDigit()) {
+            return true
+        }
+    }
+    return false
+}
+
+fun String.isAllDigits () : Boolean {
+    for (ch in this) {
+        if (!ch.isDigit()) {
+            return false
+        }
+    }
+    return true
+}
