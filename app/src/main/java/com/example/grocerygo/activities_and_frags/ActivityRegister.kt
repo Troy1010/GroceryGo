@@ -35,7 +35,7 @@ class ActivityRegister : AppCompatActivityWithToolbarFunctionality() {
             errorHandler.handle(FormValidator.mobile(mobile), text_input_layout_mobile)
             if (!errorHandler.foundError) {
                 App.sm.register(User(name, email, password)) // TODO take mobile
-                startActivity(Intent(this, ActivityHome::class.java))
+                startActivity(Intent(this, FragHome::class.java))
             }
         }
         text_input_email.addTextChangedListener(MyTextWater(text_input_layout_email, RegInputType.EMAIL))

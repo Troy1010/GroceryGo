@@ -4,7 +4,6 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
-import android.util.Log
 import com.example.grocerygo.R
 import com.example.grocerygo.app.App
 import com.example.grocerygo.extras.Logf
@@ -26,12 +25,7 @@ class ActivitySplashscreen : AppCompatActivity() {
     }
 
     private fun startLandingActivity() {
-        var intent = if(App.sm.isLoggedIn()) {
-            Intent(this, ActivityHome::class.java)
-        } else {
-            Intent(this, ActivityLogin::class.java)
-        }
-        startActivity(intent)
+        startActivity(Intent(this, ActivityHost::class.java))
         finish()
     }
 

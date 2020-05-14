@@ -3,6 +3,10 @@ package com.example.grocerygo.activities_and_frags
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.GridLayoutManager
 import com.android.volley.Request
 import com.android.volley.Response
@@ -18,17 +22,15 @@ import com.example.grocerygo.models.CategoryData
 import com.example.grocerygo.models.Category
 import com.google.gson.GsonBuilder
 import com.squareup.picasso.Picasso
-import kotlinx.android.synthetic.main.activity_home.*
+import kotlinx.android.synthetic.main.frag_home.*
 import kotlinx.android.synthetic.main.app_toolbar.*
+import java.util.zip.Inflater
 
-class ActivityHome : AppCompatActivityWithToolbarFunctionality() {
+class FragHome : Fragment() {
     var data = arrayListOf<Category>(Category(catName = "DEFAULT CAT NAME"))
     lateinit var adapter: AdapterCategories
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_home)
-        init()
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+        return inflater.inflate(R.layout.frag_home, container, false)
     }
 
     private fun init() {
@@ -39,12 +41,11 @@ class ActivityHome : AppCompatActivityWithToolbarFunctionality() {
         // fake-bind text_view_hello
         text_view_hello.text = getString(R.string.hello_start, App.sm.user.name)
         //
-        toolbar_top.setup(this, "GroceryGo")
     }
 
     private fun setupRecyclerView() {
-        recycler_view.layoutManager = GridLayoutManager(this,2)
-        adapter = AdapterCategories(this)
+        recycler_view.layoutManager = GridLayoutManager(activity!!,2)
+        adapter = AdapterCategories(activity!!)
         recycler_view.adapter = adapter
     }
     private fun picassoImages() {
@@ -58,14 +59,13 @@ class ActivityHome : AppCompatActivityWithToolbarFunctionality() {
     private fun setClickListeners() {
         button_logout.setOnClickListener {
             App.sm.logout()
-            startActivity(Intent(this, ActivityLogin::class.java))
-            finish()
+            // TODO navigate to login screen
         }
     }
 
     private fun requestData() {
         Log.d("TMLog","requestData`endpoint:"+Endpoints.vCategoryEndpoint)
-        var requestQueue = Volley.newRequestQueue(this)
+        var requestQueue = Volley.newRequestQueue(activity!!)
         var request = StringRequest(Request.Method.GET, Endpoints.vCategoryEndpoint,
             Response.Listener {response ->
                 var allData = GsonBuilder().create().fromJson(response,CategoryData::class.java)
