@@ -21,7 +21,6 @@ import kotlinx.android.synthetic.main.row_category.view.image_view
 class AdapterCategories (var context: Context): RecyclerView.Adapter<AdapterCategories.ViewHolder>() {
     var data =  arrayListOf<Category>(Category())
         set(value) {
-            Log.d("TMLog","RecyclerView`dataSetter`data`value:$value")
             field = value
             notifyDataSetChanged()
         }
