@@ -2,6 +2,8 @@ package com.example.grocerygo.activities_and_frags
 
 import android.content.Intent
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
 import com.example.grocerygo.R
 import com.example.grocerygo.app.App
 import com.example.grocerygo.extras.AppCompatActivityWithToolbarFunctionality
@@ -36,10 +38,31 @@ class ActivityRegister : AppCompatActivityWithToolbarFunctionality() {
                 startActivity(Intent(this, ActivityHome::class.java))
             }
         }
+        text_input_email.addTextChangedListener(MyTextWater(text_input_layout_email, RegInputType.EMAIL))
+        text_input_password.addTextChangedListener(MyTextWater(text_input_layout_password, RegInputType.PASSWORD))
+        text_input_mobile.addTextChangedListener(MyTextWater(text_input_layout_mobile, RegInputType.MOBILE))
+        text_input_name.addTextChangedListener(MyTextWater(text_input_layout_name, RegInputType.NAME))
         toolbar_top.setup(this, "Register")
     }
 
 }
+enum class RegInputType {
+    EMAIL, NAME, PASSWORD, MOBILE
+}
+
+class MyTextWater (var v: TextInputLayout, var e:RegInputType): TextWatcher {
+    override fun afterTextChanged(s: Editable?) {
+        ErrorHandler().handle(FormValidator.validateType(e,s.toString()),v)
+    }
+
+    override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
+        v.isErrorEnabled = false
+    }
+
+    override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {}
+
+}
+
 
 class ErrorHandler {
     var foundError = false
@@ -58,6 +81,14 @@ data class ValidationError (
 )
 
 object FormValidator {
+    fun validateType(e:RegInputType, s:String):ValidationError? {
+        return when (e) {
+            RegInputType.EMAIL -> this.email(s)
+            RegInputType.NAME -> this.name(s)
+            RegInputType.PASSWORD -> this.password(s)
+            RegInputType.MOBILE -> this.mobile(s)
+        }
+    }
     fun name(name:String):ValidationError? {
         if (name.isNullOrEmpty()){
             return ValidationError("Required")
