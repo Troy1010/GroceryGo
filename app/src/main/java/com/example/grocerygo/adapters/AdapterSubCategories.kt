@@ -3,7 +3,7 @@ package com.example.grocerygo.adapters
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentPagerAdapter
-import com.example.grocerygo.activities_and_frags.FragProducts
+import com.example.grocerygo.activities_and_frags.DEPRECIATED_FragProducts
 import com.example.grocerygo.extras.logz
 import com.example.grocerygo.models.SubCategory
 
@@ -22,7 +22,7 @@ class AdapterSubCategories(var fm: FragmentManager):FragmentPagerAdapter(fm, BEH
         }
     override fun getItem(position: Int): Fragment {
         logz("MAKING NEW FRAGMENT")
-        return FragProducts.newInstance(data[position].subId)
+        return DEPRECIATED_FragProducts.newInstance(data[position].subId)
     }
 
     override fun getCount(): Int {

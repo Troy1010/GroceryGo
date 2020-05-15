@@ -17,19 +17,19 @@ import com.android.volley.toolbox.Volley
 import com.example.grocerygo.R
 import com.example.grocerygo.adapters.AdapterProducts
 import com.example.grocerygo.extras.Endpoints
-import com.example.grocerygo.extras.KEY_SUB_ID
+import com.example.grocerygo.extras.KEY_SUB_CAT_ID
 import com.example.grocerygo.extras.logz
-import com.example.grocerygo.models.ProductsData
+import com.example.grocerygo.models.ReceivedProductsObject
 import com.google.gson.GsonBuilder
 import kotlinx.android.synthetic.main.frag_products.*
 
 
-class FragProducts : Fragment() {
+class DEPRECIATED_FragProducts : Fragment() {
     var subID = 1
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
-            subID = it.getInt(KEY_SUB_ID)
+            subID = it.getInt(KEY_SUB_CAT_ID)
         }
         logz("FragProducts($subID)`onCreate")
     }
@@ -67,7 +67,7 @@ class FragProducts : Fragment() {
             Request.Method.GET, endpoint, null,
             Response.Listener { response ->
                 var gson = GsonBuilder().create()
-                var productsData = gson.fromJson(response.toString(), ProductsData::class.java)
+                var productsData = gson.fromJson(response.toString(), ReceivedProductsObject::class.java)
                 // give data to adapter
                 var mAdapter = recycler_view_products.adapter
                 if (mAdapter is AdapterProducts) {
@@ -82,10 +82,10 @@ class FragProducts : Fragment() {
     companion object {
         @JvmStatic
         fun newInstance(param1: Int) =
-            FragProducts().apply {
+            DEPRECIATED_FragProducts().apply {
                 Log.d("TMLog", "newInstance` param1:$param1")
                 arguments = Bundle().apply {
-                    putInt(KEY_SUB_ID, param1)
+                    putInt(KEY_SUB_CAT_ID, param1)
                 }
             }
     }

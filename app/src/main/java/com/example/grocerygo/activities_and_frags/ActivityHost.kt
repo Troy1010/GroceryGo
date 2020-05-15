@@ -22,7 +22,7 @@ class ActivityHost : AppCompatActivityWithToolbarFunctionality(), BottomNavigati
 
     private fun init() {
         toolbar_top.setup(this, "Home")
-        supportFragmentManager.beginTransaction().add(R.id.frame_page_fragments,FragHome()).commit()
+        supportFragmentManager.beginTransaction().add(R.id.frame_fragments,FragHome()).commit()
         bottom_navigation_bar.setOnNavigationItemSelectedListener(this)
     }
 
@@ -36,7 +36,7 @@ class ActivityHost : AppCompatActivityWithToolbarFunctionality(), BottomNavigati
         if (frag is Title) {
             toolbar_top.title = frag.title
         }
-        supportFragmentManager.beginTransaction().replace(R.id.frame_page_fragments,frag).commit()
+        supportFragmentManager.beginTransaction().replace(R.id.frame_fragments,frag).commit()
     }
 
     override fun onNavigationItemSelected(item: MenuItem): Boolean {

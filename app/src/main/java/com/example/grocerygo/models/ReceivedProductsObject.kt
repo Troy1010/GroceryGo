@@ -1,5 +1,5 @@
 package com.example.grocerygo.models
 
-class ProductsData (
+class ReceivedProductsObject (
     var data: ArrayList<Product>
 )
