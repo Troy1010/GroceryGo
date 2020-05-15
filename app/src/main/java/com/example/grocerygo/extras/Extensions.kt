@@ -4,6 +4,7 @@ import android.content.Context
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
+import androidx.fragment.app.Fragment
 
 
 fun Toolbar.setup(activity: AppCompatActivity, title:String) {
@@ -13,6 +14,9 @@ fun Toolbar.setup(activity: AppCompatActivity, title:String) {
 }
 fun Context.easyToast (s:String) {
     Toast.makeText(this,s, Toast.LENGTH_SHORT).show()
+}
+fun Fragment.easyToast(s:String) {
+    this.activity?.easyToast(s)
 }
 
 fun String.hasDigit () : Boolean {
