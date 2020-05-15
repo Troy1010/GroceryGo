@@ -11,15 +11,16 @@
     <include layout="@layout/app_toolbar" />
 
 
-    <TextView
-        android:id="@+id/text_view_name"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginHorizontal="16dp"
-        android:gravity="center_horizontal"
-        android:textSize="36sp" />
+<!--    <TextView-->
+<!--        android:id="@+id/text_view_name"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_marginHorizontal="16dp"-->
+<!--        android:gravity="center_horizontal"-->
+<!--        android:textSize="36sp" />-->
 
     <ImageView
+        android:layout_marginTop="22dp"
         android:id="@+id/image_view"
         android:layout_width="300dp"
         android:layout_height="300dp" />

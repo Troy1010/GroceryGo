@@ -19,7 +19,7 @@ class ActivityDetails : AppCompatActivityWithToolbarFunctionality() {
     private fun init() {
         val product = intent.getSerializableExtra(KEY_PRODUCT) as Product
 
-        text_view_name.text = product.productName
+//        text_view_name.text = product.productName
         text_view_price.text = "$"+product.price.toString()
         text_view_details.text = product.description
 
@@ -32,6 +32,6 @@ class ActivityDetails : AppCompatActivityWithToolbarFunctionality() {
                 .error(R.drawable.no_image_available_vector_illustration_260nw_744886198)
                 .into(image_view)
         }
-        toolbar_top.setup(this, "GroceryGo")
+        toolbar_top.setup(this, product.productName)
     }
 }
