@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import com.example.grocerygo.R
 import com.example.grocerygo.extras.App
@@ -22,6 +23,8 @@ class FragHome : Fragment(), Title {
 
     override fun onStart() {
         super.onStart()
+        var activityZ = activity as AppCompatActivity
+        activityZ.supportActionBar?.setDisplayHomeAsUpEnabled(false)
         init()
     }
 

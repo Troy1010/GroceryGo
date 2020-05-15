@@ -26,20 +26,20 @@ class ActivityHost : AppCompatActivityWithToolbarFunctionality(), BottomNavigati
         bottom_navigation_bar.setOnNavigationItemSelectedListener(this)
     }
 
-    fun navigateToPage(e:PageEnums) {
-        when (e) {
-            PageEnums.SEARCH -> usualNavigation(FragSearchPrimary())
-            PageEnums.PROFILE -> usualNavigation(FragProfile())
-            PageEnums.CART -> usualNavigation(FragCart())
-            else -> usualNavigation(FragHome())
-        }
-    }
-    private fun usualNavigation (frag:Fragment) {
-        if (frag is Title) {
-            toolbar_top.title = frag.title
-        }
-        supportFragmentManager.beginTransaction().replace(R.id.frame_fragments,frag).commit()
-    }
+//    fun navigateToPage(e:PageEnums) {
+//        when (e) {
+//            PageEnums.SEARCH -> usualNavigation(FragSearchPrimary())
+//            PageEnums.PROFILE -> usualNavigation(FragProfile())
+//            PageEnums.CART -> usualNavigation(FragCart())
+//            else -> usualNavigation(FragHome())
+//        }
+//    }
+//    private fun usualNavigation (frag:Fragment) {
+//        if (frag is Title) {
+//            toolbar_top.title = frag.title
+//        }
+//        supportFragmentManager.beginTransaction().replace(R.id.frame_fragments,frag).commit()
+//    }
 
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
         return when (item.itemId) {

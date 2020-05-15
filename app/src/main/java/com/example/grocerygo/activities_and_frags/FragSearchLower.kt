@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -32,6 +33,12 @@ class FragSearchLower : Fragment(), Title {
     ): View? {
         init()
         return inflater.inflate(R.layout.frag_search_lower, container, false)
+    }
+
+    override fun onStart() {
+        super.onStart()
+        var activityZ = activity as AppCompatActivity
+        activityZ.supportActionBar?.setDisplayHomeAsUpEnabled(true)
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {

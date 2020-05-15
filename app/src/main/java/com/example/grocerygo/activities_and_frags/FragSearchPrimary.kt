@@ -5,6 +5,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.GridLayoutManager
 import com.android.volley.Request
@@ -32,6 +33,11 @@ class FragSearchPrimary : Fragment(), Title {
         return inflater.inflate(R.layout.frag_search_primary, container, false)
     }
 
+    override fun onStart() {
+        super.onStart()
+        var activityZ = activity as AppCompatActivity
+        activityZ.supportActionBar?.setDisplayHomeAsUpEnabled(true)
+    }
     private fun init() {
         requestCategories()
     }
