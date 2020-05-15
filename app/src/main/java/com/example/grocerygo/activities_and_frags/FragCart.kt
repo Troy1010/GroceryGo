@@ -6,8 +6,10 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.example.grocerygo.R
+import com.example.grocerygo.extras.Title
 
-class FragCart : Fragment() {
+class FragCart : Fragment() , Title {
+    override val title = "Cart"
 
     override fun onCreateView(
         inflater: LayoutInflater,
