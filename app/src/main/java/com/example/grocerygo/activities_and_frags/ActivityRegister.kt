@@ -6,12 +6,9 @@ import android.text.Editable
 import android.text.TextWatcher
 import android.view.View
 import com.example.grocerygo.R
-import com.example.grocerygo.extras.App
-import com.example.grocerygo.extras.AppCompatActivityWithToolbarFunctionality
-import com.example.grocerygo.extras.hasDigit
-import com.example.grocerygo.extras.isAllDigits
-import com.example.grocerygo.extras.setup
+import com.example.grocerygo.extras.*
 import com.example.grocerygo.models.User
+import com.google.android.material.textfield.TextInputEditText
 import com.google.android.material.textfield.TextInputLayout
 import kotlinx.android.synthetic.main.activity_register.*
 import kotlinx.android.synthetic.main.app_toolbar.*
@@ -25,10 +22,10 @@ class ActivityRegister : AppCompatActivityWithToolbarFunctionality(), View.OnCli
 
     private fun init() {
         button_register_send.setOnClickListener(this)
-        text_input_email.addTextChangedListener(MyTextWater(text_input_layout_email, RegInputType.EMAIL))
-        text_input_password.addTextChangedListener(MyTextWater(text_input_layout_password, RegInputType.PASSWORD))
-        text_input_mobile.addTextChangedListener(MyTextWater(text_input_layout_mobile, RegInputType.MOBILE))
-        text_input_name.addTextChangedListener(MyTextWater(text_input_layout_name, RegInputType.NAME))
+        text_input_email.setOnFocusChangeListener(MyOnFocusChangeListener(text_input_email,text_input_layout_email,RegFieldEnum.EMAIL))
+        text_input_name.setOnFocusChangeListener(MyOnFocusChangeListener(text_input_name,text_input_layout_name,RegFieldEnum.NAME))
+        text_input_password.setOnFocusChangeListener(MyOnFocusChangeListener(text_input_password,text_input_layout_password,RegFieldEnum.PASSWORD))
+        text_input_mobile.setOnFocusChangeListener(MyOnFocusChangeListener(text_input_mobile,text_input_layout_mobile,RegFieldEnum.MOBILE))
         toolbar_top.setup(this, "Register")
     }
 
@@ -41,7 +38,10 @@ class ActivityRegister : AppCompatActivityWithToolbarFunctionality(), View.OnCli
                 var mobile = text_input_mobile.text.toString().trim()
                 var errorHandler = ErrorHandler()
                 errorHandler.handle(FormValidator.name(name), text_input_layout_name)
-                errorHandler.handle(FormValidator.password(password), text_input_layout_password)
+                errorHandler.handle(
+                    FormValidator.password(password),
+                    text_input_layout_password
+                )
                 errorHandler.handle(FormValidator.email(email), text_input_layout_email)
                 errorHandler.handle(FormValidator.mobile(mobile), text_input_layout_mobile)
                 if (!errorHandler.foundError) {
@@ -53,65 +53,66 @@ class ActivityRegister : AppCompatActivityWithToolbarFunctionality(), View.OnCli
     }
 
 }
-enum class RegInputType {
-    EMAIL, NAME, PASSWORD, MOBILE
-}
 
-class MyTextWater (var v: TextInputLayout, var e:RegInputType): TextWatcher {
-    override fun afterTextChanged(s: Editable?) {
-        ErrorHandler().handle(FormValidator.validateType(e,s.toString()),v)
+class MyOnFocusChangeListener(var textInputEditText: TextInputEditText, var layoutOfTextInput: TextInputLayout, var e:RegFieldEnum) : View.OnFocusChangeListener {
+    override fun onFocusChange(v: View?, hasFocus: Boolean) {
+        if (!hasFocus) {
+            ErrorHandler().handle(
+                FormValidator.validate(e,
+                    textInputEditText.text.toString()
+                ), layoutOfTextInput)
+        } else {
+            layoutOfTextInput.isErrorEnabled = false
+        }
     }
 
-    override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
-        v.isErrorEnabled = false
-    }
-
-    override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {}
-
 }
+
+enum class RegFieldEnum { EMAIL, NAME, PASSWORD, MOBILE }
 
 
 class ErrorHandler {
     var foundError = false
-    fun handle(error:ValidationError?, v:TextInputLayout) {
+    fun handle(error: ValidationError?, layoutOfTextInput: TextInputLayout) {
         if (error != null) {
-            v.error = error.msg
+            layoutOfTextInput.error = error.msg
             foundError = true
         } else {
-            v.isErrorEnabled = false
+            layoutOfTextInput.isErrorEnabled = false
         }
     }
 }
 
-data class ValidationError (
-    var msg:String
-)
+data class ValidationError(var msg: String)
 
 object FormValidator {
-    fun validateType(e:RegInputType, s:String):ValidationError? {
+    fun validate(e: RegFieldEnum, stringToValidate: String): ValidationError? {
         return when (e) {
-            RegInputType.EMAIL -> this.email(s)
-            RegInputType.NAME -> this.name(s)
-            RegInputType.PASSWORD -> this.password(s)
-            RegInputType.MOBILE -> this.mobile(s)
+            RegFieldEnum.EMAIL -> this.email(stringToValidate)
+            RegFieldEnum.NAME -> this.name(stringToValidate)
+            RegFieldEnum.PASSWORD -> this.password(stringToValidate)
+            RegFieldEnum.MOBILE -> this.mobile(stringToValidate)
         }
     }
-    fun name(name:String):ValidationError? {
-        if (name.isNullOrEmpty()){
+
+    fun name(name: String): ValidationError? {
+        if (name.isEmpty()) {
             return ValidationError("Required")
         }
         return null
     }
-    fun email(email:String):ValidationError? {
-        if (email.isNullOrEmpty()){
+
+    fun email(email: String): ValidationError? {
+        if (email.isEmpty()) {
             return ValidationError("Required")
         } else if (!email.contains("@")) {
             return ValidationError("Must contain an @")
         }
         return null
     }
-    fun password(password:String):ValidationError? {
-        if (password.isNullOrEmpty()){
+
+    fun password(password: String): ValidationError? {
+        if (password.isEmpty()) {
             return ValidationError("Required")
         } else if (password.length < 6) {
             return ValidationError("Mst have at least 6 characters")
@@ -120,8 +121,9 @@ object FormValidator {
         }
         return null
     }
-    fun mobile(mobile:String):ValidationError? {
-        if (mobile.isNullOrEmpty()){
+
+    fun mobile(mobile: String): ValidationError? {
+        if (mobile.isEmpty()) {
             return ValidationError("Required")
         } else if (!(mobile.isAllDigits())) {
             return ValidationError("Must only contain digits")
