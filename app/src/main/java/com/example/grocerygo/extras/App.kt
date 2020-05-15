@@ -1,9 +1,7 @@
-package com.example.grocerygo.app
+package com.example.grocerygo.extras
 
 import android.app.Application
 import android.util.Log
-import com.example.grocerygo.extras.SessionData
-import com.example.grocerygo.extras.SessionManager
 
 
 class App : Application() {

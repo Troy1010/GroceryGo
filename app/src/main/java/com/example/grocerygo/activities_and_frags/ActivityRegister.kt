@@ -6,7 +6,7 @@ import android.text.Editable
 import android.text.TextWatcher
 import android.view.View
 import com.example.grocerygo.R
-import com.example.grocerygo.app.App
+import com.example.grocerygo.extras.App
 import com.example.grocerygo.extras.AppCompatActivityWithToolbarFunctionality
 import com.example.grocerygo.extras.hasDigit
 import com.example.grocerygo.extras.isAllDigits

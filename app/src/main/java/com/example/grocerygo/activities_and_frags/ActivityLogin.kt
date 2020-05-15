@@ -4,7 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.widget.Toast
 import com.example.grocerygo.R
-import com.example.grocerygo.app.App
+import com.example.grocerygo.extras.App
 import com.example.grocerygo.extras.AppCompatActivityWithToolbarFunctionality
 import com.example.grocerygo.extras.setup
 import com.example.grocerygo.models.LoginObject

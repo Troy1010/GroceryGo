@@ -2,23 +2,14 @@ package com.example.grocerygo.activities_and_frags
 
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.recyclerview.widget.GridLayoutManager
-import com.android.volley.Request
-import com.android.volley.Response
-import com.android.volley.toolbox.StringRequest
-import com.android.volley.toolbox.Volley
-import com.example.grocerygo.adapters.AdapterCategories
 import com.example.grocerygo.R
-import com.example.grocerygo.app.App
+import com.example.grocerygo.extras.App
 import com.example.grocerygo.extras.Endpoints
 import com.example.grocerygo.extras.Title
-import com.example.grocerygo.models.ReceivedCategoriesObject
-import com.google.gson.GsonBuilder
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.frag_home.*
 

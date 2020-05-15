@@ -1,8 +1,6 @@
 package com.example.grocerygo.extras
 
 import android.content.Context
-import android.util.Log
-import com.example.grocerygo.app.App
 import com.example.grocerygo.models.LoginObject
 import com.example.grocerygo.models.User
 

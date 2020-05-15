@@ -5,7 +5,6 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
 import com.example.grocerygo.R
-import com.example.grocerygo.app.App
 import com.example.grocerygo.extras.logz
 
 class ActivitySplashscreen : AppCompatActivity() {
