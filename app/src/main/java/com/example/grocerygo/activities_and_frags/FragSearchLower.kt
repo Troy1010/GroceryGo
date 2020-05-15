@@ -37,6 +37,9 @@ class FragSearchLower : Fragment(), Title {
         super.onCreate(savedInstanceState)
         arguments?.let {
             subCatID = it.getInt(KEY_SUB_CAT_ID)
+            if (subCatID==0) {
+
+            }
             catID = it.getInt(KEY_CAT_ID)
         }
     }
@@ -56,6 +59,7 @@ class FragSearchLower : Fragment(), Title {
 
     private fun requestProducts(subCatID: Int) {
         val endpoint = Endpoints.getSelectedProductsEndpoint(subCatID)
+        logz("requestProducts`Endpoint:$endpoint")
         var requestQueue = Volley.newRequestQueue(context)
         var request = JsonObjectRequest(
             Request.Method.GET, endpoint, null,
@@ -74,7 +78,7 @@ class FragSearchLower : Fragment(), Title {
 
     companion object {
         @JvmStatic
-        fun newInstance(catID: Int = 1, subCatID: Int = 1) =
+        fun newInstance(catID: Int = 1, subCatID: Int = 0) =
             FragSearchLower().apply {
                 arguments = Bundle().apply {
                     putInt(KEY_CAT_ID, catID)

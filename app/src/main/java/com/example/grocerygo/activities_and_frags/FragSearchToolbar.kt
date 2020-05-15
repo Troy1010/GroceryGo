@@ -56,8 +56,9 @@ class FragSearchToolbar : Fragment() {
         tab_layout.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener {
             override fun onTabReselected(tab: TabLayout.Tab?) {}
             override fun onTabUnselected(tab: TabLayout.Tab?) {}
-            override fun onTabSelected(tab: TabLayout.Tab?) {
-                navigateToTab((tab?.position ?: 0) + 1)
+            override fun onTabSelected(tab: TabLayout.Tab) {
+//                navigateToTab((tab?.position ?: 0) + 1)
+                navigateToTab(subCategories[tab.position].subId)
             }
         })
     }
@@ -67,7 +68,7 @@ class FragSearchToolbar : Fragment() {
         var activityZ = activity
         activityZ?.apply {
             for (frag:Fragment in activityZ.supportFragmentManager.fragments) {
-                if (!(frag is FragSearchToolbar)) {
+                if (frag !is FragSearchToolbar) {
                     activityZ.supportFragmentManager
                         .beginTransaction()
                         .remove(frag)
@@ -89,6 +90,7 @@ class FragSearchToolbar : Fragment() {
 
     private fun requestSubCategoryData(catID: Int) {
         val endpoint = Endpoints.getSelectedSubCategoriesEndpoint(catID)
+        logz("requestSubCategoryData`Endpoint:$endpoint")
         var requestQueue = Volley.newRequestQueue(context)
         var request = JsonObjectRequest(
             Request.Method.GET, endpoint, null,
@@ -98,6 +100,10 @@ class FragSearchToolbar : Fragment() {
                     gson.fromJson(response.toString(), ReceivedSubCategoriesObject::class.java)
                 // give data to tab_layout
                 setupTabLayout(subCategoriesObjectZ.data)
+                // open products
+                if (subCategoriesObjectZ.data.size > 0) {
+                    navigateToTab(subCategoriesObjectZ.data[0].subId)
+                }
             },
             Response.ErrorListener {
                 logz("requestSubCategoryData`Response.ErrorListener`it:$it")

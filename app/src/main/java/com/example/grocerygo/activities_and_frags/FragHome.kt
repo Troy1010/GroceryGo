@@ -18,14 +18,12 @@ import com.example.grocerygo.app.App
 import com.example.grocerygo.extras.Endpoints
 import com.example.grocerygo.extras.Title
 import com.example.grocerygo.models.ReceivedCategoriesObject
-import com.example.grocerygo.models.Category
 import com.google.gson.GsonBuilder
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.frag_home.*
 
 class FragHome : Fragment(), Title {
     override val title = "Home"
-    private val recyclerAdapter: AdapterCategories by lazy { AdapterCategories(activity!!) }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         return inflater.inflate(R.layout.frag_home, container, false)
@@ -39,16 +37,9 @@ class FragHome : Fragment(), Title {
     private fun init() {
         setClickListeners()
         picassoImages()
-        requestCategories()
-        setupRecyclerView()
         // fake-bind text_view_hello
         text_view_hello.text = getString(R.string.hello_start, App.sm.user.name)
         //
-    }
-
-    private fun setupRecyclerView() {
-        recycler_view.layoutManager = GridLayoutManager(activity!!,2)
-        recycler_view.adapter = recyclerAdapter
     }
     private fun picassoImages() {
         Picasso
@@ -63,17 +54,5 @@ class FragHome : Fragment(), Title {
             App.sm.logout()
             startActivity(Intent(activity!!,ActivityLogin::class.java))
         }
-    }
-
-    private fun requestCategories() {
-        var requestQueue = Volley.newRequestQueue(activity!!)
-        var request = StringRequest(Request.Method.GET, Endpoints.vCategoryEndpoint,
-            Response.Listener {response ->
-                recyclerAdapter.data = GsonBuilder().create().fromJson(response,ReceivedCategoriesObject::class.java).data
-            },
-            Response.ErrorListener {
-                Log.d("TMLog", "Response.ErrorListener`it:$it")
-            })
-        requestQueue.add(request)
     }
 }

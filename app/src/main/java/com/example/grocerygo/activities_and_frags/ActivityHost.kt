@@ -28,12 +28,7 @@ class ActivityHost : AppCompatActivityWithToolbarFunctionality(), BottomNavigati
 
     fun navigateToPage(e:PageEnums) {
         when (e) {
-            PageEnums.SEARCH -> {
-                var fragSearchLower = FragSearchLower.newInstance()
-                toolbar_top.title = fragSearchLower.title
-                supportFragmentManager.beginTransaction().replace(R.id.frame_fragments,FragSearchToolbar.newInstance()).commit()
-                supportFragmentManager.beginTransaction().add(R.id.frame_fragments,fragSearchLower).commit()
-            }
+            PageEnums.SEARCH -> usualNavigation(FragSearchPrimary())
             PageEnums.PROFILE -> usualNavigation(FragProfile())
             PageEnums.CART -> usualNavigation(FragCart())
             else -> usualNavigation(FragHome())

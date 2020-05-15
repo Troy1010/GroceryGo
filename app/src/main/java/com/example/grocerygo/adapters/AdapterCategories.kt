@@ -1,11 +1,13 @@
 package com.example.grocerygo.adapters
 
-import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.FragmentActivity
 import androidx.recyclerview.widget.RecyclerView
 import com.example.grocerygo.R
+import com.example.grocerygo.activities_and_frags.FragSearchLower
+import com.example.grocerygo.activities_and_frags.FragSearchToolbar
 import com.example.grocerygo.extras.Config
 import com.example.grocerygo.extras.logz
 import com.example.grocerygo.models.Category
@@ -13,29 +15,27 @@ import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.row_category.view.*
 import kotlinx.android.synthetic.main.row_category.view.image_view
 
-class AdapterCategories (var context: Context): RecyclerView.Adapter<AdapterCategories.ViewHolder>() {
-    var data =  arrayListOf<Category>(Category())
-        set(value) {
-            field = value
-            notifyDataSetChanged()
-        }
+class AdapterCategories(
+    var activity: FragmentActivity,
+    var categories: ArrayList<Category>
+) : RecyclerView.Adapter<AdapterCategories.ViewHolder>() {
 
-    inner class ViewHolder (itemView: View) : RecyclerView.ViewHolder(itemView)
+    inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView)
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        val view = LayoutInflater.from(context).inflate(R.layout.row_category, parent, false)
+        val view = LayoutInflater.from(activity).inflate(R.layout.row_category, parent, false)
         return ViewHolder(view)
     }
 
     override fun getItemCount(): Int {
-        return data.size
+        return categories.size
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder.itemView.text_view.text = data[position].catName
+        holder.itemView.text_view.text = categories[position].catName
         // Picasso image_view
-        var imagePath = Config.BASE_URL_ITEM_IMAGES + data[position].catImage
-        if (data[position].catImage.isNotEmpty()) {
+        var imagePath = Config.BASE_URL_ITEM_IMAGES + categories[position].catImage
+        if (categories[position].catImage.isNotEmpty()) {
             Picasso
                 .get()
                 .load(imagePath)
@@ -45,15 +45,10 @@ class AdapterCategories (var context: Context): RecyclerView.Adapter<AdapterCate
         }
         // click listener
         holder.itemView.setOnClickListener {
-//            var intent = Intent(context, FragSearch::class.java)
-//            intent.putExtra(KEY_CAT_ID, position)
-//            intent.putExtra(KEY_SUB_TITLE, data[position].catName)
-//            context.startActivity(intent)
-            logz("TODO")
-            // TODO navigate to profile page
-
-
-//            supportFragmentManager.beginTransaction().replace(R.id.frame_page_fragments,FragProfile()).commit()
+            activity.supportFragmentManager.beginTransaction()
+                .replace(R.id.frame_fragments, FragSearchToolbar.newInstance(categories[position].catId))
+                .addToBackStack(null) // is null okay?
+                .commit()
         }
     }
 }
