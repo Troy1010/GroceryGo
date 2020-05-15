@@ -36,10 +36,7 @@ class FragSearchToolbar : Fragment() {
         arguments?.let {
             catID = it.getInt(KEY_CAT_ID)
         }
-    }
-
-    override fun onStart() {
-        super.onStart();init()
+        init()
     }
 
     private fun init() {
@@ -57,7 +54,6 @@ class FragSearchToolbar : Fragment() {
             override fun onTabReselected(tab: TabLayout.Tab?) {}
             override fun onTabUnselected(tab: TabLayout.Tab?) {}
             override fun onTabSelected(tab: TabLayout.Tab) {
-//                navigateToTab((tab?.position ?: 0) + 1)
                 navigateToTab(subCategories[tab.position].subId)
             }
         })

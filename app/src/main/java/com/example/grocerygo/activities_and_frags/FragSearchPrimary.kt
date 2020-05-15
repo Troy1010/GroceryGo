@@ -30,12 +30,15 @@ class FragSearchPrimary : Fragment(), Title {
         return inflater.inflate(R.layout.frag_search_primary, container, false)
     }
 
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        init()
+    }
+
     private fun setupRecyclerView(categories:ArrayList<Category>) {
         recycler_view.layoutManager = GridLayoutManager(activity!!,2)
         recycler_view.adapter = AdapterCategories(activity!!, categories)
     }
-
-    override fun onStart() { super.onStart();init() }
 
     private fun init() {
         requestCategories()

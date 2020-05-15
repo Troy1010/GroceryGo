@@ -37,14 +37,10 @@ class FragSearchLower : Fragment(), Title {
         super.onCreate(savedInstanceState)
         arguments?.let {
             subCatID = it.getInt(KEY_SUB_CAT_ID)
-            if (subCatID==0) {
-
-            }
             catID = it.getInt(KEY_CAT_ID)
         }
+        init()
     }
-
-    override fun onStart() { super.onStart();init() }
 
     private fun init() {
         requestProducts(subCatID)
