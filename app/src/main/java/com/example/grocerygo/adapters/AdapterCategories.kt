@@ -1,17 +1,12 @@
 package com.example.grocerygo.adapters
 
 import android.content.Context
-import android.content.Intent
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.grocerygo.R
-import com.example.grocerygo.activities_and_frags.FragSearch
 import com.example.grocerygo.extras.Config
-import com.example.grocerygo.extras.KEY_CAT_ID
-import com.example.grocerygo.extras.KEY_SUB_TITLE
 import com.example.grocerygo.extras.logz
 import com.example.grocerygo.models.Category
 import com.squareup.picasso.Picasso

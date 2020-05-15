@@ -27,12 +27,19 @@ class ActivityHost : AppCompatActivityWithToolbarFunctionality(), BottomNavigati
     }
 
     fun navigateToPage(e:PageEnums) {
-        val frag:Fragment = when (e) {
-            PageEnums.SEARCH -> FragSearch.newInstance()
-            PageEnums.PROFILE -> FragProfile()
-            PageEnums.CART -> FragCart()
-            else -> FragHome()
+        when (e) {
+            PageEnums.SEARCH -> {
+                var fragSearchLower = FragSearchLower.newInstance()
+                toolbar_top.title = fragSearchLower.title
+                supportFragmentManager.beginTransaction().replace(R.id.frame_fragments,FragSearchToolbar.newInstance()).commit()
+                supportFragmentManager.beginTransaction().add(R.id.frame_fragments,fragSearchLower).commit()
+            }
+            PageEnums.PROFILE -> usualNavigation(FragProfile())
+            PageEnums.CART -> usualNavigation(FragCart())
+            else -> usualNavigation(FragHome())
         }
+    }
+    private fun usualNavigation (frag:Fragment) {
         if (frag is Title) {
             toolbar_top.title = frag.title
         }
