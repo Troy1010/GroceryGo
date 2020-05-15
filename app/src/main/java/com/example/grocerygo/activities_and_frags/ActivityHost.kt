@@ -21,7 +21,7 @@ class ActivityHost : AppCompatActivityWithToolbarFunctionality(), BottomNavigati
     }
 
     private fun init() {
-        toolbar_top.setup(this, "Home")
+        toolbar_top.setup(this, "Home", false)
         navigateToPage(PageEnums.HOME)
         bottom_navigation_bar.setOnNavigationItemSelectedListener(this)
     }
