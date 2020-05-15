@@ -18,35 +18,40 @@ import com.example.grocerygo.R
 import com.example.grocerygo.adapters.AdapterProducts
 import com.example.grocerygo.extras.Endpoints
 import com.example.grocerygo.extras.KEY_SUB_ID
+import com.example.grocerygo.extras.logz
 import com.example.grocerygo.models.ProductsData
 import com.google.gson.GsonBuilder
 import kotlinx.android.synthetic.main.frag_products.*
 
 
 class FragProducts : Fragment() {
-    var subID = 0
+    var subID = 1
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
             subID = it.getInt(KEY_SUB_ID)
         }
+        logz("FragProducts($subID)`onCreate")
     }
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+        logz("FragProducts($subID)`onCreateView")
+
         return inflater.inflate(R.layout.frag_products, container, false)
     }
 
     override fun onStart() {
+        logz("FragProducts($subID)`onStart")
         super.onStart()
         init()
     }
 
 
-    fun init() {
-        Log.d("TMLog", "FragProducts Init. subID:$subID")
+    private fun init() {
+//        Log.d("TMLog", "FragProducts($subID) Init. subID:$subID")
         // setup recycler_view_products
         recycler_view_products.layoutManager = LinearLayoutManager(activity as Context)
         recycler_view_products.adapter = AdapterProducts(activity as Context)

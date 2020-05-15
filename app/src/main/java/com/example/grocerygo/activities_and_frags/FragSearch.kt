@@ -20,12 +20,13 @@ import kotlinx.android.synthetic.main.frag_search.view.*
 
 class FragSearch : Fragment(), Title {
     override val title = "Search"
-    private val viewPagerAdapter: AdapterSubCategories by lazy { AdapterSubCategories(activity!!.supportFragmentManager) }
+//    private val viewPagerAdapter: AdapterSubCategories by lazy { AdapterSubCategories(activity!!.supportFragmentManager) }
     var bundle:Bundle? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         bundle = savedInstanceState
+        logz("FragSearch`onCreate")
     }
 
     override fun onCreateView(
@@ -33,12 +34,15 @@ class FragSearch : Fragment(), Title {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+        logz("FragSearch`onCreateView")
         return inflater.inflate(R.layout.frag_search,container,false)
     }
 
     override fun onStart() {
+        logz("FragSearch`onStart")
         super.onStart()
         init()
+//        viewPagerAdapter.notifyDataSetChanged()
     }
 
     private fun init() {
@@ -49,8 +53,8 @@ class FragSearch : Fragment(), Title {
         requestSubCategoryData(catID?:0)
     }
     private fun setupTabLayout() {
-        view_pager.adapter = viewPagerAdapter
-        tab_layout.setupWithViewPager(view_pager)
+//        view_pager.adapter = AdapterSubCategories(activity!!.supportFragmentManager)
+//        tab_layout.setupWithViewPager(view_pager)
     }
 
     private fun requestSubCategoryData(selectedCatID:Int) {
@@ -62,10 +66,10 @@ class FragSearch : Fragment(), Title {
                 var gson = GsonBuilder().create()
                 var subCategoryData = gson.fromJson(response.toString(), SubCategoryData::class.java)
                 // give data to adapter
-                var mAdapter = view_pager.adapter
-                if (mAdapter is AdapterSubCategories) {
-                    mAdapter.data = subCategoryData.data
-                }
+//                var mAdapter = view_pager.adapter
+//                if (mAdapter is AdapterSubCategories) {
+//                    mAdapter.data = subCategoryData.data
+//                }
             },
             Response.ErrorListener {
                 Log.d("TMLog", "Response.ErrorListener`it:$it")

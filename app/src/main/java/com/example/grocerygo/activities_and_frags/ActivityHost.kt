@@ -30,6 +30,7 @@ class ActivityHost : AppCompatActivityWithToolbarFunctionality(), BottomNavigati
         val frag:Fragment = when (e) {
             PageEnums.SEARCH -> FragSearch()
             PageEnums.PROFILE -> FragProfile()
+            PageEnums.CART -> FragCart()
             else -> FragHome()
         }
         if (frag is Title) {
@@ -50,6 +51,10 @@ class ActivityHost : AppCompatActivityWithToolbarFunctionality(), BottomNavigati
             }
             R.id.item_search -> {
                 navigateToPage(PageEnums.SEARCH)
+                true
+            }
+            R.id.item_cart -> {
+                navigateToPage(PageEnums.CART)
                 true
             }
             else -> {

@@ -1,6 +1,5 @@
 package com.example.grocerygo.adapters
 
-import android.util.Log
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentPagerAdapter
@@ -22,6 +21,7 @@ class AdapterSubCategories(var fm: FragmentManager):FragmentPagerAdapter(fm, BEH
             notifyDataSetChanged()
         }
     override fun getItem(position: Int): Fragment {
+        logz("MAKING NEW FRAGMENT")
         return FragProducts.newInstance(data[position].subId)
     }
 
