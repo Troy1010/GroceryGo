@@ -30,6 +30,7 @@ class FragSearchLower : Fragment(), Title {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+        init()
         return inflater.inflate(R.layout.frag_search_lower, container, false)
     }
 
@@ -39,7 +40,6 @@ class FragSearchLower : Fragment(), Title {
             subCatID = it.getInt(KEY_SUB_CAT_ID)
             catID = it.getInt(KEY_CAT_ID)
         }
-        init()
     }
 
     private fun init() {

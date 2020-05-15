@@ -43,7 +43,6 @@ class FragSearchToolbar : Fragment() {
         requestSubCategoryData(catID)
     }
 
-
     private fun setupTabLayout(subCategories: ArrayList<SubCategory>) {
         var noneAreYetSelected = true
         for (subCategory in subCategories) {

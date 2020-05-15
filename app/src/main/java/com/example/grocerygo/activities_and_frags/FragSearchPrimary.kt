@@ -15,6 +15,7 @@ import com.example.grocerygo.R
 import com.example.grocerygo.adapters.AdapterCategories
 import com.example.grocerygo.extras.Endpoints
 import com.example.grocerygo.extras.Title
+import com.example.grocerygo.extras.logz
 import com.example.grocerygo.models.Category
 import com.example.grocerygo.models.ReceivedCategoriesObject
 import com.google.gson.GsonBuilder
@@ -27,21 +28,17 @@ class FragSearchPrimary : Fragment(), Title {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+        init()
         return inflater.inflate(R.layout.frag_search_primary, container, false)
     }
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        init()
+    private fun init() {
+        requestCategories()
     }
 
     private fun setupRecyclerView(categories:ArrayList<Category>) {
         recycler_view.layoutManager = GridLayoutManager(activity!!,2)
         recycler_view.adapter = AdapterCategories(activity!!, categories)
-    }
-
-    private fun init() {
-        requestCategories()
     }
 
     private fun requestCategories() {
