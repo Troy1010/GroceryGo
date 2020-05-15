@@ -28,7 +28,7 @@ class ActivityHost : AppCompatActivityWithToolbarFunctionality(), BottomNavigati
 
     fun navigateToPage(e:PageEnums) {
         val frag:Fragment = when (e) {
-            PageEnums.SEARCH -> FragSearch()
+            PageEnums.SEARCH -> FragSearch.newInstance()
             PageEnums.PROFILE -> FragProfile()
             PageEnums.CART -> FragCart()
             else -> FragHome()

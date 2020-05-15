@@ -21,9 +21,8 @@ import kotlinx.android.synthetic.main.frag_search.*
 
 class FragSearch : Fragment(), Title {
     override val title = "Search"
-    private var bundle:Bundle? = null
-    private val catID by lazy { bundle?.getInt(KEY_CAT_ID, 0) ?: 0 }
-    private val subCatID by lazy { bundle?.getInt(KEY_SUB_CAT_ID, 0) ?: 0}
+    var catID: Int = 1
+    var subCatID: Int = 1
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -31,51 +30,61 @@ class FragSearch : Fragment(), Title {
         savedInstanceState: Bundle?
     ): View? {
         logz("FragSearch`onCreateView")
-        bundle = savedInstanceState
-        return inflater.inflate(R.layout.frag_search,container,false)
+        return inflater.inflate(R.layout.frag_search, container, false)
     }
 
-    override fun onStart() { super.onStart();init()}
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        logz("FragSearch`onCreate")
+        arguments?.let {
+            subCatID = it.getInt(KEY_SUB_CAT_ID)
+            logz("FragSearch`subCatID:$subCatID")
+            catID = it.getInt(KEY_CAT_ID)
+            logz("FragSearch`catID:$catID")
+
+        }
+    }
+
+    override fun onStart() {
+        super.onStart();init()
+    }
+
     private fun init() {
         logz("FragSearch`Init")
         requestSubCategoryData(catID)
         requestProducts(subCatID)
     }
+
     private fun setupTabLayout(subCategories: ArrayList<SubCategory>) {
-        var hasNotBeenSet = true
-        for ( subCategory in subCategories) {
-//            var selected = subCategory.subId == subCatID
-            tab_layout.addTab(tab_layout.newTab().setText(subCategory.subName),hasNotBeenSet)
-            hasNotBeenSet = false
+        for (subCategory in subCategories) {
+            var selected = subCategory.subId == subCatID
+            tab_layout.addTab(tab_layout.newTab().setText(subCategory.subName), selected)
         }
         tab_layout.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener {
             override fun onTabReselected(tab: TabLayout.Tab?) {}
             override fun onTabUnselected(tab: TabLayout.Tab?) {}
-            override fun onTabSelected(tab: TabLayout.Tab?) { navigateToTab(tab?.position ?: 0) }
+            override fun onTabSelected(tab: TabLayout.Tab?) {
+                navigateToTab((tab?.position ?: 0)+1)
+            }
         })
     }
 
-    private fun navigateToTab(subID:Int) {
-        val bundle = Bundle()
-        bundle.putInt(KEY_CAT_ID, catID)
-        bundle.putInt(KEY_SUB_CAT_ID, subID)
-        val frag = FragSearch()
-        frag.arguments = bundle
-        activity?.supportFragmentManager
-            ?.beginTransaction()
-            ?.replace(R.id.frame_fragments, frag)
+    private fun navigateToTab(subCatID: Int) {
+        activity?.supportFragmentManager?.beginTransaction()
+            ?.replace(R.id.frame_fragments, newInstance(catID, subCatID))
             ?.setTransition(FragmentTransaction.TRANSIT_NONE)
             ?.commit()
     }
 
-    private fun requestSubCategoryData(catID:Int) {
-        val endpoint = Endpoints.getSelectedSubCategoriesEndpoint(catID+1)
+    private fun requestSubCategoryData(catID: Int) {
+        val endpoint = Endpoints.getSelectedSubCategoriesEndpoint(catID)
         var requestQueue = Volley.newRequestQueue(context)
         var request = JsonObjectRequest(
             Request.Method.GET, endpoint, null,
             Response.Listener { response ->
                 var gson = GsonBuilder().create()
-                var subCategoriesObjectZ = gson.fromJson(response.toString(), ReceivedSubCategoriesObject::class.java)
+                var subCategoriesObjectZ =
+                    gson.fromJson(response.toString(), ReceivedSubCategoriesObject::class.java)
                 // give data to tab_layout
                 setupTabLayout(subCategoriesObjectZ.data)
             },
@@ -85,14 +94,15 @@ class FragSearch : Fragment(), Title {
         requestQueue.add(request)
     }
 
-    private fun requestProducts(subCatID:Int) {
+    private fun requestProducts(subCatID: Int) {
         val endpoint = Endpoints.getSelectedProductsEndpoint(subCatID)
         var requestQueue = Volley.newRequestQueue(context)
         var request = JsonObjectRequest(
             Request.Method.GET, endpoint, null,
             Response.Listener { response ->
                 var gson = GsonBuilder().create()
-                var subCategoryData = gson.fromJson(response.toString(), ReceivedSubCategoriesObject::class.java)
+                var subCategoryData =
+                    gson.fromJson(response.toString(), ReceivedSubCategoriesObject::class.java)
                 // give data to tab_layout adapter
 //                var mAdapter = view_pager.adapter
 //                if (mAdapter is AdapterSubCategories) {
@@ -103,6 +113,18 @@ class FragSearch : Fragment(), Title {
                 Log.d("TMLog", "Response.ErrorListener`it:$it")
             })
         requestQueue.add(request)
+    }
+
+    companion object {
+        @JvmStatic
+        fun newInstance(catID: Int = 1, subCatID: Int = 1) =
+            FragSearch().apply {
+                arguments = Bundle().apply {
+                    putInt(KEY_CAT_ID, catID)
+                    putInt(KEY_SUB_CAT_ID, subCatID)
+                    logz("Sending subID:$subCatID")
+                }
+            }
     }
 
 
