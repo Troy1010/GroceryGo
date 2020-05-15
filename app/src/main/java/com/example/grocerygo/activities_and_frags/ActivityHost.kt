@@ -22,7 +22,7 @@ class ActivityHost : AppCompatActivityWithToolbarFunctionality(), BottomNavigati
 
     private fun init() {
         toolbar_top.setup(this, "Home")
-        supportFragmentManager.beginTransaction().add(R.id.frame_fragments,FragHome()).commit()
+        navigateToPage(PageEnums.HOME)
         bottom_navigation_bar.setOnNavigationItemSelectedListener(this)
     }
 

@@ -20,7 +20,7 @@ abstract class AppCompatActivityWithToolbarFunctionality : AppCompatActivity(), 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
             android.R.id.home->{
-                finish()
+                onBackPressed()
             }
             R.id.menu_cart -> {
                 Log.d("TMLog","OptionsMenu`Selected Cart")
