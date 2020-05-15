@@ -7,14 +7,22 @@
     tools:context="com.example.grocerygo.activities_and_frags.FragCart">
 
     <TextView
-        android:gravity="center"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:gravity="center"
         android:text="CART"
         android:textSize="50sp"
-        app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"/>
+        app:layout_constraintTop_toTopOf="parent" />
 
+    <Button
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:id="@+id/button_delete_first_item"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Delete First Item"
+        android:textSize="26dp" />
 </androidx.constraintlayout.widget.ConstraintLayout>

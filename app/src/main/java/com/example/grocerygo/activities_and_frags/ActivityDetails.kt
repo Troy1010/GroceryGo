@@ -19,7 +19,6 @@ class ActivityDetails : AppCompatActivityWithToolbarFunctionality() {
     private fun init() {
         val product = intent.getSerializableExtra(KEY_PRODUCT) as Product
 
-//        text_view_name.text = product.productName
         text_view_price.text = "$"+product.price.toString()
         text_view_details.text = product.description
 
@@ -33,5 +32,13 @@ class ActivityDetails : AppCompatActivityWithToolbarFunctionality() {
                 .into(image_view)
         }
         toolbar_top.setup(this, product.productName)
+
+
+
+        button_add_to_cart.setOnClickListener {
+            this.easyToast("${product.productName} added to cart")
+            var db = DBHelper()
+            db.addProduct(product.productName,"1") // TODO amount shouldn't be literal
+        }
     }
 }
