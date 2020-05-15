@@ -3,7 +3,6 @@ package com.example.grocerygo.adapters
 import android.content.Context
 import android.content.Intent
 import android.graphics.Paint
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -16,13 +15,7 @@ import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.row_category.view.image_view
 import kotlinx.android.synthetic.main.row_product.view.*
 
-class AdapterProducts (var context: Context): RecyclerView.Adapter<AdapterProducts.ViewHolder>() {
-    var data =  arrayListOf<Product>(Product(productName = "NAME"))
-        set(value) {
-            Log.d("TMLog","AdapterProducts`dataSetter`data`value:$value")
-            field = value
-            notifyDataSetChanged()
-        }
+class AdapterProducts (var context: Context, var products:ArrayList<Product>): RecyclerView.Adapter<AdapterProducts.ViewHolder>() {
 
     inner class ViewHolder (itemView: View) : RecyclerView.ViewHolder(itemView)
 
@@ -32,16 +25,16 @@ class AdapterProducts (var context: Context): RecyclerView.Adapter<AdapterProduc
     }
 
     override fun getItemCount(): Int {
-        return data.size
+        return products.size
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder.itemView.text_view_name.text = data[position].productName
-        holder.itemView.text_view_price.text = "$"+data[position].price.toString()
-        holder.itemView.text_view_fake_price.text = "$"+data[position].mrp.toString()
+        holder.itemView.text_view_name.text = products[position].productName
+        holder.itemView.text_view_price.text = "$"+products[position].price.toString()
+        holder.itemView.text_view_fake_price.text = "$"+products[position].mrp.toString()
         holder.itemView.text_view_fake_price.paintFlags = Paint.STRIKE_THRU_TEXT_FLAG
         // Picasso image_view
-        var imagePath = "http://rjtmobile.com/grocery/images/" + data[position].image
+        var imagePath = "http://rjtmobile.com/grocery/images/" + products[position].image
         if (imagePath.isNotEmpty()) {
             Picasso
                 .get()
@@ -53,7 +46,7 @@ class AdapterProducts (var context: Context): RecyclerView.Adapter<AdapterProduc
         //
         holder.itemView.setOnClickListener {
             var intent = Intent(context, ActivityDetails::class.java)
-            var product = data[position]
+            var product = products[position]
             intent.putExtra(KEY_PRODUCT, product)
             context.startActivity(intent)
         }
