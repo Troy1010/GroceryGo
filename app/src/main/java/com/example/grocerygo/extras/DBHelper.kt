@@ -3,43 +3,66 @@ package com.example.grocerygo.extras
 import android.content.ContentValues
 import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteOpenHelper
+import com.example.grocerygo.models.Product
 
 class DBHelper :
     SQLiteOpenHelper(App.instance, Config.DATABASE_NAME, null, Config.DATABASE_VERSION) {
-    val db = writableDatabase
+    private val databaseSQL = writableDatabase!!
 
     companion object {
         const val TABLE_NAME = "Products"
         const val COL_NAME = "Name"
-        const val COL_AMOUNT = "Amount"
         const val COL_ID = "ID"
     }
 
-    override fun onCreate(db: SQLiteDatabase?) {
+    override fun onCreate(sqlDatabase:SQLiteDatabase) {
         logz("DBHelper`onCreate")
         val sqlCreateTable =
-            "create table $TABLE_NAME($COL_NAME char(50), $COL_AMOUNT char(3), $COL_ID INTEGER PRIMARY KEY AUTOINCREMENT)"
-        db?.execSQL(sqlCreateTable)
+            """create table $TABLE_NAME($COL_NAME char(50), 
+                $COL_ID INTEGER PRIMARY KEY AUTOINCREMENT)"""
+        sqlDatabase.execSQL(sqlCreateTable)
     }
 
-    override fun onUpgrade(db: SQLiteDatabase?, oldVersion: Int, newVersion: Int) {
+    override fun onUpgrade(sqlDatabase: SQLiteDatabase, oldVersion: Int, newVersion: Int) {
         logz("DBHelper`onUpgrade")
         val sqlDropTable = "DROP TABLE IF EXISTS $TABLE_NAME"
-        db?.execSQL(sqlDropTable)
+        sqlDatabase.execSQL(sqlDropTable)
     }
 
-    fun addProduct(name: String, amount: String) {
-        logz("DBHelper`addProduct. name:$name amount:$amount")
+    fun add(product: Product) {
+        logz("DBHelper`addProduct. $product")
         val contentValues = ContentValues()
-        contentValues.put(COL_NAME, name)
-        contentValues.put(COL_AMOUNT, amount)
-        db.insert(TABLE_NAME, null, contentValues)
+        contentValues.put(COL_NAME, product.productName)
+        databaseSQL.insert(TABLE_NAME, null, contentValues)
     }
 
     fun deleteProduct(id: Int) {
         val whereClause = "$COL_ID=?"
         val whereArgs = arrayOf(id.toString())
-        db.delete(TABLE_NAME, whereClause, whereArgs)
+        databaseSQL.delete(TABLE_NAME, whereClause, whereArgs)
+    }
+
+    fun deleteProductByIndex(i:Int) {
+        val products = getProducts()
+        if (products.hasKey(i)) {
+            val id = products[i].sqlID
+            deleteProduct(id)
+        }
+    }
+
+    fun getProducts():ArrayList<Product> {
+        val returningList = ArrayList<Product>()
+        val columns = arrayOf(COL_ID, COL_NAME)
+        val cursor = databaseSQL.query(TABLE_NAME, columns, null, null, null, null, null, null)
+        if (cursor != null && cursor.moveToFirst()) {
+            do {
+                returningList.add(Product(
+                    productName = cursor.getString(cursor.getColumnIndex(COL_NAME)),
+                    sqlID = cursor.getInt(cursor.getColumnIndex(COL_ID))
+                ))
+            } while(cursor.moveToNext())
+        }
+        return returningList
     }
 
 }

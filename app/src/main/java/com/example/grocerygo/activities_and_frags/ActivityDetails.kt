@@ -37,8 +37,7 @@ class ActivityDetails : AppCompatActivityWithToolbarFunctionality() {
 
         button_add_to_cart.setOnClickListener {
             this.easyToast("${product.productName} added to cart")
-            var db = DBHelper()
-            db.addProduct(product.productName,"1") // TODO amount shouldn't be literal
+            App.db.add(product)
         }
     }
 }

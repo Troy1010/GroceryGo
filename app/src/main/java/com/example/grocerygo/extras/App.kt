@@ -1,12 +1,11 @@
 package com.example.grocerygo.extras
 
 import android.app.Application
-import android.util.Log
 
 
 class App : Application() {
     override fun onCreate() {
-        Log.d("TMLog","MyApplication`OnCreate")
+        logz("MyApplication`OnCreate")
         super.onCreate()
         instance = this
     }

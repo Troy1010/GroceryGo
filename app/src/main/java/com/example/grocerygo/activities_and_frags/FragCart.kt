@@ -8,6 +8,8 @@ import androidx.fragment.app.Fragment
 import com.example.grocerygo.R
 import com.example.grocerygo.extras.App
 import com.example.grocerygo.extras.Title
+import com.example.grocerygo.extras.logz
+import com.example.grocerygo.extras.narrate
 import kotlinx.android.synthetic.main.frag_cart.*
 
 class FragCart : Fragment(), Title {
@@ -18,13 +20,21 @@ class FragCart : Fragment(), Title {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        init()
         return inflater.inflate(R.layout.frag_cart, container, false)
     }
 
+    override fun onStart() {
+        super.onStart()
+        init()
+    }
+
+
     private fun init() {
         button_delete_first_item.setOnClickListener {
-            App.db.deleteProduct(0)
+            App.db.deleteProductByIndex(0)
+        }
+        button_print_list.setOnClickListener {
+            logz(App.db.getProducts().narrate())
         }
     }
 
