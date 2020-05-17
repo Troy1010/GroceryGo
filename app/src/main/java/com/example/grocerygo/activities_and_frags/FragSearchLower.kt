@@ -16,14 +16,13 @@ import com.android.volley.toolbox.Volley
 import com.example.grocerygo.R
 import com.example.grocerygo.adapters.AdapterProducts
 import com.example.grocerygo.extras.*
-import com.example.grocerygo.inheritables.Title
 import com.example.grocerygo.models.Product
 import com.example.grocerygo.models.ReceivedProductsObject
 import com.google.gson.GsonBuilder
 import kotlinx.android.synthetic.main.frag_search_lower.recycler_view_products
 
-class FragSearchLower : Fragment(), Title {
-    override val title = "Search"
+class FragSearchLower : Fragment() {
+    val title = "Search"
     private var catID: Int = 1
     private var subCatID: Int = 1
 

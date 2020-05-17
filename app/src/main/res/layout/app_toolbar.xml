@@ -3,5 +3,5 @@
     android:layout_width="match_parent"
     android:layout_height="?attr/actionBarSize"
     android:background="@color/colorPrimaryDark"
-    android:id="@+id/toolbar_top"
+    android:id="@+id/toolbar_main"
     android:theme="@style/Platform.MaterialComponents"/>

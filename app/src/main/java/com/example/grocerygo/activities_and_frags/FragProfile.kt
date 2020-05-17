@@ -8,14 +8,13 @@ import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import com.example.grocerygo.R
-import com.example.grocerygo.inheritables.Title
 import com.example.grocerygo.extras.easySnackbar
 import com.example.grocerygo.inheritables.GGActivityCallbacks
 import com.google.android.material.snackbar.Snackbar
 import kotlinx.android.synthetic.main.frag_profile.*
 
-class FragProfile : Fragment(), Title {
-    override val title = "Profile"
+class FragProfile : Fragment() {
+    val title = "Profile"
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,

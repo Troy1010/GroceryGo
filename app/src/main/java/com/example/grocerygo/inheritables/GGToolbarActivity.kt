@@ -9,15 +9,15 @@ import com.example.grocerygo.R
 import com.example.grocerygo.activities_and_frags.*
 import com.example.grocerygo.extras.PageEnums
 import com.example.grocerygo.extras.logz
-import com.example.grocerygo.extras.setup
 import kotlinx.android.synthetic.main.app_toolbar.*
 
 abstract class GGToolbarActivity: TMActivity(), GGActivityCallbacks {
     abstract val title:String
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setSupportActionBar(toolbar_top)
+        setSupportActionBar(toolbar_main)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
+        this.setToolbarTitle(title)
     }
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         var returning = super.onCreateOptionsMenu(menu)
@@ -49,7 +49,9 @@ abstract class GGToolbarActivity: TMActivity(), GGActivityCallbacks {
     }
 
     override fun setToolbarTitle(title:String) {
-        toolbar_top.title = title
+        logz("setToolbarTitle`title:$title")
+        toolbar_main.title = title
+        logz("setToolbarTitle`toolbar_main.title:${toolbar_main.title}")
     }
 
 

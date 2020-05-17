@@ -24,26 +24,18 @@ class ActivityHost : GGToolbarActivity() {
 
     private fun setupNavigationBar() {
         bottom_navigation_bar.setOnNavigationItemSelectedListener { item ->
-            when (item.itemId) {
-                R.id.item_home -> {
-                    navigateToPage(PageEnums.HOME)
-                    true
-                }
-                R.id.item_profile -> {
-                    navigateToPage(PageEnums.PROFILE)
-                    true
-                }
-                R.id.item_search -> {
-                    navigateToPage(PageEnums.SEARCH)
-                    true
-                }
-                R.id.item_cart -> {
-                    navigateToPage(PageEnums.CART)
-                    true
-                }
-                else -> {
-                    false
-                }
+            val e = when (item.itemId) {
+                R.id.item_home -> PageEnums.HOME
+                R.id.item_profile -> PageEnums.PROFILE
+                R.id.item_search -> PageEnums.SEARCH
+                R.id.item_cart -> PageEnums.CART
+                else -> null
+            }
+            if (e==null) {
+                false
+            } else {
+                navigateToPage(e)
+                true
             }
         }
     }

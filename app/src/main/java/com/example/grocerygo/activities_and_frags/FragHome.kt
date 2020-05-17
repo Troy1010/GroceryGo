@@ -11,12 +11,11 @@ import com.example.grocerygo.R
 import com.example.grocerygo.extras.App
 import com.example.grocerygo.extras.Endpoints
 import com.example.grocerygo.inheritables.GGActivityCallbacks
-import com.example.grocerygo.inheritables.Title
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.frag_home.*
 
-class FragHome : Fragment(), Title {
-    override val title = "Home"
+class FragHome : Fragment() {
+    val title = "Home"
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         return inflater.inflate(R.layout.frag_home, container, false)
@@ -28,7 +27,6 @@ class FragHome : Fragment(), Title {
         if (activityZ is GGActivityCallbacks) {
             activityZ.setToolbarTitle(title)
         }
-        activityZ.supportActionBar?.setDisplayHomeAsUpEnabled(false)
         button_logout.setOnClickListener {
             App.sm.logout()
             startActivity(Intent(activity!!, ActivityLogin::class.java))

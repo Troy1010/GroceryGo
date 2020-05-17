@@ -4,7 +4,6 @@ import com.example.grocerygo.R
 import com.example.grocerygo.extras.*
 import com.example.grocerygo.inheritables.GGToolbarActivity
 import com.example.grocerygo.inheritables.TMFragment
-import com.example.grocerygo.inheritables.Title
 import kotlinx.android.synthetic.main.frag_cart.*
 
 class FragCart : TMFragment() {

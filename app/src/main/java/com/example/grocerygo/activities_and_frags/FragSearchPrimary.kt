@@ -17,7 +17,6 @@ import com.example.grocerygo.adapters.AdapterCategories
 import com.example.grocerygo.extras.Endpoints
 import com.example.grocerygo.inheritables.GGActivityCallbacks
 import com.example.grocerygo.inheritables.TMFragment
-import com.example.grocerygo.inheritables.Title
 import com.example.grocerygo.models.Category
 import com.example.grocerygo.models.ReceivedCategoriesObject
 import com.google.gson.GsonBuilder
