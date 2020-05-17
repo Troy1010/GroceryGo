@@ -1,8 +1,8 @@
 package com.example.grocerygo.activities_and_frags
 
-import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import android.os.Handler
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -10,6 +10,7 @@ import androidx.fragment.app.Fragment
 import com.example.grocerygo.R
 import com.example.grocerygo.adapters.AdapterImageSlider
 import com.example.grocerygo.extras.App
+import com.example.grocerygo.extras.logz
 import com.example.grocerygo.inheritables.GGToolbarActivity
 import kotlinx.android.synthetic.main.frag_home.*
 
@@ -47,5 +48,18 @@ class FragHome : Fragment() {
     private fun setupImageSlider() {
         val images = arrayListOf<Int>(R.drawable.grocery_basket_icons_bag_food_icon, R.drawable.slider_image_two)
         view_pager_image_slider.adapter = AdapterImageSlider(activity!!, images)
+        view_pager_image_slider.setOnTouchListener { v, event ->
+            true
+        }
+        // slide it on your own
+        doInThree(Handler())
+    }
+    private fun doInThree(handler: Handler) {
+        handler.postDelayed({
+            view_pager_image_slider?.apply {
+                view_pager_image_slider.currentItem += 1
+                doInThree(handler)
+            }
+        },3000)
     }
 }

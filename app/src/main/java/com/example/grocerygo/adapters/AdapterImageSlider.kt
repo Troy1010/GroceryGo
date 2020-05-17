@@ -5,9 +5,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.viewpager.widget.PagerAdapter
+import androidx.viewpager.widget.ViewPager
 import com.example.grocerygo.R
 import kotlinx.android.synthetic.main.item_image_slider.view.*
-import kotlin.math.absoluteValue
 
 
 class AdapterImageSlider(var context: Context, var imageLayouts: ArrayList<Int>) : PagerAdapter() {
@@ -16,7 +16,6 @@ class AdapterImageSlider(var context: Context, var imageLayouts: ArrayList<Int>)
     }
 
     override fun getCount(): Int {
-//        return imageLayouts.size
         return Int.MAX_VALUE
     }
 
