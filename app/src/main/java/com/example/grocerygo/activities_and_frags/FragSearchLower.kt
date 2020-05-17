@@ -59,7 +59,6 @@ class FragSearchLower : Fragment(), Title {
 
     private fun requestProducts(subCatID: Int) {
         val endpoint = Endpoints.getSelectedProductsEndpoint(subCatID)
-        logz("requestProducts`Endpoint:$endpoint")
         var requestQueue = Volley.newRequestQueue(context)
         var request = JsonObjectRequest(
             Request.Method.GET, endpoint, null,

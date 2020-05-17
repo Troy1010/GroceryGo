@@ -73,7 +73,6 @@ class FragSearchToolbar : TMFragment() {
 
     private fun requestSubCategoryData(catID: Int) {
         val endpoint = Endpoints.getSelectedSubCategoriesEndpoint(catID)
-        logz("requestSubCategoryData`Endpoint:$endpoint")
         var requestQueue = Volley.newRequestQueue(context)
         var request = JsonObjectRequest(
             Request.Method.GET, endpoint, null,
