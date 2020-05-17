@@ -22,15 +22,12 @@ import com.google.gson.GsonBuilder
 import kotlinx.android.synthetic.main.frag_search_toolbar.*
 
 class FragSearchToolbar : TMFragment() {
-    private var catID: Int = 1
     override val layout: Int
         get() = R.layout.frag_search_toolbar
+    val catID by lazy { arguments?.getInt(KEY_CAT_ID)?:1 }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        arguments?.let {
-            catID = it.getInt(KEY_CAT_ID)
-        }
         requestSubCategoryData(catID)
     }
 
