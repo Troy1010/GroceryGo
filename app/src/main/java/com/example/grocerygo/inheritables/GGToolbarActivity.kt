@@ -18,10 +18,8 @@ abstract class GGToolbarActivity: TMActivity(), GGActivityCallbacks {
     abstract val title:String
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        logz("GGToolbarActivity`about to set up toolbar")
         setSupportActionBar(toolbar_main)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
-        logz("GGToolbarActivity`finished setting up toolbar")
     }
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         var returning = super.onCreateOptionsMenu(menu)
@@ -53,9 +51,7 @@ abstract class GGToolbarActivity: TMActivity(), GGActivityCallbacks {
     }
 
     override fun setToolbarTitle(title:String) {
-        logz("setToolbarTitle`title:$title")
         toolbar_main.title = title
-        logz("setToolbarTitle`toolbar_main.title:${toolbar_main.title}")
     }
 
 

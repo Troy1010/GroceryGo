@@ -12,11 +12,20 @@ import com.example.grocerygo.extras.App
 import com.example.grocerygo.extras.Endpoints
 import com.example.grocerygo.extras.logz
 import com.example.grocerygo.inheritables.GGActivityCallbacks
+import com.example.grocerygo.inheritables.GGToolbarActivity
 import com.squareup.picasso.Picasso
+import kotlinx.android.synthetic.main.app_toolbar.*
 import kotlinx.android.synthetic.main.frag_home.*
 
 class FragHome : Fragment() {
     val title = "Home"
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        var activityZ = activity as GGToolbarActivity
+        if (activityZ is GGToolbarActivity) {
+            activityZ.setToolbarTitle(title)
+        }
+    }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         return inflater.inflate(R.layout.frag_home, container, false)
@@ -24,11 +33,6 @@ class FragHome : Fragment() {
 
     override fun onStart() {
         super.onStart()
-        var activityZ = activity as GGActivityCallbacks
-//        if (activityZ is GGActivityCallbacks) {
-//            logz("FragHome`OnStart`Calling setToolbarTitle")
-//            activityZ.setToolbarTitle(title)
-//        }
         button_logout.setOnClickListener {
             App.sm.logout()
             startActivity(Intent(activity!!, ActivityLogin::class.java))

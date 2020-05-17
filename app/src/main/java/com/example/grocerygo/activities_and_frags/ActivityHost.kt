@@ -18,8 +18,12 @@ class ActivityHost : GGToolbarActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        navigateToPage(PageEnums.HOME)
         setupNavigationBar()
+    }
+
+    override fun onStart() {
+        super.onStart()
+        navigateToPage(PageEnums.HOME)
     }
 
     private fun setupNavigationBar() {
