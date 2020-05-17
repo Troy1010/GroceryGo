@@ -6,14 +6,12 @@ import android.view.ViewGroup
 import androidx.fragment.app.FragmentActivity
 import androidx.recyclerview.widget.RecyclerView
 import com.example.grocerygo.R
-import com.example.grocerygo.activities_and_frags.FragSearchLower
 import com.example.grocerygo.activities_and_frags.FragSearchToolbar
 import com.example.grocerygo.extras.Config
-import com.example.grocerygo.extras.logz
 import com.example.grocerygo.models.Category
 import com.squareup.picasso.Picasso
-import kotlinx.android.synthetic.main.row_category.view.*
-import kotlinx.android.synthetic.main.row_category.view.image_view
+import kotlinx.android.synthetic.main.item_category.view.*
+import kotlinx.android.synthetic.main.item_category.view.image_view
 
 class AdapterCategories(
     var activity: FragmentActivity,
@@ -23,7 +21,7 @@ class AdapterCategories(
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView)
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        val view = LayoutInflater.from(activity).inflate(R.layout.row_category, parent, false)
+        val view = LayoutInflater.from(activity).inflate(R.layout.item_category, parent, false)
         return ViewHolder(view)
     }
 

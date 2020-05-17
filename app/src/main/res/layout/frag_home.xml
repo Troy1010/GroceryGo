@@ -15,12 +15,8 @@
         android:text="Sign out"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"/>
-    <ImageView
-        android:id="@+id/image_view"
+    <androidx.viewpager.widget.ViewPager
+        android:id="@+id/view_pager_image_slider"
         android:layout_width="match_parent"
         android:layout_height="240dp"/>
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recycler_view"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
 </LinearLayout>

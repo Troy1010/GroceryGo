@@ -21,6 +21,7 @@ import com.example.grocerygo.models.Category
 import com.example.grocerygo.models.ReceivedCategoriesObject
 import com.google.gson.GsonBuilder
 import kotlinx.android.synthetic.main.frag_home.*
+import kotlinx.android.synthetic.main.frag_search_primary.*
 
 class FragSearchPrimary : TMFragment() {
     val title = "Search"
@@ -46,8 +47,8 @@ class FragSearchPrimary : TMFragment() {
     }
 
     private fun setupRecyclerView(categories:ArrayList<Category>) {
-        recycler_view.layoutManager = GridLayoutManager(activity!!,2)
-        recycler_view.adapter = AdapterCategories(activity!!, categories)
+        recycler_view_categories.layoutManager = GridLayoutManager(activity!!,2)
+        recycler_view_categories.adapter = AdapterCategories(activity!!, categories)
     }
 
     private fun requestCategories() {
