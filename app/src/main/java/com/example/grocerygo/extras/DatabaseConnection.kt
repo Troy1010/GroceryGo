@@ -5,7 +5,7 @@ import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteOpenHelper
 import com.example.grocerygo.models.Product
 
-class DBHelper :
+class DatabaseConnection :
     SQLiteOpenHelper(App.instance, Config.DATABASE_NAME, null, Config.DATABASE_VERSION) {
     private val databaseSQL = writableDatabase!!
 
@@ -19,7 +19,8 @@ class DBHelper :
         logz("DBHelper`onCreate")
         val sqlCreateTable =
             """create table $TABLE_NAME($COL_NAME char(50), 
-                $COL_ID INTEGER PRIMARY KEY AUTOINCREMENT)"""
+                   $COL_ID INTEGER PRIMARY KEY AUTOINCREMENT
+                   )"""
         sqlDatabase.execSQL(sqlCreateTable)
     }
 
@@ -62,6 +63,7 @@ class DBHelper :
                 ))
             } while(cursor.moveToNext())
         }
+        cursor.close()
         return returningList
     }
 

@@ -13,10 +13,9 @@ import com.google.android.material.snackbar.Snackbar
 import kotlinx.android.synthetic.main.frag_profile.*
 
 
-fun Toolbar.setup(activity: AppCompatActivity, title: String, showBack:Boolean=true) {
-    this.title = title
+fun Toolbar.setup(activity: AppCompatActivity) {
     activity.setSupportActionBar(this)
-    activity.supportActionBar?.setDisplayHomeAsUpEnabled(showBack)
+    activity.supportActionBar?.setDisplayHomeAsUpEnabled(true)
 }
 
 fun Context.easyToast(s: String) {

@@ -15,31 +15,35 @@ import com.android.volley.toolbox.Volley
 import com.example.grocerygo.R
 import com.example.grocerygo.adapters.AdapterCategories
 import com.example.grocerygo.extras.Endpoints
-import com.example.grocerygo.extras.Title
-import com.example.grocerygo.extras.logz
+import com.example.grocerygo.inheritables.GGActivityCallbacks
+import com.example.grocerygo.inheritables.TMFragment
+import com.example.grocerygo.inheritables.Title
 import com.example.grocerygo.models.Category
 import com.example.grocerygo.models.ReceivedCategoriesObject
 import com.google.gson.GsonBuilder
 import kotlinx.android.synthetic.main.frag_home.*
 
-class FragSearchPrimary : Fragment(), Title {
-    override val title = "Search"
+class FragSearchPrimary : TMFragment() {
+    val title = "Search"
+    override val layout: Int
+        get() = R.layout.frag_search_primary
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        init()
-        return inflater.inflate(R.layout.frag_search_primary, container, false)
+        val returning = super.onCreateView(inflater, container, savedInstanceState)
+        requestCategories()
+        return returning
     }
 
     override fun onStart() {
         super.onStart()
         var activityZ = activity as AppCompatActivity
-        activityZ.supportActionBar?.setDisplayHomeAsUpEnabled(true)
-    }
-    private fun init() {
-        requestCategories()
+        if (activityZ is GGActivityCallbacks) {
+            activityZ.setToolbarTitle(title)
+        }
     }
 
     private fun setupRecyclerView(categories:ArrayList<Category>) {

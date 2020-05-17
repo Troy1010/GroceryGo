@@ -8,10 +8,9 @@ import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import com.example.grocerygo.R
-import com.example.grocerygo.extras.App
-import com.example.grocerygo.extras.Title
+import com.example.grocerygo.inheritables.Title
 import com.example.grocerygo.extras.easySnackbar
-import com.example.grocerygo.extras.easyToast
+import com.example.grocerygo.inheritables.GGActivityCallbacks
 import com.google.android.material.snackbar.Snackbar
 import kotlinx.android.synthetic.main.frag_profile.*
 
@@ -27,12 +26,10 @@ class FragProfile : Fragment(), Title {
 
     override fun onStart() {
         super.onStart()
-        init()
         var activityZ = activity as AppCompatActivity
-        activityZ.supportActionBar?.setDisplayHomeAsUpEnabled(true)
-    }
-
-    private fun init() {
+        if (activityZ is GGActivityCallbacks) {
+            activityZ.setToolbarTitle(title)
+        }
         initializeUserValues()
         setupListeners()
     }

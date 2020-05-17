@@ -14,32 +14,23 @@ import com.example.grocerygo.R
 import com.example.grocerygo.extras.Endpoints
 import com.example.grocerygo.extras.KEY_CAT_ID
 import com.example.grocerygo.extras.logz
+import com.example.grocerygo.inheritables.TMFragment
 import com.example.grocerygo.models.ReceivedSubCategoriesObject
 import com.example.grocerygo.models.SubCategory
 import com.google.android.material.tabs.TabLayout
 import com.google.gson.GsonBuilder
 import kotlinx.android.synthetic.main.frag_search_toolbar.*
 
-class FragSearchToolbar : Fragment() {
+class FragSearchToolbar : TMFragment() {
     private var catID: Int = 1
-
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        return inflater.inflate(R.layout.frag_search_toolbar, container, false)
-    }
+    override val layout: Int
+        get() = R.layout.frag_search_toolbar
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
             catID = it.getInt(KEY_CAT_ID)
         }
-        init()
-    }
-
-    private fun init() {
         requestSubCategoryData(catID)
     }
 

@@ -16,6 +16,7 @@ import com.android.volley.toolbox.Volley
 import com.example.grocerygo.R
 import com.example.grocerygo.adapters.AdapterProducts
 import com.example.grocerygo.extras.*
+import com.example.grocerygo.inheritables.Title
 import com.example.grocerygo.models.Product
 import com.example.grocerygo.models.ReceivedProductsObject
 import com.google.gson.GsonBuilder
@@ -31,7 +32,7 @@ class FragSearchLower : Fragment(), Title {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        init()
+        requestProducts(subCatID)
         return inflater.inflate(R.layout.frag_search_lower, container, false)
     }
 
@@ -47,10 +48,6 @@ class FragSearchLower : Fragment(), Title {
             subCatID = it.getInt(KEY_SUB_CAT_ID)
             catID = it.getInt(KEY_CAT_ID)
         }
-    }
-
-    private fun init() {
-        requestProducts(subCatID)
     }
 
     private fun setupRecyclerView(products: ArrayList<Product>) {

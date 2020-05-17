@@ -2,51 +2,47 @@ package com.example.grocerygo.activities_and_frags
 
 import android.content.Intent
 import android.os.Bundle
-import android.text.Editable
-import android.text.TextWatcher
 import android.view.View
 import com.example.grocerygo.R
 import com.example.grocerygo.extras.*
+import com.example.grocerygo.inheritables.GGToolbarActivity
 import com.example.grocerygo.models.User
 import com.google.android.material.textfield.TextInputEditText
 import com.google.android.material.textfield.TextInputLayout
 import kotlinx.android.synthetic.main.activity_register.*
 import kotlinx.android.synthetic.main.app_toolbar.*
 
-class ActivityRegister : AppCompatActivityWithToolbarFunctionality(), View.OnClickListener {
+class ActivityRegister : GGToolbarActivity() {
+    override val title: String
+        get() = "Register"
+    override val layout: Int
+        get() = R.layout.activity_register
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_register)
-        init()
-    }
-
-    private fun init() {
-        button_register_send.setOnClickListener(this)
         text_input_email.setOnFocusChangeListener(MyOnFocusChangeListener(text_input_email,text_input_layout_email,RegFieldEnum.EMAIL))
         text_input_name.setOnFocusChangeListener(MyOnFocusChangeListener(text_input_name,text_input_layout_name,RegFieldEnum.NAME))
         text_input_password.setOnFocusChangeListener(MyOnFocusChangeListener(text_input_password,text_input_layout_password,RegFieldEnum.PASSWORD))
         text_input_mobile.setOnFocusChangeListener(MyOnFocusChangeListener(text_input_mobile,text_input_layout_mobile,RegFieldEnum.MOBILE))
-        toolbar_top.setup(this, "Register")
-    }
-
-    override fun onClick(v: View?) {
-        when (v?.id) {
-            R.id.button_register_send -> {
-                var name = text_input_name.text.toString().trim()
-                var email = text_input_email.text.toString().trim()
-                var password = text_input_password.text.toString().trim()
-                var mobile = text_input_mobile.text.toString().trim()
-                var errorHandler = ErrorHandler()
-                errorHandler.handle(FormValidator.name(name), text_input_layout_name)
-                errorHandler.handle(
-                    FormValidator.password(password),
-                    text_input_layout_password
-                )
-                errorHandler.handle(FormValidator.email(email), text_input_layout_email)
-                errorHandler.handle(FormValidator.mobile(mobile), text_input_layout_mobile)
-                if (!errorHandler.foundError) {
-                    App.sm.register(User(name, email, password)) // TODO take mobile
-                    startActivity(Intent(this, ActivityHost::class.java))
+        button_register_send.setOnClickListener {v ->
+            when (v?.id) {
+                R.id.button_register_send -> {
+                    var name = text_input_name.text.toString().trim()
+                    var email = text_input_email.text.toString().trim()
+                    var password = text_input_password.text.toString().trim()
+                    var mobile = text_input_mobile.text.toString().trim()
+                    var errorHandler = ErrorHandler()
+                    errorHandler.handle(FormValidator.name(name), text_input_layout_name)
+                    errorHandler.handle(
+                            FormValidator.password(password),
+                            text_input_layout_password
+                    )
+                    errorHandler.handle(FormValidator.email(email), text_input_layout_email)
+                    errorHandler.handle(FormValidator.mobile(mobile), text_input_layout_mobile)
+                    if (!errorHandler.foundError) {
+                        App.sm.register(User(name, email, password)) // TODO take mobile
+                        startActivity(Intent(this, ActivityHost::class.java))
+                    }
                 }
             }
         }

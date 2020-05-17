@@ -1,4 +1,4 @@
-package com.example.grocerygo_redo
+package com.example.grocerygo
 
 import org.junit.Test
 

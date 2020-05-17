@@ -10,7 +10,8 @@ import androidx.fragment.app.Fragment
 import com.example.grocerygo.R
 import com.example.grocerygo.extras.App
 import com.example.grocerygo.extras.Endpoints
-import com.example.grocerygo.extras.Title
+import com.example.grocerygo.inheritables.GGActivityCallbacks
+import com.example.grocerygo.inheritables.Title
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.frag_home.*
 
@@ -24,29 +25,21 @@ class FragHome : Fragment(), Title {
     override fun onStart() {
         super.onStart()
         var activityZ = activity as AppCompatActivity
+        if (activityZ is GGActivityCallbacks) {
+            activityZ.setToolbarTitle(title)
+        }
         activityZ.supportActionBar?.setDisplayHomeAsUpEnabled(false)
-        init()
-    }
-
-    private fun init() {
-        setClickListeners()
-        picassoImages()
-        // fake-bind text_view_hello
-        text_view_hello.text = getString(R.string.hello_start, App.sm.user.name)
-        //
-    }
-    private fun picassoImages() {
-        Picasso
-            .get()
-            .load(Endpoints.HOME_IMAGE)
-            .placeholder(R.drawable.not_found)
-            .error(R.drawable.no_image_available_vector_illustration_260nw_744886198)
-            .into(image_view)
-    }
-    private fun setClickListeners() {
         button_logout.setOnClickListener {
             App.sm.logout()
-            startActivity(Intent(activity!!,ActivityLogin::class.java))
+            startActivity(Intent(activity!!, ActivityLogin::class.java))
         }
+        Picasso
+                .get()
+                .load(Endpoints.HOME_IMAGE)
+                .placeholder(R.drawable.not_found)
+                .error(R.drawable.no_image_available_vector_illustration_260nw_744886198)
+                .into(image_view)
+        // fake-bind text_view_hello
+        text_view_hello.text = getString(R.string.hello_start, App.sm.user.name)
     }
 }

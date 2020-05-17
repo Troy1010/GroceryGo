@@ -5,23 +5,22 @@ import android.os.Bundle
 import android.widget.Toast
 import com.example.grocerygo.R
 import com.example.grocerygo.extras.App
-import com.example.grocerygo.extras.AppCompatActivityWithToolbarFunctionality
 import com.example.grocerygo.extras.setup
+import com.example.grocerygo.inheritables.GGToolbarActivity
 import com.example.grocerygo.models.LoginObject
 import kotlinx.android.synthetic.main.activity_login.*
 import kotlinx.android.synthetic.main.app_toolbar.*
 
-class ActivityLogin : AppCompatActivityWithToolbarFunctionality() {
+class ActivityLogin : GGToolbarActivity() {
+    override val title: String
+        get() = "Login"
+    override val layout: Int
+        get() = R.layout.activity_login
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_login)
-        init()
-    }
-
-    private fun init() {
         setupClickListeners()
-        toolbar_top.setup(this, "Login")
     }
 
     private fun setupClickListeners() {
