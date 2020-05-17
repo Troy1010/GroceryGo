@@ -1,9 +1,12 @@
 package com.example.grocerygo.inheritables
 
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import android.util.AttributeSet
 import android.view.Menu
 import android.view.MenuItem
+import android.view.View
 import androidx.fragment.app.Fragment
 import com.example.grocerygo.R
 import com.example.grocerygo.activities_and_frags.*
@@ -15,9 +18,10 @@ abstract class GGToolbarActivity: TMActivity(), GGActivityCallbacks {
     abstract val title:String
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        logz("GGToolbarActivity`about to set up toolbar")
         setSupportActionBar(toolbar_main)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
-        this.setToolbarTitle(title)
+        logz("GGToolbarActivity`finished setting up toolbar")
     }
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         var returning = super.onCreateOptionsMenu(menu)
@@ -56,15 +60,12 @@ abstract class GGToolbarActivity: TMActivity(), GGActivityCallbacks {
 
 
     fun navigateToPage(e: PageEnums) {
-        when (e) {
-            PageEnums.SEARCH -> usualNavigation(FragSearchPrimary())
-            PageEnums.PROFILE -> usualNavigation(FragProfile())
-            PageEnums.CART -> usualNavigation(FragCart())
-            else -> usualNavigation(FragHome())
+        val frag = when (e) {
+            PageEnums.SEARCH -> FragSearchPrimary()
+            PageEnums.PROFILE -> FragProfile()
+            PageEnums.CART -> FragCart()
+            else -> FragHome()
         }
-    }
-
-    private fun usualNavigation(frag: Fragment) {
         supportFragmentManager.beginTransaction().replace(R.id.frame_fragments, frag).commit()
     }
 

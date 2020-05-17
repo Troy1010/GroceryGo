@@ -10,6 +10,7 @@ import androidx.fragment.app.Fragment
 import com.example.grocerygo.R
 import com.example.grocerygo.extras.App
 import com.example.grocerygo.extras.Endpoints
+import com.example.grocerygo.extras.logz
 import com.example.grocerygo.inheritables.GGActivityCallbacks
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.frag_home.*
@@ -23,10 +24,11 @@ class FragHome : Fragment() {
 
     override fun onStart() {
         super.onStart()
-        var activityZ = activity as AppCompatActivity
-        if (activityZ is GGActivityCallbacks) {
-            activityZ.setToolbarTitle(title)
-        }
+        var activityZ = activity as GGActivityCallbacks
+//        if (activityZ is GGActivityCallbacks) {
+//            logz("FragHome`OnStart`Calling setToolbarTitle")
+//            activityZ.setToolbarTitle(title)
+//        }
         button_logout.setOnClickListener {
             App.sm.logout()
             startActivity(Intent(activity!!, ActivityLogin::class.java))
