@@ -1,5 +1,6 @@
 package com.example.grocerygo.activities_and_frags
 
+import android.view.View
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -45,17 +46,23 @@ class FragCart : TMFragment() {
     }
 
     fun refresh() {
-        (recycler_view_cart_items.adapter as AdapterCartItems).products = App.db.getProducts()
+        (recycler_view_cart_items.adapter as AdapterCartItems).products = App.db.getProducts() // TODO do I have to do this every refresh..?
         (recycler_view_cart_items.adapter as AdapterCartItems).notifyDataSetChanged()
-        // # of items
-        val products = App.db.getProducts()
-        text_view_list_size.text = "# of items: ${products.size}"
-        // get money total
-        var moneyTotal = 0.0
-        for (product in products) {
-            moneyTotal += product.price*product.quantity
+        if ((recycler_view_cart_items.adapter as AdapterCartItems).products.size==0) {
+            text_view_cart_is_empty.visibility = View.VISIBLE
+            text_view_money_total.visibility = View.INVISIBLE
+            text_view_list_size.visibility = View.INVISIBLE
+        } else {
+            // # of items
+            val products = App.db.getProducts()
+            text_view_list_size.text = "# of items: ${products.size}"
+            // get money total
+            var moneyTotal = 0.0
+            for (product in products) {
+                moneyTotal += product.price * product.quantity
+            }
+            text_view_money_total.text = "total: ${moneyTotal}"
         }
-        text_view_money_total.text = "total: ${moneyTotal}"
     }
 
 

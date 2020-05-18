@@ -5,6 +5,14 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:padding="16dp">
 
+    <TextView
+        android:visibility="invisible"
+        android:id="@+id/text_view_cart_is_empty"
+        android:gravity="center"
+        android:text="Your cart is empty"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recycler_view_cart_items"
         app:layout_constraintTop_toTopOf="parent"
