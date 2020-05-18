@@ -7,6 +7,9 @@ import com.example.grocerygo.inheritables.GGToolbarActivity
 import com.example.grocerygo.models.Product
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.activity_details.*
+import kotlinx.android.synthetic.main.includible_plus_minus.*
+import kotlinx.android.synthetic.main.includible_plus_minus.view.*
+import kotlinx.android.synthetic.main.includible_plus_minus.view.button_plus
 
 class ActivityDetails : GGToolbarActivity() {
     override val title: String
@@ -28,10 +31,24 @@ class ActivityDetails : GGToolbarActivity() {
                     .error(R.drawable.no_image_available_vector_illustration_260nw_744886198)
                     .into(image_view)
         }
-        button_add_to_cart.setOnClickListener {
-            this.easyToast("${product.productName} added to cart")
-
+//        button_add_to_cart.setOnClickListener {
+//            this.easyToast("${product.productName} added to cart")
+//
+//            App.db.addProduct(product)
+//        }
+        text_view_plus_minus.text = product.quantity.toString()
+        button_plus.setOnClickListener {
             App.db.addProduct(product)
+            text_view_plus_minus.text = product.quantity.toString()
+        }
+        button_minus.setOnClickListener {
+            if (product.quantity == 1) {
+                product.quantity = 0 // to update ui
+                App.db.deleteProduct(product)
+            } else {
+                App.db.minusProduct(product)
+            }
+            text_view_plus_minus.text = product.quantity.toString()
         }
     }
 }
