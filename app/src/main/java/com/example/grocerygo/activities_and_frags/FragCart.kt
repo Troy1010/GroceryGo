@@ -40,13 +40,13 @@ class FragCart : TMFragment() {
         (recycler_view_cart_items.adapter as AdapterCartItems).notifyDataSetChanged()
         // # of items
         val products = App.db.getProducts()
-        text_view_list_size.text = "# of items: ${products.size.toString()}"
+        text_view_list_size.text = "# of items: ${products.size}"
         // get money total
         var moneyTotal = 0.0
         for (product in products) {
-            moneyTotal += product.price
+            moneyTotal += product.price*product.quantity
         }
-        text_view_money_total.text = "total: ${moneyTotal.toString()}"
+        text_view_money_total.text = "total: ${moneyTotal}"
     }
 
 
