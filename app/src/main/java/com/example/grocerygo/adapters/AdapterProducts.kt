@@ -10,19 +10,15 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.grocerygo.R
 import com.example.grocerygo.activities_and_frags.ActivityDetails
 import com.example.grocerygo.extras.KEY_PRODUCT
+import com.example.grocerygo.inheritables.TMAdapter
 import com.example.grocerygo.models.Product
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.item_category.view.image_view
 import kotlinx.android.synthetic.main.item_product.view.*
 
-class AdapterProducts (var context: Context, var products:ArrayList<Product>): RecyclerView.Adapter<AdapterProducts.ViewHolder>() {
-
-    inner class ViewHolder (itemView: View) : RecyclerView.ViewHolder(itemView)
-
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        val view = LayoutInflater.from(context).inflate(R.layout.item_product, parent, false)
-        return ViewHolder(view)
-    }
+class AdapterProducts (override val context: Context, var products:ArrayList<Product>): TMAdapter() {
+    override val layout: Int
+        get() = R.layout.item_product
 
     override fun getItemCount(): Int {
         return products.size
