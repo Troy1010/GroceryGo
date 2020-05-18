@@ -12,7 +12,6 @@ import com.example.grocerygo.models.Product
 import com.google.android.material.snackbar.Snackbar
 import kotlinx.android.synthetic.main.frag_profile.*
 
-
 fun Toolbar.setup(activity: AppCompatActivity) {
     activity.setSupportActionBar(this)
     activity.supportActionBar?.setDisplayHomeAsUpEnabled(true)
@@ -52,6 +51,7 @@ fun ArrayList<Product>.narrate(): String {
     }
     return stingList.joinToString(separator = "\n")
 }
-fun ArrayList<Product>.hasKey(i:Int):Boolean {
+
+fun ArrayList<Product>.hasKey(i: Int): Boolean {
     return i < this.size
 }

@@ -8,20 +8,17 @@ import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import com.example.grocerygo.R
+import com.example.grocerygo.extras.App
 import com.example.grocerygo.extras.easySnackbar
 import com.example.grocerygo.inheritables.GGActivityCallbacks
+import com.example.grocerygo.inheritables.TMFragment
 import com.google.android.material.snackbar.Snackbar
 import kotlinx.android.synthetic.main.frag_profile.*
 
-class FragProfile : Fragment() {
+class FragProfile : TMFragment() {
     val title = "Profile"
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        return inflater.inflate(R.layout.frag_profile, container,false )
-    }
+    override val layout: Int
+        get() = R.layout.frag_profile
 
     override fun onStart() {
         super.onStart()
@@ -31,8 +28,10 @@ class FragProfile : Fragment() {
     }
 
     private fun initializeUserValues() {
-//        edit_text_user_name.setText(App.sm.user.name) TODO
-//        edit_text_user_email.setText(App.sm.user.email)
+        text_input_name.setText(App.sm.user.name)
+        text_input_email.setText(App.sm.user.email)
+        text_input_password.setText("*".repeat(App.sm.user.password?.length?:0))
+        text_input_mobile.setText(App.sm.user.mobile)
     }
 
     private fun setupListeners() {

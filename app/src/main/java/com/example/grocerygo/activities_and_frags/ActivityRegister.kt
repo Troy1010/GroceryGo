@@ -40,7 +40,7 @@ class ActivityRegister : GGToolbarActivity() {
                     errorHandler.handle(FormValidator.email(email), text_input_layout_email)
                     errorHandler.handle(FormValidator.mobile(mobile), text_input_layout_mobile)
                     if (!errorHandler.foundError) {
-                        App.sm.register(User(name, email, password)) // TODO take mobile
+                        App.sm.user = User(name, email, password, mobile)
                         startActivity(Intent(this, ActivityHost::class.java))
                     }
                 }

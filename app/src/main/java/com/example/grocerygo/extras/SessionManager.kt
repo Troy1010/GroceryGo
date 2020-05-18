@@ -10,38 +10,34 @@ class SessionManager {
         Context.MODE_PRIVATE
     )
     private var editor = sharedPref.edit()
-    fun attemptLogin(loginObject: LoginObject): Boolean {
-        var storedEmail = sharedPref.getString(User.KEY_EMAIL, null)
-        var storedPassword = sharedPref.getString(User.KEY_PASSWORD, null)
-        return when {
-            storedEmail == null -> {
-                false
-            }
-            storedPassword == null -> {
-                false
-            }
-            else -> {
-                (loginObject.email == storedEmail) and (loginObject.password == storedPassword)
-            }
+    var user: User
+        get() {
+            var storedName = sharedPref.getString(User.KEY_NAME, null)
+            var storedEmail = sharedPref.getString(User.KEY_EMAIL, null)
+            var storedPassword = sharedPref.getString(User.KEY_PASSWORD, null)
+            var storedMobile = sharedPref.getString(User.KEY_MOBILE, null)
+            return User(
+                storedName ?: "",
+                storedEmail ?: "",
+                storedPassword ?: "",
+                storedMobile ?: ""
+            )
         }
-    }
+        set(value) {
+            editor.putString(User.KEY_EMAIL, value.email)
+            editor.putString(User.KEY_NAME, value.name)
+            editor.putString(User.KEY_PASSWORD, value.password)
+            editor.putString(User.KEY_MOBILE, value.mobile)
+            editor.commit()
+        }
 
-    fun register(user: User) {
-        // store user in sharedPref
-        editor.putString(User.KEY_EMAIL, user.email)
-        editor.putString(User.KEY_NAME, user.name)
-        editor.putString(User.KEY_PASSWORD, user.password)
-        editor.commit()
-    }
 
-    fun registerName(name:String) {
-        editor.putString(User.KEY_NAME, name)
-        editor.commit()
-    }
-
-    fun registerEmail(email:String) {
-        editor.putString(User.KEY_EMAIL, email)
-        editor.commit()
+    fun attemptLogin(loginObject: LoginObject): Boolean {
+        return if ((loginObject.email == "") || (loginObject.password == "")) {
+            false
+        } else {
+            (loginObject.email == user.email) and (loginObject.password == user.password)
+        }
     }
 
     fun isLoggedIn(): Boolean {
@@ -50,13 +46,6 @@ class SessionManager {
         return !((storedEmail == null) or (storedEmail == "") or (storedPassword == null) or (storedPassword == ""))
     }
 
-    var user = User("", "", "")
-        get() {
-            var storedName = sharedPref.getString(User.KEY_NAME, null)
-            var storedEmail = sharedPref.getString(User.KEY_EMAIL, null)
-            var storedPassword = sharedPref.getString(User.KEY_PASSWORD, null)
-            return User(storedName?:"", storedEmail?: "", storedPassword?: "")
-        }
     fun logout() {
         editor.clear()
         editor.commit()
