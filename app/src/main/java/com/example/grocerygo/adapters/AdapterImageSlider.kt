@@ -28,7 +28,8 @@ class AdapterImageSlider(var context: Context, var imageLayouts: ArrayList<Int>)
     }
 
     override fun destroyItem(container: ViewGroup, position: Int, `object`: Any) {
-        container.removeViewAt(getVirtualPosition(position))
+        container.removeView(container.getChildAt(getVirtualPosition(position)))
+        //removeViewAt is buggy. It will crash if the object at i was already destroyed.
     }
 
     private fun getVirtualPosition(position:Int):Int {
