@@ -31,16 +31,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <TextView
-        android:id="@+id/text_view_quantity"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="(QUANTITY)"
-        android:textColor="@color/TextSoft"
-        android:textSize="14sp"
-        app:layout_constraintEnd_toStartOf="@id/button_trash"
-        app:layout_constraintTop_toTopOf="parent" />
-
     <FrameLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

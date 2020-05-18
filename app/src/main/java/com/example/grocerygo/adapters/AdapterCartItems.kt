@@ -33,7 +33,6 @@ class AdapterCartItems(
     override fun onBindViewHolder(holder: AdapterCartItems.ViewHolder, position: Int) {
         holder.itemView.text_view_name.text = products[position].productName
         holder.itemView.text_view_price.text = "$"+products[position].price.toString()
-        holder.itemView.text_view_quantity.text = "Quantity: "+products[position].quantity.toString()
         holder.itemView.button_trash.setOnClickListener {
             parent.deleteProduct(products[position])
         }
