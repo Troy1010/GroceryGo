@@ -43,14 +43,16 @@ fun String.isAllDigits(): Boolean {
     return true
 }
 
-fun ArrayList<Product>.narrate(): String {
+
+fun <E> ArrayList<E>.narrate(): String {
     val stingList = ArrayList<String>()
-    stingList.add("Products(${this.size})..")
+    stingList.add("Collection(${this.size})..")
     for (x in this) {
         stingList.add("\t${x.toString()}")
     }
     return stingList.joinToString(separator = "\n")
 }
+
 
 fun ArrayList<Product>.hasKey(i: Int): Boolean {
     return i < this.size

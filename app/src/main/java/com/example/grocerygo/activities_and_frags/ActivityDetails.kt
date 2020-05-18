@@ -7,7 +7,6 @@ import com.example.grocerygo.inheritables.GGToolbarActivity
 import com.example.grocerygo.models.Product
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.activity_details.*
-import kotlinx.android.synthetic.main.app_toolbar.*
 
 class ActivityDetails : GGToolbarActivity() {
     override val title: String
@@ -31,7 +30,8 @@ class ActivityDetails : GGToolbarActivity() {
         }
         button_add_to_cart.setOnClickListener {
             this.easyToast("${product.productName} added to cart")
-            App.db.add(product)
+
+            App.db.addProduct(product)
         }
     }
 }
