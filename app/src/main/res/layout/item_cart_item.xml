@@ -29,5 +29,14 @@
         android:text="X"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+    <TextView
+        android:textSize="14sp"
+        android:textColor="@color/TextSoft"
+        android:id="@+id/text_view_quantity"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="(QUANTITY)"
+        app:layout_constraintEnd_toStartOf="@id/button_remove"
+        app:layout_constraintTop_toTopOf="parent"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
