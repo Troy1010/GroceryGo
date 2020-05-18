@@ -16,6 +16,5 @@ data class Product(
     var quantity: Int=0,
     val status: Boolean=false,
     val subId: Int=0,
-    val unit: String="",
-    var sqlID: Int=0
+    val unit: String=""
 ) : Serializable
