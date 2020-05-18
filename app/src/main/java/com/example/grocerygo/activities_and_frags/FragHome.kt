@@ -11,6 +11,7 @@ import com.example.grocerygo.R
 import com.example.grocerygo.adapters.AdapterImageSlider
 import com.example.grocerygo.extras.App
 import com.example.grocerygo.extras.logz
+import com.example.grocerygo.inheritables.ActivityHostCallbacks
 import com.example.grocerygo.inheritables.GGActivityCallbacks
 import com.example.grocerygo.inheritables.GGToolbarActivity
 import kotlinx.android.synthetic.main.frag_home.*
@@ -31,7 +32,7 @@ class FragHome : Fragment() {
         setupImageSlider()
         button_logout.setOnClickListener {
             App.sm.logout()
-            startActivity(Intent(activity!!, ActivityLogin::class.java))
+            (activity as ActivityHostCallbacks).goToProfile()
         }
 //        Picasso
 //                .get()
@@ -40,7 +41,7 @@ class FragHome : Fragment() {
 //                .error(R.drawable.no_image_available_vector_illustration_260nw_744886198)
 //                .into(image_view)
         // fake-bind text_view_hello
-        text_view_hello.text = getString(R.string.hello_start, App.sm.user.name)
+        text_view_hello.text = getString(R.string.hello_start, App.sm.user.name?:"Welcome!")
     }
 
     private fun setupImageSlider() {

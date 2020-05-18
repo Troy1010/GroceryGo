@@ -1,25 +1,26 @@
 package com.example.grocerygo.activities_and_frags
 
-import android.content.Intent
-import android.os.Bundle
 import android.view.View
 import com.example.grocerygo.R
-import com.example.grocerygo.extras.*
-import com.example.grocerygo.inheritables.GGToolbarActivity
+import com.example.grocerygo.extras.App
+import com.example.grocerygo.extras.hasDigit
+import com.example.grocerygo.extras.isAllDigits
+import com.example.grocerygo.inheritables.ActivityHostCallbacks
+import com.example.grocerygo.inheritables.GGFragment
 import com.example.grocerygo.models.User
 import com.google.android.material.textfield.TextInputEditText
 import com.google.android.material.textfield.TextInputLayout
-import kotlinx.android.synthetic.main.activity_register.*
-import kotlinx.android.synthetic.main.app_toolbar.*
+import kotlinx.android.synthetic.main.frag_register.*
 
-class ActivityRegister : GGToolbarActivity() {
+
+class FragProfileRegister : GGFragment() {
     override val title: String
         get() = "Register"
     override val layout: Int
-        get() = R.layout.activity_register
+        get() = R.layout.frag_register
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
+    override fun onStart() {
+        super.onStart()
         text_input_email.setOnFocusChangeListener(MyOnFocusChangeListener(text_input_email,text_input_layout_email,RegFieldEnum.EMAIL))
         text_input_name.setOnFocusChangeListener(MyOnFocusChangeListener(text_input_name,text_input_layout_name,RegFieldEnum.NAME))
         text_input_password.setOnFocusChangeListener(MyOnFocusChangeListener(text_input_password,text_input_layout_password,RegFieldEnum.PASSWORD))
@@ -34,20 +35,19 @@ class ActivityRegister : GGToolbarActivity() {
                     var errorHandler = ErrorHandler()
                     errorHandler.handle(FormValidator.name(name), text_input_layout_name)
                     errorHandler.handle(
-                            FormValidator.password(password),
-                            text_input_layout_password
+                        FormValidator.password(password),
+                        text_input_layout_password
                     )
                     errorHandler.handle(FormValidator.email(email), text_input_layout_email)
                     errorHandler.handle(FormValidator.mobile(mobile), text_input_layout_mobile)
                     if (!errorHandler.foundError) {
                         App.sm.user = User(name, email, password, mobile)
-                        startActivity(Intent(this, ActivityHost::class.java))
+                        (activity as ActivityHostCallbacks).goToHome()
                     }
                 }
             }
         }
     }
-
 }
 
 class MyOnFocusChangeListener(var textInputEditText: TextInputEditText, var layoutOfTextInput: TextInputLayout, var e:RegFieldEnum) : View.OnFocusChangeListener {

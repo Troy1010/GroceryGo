@@ -6,14 +6,16 @@ import android.util.AttributeSet
 import android.view.MenuItem
 import android.view.View
 import com.example.grocerygo.R
+import com.example.grocerygo.extras.App
 import com.example.grocerygo.extras.PageEnums
 import com.example.grocerygo.extras.setup
+import com.example.grocerygo.inheritables.ActivityHostCallbacks
 import com.example.grocerygo.inheritables.GGToolbarActivity
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import kotlinx.android.synthetic.main.activity_host.*
 import kotlinx.android.synthetic.main.app_toolbar.*
 
-class ActivityHost : GGToolbarActivity() {
+class ActivityHost : GGToolbarActivity(), ActivityHostCallbacks {
     override val title: String
         get() = "Host"
     override val layout: Int
@@ -26,20 +28,29 @@ class ActivityHost : GGToolbarActivity() {
 
     override fun onStart() {
         super.onStart()
-        bottom_navigation_bar.selectedItemId = R.id.item_home
+        goToHome()
     }
 
     private fun setupNavigationBar() {
         bottom_navigation_bar.setOnNavigationItemSelectedListener { item ->
             val frag = when (item.itemId) {
-                R.id.item_profile -> FragProfile()
+                R.id.item_profile -> if (App.sm.isLoggedIn()) FragProfile() else FragProfileLogin()
                 R.id.item_search -> FragSearchPrimary()
                 R.id.item_cart -> FragCart()
                 else -> FragHome()
             }
             supportFragmentManager.beginTransaction().replace(R.id.frame_fragments, frag).commit()
+            // TODO add to backstack and fix highlighting
             true
         }
+    }
+
+    override fun goToHome() {
+        bottom_navigation_bar.selectedItemId = R.id.item_home
+    }
+
+    override fun goToProfile() {
+        bottom_navigation_bar.selectedItemId = R.id.item_profile
     }
 
 }

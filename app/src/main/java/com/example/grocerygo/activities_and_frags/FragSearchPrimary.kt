@@ -43,8 +43,8 @@ class FragSearchPrimary : TMFragment() {
     }
 
     private fun setupRecyclerView(categories:ArrayList<Category>) {
-        recycler_view_categories.layoutManager = GridLayoutManager(activity!!,2)
-        recycler_view_categories.adapter = AdapterCategories(activity!!, categories)
+        recycler_view_categories?.layoutManager = GridLayoutManager(activity!!,2)
+        recycler_view_categories?.adapter = AdapterCategories(activity!!, categories)
     }
 
     private fun requestCategories() {

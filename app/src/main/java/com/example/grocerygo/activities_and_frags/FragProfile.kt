@@ -15,6 +15,7 @@ import com.example.grocerygo.adapters.AdapterProducts
 import com.example.grocerygo.adapters.AdapterProfile
 import com.example.grocerygo.extras.App
 import com.example.grocerygo.extras.easySnackbar
+import com.example.grocerygo.inheritables.ActivityHostCallbacks
 import com.example.grocerygo.inheritables.GGActivityCallbacks
 import com.example.grocerygo.inheritables.TMFragment
 import com.example.grocerygo.models.ProfileItem
@@ -53,6 +54,7 @@ class FragProfile : TMFragment() {
 //        }
         button_logout.setOnClickListener {
             App.sm.logout()
+            (activity as ActivityHostCallbacks).goToProfile()
         }
 //        text_input_name.setOnClickListener {
 //

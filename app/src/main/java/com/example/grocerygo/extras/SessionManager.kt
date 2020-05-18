@@ -16,12 +16,7 @@ class SessionManager {
             var storedEmail = sharedPref.getString(User.KEY_EMAIL, null)
             var storedPassword = sharedPref.getString(User.KEY_PASSWORD, null)
             var storedMobile = sharedPref.getString(User.KEY_MOBILE, null)
-            return User(
-                storedName ?: "",
-                storedEmail ?: "",
-                storedPassword ?: "",
-                storedMobile ?: ""
-            )
+            return User(storedName, storedEmail, storedPassword, storedMobile)
         }
         set(value) {
             editor.putString(User.KEY_EMAIL, value.email)
