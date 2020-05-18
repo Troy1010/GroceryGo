@@ -18,4 +18,8 @@
         android:id="@+id/menu_printList"
         android:title="Print Items"
         app:showAsAction="never" />
+    <item
+        android:id="@+id/menu_setTitle"
+        android:title="Set Title"
+        app:showAsAction="never" />
 </menu>

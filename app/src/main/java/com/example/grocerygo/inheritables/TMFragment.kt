@@ -15,12 +15,4 @@ abstract class TMFragment: Fragment() {
     ): View? {
         return inflater.inflate(layout, container, false)
     }
-
-    override fun onStart() {
-        super.onStart()
-        val activityZ = activity
-        if (activityZ is GGToolbarActivity) {
-            activityZ.supportActionBar?.setDisplayHomeAsUpEnabled(true)
-        }
-    }
 }

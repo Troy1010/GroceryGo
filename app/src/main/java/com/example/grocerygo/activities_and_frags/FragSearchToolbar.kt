@@ -95,7 +95,7 @@ class FragSearchToolbar : TMFragment() {
 
     companion object {
         @JvmStatic
-        fun newInstance(catID: Int = 1) =
+        fun newInstance(catID: Int) =
             FragSearchToolbar().apply {
                 arguments = Bundle().apply {
                     putInt(KEY_CAT_ID, catID)

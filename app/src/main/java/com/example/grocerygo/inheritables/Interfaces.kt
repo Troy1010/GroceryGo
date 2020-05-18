@@ -3,5 +3,5 @@ package com.example.grocerygo.inheritables
 
 interface GGActivityCallbacks
 {
-    fun setToolbarTitle(title: String)
+    fun setToolbarAttributes(title: String, hasBackArrow: Boolean? = null)
 }

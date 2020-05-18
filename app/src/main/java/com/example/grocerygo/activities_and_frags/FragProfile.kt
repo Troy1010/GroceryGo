@@ -25,10 +25,7 @@ class FragProfile : Fragment() {
 
     override fun onStart() {
         super.onStart()
-        var activityZ = activity as AppCompatActivity
-        if (activityZ is GGActivityCallbacks) {
-            activityZ.setToolbarTitle(title)
-        }
+        (activity as GGActivityCallbacks).setToolbarAttributes(title, true)
         initializeUserValues()
         setupListeners()
     }

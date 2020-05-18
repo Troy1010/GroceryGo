@@ -33,17 +33,13 @@ class FragSearchPrimary : TMFragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val returning = super.onCreateView(inflater, container, savedInstanceState)
         requestCategories()
-        return returning
+        return super.onCreateView(inflater, container, savedInstanceState)
     }
 
     override fun onStart() {
         super.onStart()
-        var activityZ = activity as AppCompatActivity
-        if (activityZ is GGActivityCallbacks) {
-            activityZ.setToolbarTitle(title)
-        }
+        (activity as GGActivityCallbacks).setToolbarAttributes(title, true)
     }
 
     private fun setupRecyclerView(categories:ArrayList<Category>) {

@@ -11,6 +11,7 @@ import com.example.grocerygo.R
 import com.example.grocerygo.adapters.AdapterImageSlider
 import com.example.grocerygo.extras.App
 import com.example.grocerygo.extras.logz
+import com.example.grocerygo.inheritables.GGActivityCallbacks
 import com.example.grocerygo.inheritables.GGToolbarActivity
 import kotlinx.android.synthetic.main.frag_home.*
 
@@ -18,10 +19,6 @@ class FragHome : Fragment() {
     val title = "Home"
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        var activityZ = activity as GGToolbarActivity
-        if (activityZ is GGToolbarActivity) {
-            activityZ.setToolbarTitle(title)
-        }
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
@@ -30,6 +27,7 @@ class FragHome : Fragment() {
 
     override fun onStart() {
         super.onStart()
+        (activity as GGActivityCallbacks).setToolbarAttributes(title, false)
         setupImageSlider()
         button_logout.setOnClickListener {
             App.sm.logout()

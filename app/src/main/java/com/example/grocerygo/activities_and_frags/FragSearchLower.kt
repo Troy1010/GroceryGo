@@ -16,15 +16,18 @@ import com.android.volley.toolbox.Volley
 import com.example.grocerygo.R
 import com.example.grocerygo.adapters.AdapterProducts
 import com.example.grocerygo.extras.*
+import com.example.grocerygo.inheritables.GGActivityCallbacks
+import com.example.grocerygo.inheritables.TMFragment
 import com.example.grocerygo.models.Product
 import com.example.grocerygo.models.ReceivedProductsObject
 import com.google.gson.GsonBuilder
 import kotlinx.android.synthetic.main.frag_search_lower.recycler_view_products
 
-class FragSearchLower : Fragment() {
+class FragSearchLower : TMFragment() {
     val title = "Search"
-    private var catID: Int = 1
-    private var subCatID: Int = 1
+    val subCatID by lazy { arguments?.getInt(KEY_SUB_CAT_ID)?:1 }
+    override val layout: Int
+        get() = R.layout.frag_search_lower
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -32,21 +35,12 @@ class FragSearchLower : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         requestProducts(subCatID)
-        return inflater.inflate(R.layout.frag_search_lower, container, false)
+        return super.onCreateView(inflater, container, savedInstanceState)
     }
 
     override fun onStart() {
         super.onStart()
-        var activityZ = activity as AppCompatActivity
-        activityZ.supportActionBar?.setDisplayHomeAsUpEnabled(true)
-    }
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        arguments?.let {
-            subCatID = it.getInt(KEY_SUB_CAT_ID)
-            catID = it.getInt(KEY_CAT_ID)
-        }
+        (activity as GGActivityCallbacks).setToolbarAttributes(title, true)
     }
 
     private fun setupRecyclerView(products: ArrayList<Product>) {
@@ -76,10 +70,9 @@ class FragSearchLower : Fragment() {
 
     companion object {
         @JvmStatic
-        fun newInstance(catID: Int = 1, subCatID: Int = 0) =
+        fun newInstance(subCatID: Int = 0) =
             FragSearchLower().apply {
                 arguments = Bundle().apply {
-                    putInt(KEY_CAT_ID, catID)
                     putInt(KEY_SUB_CAT_ID, subCatID)
                 }
             }
