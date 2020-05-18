@@ -21,10 +21,10 @@
         android:text="NAME"
         android:textColor="#555"
         android:textSize="22sp"
-        app:layout_constraintStart_toEndOf="@id/image_view"
+        app:layout_constraintBottom_toTopOf="@id/text_view_fake_price"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toTopOf="@id/text_view_fake_price"/>
+        app:layout_constraintStart_toEndOf="@id/image_view"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/text_view_price"
@@ -49,12 +49,14 @@
         android:textSize="18sp"
         app:layout_constraintBottom_toTopOf="@id/text_view_price"
         app:layout_constraintStart_toEndOf="@id/image_view" />
-    <FrameLayout
+
+    <include
+        layout = "@layout/includible_add_button"/>
+    <include
+        layout="@layout/includible_plus_minus"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/text_view_name"
-        android:layout_marginTop="5dp">
-        <include layout="@layout/includible_plus_minus"/>
-    </FrameLayout>
+        app:layout_constraintTop_toBottomOf="@id/text_view_name" />
 </androidx.constraintlayout.widget.ConstraintLayout>

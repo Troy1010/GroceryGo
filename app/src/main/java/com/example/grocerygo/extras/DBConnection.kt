@@ -35,17 +35,14 @@ class DBConnection :
         if (cursor != null && cursor.moveToFirst()) {
             return generateProductFromPrimedCursor(cursor)
         } else {
-            logz("getProductByBackendID`Could not find product:${_id}")
             return null
         }
     }
     fun getProductQuantityByProductID(_id:String) :Int? {
         val cursor = databaseSQL.rawQuery("Select * from $TABLE_NAME where $COL_PRODUCT_ID=?",arrayOf(_id))
         if (cursor != null && cursor.moveToFirst()) {
-            val returning = cursor.getInt(cursor.getColumnIndex(COL_QUANTITY))
-            return returning
+            return cursor.getInt(cursor.getColumnIndex(COL_QUANTITY))
         } else {
-            logz("getProductByBackendID`Could not find product:${_id}")
             return null
         }
     }
