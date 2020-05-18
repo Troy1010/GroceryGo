@@ -11,6 +11,7 @@ import androidx.fragment.app.Fragment
 import com.example.grocerygo.R
 import com.example.grocerygo.activities_and_frags.*
 import com.example.grocerygo.extras.*
+import kotlinx.android.synthetic.main.activity_host.*
 import kotlinx.android.synthetic.main.app_toolbar.*
 
 abstract class GGToolbarActivity : TMActivity(), GGActivityCallbacks {
@@ -35,7 +36,7 @@ abstract class GGToolbarActivity : TMActivity(), GGActivityCallbacks {
                 if ((this.supportFragmentManager.backStackEntryCount > 0) or (this !is ActivityHost)) { // TODO probably a more reliable way to check..
                     this.onBackPressed()
                 } else {
-                    this.navigateToPage(PageEnums.HOME)
+                    bottom_navigation_bar.selectedItemId = R.id.item_home // TODO probably shouldn't reference bottom navigation bar directly..
                 }
             }
             R.id.menu_cart -> {
@@ -63,17 +64,6 @@ abstract class GGToolbarActivity : TMActivity(), GGActivityCallbacks {
         if (hasBackArrow != null) {
             this.supportActionBar?.setDisplayHomeAsUpEnabled(hasBackArrow)
         }
-    }
-
-
-    fun navigateToPage(e: PageEnums) {
-        val frag = when (e) {
-            PageEnums.SEARCH -> FragSearchPrimary()
-            PageEnums.PROFILE -> FragProfile()
-            PageEnums.CART -> FragCart()
-            else -> FragHome()
-        }
-        supportFragmentManager.beginTransaction().replace(R.id.frame_fragments, frag).commit()
     }
 
 }

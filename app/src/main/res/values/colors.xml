@@ -6,4 +6,5 @@
     <color name="colorBackgroundDefault">#eee</color>
     <color name="colorTextDefault">#000</color>
     <color name="colorTextClickable">#0086bf</color>
+    <color name="TextSoft">#555</color>
 </resources>

@@ -1,115 +1,83 @@
-<?xml version="1.0" encoding="utf-8"?>
-
 <androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/coordinator_layout_profile"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:id="@+id/coordinator_layout_profile">
 
-    <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:gravity="center_horizontal"
+        android:orientation="vertical"
         android:padding="16dp"
-        tools:context="com.example.grocerygo.activities_and_frags.FragProfile">
-
-        <TextView
-            android:id="@+id/text_view_title_name"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="35dp"
-            android:layout_marginBottom="25dp"
-            android:text="Name"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <TextView
-            android:id="@+id/text_view_title_email"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginVertical="25dp"
-            android:text="Email"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/text_view_title_name" />
-
-        <TextView
-            android:id="@+id/text_view_title_password"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginVertical="25dp"
-            android:text="Password"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/text_view_title_email" />
-
-
-        <androidx.constraintlayout.widget.Guideline
-            android:id="@+id/guideline"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            app:layout_constraintGuide_begin="141dp" />
+        tools:context="com.example.grocerygo.activities_and_frags.ActivityRegister">
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/text_input_layout_name"
-            android:layout_width="0dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:layout_constraintBottom_toBottomOf="@id/text_view_title_name"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@id/guideline"
-            app:layout_constraintTop_toTopOf="@id/text_view_title_name">
+            android:layout_margin="5dp">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/text_input_name"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:editable="false" />
+                android:hint="Name" />
 
         </com.google.android.material.textfield.TextInputLayout>
 
-        <!--    <EditText-->
-        <!--        android:id="@+id/edit_text_user_name"-->
-        <!--        android:layout_width="0dp"-->
-        <!--        android:layout_height="wrap_content"-->
-        <!--        android:background="@null"-->
-        <!--        android:text="&lt;NAME&gt;"-->
-        <!--        android:textColor="@color/colorTextClickable"-->
-        <!--        app:layout_constraintBottom_toBottomOf="@id/text_view_title_name"-->
-        <!--        app:layout_constraintStart_toEndOf="@id/guideline"-->
-        <!--        app:layout_constraintTop_toTopOf="@id/text_view_title_name" />-->
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/text_input_layout_email"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp">
 
-        <!--    <EditText-->
-        <!--        android:id="@+id/edit_text_user_email"-->
-        <!--        android:layout_width="0dp"-->
-        <!--        android:layout_height="wrap_content"-->
-        <!--        android:background="@null"-->
-        <!--        android:text="&lt;EMAIL&gt;"-->
-        <!--        android:textColor="@color/colorTextClickable"-->
-        <!--        app:layout_constraintBottom_toBottomOf="@id/text_view_title_email"-->
-        <!--        app:layout_constraintStart_toEndOf="@id/guideline"-->
-        <!--        app:layout_constraintTop_toTopOf="@id/text_view_title_email" />-->
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/text_input_email"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:hint="Email" />
 
-        <!--    <TextView-->
-        <!--        android:id="@+id/text_view_user_fake_password"-->
-        <!--        android:layout_width="0dp"-->
-        <!--        android:layout_height="wrap_content"-->
-        <!--        android:text="******"-->
-        <!--        android:textColor="@color/colorTextClickable"-->
-        <!--        app:layout_constraintStart_toEndOf="@id/guideline"-->
-        <!--        app:layout_constraintTop_toTopOf="@id/text_view_title_password" />-->
+        </com.google.android.material.textfield.TextInputLayout>
 
-        <!--    <Button-->
-        <!--        android:textSize="24sp"-->
-        <!--        android:textColor="#fff"-->
-        <!--        android:id="@+id/button_save"-->
-        <!--        android:layout_width="wrap_content"-->
-        <!--        android:layout_height="wrap_content"-->
-        <!--        android:layout_marginTop="40dp"-->
-        <!--        android:text="Save"-->
-        <!--        app:layout_constraintLeft_toLeftOf="parent"-->
-        <!--        app:layout_constraintRight_toRightOf="parent"-->
-        <!--        app:layout_constraintTop_toBottomOf="@id/text_view_title_password" />-->
-    </androidx.constraintlayout.widget.ConstraintLayout>
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/text_input_layout_password"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/text_input_password"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:hint="Password"
+                android:inputType="textPassword" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/text_input_layout_mobile"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/text_input_mobile"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:hint="Mobile" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+        <Button
+            android:layout_marginTop="25dp"
+            android:id="@+id/button_logout"
+            android:gravity="center_horizontal"
+            android:background="#fff"
+            android:text="LOGOUT"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+    </LinearLayout>
 
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton

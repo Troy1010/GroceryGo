@@ -26,24 +26,19 @@ class ActivityHost : GGToolbarActivity() {
 
     override fun onStart() {
         super.onStart()
-        navigateToPage(PageEnums.HOME)
+        bottom_navigation_bar.selectedItemId = R.id.item_home
     }
 
     private fun setupNavigationBar() {
         bottom_navigation_bar.setOnNavigationItemSelectedListener { item ->
-            val e = when (item.itemId) {
-                R.id.item_home -> PageEnums.HOME
-                R.id.item_profile -> PageEnums.PROFILE
-                R.id.item_search -> PageEnums.SEARCH
-                R.id.item_cart -> PageEnums.CART
-                else -> null
+            val frag = when (item.itemId) {
+                R.id.item_profile -> FragProfile()
+                R.id.item_search -> FragSearchPrimary()
+                R.id.item_cart -> FragCart()
+                else -> FragHome()
             }
-            if (e==null) {
-                false
-            } else {
-                navigateToPage(e)
-                true
-            }
+            supportFragmentManager.beginTransaction().replace(R.id.frame_fragments, frag).commit()
+            true
         }
     }
 
