@@ -14,4 +14,8 @@
         android:icon="@drawable/ic_shopping_cart_white_24dp"
         android:title="Share"
         app:showAsAction="never" />
+    <item
+        android:id="@+id/menu_printList"
+        android:title="Print Items"
+        app:showAsAction="never" />
 </menu>

@@ -10,8 +10,10 @@ import android.view.View
 import androidx.fragment.app.Fragment
 import com.example.grocerygo.R
 import com.example.grocerygo.activities_and_frags.*
+import com.example.grocerygo.extras.App
 import com.example.grocerygo.extras.PageEnums
 import com.example.grocerygo.extras.logz
+import com.example.grocerygo.extras.narrate
 import kotlinx.android.synthetic.main.app_toolbar.*
 
 abstract class GGToolbarActivity: TMActivity(), GGActivityCallbacks {
@@ -45,6 +47,9 @@ abstract class GGToolbarActivity: TMActivity(), GGActivityCallbacks {
             }
             R.id.menu_settings -> {
                 logz("GGToolbarActivity`Selected Settings")
+            }
+            R.id.menu_printList -> {
+                logz(App.db.getProducts().narrate())
             }
         }
         return returning

@@ -11,6 +11,5 @@ object Config {
 //        "https://www.clipartmax.com/png/middle/242-2427872_grocery-basket-icons-bag-food-icon-png.png"
 //    const val ENDPOINT_SPLASHSCREEN =
 //        "https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcQ9Sf-Bs7y51Yvtp-FPtNN43WpWcfNjci1K6dtmUmkh65HIi1_f&usqp=CAU"
-    const val DATABASE_NAME = "GroceryGoDB"
-    const val DATABASE_VERSION = 2
+
 }
