@@ -67,4 +67,16 @@ class DBConnection :
         return returningList
     }
 
+    fun updateProduct(product: Product) {
+        if (product.sqlID == 0) {
+            logz("Tried to use updateProduct on a product without a sqlID")
+            return
+        }
+        val whereClause = "$COL_ID=?"
+        val whereArgs = arrayOf(product.sqlID.toString())
+        var contentValues = ContentValues()
+        contentValues.put(COL_NAME,product.productName)
+        databaseSQL.update(TABLE_NAME, contentValues, whereClause, whereArgs)
+    }
+
 }
