@@ -8,6 +8,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.grocerygo.R
 import com.example.grocerygo.activities_and_frags.FragCart
 import com.example.grocerygo.models.Product
+import kotlinx.android.synthetic.main.includible_plus_minus.view.*
 import kotlinx.android.synthetic.main.item_cart_item.view.*
 import kotlinx.android.synthetic.main.item_product.view.*
 import kotlinx.android.synthetic.main.item_product.view.text_view_name
@@ -36,6 +37,13 @@ class AdapterCartItems(
         holder.itemView.button_trash.setOnClickListener {
             parent.deleteProduct(products[position])
         }
+        holder.itemView.button_plus.setOnClickListener {
+            parent.addProduct(products[position])
+        }
+        holder.itemView.button_minus.setOnClickListener {
+            parent.minusProduct(products[position])
+        }
+        holder.itemView.text_view_plus_minus.text = products[position].quantity.toString()
     }
 
 }

@@ -65,9 +65,21 @@ class DBConnection :
         }
     }
 
+    fun minusProduct(product: Product) {
+        if (hasProduct(product)) {
+            product.quantity = (getProductQuantityByProductID(product._id)?:0) - 1
+            updateProduct(product)
+        } else {
+            logz("DBConnection`minusProduct`attempted to subtract quantity from a product which is not in DB.")
+        }
+    }
+
     fun updateProduct(product: Product) {
         if (product._id=="") {
             logz("DBConnection`Tried to use updateProduct on a product without a ProductID")
+            return
+        } else if (product.quantity==0) {
+            deleteProduct(product)
             return
         }
         val whereArgs = arrayOf(product._id)

@@ -35,6 +35,15 @@ class FragCart : TMFragment() {
         refresh()
     }
 
+    fun addProduct(product: Product) {
+        App.db.addProduct(product)
+        refresh()
+    }
+    fun minusProduct(product: Product) {
+        App.db.minusProduct(product)
+        refresh()
+    }
+
     fun refresh() {
         (recycler_view_cart_items.adapter as AdapterCartItems).products = App.db.getProducts()
         (recycler_view_cart_items.adapter as AdapterCartItems).notifyDataSetChanged()
