@@ -1,6 +1,7 @@
 package com.example.grocerygo.extras
 
 import android.content.ContentValues
+import android.database.Cursor
 import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteOpenHelper
 import com.example.grocerygo.models.Product
@@ -11,12 +12,13 @@ class DBConnection :
 
     companion object {
         const val DATABASE_NAME = "GroceryGoDB"
-        const val DATABASE_VERSION = 4
+        const val DATABASE_VERSION = 5
         const val TABLE_NAME = "Products"
         const val COL_PRICE = "Price"
         const val COL_NAME = "Name"
         const val COL_ID = "ID"
         const val COL_QUANTITY = "Quantity"
+        const val COL_BACKEND_ID = "BackendID" //maybe they don't need char 100..?
     }
 
     override fun onCreate(sqlDatabase: SQLiteDatabase) {
@@ -25,18 +27,36 @@ class DBConnection :
             """create table $TABLE_NAME($COL_NAME char(50), 
                    $COL_ID INTEGER PRIMARY KEY AUTOINCREMENT,
                    $COL_PRICE MONEY,
-                   $COL_QUANTITY INT
+                   $COL_QUANTITY INT,
+                   $COL_BACKEND_ID char(250) 
                    )"""
         sqlDatabase.execSQL(sqlCreateTable)
     }
+    fun getProductByBackendID(_id:String) : Product? {
+        val cursor = databaseSQL.rawQuery("Select * from $TABLE_NAME where $COL_BACKEND_ID=?",arrayOf(_id))
+        if (cursor != null && cursor.moveToFirst()) {
+            return generateProductFromPrimedCursor(cursor)
+        } else {
+            logz("getProductByBackendID`Could not find product:${_id}")
+            return null
+        }
+    }
+    fun getProductQuantityByBackendID(_id:String) :Int? {
+        val cursor = databaseSQL.rawQuery("Select * from $TABLE_NAME where $COL_BACKEND_ID=?",arrayOf(_id))
+        if (cursor != null && cursor.moveToFirst()) {
+            val returning = cursor.getInt(cursor.getColumnIndex(COL_QUANTITY))
+            return returning
+        } else {
+            logz("getProductByBackendID`Could not find product:${_id}")
+            return null
+        }
+    }
 
     fun addProduct(product: Product) {
-        logz("addProduct..")
-        logz("product.productName:${product.productName}")
-        logz("getProductNames():${getProductNames().narrate()}")
-        if (product.productName in getProductNames()) {
-            product.quantity = getProductByName(product.productName).quantity + 1
-            product.sqlID = getProductByName(product.productName).sqlID
+        if (hasProduct(product)) {
+            val oldProduct = getProductByBackendID(product._id)!!
+            product.quantity = (getProductQuantityByBackendID(product._id)?:0) + 1
+            product.sqlID = oldProduct.sqlID
             updateProduct(product)
         } else {
             product.quantity = 1
@@ -44,6 +64,7 @@ class DBConnection :
             contentValues.put(COL_NAME, product.productName)
             contentValues.put(COL_PRICE, product.price)
             contentValues.put(COL_QUANTITY, product.quantity)
+            contentValues.put(COL_BACKEND_ID, product._id)
             databaseSQL.insert(TABLE_NAME, null, contentValues)
         }
     }
@@ -64,70 +85,30 @@ class DBConnection :
 
     fun getProducts(): ArrayList<Product> {
         val returningList = ArrayList<Product>()
-        val columns = arrayOf(COL_ID, COL_NAME, COL_PRICE, COL_QUANTITY)
+        val columns = arrayOf(COL_ID, COL_NAME, COL_PRICE, COL_QUANTITY, COL_BACKEND_ID)
         val cursor = databaseSQL.query(TABLE_NAME, columns, null, null, null, null, null, null)
         if (cursor != null && cursor.moveToFirst()) {
             do {
-                returningList.add(
-                    Product(
-                        productName = cursor.getString(cursor.getColumnIndex(COL_NAME)),
-                        sqlID = cursor.getInt(cursor.getColumnIndex(COL_ID)),
-                        price = cursor.getDouble(cursor.getColumnIndex(COL_PRICE)),
-                        quantity = cursor.getInt(cursor.getColumnIndex(COL_QUANTITY))
-                    )
-                )
+                returningList.add(generateProductFromPrimedCursor(cursor))
             } while (cursor.moveToNext())
         }
         cursor.close()
         return returningList
     }
 
-    fun getProductIds(): ArrayList<Int> {
-        val returningList = ArrayList<Int>()
-        val columns = arrayOf(COL_ID)
-        val cursor = databaseSQL.query(TABLE_NAME, columns, null, null, null, null, null, null)
-        if (cursor != null && cursor.moveToFirst()) {
-            do {
-                returningList.add(cursor.getInt(cursor.getColumnIndex(COL_ID)))
-            } while (cursor.moveToNext())
-        }
-        cursor.close()
-        return returningList
+    private fun generateProductFromPrimedCursor(cursor: Cursor):Product {
+        return Product(
+            productName = cursor.getString(cursor.getColumnIndex(COL_NAME)),
+            sqlID = cursor.getInt(cursor.getColumnIndex(COL_ID)),
+            price = cursor.getDouble(cursor.getColumnIndex(COL_PRICE)),
+            quantity = cursor.getInt(cursor.getColumnIndex(COL_QUANTITY)),
+            _id = cursor.getString(cursor.getColumnIndex(COL_BACKEND_ID))
+        )
     }
 
-    fun getProductNames(): ArrayList<String> {
-        val returningList = ArrayList<String>()
-        val columns = arrayOf(COL_NAME)
-        val cursor = databaseSQL.query(TABLE_NAME, columns, null, null, null, null, null, null)
-        if (cursor != null && cursor.moveToFirst()) {
-            do {
-                returningList.add(cursor.getString(cursor.getColumnIndex(COL_NAME)))
-            } while (cursor.moveToNext())
-        }
-        cursor.close()
-        return returningList
-    }
-
-    fun getProductByID(sqlID:Int):Product { // TODO simplify
-        val products = getProducts()
-        for (product in products) {
-            if (product.sqlID == sqlID) {
-                return product
-            }
-        }
-        logz("DBConnection`getProductByID could not find ID:$sqlID")
-        return Product()
-    }
-
-    fun getProductByName(productName:String):Product { // TODO simplify
-        val products = getProducts()
-        for (product in products) {
-            if (product.productName == productName) {
-                return product
-            }
-        }
-        logz("DBConnection`getProductByName could not find productName:$productName")
-        return Product()
+    fun hasProduct(product:Product) :Boolean {
+        val cursor = databaseSQL.rawQuery("Select * from $TABLE_NAME where $COL_BACKEND_ID=?",arrayOf(product._id))
+        return cursor.count != 0 // TODO close cursor?
     }
 
     ////////////////
