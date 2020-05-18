@@ -5,7 +5,7 @@ import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteOpenHelper
 import com.example.grocerygo.models.Product
 
-class DatabaseConnection :
+class DBConnection :
     SQLiteOpenHelper(App.instance, Config.DATABASE_NAME, null, Config.DATABASE_VERSION) {
     private val databaseSQL = writableDatabase!!
 

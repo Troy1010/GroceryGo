@@ -15,6 +15,6 @@ class App : Application() {
             private set
         val sm by lazy { SessionManager() }
         val sd by lazy { SessionData() }
-        val db by lazy { DatabaseConnection() }
+        val db by lazy { DBConnection() }
     }
 }
