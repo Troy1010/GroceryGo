@@ -13,31 +13,41 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:textColor="@color/TextSoft"
-        android:layout_marginStart="8dp"
         android:id="@+id/text_view_price"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
         android:text="(PRICE)"
+        android:textColor="@color/TextSoft"
         app:layout_constraintStart_toStartOf="@id/text_view_name"
         app:layout_constraintTop_toBottomOf="@id/text_view_name" />
 
     <ImageView
-        android:layout_margin="5dp"
         android:id="@+id/button_trash"
         android:layout_width="25dp"
         android:layout_height="25dp"
+        android:layout_margin="5dp"
         android:src="@drawable/trash"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"/>
+        app:layout_constraintTop_toTopOf="parent" />
+
     <TextView
-        android:textSize="14sp"
-        android:textColor="@color/TextSoft"
         android:id="@+id/text_view_quantity"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="(QUANTITY)"
+        android:textColor="@color/TextSoft"
+        android:textSize="14sp"
         app:layout_constraintEnd_toStartOf="@id/button_trash"
-        app:layout_constraintTop_toTopOf="parent"/>
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <FrameLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <include layout="@layout/includible_plus_minus" />
+    </FrameLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
