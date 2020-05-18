@@ -13,12 +13,14 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
+        android:textColor="@color/TextSoft"
+        android:layout_marginStart="8dp"
         android:id="@+id/text_view_price"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="(PRICE)"
-        app:layout_constraintEnd_toStartOf="@id/text_view_name"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintStart_toStartOf="@id/text_view_name"
+        app:layout_constraintTop_toBottomOf="@id/text_view_name" />
 
     <Button
         android:id="@+id/button_remove"
