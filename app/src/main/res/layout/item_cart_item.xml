@@ -22,13 +22,14 @@
         app:layout_constraintStart_toStartOf="@id/text_view_name"
         app:layout_constraintTop_toBottomOf="@id/text_view_name" />
 
-    <Button
-        android:id="@+id/button_remove"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="X"
+    <ImageView
+        android:layout_margin="5dp"
+        android:id="@+id/button_trash"
+        android:layout_width="25dp"
+        android:layout_height="25dp"
+        android:src="@drawable/trash"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"/>
     <TextView
         android:textSize="14sp"
         android:textColor="@color/TextSoft"
@@ -36,7 +37,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="(QUANTITY)"
-        app:layout_constraintEnd_toStartOf="@id/button_remove"
+        app:layout_constraintEnd_toStartOf="@id/button_trash"
         app:layout_constraintTop_toTopOf="parent"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
