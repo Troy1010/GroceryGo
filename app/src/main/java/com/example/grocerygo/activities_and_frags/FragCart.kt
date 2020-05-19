@@ -12,10 +12,12 @@ import com.example.grocerygo.inheritables.GGActivityCallbacks
 import com.example.grocerygo.inheritables.RecyclerViewActivityCallbacks
 import com.example.grocerygo.inheritables.TMFragment
 import com.example.grocerygo.models.Product
+import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.activity_host.*
 import kotlinx.android.synthetic.main.frag_cart.*
 import kotlinx.android.synthetic.main.includible_plus_minus.view.*
 import kotlinx.android.synthetic.main.item_cart_item.view.*
+import kotlinx.android.synthetic.main.item_category.view.*
 
 class FragCart : TMFragment(), RecyclerViewActivityCallbacks {
     override val layout = R.layout.frag_cart
@@ -78,7 +80,14 @@ class FragCart : TMFragment(), RecyclerViewActivityCallbacks {
         }
         v.text_view_number_plus_minus.text = products[i].quantity.toString()
         v.text_view_add.visibility=View.GONE
-        v.image_view_product.setImageResource(R.drawable.blue_background)
+        // Picasso image
+        val imageEndpoint = Endpoints.getImageEndpoint(products[i].image)
+        Picasso
+            .get()
+            .load(imageEndpoint)
+            .placeholder(R.drawable.not_found)
+            .error(R.drawable.no_image_available_vector_illustration_260nw_744886198)
+            .into(v.image_view_product)
     }
 
 
