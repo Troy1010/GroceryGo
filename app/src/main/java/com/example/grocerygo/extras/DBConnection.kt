@@ -4,6 +4,7 @@ import android.content.ContentValues
 import android.database.Cursor
 import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteOpenHelper
+import com.example.grocerygo.models.OrderSummary
 import com.example.grocerygo.models.Product
 
 class DBConnection :
@@ -88,12 +89,23 @@ class DBConnection :
         )
     }
 
+    fun getOrderSummary() : OrderSummary {
+        val products = getProducts() // TODO could just grab directly from db
+        var priceTotal = 0.0
+        var quantityTotal : Int = 0
+        for (product in products) {
+            priceTotal += product.quantity * product.price
+            quantityTotal += product.quantity
+        }
+        return OrderSummary(quantityTotal, priceTotal)
+    }
+
     //////////////// DOES NOT DEAL WITH ALL COLUMNS
 
     fun minusProduct(product: Product) {
         if (hasProduct(product)) {
             product.quantity = maxOf(0, (getProductQuantityByProductID(product._id) ?: 0) - 1)
-            if (product.quantity == 0 ) {
+            if (product.quantity == 0) {
                 deleteProduct(product)
             } else {
                 updateProduct(product)

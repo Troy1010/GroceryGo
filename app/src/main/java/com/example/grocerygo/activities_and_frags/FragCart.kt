@@ -13,11 +13,9 @@ import com.example.grocerygo.inheritables.RecyclerViewActivityCallbacks
 import com.example.grocerygo.inheritables.TMFragment
 import com.example.grocerygo.models.Product
 import com.squareup.picasso.Picasso
-import kotlinx.android.synthetic.main.activity_host.*
 import kotlinx.android.synthetic.main.frag_cart.*
 import kotlinx.android.synthetic.main.includible_plus_minus.view.*
 import kotlinx.android.synthetic.main.item_cart_item.view.*
-import kotlinx.android.synthetic.main.item_category.view.*
 
 class FragCart : TMFragment(), RecyclerViewActivityCallbacks {
     override val layout = R.layout.frag_cart
@@ -41,25 +39,16 @@ class FragCart : TMFragment(), RecyclerViewActivityCallbacks {
 
     fun refresh() {
         products = App.db.getProducts()
-        (recycler_view_cart_items.adapter as AdapterCartItems).products = products
+        val orderSummary = App.db.getOrderSummary()
+        (recycler_view_cart_items.adapter as AdapterCartItems).products = products // TODO don't pass into Adapter
         (recycler_view_cart_items.adapter as AdapterCartItems).notifyDataSetChanged()
         if ((recycler_view_cart_items.adapter as AdapterCartItems).products.size==0) {
             text_view_cart_is_empty.visibility = View.VISIBLE
             text_view_money_total.visibility = View.INVISIBLE
             text_view_list_size.visibility = View.INVISIBLE
         } else {
-            // # of items
-            var quantityTotal = 0
-            for (product in products) {
-                quantityTotal += product.quantity
-            }
-            text_view_list_size.text = "# of items: $quantityTotal"
-            // get money total
-            var moneyTotal = 0.0
-            for (product in products) {
-                moneyTotal += product.price * product.quantity
-            }
-            text_view_money_total.text = "total: $moneyTotal"
+            text_view_list_size.text = "# of items: ${orderSummary.quantityTotal}"
+            text_view_money_total.text = "total: ${orderSummary.priceTotal}"
         }
     }
 
