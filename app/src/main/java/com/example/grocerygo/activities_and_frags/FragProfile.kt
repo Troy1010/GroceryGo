@@ -21,7 +21,7 @@ import com.example.grocerygo.inheritables.TMFragment
 import com.example.grocerygo.models.ProfileItem
 import com.google.android.material.snackbar.Snackbar
 import kotlinx.android.synthetic.main.frag_profile.*
-import kotlinx.android.synthetic.main.frag_search_lower.*
+import kotlinx.android.synthetic.main.frag_search_products.*
 
 class FragProfile : TMFragment() {
     val title = "Profile"

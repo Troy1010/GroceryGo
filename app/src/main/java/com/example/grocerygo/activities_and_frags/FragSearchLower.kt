@@ -4,8 +4,6 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.appcompat.app.AppCompatActivity
-import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -21,13 +19,13 @@ import com.example.grocerygo.inheritables.TMFragment
 import com.example.grocerygo.models.Product
 import com.example.grocerygo.models.ReceivedProductsObject
 import com.google.gson.GsonBuilder
-import kotlinx.android.synthetic.main.frag_search_lower.recycler_view_products
+import kotlinx.android.synthetic.main.frag_search_products.recycler_view_products
 
 class FragSearchLower : TMFragment() {
     val title = "Search"
     val subCatID by lazy { arguments?.getInt(KEY_SUB_CAT_ID)?:1 }
     override val layout: Int
-        get() = R.layout.frag_search_lower
+        get() = R.layout.frag_search_products
 
     override fun onCreateView(
         inflater: LayoutInflater,
