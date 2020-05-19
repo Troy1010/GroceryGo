@@ -1,5 +1,6 @@
 package com.example.grocerygo.activities_and_frags
 
+import android.graphics.Paint
 import android.view.View
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -12,7 +13,6 @@ import com.example.grocerygo.inheritables.GGActivityCallbacks
 import com.example.grocerygo.inheritables.RecyclerViewActivityCallbacks
 import com.example.grocerygo.inheritables.TMFragment
 import com.example.grocerygo.models.Product
-import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.frag_cart.*
 import kotlinx.android.synthetic.main.includible_plus_minus.view.*
 import kotlinx.android.synthetic.main.item_cart_item.view.*
@@ -44,11 +44,14 @@ class FragCart : TMFragment(), RecyclerViewActivityCallbacks {
         (recycler_view_cart_items.adapter as AdapterCartItems).notifyDataSetChanged()
         if ((recycler_view_cart_items.adapter as AdapterCartItems).products.size==0) {
             text_view_cart_is_empty.visibility = View.VISIBLE
-            text_view_money_total.visibility = View.INVISIBLE
-            text_view_list_size.visibility = View.INVISIBLE
+            text_view_price_total.visibility = View.INVISIBLE
+            text_view_quantity_total.visibility = View.INVISIBLE
+            text_view_fake_price_total.visibility = View.INVISIBLE
         } else {
-            text_view_list_size.text = "# of items: ${orderSummary.quantityTotal}"
-            text_view_money_total.text = "total: ${orderSummary.priceTotal}"
+            text_view_quantity_total.text = "# of items: ${orderSummary.quantityTotal}"
+            text_view_fake_price_total.text = "fake total: ${orderSummary.fakePriceTotal}"
+            text_view_fake_price_total.paintFlags = Paint.STRIKE_THRU_TEXT_FLAG
+            text_view_price_total.text = "total: ${orderSummary.priceTotal}"
         }
     }
 

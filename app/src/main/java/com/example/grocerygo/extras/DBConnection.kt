@@ -13,9 +13,10 @@ class DBConnection :
 
     companion object {
         const val DATABASE_NAME = "GroceryGoDB"
-        const val DATABASE_VERSION = 7
+        const val DATABASE_VERSION = 8
         const val TABLE_NAME = "Products"
         const val COL_PRICE = "Price"
+        const val COL_FAKE_PRICE = "FakePrice"
         const val COL_NAME = "Name"
         const val COL_QUANTITY = "Quantity"
         const val COL_PRODUCT_ID = "ProductID"
@@ -29,10 +30,61 @@ class DBConnection :
                    $COL_PRICE MONEY,
                    $COL_QUANTITY INT,
                    $COL_PRODUCT_ID char(250),
-                   $COL_IMAGE_NAME char(250)
+                   $COL_IMAGE_NAME char(250),
+                   $COL_FAKE_PRICE MONEY
                    )"""
         sqlDatabase.execSQL(sqlCreateTable)
     }
+
+    fun getProducts(): ArrayList<Product> {
+        val returningList = ArrayList<Product>()
+        val columns = arrayOf(COL_NAME, COL_PRICE, COL_QUANTITY, COL_PRODUCT_ID, COL_IMAGE_NAME, COL_FAKE_PRICE)
+        val cursor = databaseSQL.query(TABLE_NAME, columns, null, null, null, null, null, null)
+        if (cursor != null && cursor.moveToFirst()) {
+            do {
+                returningList.add(generateProductFromPrimedCursor(cursor))
+            } while (cursor.moveToNext())
+        }
+        cursor.close()
+        return returningList
+    }
+
+    private fun generateContentValuesFromProduct(product: Product) : ContentValues {
+        val returning = ContentValues()
+        returning.put(COL_NAME, product.productName)
+        returning.put(COL_PRICE, product.price)
+        returning.put(COL_QUANTITY, product.quantity)
+        returning.put(COL_PRODUCT_ID, product._id)
+        returning.put(COL_IMAGE_NAME, product.image)
+        returning.put(COL_FAKE_PRICE, product.mrp)
+        return returning
+    }
+
+    private fun generateProductFromPrimedCursor(cursor: Cursor): Product {
+        return Product(
+            productName = cursor.getString(cursor.getColumnIndex(COL_NAME)),
+            price = cursor.getDouble(cursor.getColumnIndex(COL_PRICE)),
+            quantity = cursor.getInt(cursor.getColumnIndex(COL_QUANTITY)),
+            _id = cursor.getString(cursor.getColumnIndex(COL_PRODUCT_ID)),
+            image = cursor.getString(cursor.getColumnIndex(COL_IMAGE_NAME)),
+            mrp = cursor.getDouble(cursor.getColumnIndex(COL_FAKE_PRICE))
+        )
+    }
+
+    fun getOrderSummary() : OrderSummary {
+        val products = getProducts() // TODO could just grab directly from db
+        var priceTotal = 0.0
+        var quantityTotal : Int = 0
+        var fakePriceTotal = 0.0
+        for (product in products) {
+            priceTotal += product.quantity * product.price
+            quantityTotal += product.quantity
+            fakePriceTotal += product.quantity * product.mrp
+        }
+        return OrderSummary(quantityTotal, priceTotal, fakePriceTotal)
+    }
+
+    //////////////// DOES NOT DEAL WITH ALL COLUMNS
 
     fun addProduct(product: Product) {
         if (hasProduct(product)) {
@@ -40,12 +92,7 @@ class DBConnection :
             updateProduct(product)
         } else {
             product.quantity = 1
-            val contentValues = ContentValues()
-            contentValues.put(COL_NAME, product.productName)
-            contentValues.put(COL_PRICE, product.price)
-            contentValues.put(COL_QUANTITY, product.quantity)
-            contentValues.put(COL_PRODUCT_ID, product._id)
-            contentValues.put(COL_IMAGE_NAME, product.image)
+            val contentValues = generateContentValuesFromProduct(product)
             databaseSQL.insert(TABLE_NAME, null, contentValues)
         }
     }
@@ -57,50 +104,9 @@ class DBConnection :
         }
         val whereArgs = arrayOf(product._id)
         val whereClause = "$COL_PRODUCT_ID=?"
-        var contentValues = ContentValues()
-        contentValues.put(COL_NAME, product.productName)
-        contentValues.put(COL_PRICE, product.price)
-        contentValues.put(COL_QUANTITY, product.quantity)
-        contentValues.put(COL_PRODUCT_ID, product._id)
-        contentValues.put(COL_IMAGE_NAME, product.image)
+        var contentValues = generateContentValuesFromProduct(product)
         databaseSQL.update(TABLE_NAME, contentValues, whereClause, whereArgs)
     }
-
-    fun getProducts(): ArrayList<Product> {
-        val returningList = ArrayList<Product>()
-        val columns = arrayOf(COL_NAME, COL_PRICE, COL_QUANTITY, COL_PRODUCT_ID, COL_IMAGE_NAME)
-        val cursor = databaseSQL.query(TABLE_NAME, columns, null, null, null, null, null, null)
-        if (cursor != null && cursor.moveToFirst()) {
-            do {
-                returningList.add(generateProductFromPrimedCursor(cursor))
-            } while (cursor.moveToNext())
-        }
-        cursor.close()
-        return returningList
-    }
-
-    private fun generateProductFromPrimedCursor(cursor: Cursor): Product {
-        return Product(
-            productName = cursor.getString(cursor.getColumnIndex(COL_NAME)),
-            price = cursor.getDouble(cursor.getColumnIndex(COL_PRICE)),
-            quantity = cursor.getInt(cursor.getColumnIndex(COL_QUANTITY)),
-            _id = cursor.getString(cursor.getColumnIndex(COL_PRODUCT_ID)),
-            image = cursor.getString(cursor.getColumnIndex(COL_IMAGE_NAME))
-        )
-    }
-
-    fun getOrderSummary() : OrderSummary {
-        val products = getProducts() // TODO could just grab directly from db
-        var priceTotal = 0.0
-        var quantityTotal : Int = 0
-        for (product in products) {
-            priceTotal += product.quantity * product.price
-            quantityTotal += product.quantity
-        }
-        return OrderSummary(quantityTotal, priceTotal)
-    }
-
-    //////////////// DOES NOT DEAL WITH ALL COLUMNS
 
     fun minusProduct(product: Product) {
         if (hasProduct(product)) {

@@ -17,24 +17,33 @@
         android:id="@+id/recycler_view_cart_items"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        app:layout_constraintBottom_toTopOf="@id/text_view_list_size"
+        app:layout_constraintBottom_toTopOf="@id/text_view_quantity_total"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/text_view_list_size"
+        android:id="@+id/text_view_quantity_total"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="(LISTSIZE)"
         android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintBottom_toTopOf="@id/text_view_money_total"
+        app:layout_constraintBottom_toTopOf="@id/text_view_fake_price_total"
         app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
-        android:id="@+id/text_view_money_total"
+        android:id="@+id/text_view_fake_price_total"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="(MONEYTOTAL)"
+        android:text="(FAKE_PRICE_TOTAL)"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toTopOf="@id/text_view_price_total"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/text_view_price_total"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="(PRICE_TOTAL)"
         android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
