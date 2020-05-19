@@ -7,19 +7,21 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.grocerygo.R
 import com.example.grocerygo.adapters.AdapterCartItems
 import com.example.grocerygo.extras.*
+import com.example.grocerygo.inheritables.ActivityHostCallbacks
 import com.example.grocerygo.inheritables.GGActivityCallbacks
 import com.example.grocerygo.inheritables.GGToolbarActivity
 import com.example.grocerygo.inheritables.TMFragment
 import com.example.grocerygo.models.Product
+import kotlinx.android.synthetic.main.activity_host.*
 import kotlinx.android.synthetic.main.frag_cart.*
 
 class FragCart : TMFragment() {
     override val layout = R.layout.frag_cart
     val title = "Cart"
-
     override fun onStart() {
         super.onStart()
         (activity as GGActivityCallbacks).setToolbarAttributes(title, true)
+        (activity as ActivityHostCallbacks).setNavigationEmpty(true)
         setupAdapter()
         refresh()
     }

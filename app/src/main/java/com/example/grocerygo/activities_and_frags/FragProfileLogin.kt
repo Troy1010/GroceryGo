@@ -11,6 +11,7 @@ import com.example.grocerygo.extras.easyToast
 import com.example.grocerygo.inheritables.ActivityHostCallbacks
 import com.example.grocerygo.inheritables.GGFragment
 import com.example.grocerygo.models.LoginObject
+import kotlinx.android.synthetic.main.activity_host.*
 import kotlinx.android.synthetic.main.frag_login.*
 
 
@@ -22,6 +23,7 @@ class FragProfileLogin : GGFragment() {
 
     override fun onStart() {
         super.onStart()
+        (activity as ActivityHostCallbacks).setNavigationEmpty(false)
         setupClickListeners()
     }
 

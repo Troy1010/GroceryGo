@@ -8,6 +8,7 @@ import android.view.View
 import com.example.grocerygo.R
 import com.example.grocerygo.extras.App
 import com.example.grocerygo.extras.PageEnums
+import com.example.grocerygo.extras.logz
 import com.example.grocerygo.extras.setup
 import com.example.grocerygo.inheritables.ActivityHostCallbacks
 import com.example.grocerygo.inheritables.GGToolbarActivity
@@ -29,6 +30,16 @@ class ActivityHost : GGToolbarActivity(), ActivityHostCallbacks {
     override fun onStart() {
         super.onStart()
         goToHome()
+    }
+
+    override fun setNavigationEmpty(shouldNavigationBarBeEmpty: Boolean) {
+        if (shouldNavigationBarBeEmpty) {
+            bottom_navigation_bar.visibility=View.GONE
+            frame_navigation_bar_area.visibility=View.VISIBLE
+        } else {
+            bottom_navigation_bar.visibility=View.VISIBLE
+            frame_navigation_bar_area.visibility=View.GONE // TODO this is probably not necessary
+        }
     }
 
     private fun setupNavigationBar() {

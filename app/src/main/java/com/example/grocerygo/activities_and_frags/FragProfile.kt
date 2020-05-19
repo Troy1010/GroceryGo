@@ -20,6 +20,7 @@ import com.example.grocerygo.inheritables.GGActivityCallbacks
 import com.example.grocerygo.inheritables.TMFragment
 import com.example.grocerygo.models.ProfileItem
 import com.google.android.material.snackbar.Snackbar
+import kotlinx.android.synthetic.main.activity_host.*
 import kotlinx.android.synthetic.main.frag_profile.*
 import kotlinx.android.synthetic.main.frag_search_products.*
 
@@ -31,6 +32,7 @@ class FragProfile : TMFragment() {
     override fun onStart() {
         super.onStart()
         (activity as GGActivityCallbacks).setToolbarAttributes(title, true)
+        (activity as ActivityHostCallbacks).setNavigationEmpty(false)
         setupListeners()
         setupRecyclerView()
     }

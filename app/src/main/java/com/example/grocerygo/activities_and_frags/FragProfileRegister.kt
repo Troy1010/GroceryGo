@@ -1,6 +1,9 @@
 package com.example.grocerygo.activities_and_frags
 
+import android.os.Bundle
+import android.view.LayoutInflater
 import android.view.View
+import android.view.ViewGroup
 import com.example.grocerygo.R
 import com.example.grocerygo.extras.App
 import com.example.grocerygo.extras.hasDigit
@@ -10,6 +13,7 @@ import com.example.grocerygo.inheritables.GGFragment
 import com.example.grocerygo.models.User
 import com.google.android.material.textfield.TextInputEditText
 import com.google.android.material.textfield.TextInputLayout
+import kotlinx.android.synthetic.main.activity_host.*
 import kotlinx.android.synthetic.main.frag_register.*
 
 
@@ -21,6 +25,7 @@ class FragProfileRegister : GGFragment() {
 
     override fun onStart() {
         super.onStart()
+        (activity as ActivityHostCallbacks).setNavigationEmpty(false)
         text_input_email.setOnFocusChangeListener(MyOnFocusChangeListener(text_input_email,text_input_layout_email,RegFieldEnum.EMAIL))
         text_input_name.setOnFocusChangeListener(MyOnFocusChangeListener(text_input_name,text_input_layout_name,RegFieldEnum.NAME))
         text_input_password.setOnFocusChangeListener(MyOnFocusChangeListener(text_input_password,text_input_layout_password,RegFieldEnum.PASSWORD))

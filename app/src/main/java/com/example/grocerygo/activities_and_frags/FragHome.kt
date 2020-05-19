@@ -13,22 +13,22 @@ import com.example.grocerygo.extras.App
 import com.example.grocerygo.extras.logz
 import com.example.grocerygo.inheritables.ActivityHostCallbacks
 import com.example.grocerygo.inheritables.GGActivityCallbacks
+import com.example.grocerygo.inheritables.GGFragment
 import com.example.grocerygo.inheritables.GGToolbarActivity
+import kotlinx.android.synthetic.main.activity_host.*
 import kotlinx.android.synthetic.main.frag_home.*
 
-class FragHome : Fragment() {
-    val title = "Home"
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-    }
+class FragHome : GGFragment() {
+    override val title = "Home"
+    override val layout: Int
+        get() = R.layout.frag_home
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        return inflater.inflate(R.layout.frag_home, container, false)
-    }
+
 
     override fun onStart() {
         super.onStart()
         (activity as GGActivityCallbacks).setToolbarAttributes(title, false)
+        (activity as ActivityHostCallbacks).setNavigationEmpty(false)
         setupImageSlider()
         button_logout.setOnClickListener {
             App.sm.logout()

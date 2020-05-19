@@ -8,6 +8,7 @@ interface GGActivityCallbacks
 
 interface ActivityHostCallbacks
 {
+    fun setNavigationEmpty(shouldNavigationBarBeEmpty:Boolean)
     fun goToHome()
     fun goToProfile()
 }

@@ -13,6 +13,10 @@ abstract class TMFragment: Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(layout, container, false)
+        val v = inflater.inflate(layout, container, false)
+        onCreateViewInit()
+        return v
     }
+
+    open fun onCreateViewInit() {}
 }
