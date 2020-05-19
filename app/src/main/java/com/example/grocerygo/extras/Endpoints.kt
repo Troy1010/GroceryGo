@@ -26,5 +26,9 @@ object Endpoints {
     fun getSelectedSubCategoriesEndpoint(catIndex: Int): String {
         return Config.BASE_URL_DATA + URL_SUB_DIR_SUBCATEGORY + "/$catIndex"
     }
+
+    fun getImageEndpoint(imageName:String):String {
+        return Config.BASE_URL_ITEM_IMAGES + imageName
+    }
 }
 
