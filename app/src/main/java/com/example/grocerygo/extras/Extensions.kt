@@ -13,11 +13,6 @@ import com.example.grocerygo.models.Product
 import com.google.android.material.snackbar.Snackbar
 import kotlinx.android.synthetic.main.frag_profile.*
 
-fun Toolbar.setup(activity: AppCompatActivity) {
-    activity.setSupportActionBar(this)
-    activity.supportActionBar?.setDisplayHomeAsUpEnabled(true)
-}
-
 fun Context.easyToast(s: String) {
     Toast.makeText(this, s, Toast.LENGTH_SHORT).show()
 }

@@ -45,6 +45,24 @@
         android:layout_height="wrap_content"
         android:text="(PRICE_TOTAL)"
         android:textSize="20sp"
+        app:layout_constraintBottom_toTopOf="@id/text_view_discount"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/text_view_discount"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="(DISCOUNT)"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toTopOf="@id/text_view_delivery_fee"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/text_view_delivery_fee"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="(DELIVERY_FEE)"
+        android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>

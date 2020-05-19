@@ -47,11 +47,15 @@ class FragCart : TMFragment(), RecyclerViewActivityCallbacks {
             text_view_price_total.visibility = View.INVISIBLE
             text_view_quantity_total.visibility = View.INVISIBLE
             text_view_fake_price_total.visibility = View.INVISIBLE
+            text_view_discount.visibility = View.INVISIBLE
+            text_view_delivery_fee.visibility = View.INVISIBLE
         } else {
             text_view_quantity_total.text = "# of items: ${orderSummary.quantityTotal}"
             text_view_fake_price_total.text = "fake total: ${orderSummary.fakePriceTotal}"
             text_view_fake_price_total.paintFlags = Paint.STRIKE_THRU_TEXT_FLAG
             text_view_price_total.text = "total: ${orderSummary.priceTotal}"
+            text_view_discount.text = "Discount: ${orderSummary.getDiscount()}"
+            text_view_delivery_fee.text = "Delivery Fee: ${orderSummary.getDeliveryFee()}"
         }
     }
 
