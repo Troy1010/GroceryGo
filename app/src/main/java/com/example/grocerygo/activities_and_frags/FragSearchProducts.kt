@@ -21,7 +21,7 @@ import com.example.grocerygo.models.ReceivedProductsObject
 import com.google.gson.GsonBuilder
 import kotlinx.android.synthetic.main.frag_search_products.recycler_view_products
 
-class FragSearchLower : TMFragment() {
+class FragSearchProducts : TMFragment() {
     val title = "Search"
     val subCatID by lazy { arguments?.getInt(KEY_SUB_CAT_ID)?:1 }
     override val layout: Int
@@ -85,7 +85,7 @@ class FragSearchLower : TMFragment() {
     companion object {
         @JvmStatic
         fun newInstance(subCatID: Int = 0) =
-            FragSearchLower().apply {
+            FragSearchProducts().apply {
                 arguments = Bundle().apply {
                     putInt(KEY_SUB_CAT_ID, subCatID)
                 }

@@ -68,7 +68,7 @@ class FragSearchToolbar : TMFragment() {
         activityZ?.apply {
             activityZ.supportFragmentManager
                 .beginTransaction()
-                .add(R.id.frame_fragments, FragSearchLower.newInstance(subCatID=subCatID))
+                .add(R.id.frame_fragments, FragSearchProducts.newInstance(subCatID=subCatID))
                 .setTransition(FragmentTransaction.TRANSIT_NONE)
                 .commit()
         }

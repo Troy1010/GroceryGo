@@ -23,7 +23,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".activities_and_frags.ActivityDetails" />
-        <activity android:name=".activities_and_frags.FragSearchLower" />
+        <activity android:name=".activities_and_frags.FragSearchProducts" />
         <activity android:name=".activities_and_frags.FragHome" />
     </application>
 
