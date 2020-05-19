@@ -51,8 +51,6 @@
         app:layout_constraintStart_toEndOf="@id/image_view" />
 
     <include
-        layout = "@layout/includible_add_button"/>
-    <include
         layout="@layout/includible_plus_minus"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

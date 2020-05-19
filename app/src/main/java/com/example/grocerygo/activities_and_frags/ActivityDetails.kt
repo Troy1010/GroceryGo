@@ -8,8 +8,6 @@ import com.example.grocerygo.models.Product
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.activity_details.*
 import kotlinx.android.synthetic.main.includible_plus_minus.*
-import kotlinx.android.synthetic.main.includible_plus_minus.view.*
-import kotlinx.android.synthetic.main.includible_plus_minus.view.button_plus
 
 class ActivityDetails : GGToolbarActivity() {
     override val title: String
@@ -36,10 +34,10 @@ class ActivityDetails : GGToolbarActivity() {
 //
 //            App.db.addProduct(product)
 //        }
-        text_view_plus_minus.text = product.quantity.toString()
+        text_view_number_plus_minus.text = product.quantity.toString()
         button_plus.setOnClickListener {
             App.db.addProduct(product)
-            text_view_plus_minus.text = product.quantity.toString()
+            text_view_number_plus_minus.text = product.quantity.toString()
         }
         button_minus.setOnClickListener {
             if (product.quantity == 1) {
@@ -48,7 +46,7 @@ class ActivityDetails : GGToolbarActivity() {
             } else {
                 App.db.minusProduct(product)
             }
-            text_view_plus_minus.text = product.quantity.toString()
+            text_view_number_plus_minus.text = product.quantity.toString()
         }
     }
 }

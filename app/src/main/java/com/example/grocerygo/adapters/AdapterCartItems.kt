@@ -10,7 +10,6 @@ import com.example.grocerygo.activities_and_frags.FragCart
 import com.example.grocerygo.models.Product
 import kotlinx.android.synthetic.main.includible_plus_minus.view.*
 import kotlinx.android.synthetic.main.item_cart_item.view.*
-import kotlinx.android.synthetic.main.item_product.view.*
 import kotlinx.android.synthetic.main.item_product.view.text_view_name
 import kotlinx.android.synthetic.main.item_product.view.text_view_price
 
@@ -42,7 +41,8 @@ class AdapterCartItems(
         holder.itemView.button_minus.setOnClickListener {
             parent.minusProduct(products[position])
         }
-        holder.itemView.text_view_plus_minus.text = products[position].quantity.toString()
+        holder.itemView.text_view_number_plus_minus.text = products[position].quantity.toString()
+        holder.itemView.text_view_add.visibility=View.GONE
     }
 
 }
