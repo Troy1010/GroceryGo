@@ -69,14 +69,7 @@ class FragCart : TMFragment(), RecyclerViewActivityCallbacks {
         }
         v.text_view_number_plus_minus.text = products[i].quantity.toString()
         v.text_view_add.visibility=View.GONE
-        // Picasso image
-        val imageEndpoint = Endpoints.getImageEndpoint(products[i].image)
-        Picasso
-            .get()
-            .load(imageEndpoint)
-            .placeholder(R.drawable.not_found)
-            .error(R.drawable.no_image_available_vector_illustration_260nw_744886198)
-            .into(v.image_view_product)
+        v.image_view_product.easyPicasso(Endpoints.getImageEndpoint(products[i].image))
     }
 
 
