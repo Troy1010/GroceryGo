@@ -12,11 +12,12 @@
         android:layout_height="80dp"/>
     <TextView
         android:id="@+id/text_view_name"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:text="(NAME)"
         app:layout_constraintStart_toEndOf="@id/image_view_product"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/button_trash"/>
 
     <TextView
         android:id="@+id/text_view_price"
