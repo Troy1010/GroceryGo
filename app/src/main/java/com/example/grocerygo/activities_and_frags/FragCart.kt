@@ -46,7 +46,8 @@ class FragCart : TMFragment() {
     }
 
     fun refresh() {
-        (recycler_view_cart_items.adapter as AdapterCartItems).products = App.db.getProducts() // TODO do I have to do this every refresh..?
+        val products = App.db.getProducts()
+        (recycler_view_cart_items.adapter as AdapterCartItems).products = products // TODO do I have to do this every refresh..?
         (recycler_view_cart_items.adapter as AdapterCartItems).notifyDataSetChanged()
         if ((recycler_view_cart_items.adapter as AdapterCartItems).products.size==0) {
             text_view_cart_is_empty.visibility = View.VISIBLE
@@ -54,8 +55,11 @@ class FragCart : TMFragment() {
             text_view_list_size.visibility = View.INVISIBLE
         } else {
             // # of items
-            val products = App.db.getProducts()
-            text_view_list_size.text = "# of items: ${products.size}"
+            var quantityTotal = 0
+            for (product in products) {
+                quantityTotal += product.quantity
+            }
+            text_view_list_size.text = "# of items: $quantityTotal"
             // get money total
             var moneyTotal = 0.0
             for (product in products) {
