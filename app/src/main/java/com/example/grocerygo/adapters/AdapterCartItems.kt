@@ -7,11 +7,8 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.grocerygo.R
 import com.example.grocerygo.activities_and_frags.FragCart
+import com.example.grocerygo.inheritables.RecyclerViewActivityCallbacks
 import com.example.grocerygo.models.Product
-import kotlinx.android.synthetic.main.includible_plus_minus.view.*
-import kotlinx.android.synthetic.main.item_cart_item.view.*
-import kotlinx.android.synthetic.main.item_product.view.text_view_name
-import kotlinx.android.synthetic.main.item_product.view.text_view_price
 
 class AdapterCartItems(
     var parent: FragCart,
@@ -30,19 +27,7 @@ class AdapterCartItems(
     }
 
     override fun onBindViewHolder(holder: AdapterCartItems.ViewHolder, position: Int) {
-        holder.itemView.text_view_name.text = products[position].productName
-        holder.itemView.text_view_price.text = "$"+products[position].price.toString()
-        holder.itemView.button_trash.setOnClickListener {
-            parent.deleteProduct(products[position])
-        }
-        holder.itemView.button_plus.setOnClickListener {
-            parent.addProduct(products[position])
-        }
-        holder.itemView.button_minus.setOnClickListener {
-            parent.minusProduct(products[position])
-        }
-        holder.itemView.text_view_number_plus_minus.text = products[position].quantity.toString()
-        holder.itemView.text_view_add.visibility=View.GONE
+        (parent as RecyclerViewActivityCallbacks).bindRecyclerItemView(holder.itemView, position)
     }
 
 }
