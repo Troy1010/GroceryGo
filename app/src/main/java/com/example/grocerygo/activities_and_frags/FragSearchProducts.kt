@@ -60,19 +60,6 @@ class FragSearchProducts : TMFragment() {
                 var gson = GsonBuilder().create()
                 var receivedProductsObject =
                     gson.fromJson(response.toString(), ReceivedProductsObject::class.java)
-                // get quantities from our own DB
-//                logz("get quantites from our own DB..")
-//                for (productFromSql in App.db.getProducts())
-//                {
-//                    for (productFromRequest in receivedProductsObject.data) {
-//                        if (productFromSql._id == productFromRequest._id) {
-//                            logz("SUCCESS: productFromSql._id:${productFromSql._id} vs ${productFromRequest._id}")
-//                            productFromRequest.quantity = productFromSql.quantity
-//                        } else {
-//                            logz("FAIL: productFromSql._id:${productFromSql._id} vs ${productFromRequest._id}")
-//                        }
-//                    }
-//                }
                 // give to AdapterProducts
                 setupRecyclerView(receivedProductsObject.data)
             },
