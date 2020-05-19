@@ -30,16 +30,20 @@ class DBConnection :
                    )"""
         sqlDatabase.execSQL(sqlCreateTable)
     }
-    fun getProductByProductID(_id:String) : Product? {
-        val cursor = databaseSQL.rawQuery("Select * from $TABLE_NAME where $COL_PRODUCT_ID=?",arrayOf(_id))
+
+    fun getProductByProductID(_id: String): Product? {
+        val cursor =
+            databaseSQL.rawQuery("Select * from $TABLE_NAME where $COL_PRODUCT_ID=?", arrayOf(_id))
         if (cursor != null && cursor.moveToFirst()) {
             return generateProductFromPrimedCursor(cursor)
         } else {
             return null
         }
     }
-    fun getProductQuantityByProductID(_id:String) :Int? {
-        val cursor = databaseSQL.rawQuery("Select * from $TABLE_NAME where $COL_PRODUCT_ID=?",arrayOf(_id))
+
+    fun getProductQuantityByProductID(_id: String): Int? {
+        val cursor =
+            databaseSQL.rawQuery("Select * from $TABLE_NAME where $COL_PRODUCT_ID=?", arrayOf(_id))
         if (cursor != null && cursor.moveToFirst()) {
             return cursor.getInt(cursor.getColumnIndex(COL_QUANTITY))
         } else {
@@ -49,7 +53,7 @@ class DBConnection :
 
     fun addProduct(product: Product) {
         if (hasProduct(product)) {
-            product.quantity = (getProductQuantityByProductID(product._id)?:0) + 1
+            product.quantity = (getProductQuantityByProductID(product._id) ?: 0) + 1
             updateProduct(product)
         } else {
             product.quantity = 1
@@ -64,15 +68,19 @@ class DBConnection :
 
     fun minusProduct(product: Product) {
         if (hasProduct(product)) {
-            product.quantity = maxOf(0,(getProductQuantityByProductID(product._id)?:0) - 1)
-            updateProduct(product)
+            product.quantity = maxOf(0, (getProductQuantityByProductID(product._id) ?: 0) - 1)
+            if (product.quantity == 0 ) {
+                deleteProduct(product)
+            } else {
+                updateProduct(product)
+            }
         } else {
             logz("DBConnection`minusProduct`attempted to subtract quantity from a product which is not in DB.")
         }
     }
 
     fun updateProduct(product: Product) {
-        if (product._id=="") {
+        if (product._id == "") {
             logz("DBConnection`Tried to use updateProduct on a product without a ProductID")
             return
         }
@@ -98,7 +106,7 @@ class DBConnection :
         return returningList
     }
 
-    private fun generateProductFromPrimedCursor(cursor: Cursor):Product {
+    private fun generateProductFromPrimedCursor(cursor: Cursor): Product {
         return Product(
             productName = cursor.getString(cursor.getColumnIndex(COL_NAME)),
             price = cursor.getDouble(cursor.getColumnIndex(COL_PRICE)),
@@ -109,8 +117,11 @@ class DBConnection :
 
     ////////////////
 
-    fun hasProduct(product:Product) :Boolean {
-        val cursor = databaseSQL.rawQuery("Select * from $TABLE_NAME where $COL_PRODUCT_ID=?",arrayOf(product._id))
+    fun hasProduct(product: Product): Boolean {
+        val cursor = databaseSQL.rawQuery(
+            "Select * from $TABLE_NAME where $COL_PRODUCT_ID=?",
+            arrayOf(product._id)
+        )
         return cursor.count != 0 // TODO close cursor?
     }
 
