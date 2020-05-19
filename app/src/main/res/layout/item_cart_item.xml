@@ -15,6 +15,7 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:text="(NAME)"
+        android:textSize="18sp"
         app:layout_constraintStart_toEndOf="@id/image_view_product"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintEnd_toStartOf="@id/button_trash"/>
@@ -25,6 +26,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:text="(PRICE)"
+        android:textSize="18sp"
         android:textColor="@color/TextSoft"
         app:layout_constraintStart_toStartOf="@id/text_view_name"
         app:layout_constraintTop_toBottomOf="@id/text_view_name" />
