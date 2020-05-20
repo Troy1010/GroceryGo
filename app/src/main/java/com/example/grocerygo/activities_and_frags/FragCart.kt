@@ -28,7 +28,7 @@ class FragCart : GGFragment(), RecyclerViewActivityCallbacks {
 
     private fun setupAdapter() {
         recycler_view_cart_items.layoutManager = LinearLayoutManager(activity!!)
-        recycler_view_cart_items.adapter = AdapterRecyclerView(this, activity!!)
+        recycler_view_cart_items.adapter = AdapterRecyclerView(this, activity!!, R.layout.item_cart_item)
         recycler_view_cart_items
             .addItemDecoration(DividerItemDecoration(activity, RecyclerView.VERTICAL))
     }

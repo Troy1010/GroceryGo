@@ -10,12 +10,13 @@ import com.example.grocerygo.inheritables.RecyclerViewActivityCallbacks
 
 class AdapterRecyclerView(
     var binder: RecyclerViewActivityCallbacks,
-    var context: Context
+    var context: Context,
+    val item_layout: Int
 ): RecyclerView.Adapter<AdapterRecyclerView.ViewHolder>() {
     inner class ViewHolder (itemView: View) : RecyclerView.ViewHolder(itemView)
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): AdapterRecyclerView.ViewHolder {
-        val view = LayoutInflater.from(context).inflate(R.layout.item_cart_item, parent, false)
+        val view = LayoutInflater.from(context).inflate(item_layout, parent, false)
         return ViewHolder(view)
     }
 

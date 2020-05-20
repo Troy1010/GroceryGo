@@ -11,7 +11,7 @@ import com.example.grocerygo.extras.Config
 import com.example.grocerygo.models.Category
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.item_category.view.*
-import kotlinx.android.synthetic.main.item_category.view.image_view
+import kotlinx.android.synthetic.main.item_category.view.image_view_product
 
 class AdapterCategories(
     var activity: FragmentActivity,
@@ -39,7 +39,7 @@ class AdapterCategories(
                 .load(imagePath)
                 .placeholder(R.drawable.not_found)
                 .error(R.drawable.no_image_available_vector_illustration_260nw_744886198)
-                .into(holder.itemView.image_view)
+                .into(holder.itemView.image_view_product)
         }
         // click listener
         holder.itemView.setOnClickListener {
