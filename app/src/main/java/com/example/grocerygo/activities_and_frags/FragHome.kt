@@ -1,21 +1,12 @@
 package com.example.grocerygo.activities_and_frags
 
-import android.content.Intent
-import android.os.Bundle
 import android.os.Handler
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
-import androidx.fragment.app.Fragment
 import com.example.grocerygo.R
 import com.example.grocerygo.adapters.AdapterImageSlider
 import com.example.grocerygo.extras.App
-import com.example.grocerygo.extras.logz
 import com.example.grocerygo.inheritables.ActivityHostCallbacks
-import com.example.grocerygo.inheritables.GGActivityCallbacks
+import com.example.grocerygo.inheritables.GGToolbarActivityCallbacks
 import com.example.grocerygo.inheritables.GGFragment
-import com.example.grocerygo.inheritables.GGToolbarActivity
-import kotlinx.android.synthetic.main.activity_host.*
 import kotlinx.android.synthetic.main.frag_home.*
 
 class FragHome : GGFragment() {
@@ -27,7 +18,7 @@ class FragHome : GGFragment() {
 
     override fun onStart() {
         super.onStart()
-        (activity as GGActivityCallbacks).setToolbarAttributes(title, false)
+        (activity as GGToolbarActivityCallbacks).setToolbarAttributes(title, false)
         (activity as ActivityHostCallbacks).setNavigationEmpty(false)
         setupImageSlider()
         button_logout.setOnClickListener {

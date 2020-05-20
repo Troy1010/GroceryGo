@@ -14,7 +14,7 @@ import com.android.volley.toolbox.Volley
 import com.example.grocerygo.R
 import com.example.grocerygo.adapters.AdapterProducts
 import com.example.grocerygo.extras.*
-import com.example.grocerygo.inheritables.GGActivityCallbacks
+import com.example.grocerygo.inheritables.GGToolbarActivityCallbacks
 import com.example.grocerygo.inheritables.TMFragment
 import com.example.grocerygo.models.Product
 import com.example.grocerygo.models.ReceivedProductsObject
@@ -38,7 +38,7 @@ class FragSearchProducts : TMFragment() {
 
     override fun onStart() {
         super.onStart()
-        (activity as GGActivityCallbacks).setToolbarAttributes(title, true)
+        (activity as GGToolbarActivityCallbacks).setToolbarAttributes(title, true)
     }
 
     private fun setupRecyclerView(products: ArrayList<Product>) {

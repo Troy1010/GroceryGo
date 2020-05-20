@@ -1,12 +1,6 @@
 package com.example.grocerygo.activities_and_frags
 
-import android.os.Bundle
 import android.util.Log
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
-import androidx.appcompat.app.AppCompatActivity
-import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.GridLayoutManager
 import com.android.volley.Request
 import com.android.volley.Response
@@ -16,13 +10,11 @@ import com.example.grocerygo.R
 import com.example.grocerygo.adapters.AdapterCategories
 import com.example.grocerygo.extras.Endpoints
 import com.example.grocerygo.inheritables.ActivityHostCallbacks
-import com.example.grocerygo.inheritables.GGActivityCallbacks
+import com.example.grocerygo.inheritables.GGToolbarActivityCallbacks
 import com.example.grocerygo.inheritables.TMFragment
 import com.example.grocerygo.models.Category
 import com.example.grocerygo.models.ReceivedCategoriesObject
 import com.google.gson.GsonBuilder
-import kotlinx.android.synthetic.main.activity_host.*
-import kotlinx.android.synthetic.main.frag_home.*
 import kotlinx.android.synthetic.main.frag_search_primary.*
 
 class FragSearchPrimary : TMFragment() {
@@ -36,7 +28,7 @@ class FragSearchPrimary : TMFragment() {
 
     override fun onStart() {
         super.onStart()
-        (activity as GGActivityCallbacks).setToolbarAttributes(title, true)
+        (activity as GGToolbarActivityCallbacks).setToolbarAttributes(title, true)
         (activity as ActivityHostCallbacks).setNavigationEmpty(false)
     }
 

@@ -4,9 +4,10 @@ import android.view.View
 import com.example.grocerygo.models.Product
 
 
-interface GGActivityCallbacks
+interface GGToolbarActivityCallbacks
 {
     fun setToolbarAttributes(title: String, hasBackArrow: Boolean? = null)
+    fun notifyBadge()
 }
 
 interface ActivityHostCallbacks

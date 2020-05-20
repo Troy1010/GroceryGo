@@ -1,20 +1,21 @@
 package com.example.grocerygo.inheritables
 
-import android.content.Context
 import android.content.Intent
 import android.os.Bundle
-import android.util.AttributeSet
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
-import androidx.fragment.app.Fragment
+import android.widget.ImageView
+import android.widget.TextView
+import androidx.core.view.MenuItemCompat
 import com.example.grocerygo.R
 import com.example.grocerygo.activities_and_frags.*
 import com.example.grocerygo.extras.*
 import kotlinx.android.synthetic.main.activity_host.*
 import kotlinx.android.synthetic.main.app_toolbar.*
+import kotlinx.android.synthetic.main.z_cart_icon.view.*
 
-abstract class GGToolbarActivity : TMActivity(), GGActivityCallbacks {
+abstract class GGToolbarActivity : TMActivity(), GGToolbarActivityCallbacks {
     abstract val title: String
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -23,10 +24,30 @@ abstract class GGToolbarActivity : TMActivity(), GGActivityCallbacks {
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
     }
 
-    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
-        var returning = super.onCreateOptionsMenu(menu)
+    lateinit var badgeTextView: TextView
+    lateinit var badgeOvalView: ImageView
+
+    override fun onCreateOptionsMenu(menu: Menu): Boolean {
         menuInflater.inflate(R.menu.three_dot_menu, menu)
-        return returning
+        MenuItemCompat.setActionView(menu.findItem(R.id.menu_cart), R.layout.z_cart_icon)
+        badgeTextView = MenuItemCompat.getActionView(menu.findItem(R.id.menu_cart)).text_view_badge
+        badgeOvalView = MenuItemCompat.getActionView(menu.findItem(R.id.menu_cart)).image_view_oval
+        notifyBadge()
+        return super.onCreateOptionsMenu(menu)
+    }
+
+    override fun notifyBadge() {
+        val quantity = App.db.getOrderSummary().quantityTotal
+        if (quantity == 0) {
+            logz("doing gone")
+            badgeTextView.visibility = View.GONE
+            badgeOvalView.visibility = View.GONE
+        } else {
+            logz("NOT gone")
+            badgeTextView.visibility = View.VISIBLE
+            badgeOvalView.visibility = View.VISIBLE
+            badgeTextView.text = quantity.toString()
+        }
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
@@ -36,7 +57,8 @@ abstract class GGToolbarActivity : TMActivity(), GGActivityCallbacks {
                 if ((this.supportFragmentManager.backStackEntryCount > 0) or (this !is ActivityHost)) { // TODO probably a more reliable way to check..
                     this.onBackPressed()
                 } else {
-                    bottom_navigation_bar.selectedItemId = R.id.item_home // TODO probably shouldn't reference bottom navigation bar directly..
+                    bottom_navigation_bar.selectedItemId =
+                        R.id.item_home // TODO probably shouldn't reference bottom navigation bar directly..
                 }
             }
             R.id.menu_cart -> {
