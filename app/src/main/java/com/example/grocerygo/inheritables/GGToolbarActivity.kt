@@ -1,7 +1,9 @@
 package com.example.grocerygo.inheritables
 
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import android.util.AttributeSet
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
@@ -24,26 +26,34 @@ abstract class GGToolbarActivity : TMActivity(), GGToolbarActivityCallbacks {
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
     }
 
-    lateinit var badgeTextView: TextView
-    lateinit var badgeOvalView: ImageView
+    var mMenu: Menu? = null
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         menuInflater.inflate(R.menu.three_dot_menu, menu)
         MenuItemCompat.setActionView(menu.findItem(R.id.menu_cart), R.layout.z_cart_icon)
-        badgeTextView = MenuItemCompat.getActionView(menu.findItem(R.id.menu_cart)).text_view_badge
-        badgeOvalView = MenuItemCompat.getActionView(menu.findItem(R.id.menu_cart)).image_view_oval
+        mMenu = menu
         notifyBadge()
+        logz("GGToolbarActivity`onCreateOptionsMenu")
         return super.onCreateOptionsMenu(menu)
     }
 
+    override fun onCreateView(name: String, context: Context, attrs: AttributeSet): View? {
+        logz("GGToolbarActivity`onCreateView")
+        if (mMenu!=null) {
+            notifyBadge()
+        }
+        return super.onCreateView(name, context, attrs)
+    }
+
     override fun notifyBadge() {
+        val badgeTextView = MenuItemCompat.getActionView(mMenu?.findItem(R.id.menu_cart)).text_view_badge
+        val badgeOvalView = MenuItemCompat.getActionView(mMenu?.findItem(R.id.menu_cart)).image_view_oval
         val quantity = App.db.getOrderSummary().quantityTotal
+        logz("Setting badge # to:$quantity")
         if (quantity == 0) {
-            logz("doing gone")
             badgeTextView.visibility = View.GONE
             badgeOvalView.visibility = View.GONE
         } else {
-            logz("NOT gone")
             badgeTextView.visibility = View.VISIBLE
             badgeOvalView.visibility = View.VISIBLE
             badgeTextView.text = quantity.toString()

@@ -105,10 +105,12 @@ class FragSearchProducts : TMFragment(), RecyclerViewActivityCallbacks {
             view.text_view_add.visibility= View.GONE
             App.db.addProduct(products[i])
             recycler_view_products.adapter?.notifyDataSetChanged()
+            (activity as GGToolbarActivityCallbacks).notifyBadge()
         }
         view.button_plus.setOnClickListener {
             App.db.addProduct(products[i])
             recycler_view_products.adapter?.notifyDataSetChanged()
+            (activity as GGToolbarActivityCallbacks).notifyBadge()
         }
         view.button_minus.setOnClickListener {
             if (products[i].quantity == 1) {
@@ -119,6 +121,7 @@ class FragSearchProducts : TMFragment(), RecyclerViewActivityCallbacks {
                 App.db.minusProduct(products[i])
             }
             recycler_view_products.adapter?.notifyDataSetChanged()
+            (activity as GGToolbarActivityCallbacks).notifyBadge()
         }
         view.text_view_number_plus_minus.text = products[i].quantity.toString()
         if (products[i].quantity > 0) {
