@@ -8,23 +8,19 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.grocerygo.R
 import com.example.grocerygo.adapters.AdapterCartItems
 import com.example.grocerygo.extras.*
-import com.example.grocerygo.inheritables.ActivityHostCallbacks
-import com.example.grocerygo.inheritables.GGActivityCallbacks
-import com.example.grocerygo.inheritables.RecyclerViewActivityCallbacks
-import com.example.grocerygo.inheritables.TMFragment
+import com.example.grocerygo.inheritables.*
 import com.example.grocerygo.models.Product
 import kotlinx.android.synthetic.main.frag_cart.*
 import kotlinx.android.synthetic.main.includible_plus_minus.view.*
 import kotlinx.android.synthetic.main.item_cart_item.view.*
 
-class FragCart : TMFragment(), RecyclerViewActivityCallbacks {
+class FragCart : GGFragment(), RecyclerViewActivityCallbacks {
     override val layout = R.layout.frag_cart
-    val title = "Cart"
     lateinit var products:ArrayList<Product>
+    override val title = "Cart"
 
     override fun onStart() {
         super.onStart()
-        (activity as GGActivityCallbacks).setToolbarAttributes(title, true)
         (activity as ActivityHostCallbacks).setNavigationEmpty(true)
         setupAdapter()
         refresh()
@@ -59,6 +55,7 @@ class FragCart : TMFragment(), RecyclerViewActivityCallbacks {
             text_view_delivery_fee.text = "Delivery Fee: ${orderSummary.getDeliveryFee()}"
             text_view_final_price.text = "Final Price: ${orderSummary.getGrandTotal()}"
         }
+
     }
 
     override fun bindRecyclerItemView(view: View, i: Int) {
