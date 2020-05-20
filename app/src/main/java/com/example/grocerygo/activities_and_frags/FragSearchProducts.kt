@@ -22,7 +22,6 @@ import com.example.grocerygo.inheritables.TMFragment
 import com.example.grocerygo.models.Product
 import com.example.grocerygo.models.ReceivedProductsObject
 import com.google.gson.GsonBuilder
-import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.frag_search_products.recycler_view_products
 import kotlinx.android.synthetic.main.includible_plus_minus.view.*
 import kotlinx.android.synthetic.main.item_product.view.*
@@ -48,10 +47,7 @@ class FragSearchProducts : TMFragment(), RecyclerViewActivityCallbacks {
         (activity as GGToolbarActivityCallbacks).setToolbarAttributes(title, true)
     }
 
-    private fun setupRecyclerView(products: ArrayList<Product>) {
-        for (product in products) {
-            product.quantity = App.db.getProductQuantityByProductID(product._id)?:0
-        }
+    private fun setupRecyclerView() {
         recycler_view_products.layoutManager = LinearLayoutManager(activity!!)
         recycler_view_products.adapter = AdapterRecyclerView(this, activity!!, R.layout.item_product)
         recycler_view_products
@@ -67,9 +63,13 @@ class FragSearchProducts : TMFragment(), RecyclerViewActivityCallbacks {
                 var gson = GsonBuilder().create()
                 var receivedProductsObject =
                     gson.fromJson(response.toString(), ReceivedProductsObject::class.java)
-                // give to AdapterProducts
+                // add quantities from db
                 products = receivedProductsObject.data
-                setupRecyclerView(products)
+                for (product in products) {
+                    product.quantity = App.db.getProductQuantityByProductID(product._id)?:0
+                }
+                // give to AdapterProducts
+                setupRecyclerView()
             },
             Response.ErrorListener {
                 logz("Response.ErrorListener`it:$it")
@@ -92,7 +92,7 @@ class FragSearchProducts : TMFragment(), RecyclerViewActivityCallbacks {
         view.text_view_price.text = "$"+products[i].price.toString()
         view.text_view_fake_price.text = "$"+products[i].mrp.toString()
         view.text_view_fake_price.paintFlags = Paint.STRIKE_THRU_TEXT_FLAG
-        view.image_view_product.easyPicasso(Endpoints.getImageEndpoint(products[i].image))
+        view.image_view_category.easyPicasso(Endpoints.getImageEndpoint(products[i].image))
         //
         view.setOnClickListener {
             var intent = Intent(context, ActivityDetails::class.java)

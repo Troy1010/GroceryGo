@@ -75,7 +75,7 @@ class FragCart : GGFragment(), RecyclerViewActivityCallbacks {
         }
         view.text_view_number_plus_minus.text = products[i].quantity.toString()
         view.text_view_add.visibility=View.GONE
-        view.image_view_product.easyPicasso(Endpoints.getImageEndpoint(products[i].image))
+        view.image_view_category.easyPicasso(Endpoints.getImageEndpoint(products[i].image))
     }
 
     override fun getRecyclerDataSize():Int {

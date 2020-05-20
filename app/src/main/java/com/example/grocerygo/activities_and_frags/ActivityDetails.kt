@@ -5,7 +5,6 @@ import android.view.View
 import com.example.grocerygo.R
 import com.example.grocerygo.extras.*
 import com.example.grocerygo.inheritables.GGToolbarActivity
-import com.example.grocerygo.inheritables.GGToolbarActivityCallbacks
 import com.example.grocerygo.models.Product
 import kotlinx.android.synthetic.main.activity_details.*
 import kotlinx.android.synthetic.main.includible_plus_minus.*
@@ -21,7 +20,7 @@ class ActivityDetails : GGToolbarActivity() {
         val product = intent.getSerializableExtra(KEY_PRODUCT) as Product
         text_view_price.text = "$"+product.price.toString()
         text_view_details.text = product.description
-        image_view_product.easyPicasso(Config.BASE_URL_ITEM_IMAGES + product.image)
+        image_view_category.easyPicasso(Config.BASE_URL_ITEM_IMAGES + product.image)
         text_view_number_plus_minus.text = product.quantity.toString()
         if (product.quantity!=0) {
             text_view_add.visibility=View.GONE
