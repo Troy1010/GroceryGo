@@ -4,9 +4,10 @@ import android.view.View
 import com.example.grocerygo.models.Product
 
 
-interface GGActivityCallbacks
+interface GGToolbarActivityCallbacks
 {
     fun setToolbarAttributes(title: String, hasBackArrow: Boolean? = null)
+    fun notifyBadge()
 }
 
 interface ActivityHostCallbacks
@@ -18,5 +19,6 @@ interface ActivityHostCallbacks
 
 interface RecyclerViewActivityCallbacks
 {
-    fun bindRecyclerItemView(itemView: View, position: Int)
+    fun bindRecyclerItemView(view: View, i: Int)
+    fun getRecyclerDataSize() : Int
 }

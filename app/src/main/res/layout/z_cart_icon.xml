@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="28dp"
+    android:layout_height="28dp"
+    android:id="@+id/qwer">
+
+    <ImageView
+        android:paddingTop="8dp"
+        android:src="@drawable/ic_shopping_cart_white_24dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+    <ImageView
+        android:id="@+id/image_view_oval"
+        android:src="@drawable/simple_oval"
+        android:layout_width="16dp"
+        android:layout_height="16dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/text_view_badge"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:padding="0dp"
+        android:text="#"
+        android:textColor="@color/TextVsTails"
+        android:textSize="14sp"
+        app:layout_constraintStart_toStartOf="@+id/image_view_oval"
+        app:layout_constraintEnd_toEndOf="@+id/image_view_oval"
+        app:layout_constraintBottom_toBottomOf="@+id/image_view_oval"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -7,4 +7,6 @@
     <color name="colorTextDefault">#000</color>
     <color name="colorTextClickable">#0086bf</color>
     <color name="TextSoft">#555</color>
+    <color name="TextVsHeads">#000</color>
+    <color name="TextVsTails">#fff</color>
 </resources>

@@ -6,25 +6,21 @@ import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.grocerygo.R
-import com.example.grocerygo.adapters.AdapterCartItems
+import com.example.grocerygo.adapters.AdapterRecyclerView
 import com.example.grocerygo.extras.*
-import com.example.grocerygo.inheritables.ActivityHostCallbacks
-import com.example.grocerygo.inheritables.GGActivityCallbacks
-import com.example.grocerygo.inheritables.RecyclerViewActivityCallbacks
-import com.example.grocerygo.inheritables.TMFragment
+import com.example.grocerygo.inheritables.*
 import com.example.grocerygo.models.Product
 import kotlinx.android.synthetic.main.frag_cart.*
 import kotlinx.android.synthetic.main.includible_plus_minus.view.*
 import kotlinx.android.synthetic.main.item_cart_item.view.*
 
-class FragCart : TMFragment(), RecyclerViewActivityCallbacks {
+class FragCart : GGFragment(), RecyclerViewActivityCallbacks {
     override val layout = R.layout.frag_cart
-    val title = "Cart"
     lateinit var products:ArrayList<Product>
+    override val title = "Cart"
 
     override fun onStart() {
         super.onStart()
-        (activity as GGActivityCallbacks).setToolbarAttributes(title, true)
         (activity as ActivityHostCallbacks).setNavigationEmpty(true)
         setupAdapter()
         refresh()
@@ -32,23 +28,24 @@ class FragCart : TMFragment(), RecyclerViewActivityCallbacks {
 
     private fun setupAdapter() {
         recycler_view_cart_items.layoutManager = LinearLayoutManager(activity!!)
-        recycler_view_cart_items.adapter = AdapterCartItems(this, activity!!, ArrayList())
+        recycler_view_cart_items.adapter = AdapterRecyclerView(this, activity!!, R.layout.item_cart_item)
         recycler_view_cart_items
             .addItemDecoration(DividerItemDecoration(activity, RecyclerView.VERTICAL))
     }
 
     fun refresh() {
         products = App.db.getProducts()
+        (activity as GGToolbarActivityCallbacks).notifyBadge()
         val orderSummary = App.db.getOrderSummary()
-        (recycler_view_cart_items.adapter as AdapterCartItems).products = products // TODO don't pass into Adapter
-        (recycler_view_cart_items.adapter as AdapterCartItems).notifyDataSetChanged()
-        if ((recycler_view_cart_items.adapter as AdapterCartItems).products.size==0) {
+        recycler_view_cart_items.adapter?.notifyDataSetChanged()
+        if (products.size==0) {
             text_view_cart_is_empty.visibility = View.VISIBLE
             text_view_price_total.visibility = View.INVISIBLE
             text_view_quantity_total.visibility = View.INVISIBLE
             text_view_fake_price_total.visibility = View.INVISIBLE
             text_view_discount.visibility = View.INVISIBLE
             text_view_delivery_fee.visibility = View.INVISIBLE
+            text_view_final_price.visibility = View.INVISIBLE
         } else {
             text_view_quantity_total.text = "# of items: ${orderSummary.quantityTotal}"
             text_view_fake_price_total.text = "fake total: ${orderSummary.fakePriceTotal}"
@@ -56,27 +53,33 @@ class FragCart : TMFragment(), RecyclerViewActivityCallbacks {
             text_view_price_total.text = "total: ${orderSummary.priceTotal}"
             text_view_discount.text = "Discount: ${orderSummary.getDiscount()}"
             text_view_delivery_fee.text = "Delivery Fee: ${orderSummary.getDeliveryFee()}"
+            text_view_final_price.text = "Final Price: ${orderSummary.getGrandTotal()}"
         }
+
     }
 
-    override fun bindRecyclerItemView(v: View, i: Int) {
-        v.text_view_name.text = products[i].productName
-        v.text_view_price.text = "$"+products[i].price.toString()
-        v.button_trash.setOnClickListener {
+    override fun bindRecyclerItemView(view: View, i: Int) {
+        view.text_view_name.text = products[i].productName
+        view.text_view_price.text = "$"+products[i].price.toString()
+        view.button_trash.setOnClickListener {
             App.db.deleteProduct(products[i])
             refresh()
         }
-        v.button_plus.setOnClickListener {
+        view.button_plus.setOnClickListener {
             App.db.addProduct(products[i])
             refresh()
         }
-        v.button_minus.setOnClickListener {
+        view.button_minus.setOnClickListener {
             App.db.minusProduct(products[i])
             refresh()
         }
-        v.text_view_number_plus_minus.text = products[i].quantity.toString()
-        v.text_view_add.visibility=View.GONE
-        v.image_view_product.easyPicasso(Endpoints.getImageEndpoint(products[i].image))
+        view.text_view_number_plus_minus.text = products[i].quantity.toString()
+        view.text_view_add.visibility=View.GONE
+        view.image_view_product.easyPicasso(Endpoints.getImageEndpoint(products[i].image))
+    }
+
+    override fun getRecyclerDataSize():Int {
+        return App.db.getProducts().size
     }
 
 

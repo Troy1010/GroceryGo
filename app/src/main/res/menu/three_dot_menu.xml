@@ -13,7 +13,7 @@
         android:id="@+id/menu_cart"
         android:icon="@drawable/ic_shopping_cart_white_24dp"
         android:title="Share"
-        app:showAsAction="never" />
+        app:showAsAction="always" />
     <item
         android:id="@+id/menu_printList"
         android:title="Print Items"

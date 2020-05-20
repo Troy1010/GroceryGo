@@ -19,4 +19,7 @@ class OrderSummary(
         val baseDeliveryFee = 16.50
         return if (priceTotal > 300) baseDeliveryFee else 0.0
     }
+    fun getGrandTotal():Double {
+        return getDeliveryFee() + priceTotal
+    }
 }

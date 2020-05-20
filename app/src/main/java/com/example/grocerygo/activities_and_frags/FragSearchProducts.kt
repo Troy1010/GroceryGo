@@ -1,5 +1,7 @@
 package com.example.grocerygo.activities_and_frags
 
+import android.content.Intent
+import android.graphics.Paint
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -12,18 +14,23 @@ import com.android.volley.Response
 import com.android.volley.toolbox.JsonObjectRequest
 import com.android.volley.toolbox.Volley
 import com.example.grocerygo.R
-import com.example.grocerygo.adapters.AdapterProducts
+import com.example.grocerygo.adapters.AdapterRecyclerView
 import com.example.grocerygo.extras.*
-import com.example.grocerygo.inheritables.GGActivityCallbacks
+import com.example.grocerygo.inheritables.GGToolbarActivityCallbacks
+import com.example.grocerygo.inheritables.RecyclerViewActivityCallbacks
 import com.example.grocerygo.inheritables.TMFragment
 import com.example.grocerygo.models.Product
 import com.example.grocerygo.models.ReceivedProductsObject
 import com.google.gson.GsonBuilder
+import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.frag_search_products.recycler_view_products
+import kotlinx.android.synthetic.main.includible_plus_minus.view.*
+import kotlinx.android.synthetic.main.item_product.view.*
 
-class FragSearchProducts : TMFragment() {
+class FragSearchProducts : TMFragment(), RecyclerViewActivityCallbacks {
     val title = "Search"
     val subCatID by lazy { arguments?.getInt(KEY_SUB_CAT_ID)?:1 }
+    lateinit var products:ArrayList<Product>
     override val layout: Int
         get() = R.layout.frag_search_products
 
@@ -38,7 +45,7 @@ class FragSearchProducts : TMFragment() {
 
     override fun onStart() {
         super.onStart()
-        (activity as GGActivityCallbacks).setToolbarAttributes(title, true)
+        (activity as GGToolbarActivityCallbacks).setToolbarAttributes(title, true)
     }
 
     private fun setupRecyclerView(products: ArrayList<Product>) {
@@ -46,7 +53,7 @@ class FragSearchProducts : TMFragment() {
             product.quantity = App.db.getProductQuantityByProductID(product._id)?:0
         }
         recycler_view_products.layoutManager = LinearLayoutManager(activity!!)
-        recycler_view_products.adapter = AdapterProducts(activity!!, products)
+        recycler_view_products.adapter = AdapterRecyclerView(this, activity!!, R.layout.item_product)
         recycler_view_products
             .addItemDecoration(DividerItemDecoration(activity, RecyclerView.VERTICAL))
     }
@@ -61,7 +68,8 @@ class FragSearchProducts : TMFragment() {
                 var receivedProductsObject =
                     gson.fromJson(response.toString(), ReceivedProductsObject::class.java)
                 // give to AdapterProducts
-                setupRecyclerView(receivedProductsObject.data)
+                products = receivedProductsObject.data
+                setupRecyclerView(products)
             },
             Response.ErrorListener {
                 logz("Response.ErrorListener`it:$it")
@@ -77,6 +85,52 @@ class FragSearchProducts : TMFragment() {
                     putInt(KEY_SUB_CAT_ID, subCatID)
                 }
             }
+    }
+
+    override fun bindRecyclerItemView(view: View, i: Int) {
+        view.text_view_name.text = products[i].productName
+        view.text_view_price.text = "$"+products[i].price.toString()
+        view.text_view_fake_price.text = "$"+products[i].mrp.toString()
+        view.text_view_fake_price.paintFlags = Paint.STRIKE_THRU_TEXT_FLAG
+        view.image_view_product.easyPicasso(Endpoints.getImageEndpoint(products[i].image))
+        //
+        view.setOnClickListener {
+            var intent = Intent(context, ActivityDetails::class.java)
+            var product = products[i]
+            intent.putExtra(KEY_PRODUCT, product)
+            context?.startActivity(intent)
+        }
+        // plus minus
+        view.text_view_add.setOnClickListener {
+            view.text_view_add.visibility= View.GONE
+            App.db.addProduct(products[i])
+            recycler_view_products.adapter?.notifyDataSetChanged()
+            (activity as GGToolbarActivityCallbacks).notifyBadge()
+        }
+        view.button_plus.setOnClickListener {
+            App.db.addProduct(products[i])
+            recycler_view_products.adapter?.notifyDataSetChanged()
+            (activity as GGToolbarActivityCallbacks).notifyBadge()
+        }
+        view.button_minus.setOnClickListener {
+            if (products[i].quantity == 1) {
+                products[i].quantity = 0 // to update ui
+                view.text_view_add.visibility= View.VISIBLE
+                App.db.deleteProduct(products[i])
+            } else {
+                App.db.minusProduct(products[i])
+            }
+            recycler_view_products.adapter?.notifyDataSetChanged()
+            (activity as GGToolbarActivityCallbacks).notifyBadge()
+        }
+        view.text_view_number_plus_minus.text = products[i].quantity.toString()
+        if (products[i].quantity > 0) {
+            view.text_view_add.visibility= View.GONE
+        }
+    }
+
+    override fun getRecyclerDataSize(): Int {
+        return products.size
     }
 
 

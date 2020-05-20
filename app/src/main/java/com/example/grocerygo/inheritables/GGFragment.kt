@@ -6,6 +6,6 @@ abstract class GGFragment : TMFragment() {
 
     override fun onStart() {
         super.onStart()
-        (activity as GGActivityCallbacks).setToolbarAttributes(title, true)
+        (activity as GGToolbarActivityCallbacks).setToolbarAttributes(title, true)
     }
 }
