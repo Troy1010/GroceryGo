@@ -25,7 +25,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="(LISTSIZE)"
-        android:textSize="18sp"
+        android:textSize="12sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintBottom_toTopOf="@id/text_view_fake_price_total"
         app:layout_constraintStart_toStartOf="parent" />
@@ -35,7 +35,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="(FAKE_PRICE_TOTAL)"
-        android:textSize="20sp"
+        android:textSize="14sp"
         app:layout_constraintBottom_toTopOf="@id/text_view_price_total"
         app:layout_constraintStart_toStartOf="parent" />
 
@@ -44,7 +44,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="(PRICE_TOTAL)"
-        android:textSize="20sp"
+        android:textSize="14sp"
         app:layout_constraintBottom_toTopOf="@id/text_view_discount"
         app:layout_constraintStart_toStartOf="parent" />
 
@@ -53,7 +53,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="(DISCOUNT)"
-        android:textSize="20sp"
+        android:textSize="14sp"
         app:layout_constraintBottom_toTopOf="@id/text_view_delivery_fee"
         app:layout_constraintStart_toStartOf="parent" />
 
@@ -62,7 +62,16 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="(DELIVERY_FEE)"
-        android:textSize="20sp"
+        android:textSize="14sp"
+        app:layout_constraintBottom_toTopOf="@id/text_view_final_price"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/text_view_final_price"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="(FINAL_PRICE)"
+        android:textSize="14sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>

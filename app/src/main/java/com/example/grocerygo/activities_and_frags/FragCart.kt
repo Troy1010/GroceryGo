@@ -49,6 +49,7 @@ class FragCart : TMFragment(), RecyclerViewActivityCallbacks {
             text_view_fake_price_total.visibility = View.INVISIBLE
             text_view_discount.visibility = View.INVISIBLE
             text_view_delivery_fee.visibility = View.INVISIBLE
+            text_view_final_price.visibility = View.INVISIBLE
         } else {
             text_view_quantity_total.text = "# of items: ${orderSummary.quantityTotal}"
             text_view_fake_price_total.text = "fake total: ${orderSummary.fakePriceTotal}"
@@ -56,6 +57,7 @@ class FragCart : TMFragment(), RecyclerViewActivityCallbacks {
             text_view_price_total.text = "total: ${orderSummary.priceTotal}"
             text_view_discount.text = "Discount: ${orderSummary.getDiscount()}"
             text_view_delivery_fee.text = "Delivery Fee: ${orderSummary.getDeliveryFee()}"
+            text_view_final_price.text = "Final Price: ${orderSummary.getGrandTotal()}"
         }
     }
 
