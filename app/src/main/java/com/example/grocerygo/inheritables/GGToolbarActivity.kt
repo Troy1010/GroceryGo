@@ -47,15 +47,12 @@ abstract class GGToolbarActivity : TMActivity(), GGToolbarActivityCallbacks {
 
     override fun notifyBadge() {
         val badgeTextView = MenuItemCompat.getActionView(mMenu?.findItem(R.id.menu_cart)).text_view_badge
-        val badgeOvalView = MenuItemCompat.getActionView(mMenu?.findItem(R.id.menu_cart)).image_view_oval
         val quantity = App.db.getOrderSummary().quantityTotal
         logz("Setting badge # to:$quantity")
         if (quantity == 0) {
             badgeTextView.visibility = View.GONE
-            badgeOvalView.visibility = View.GONE
         } else {
             badgeTextView.visibility = View.VISIBLE
-            badgeOvalView.visibility = View.VISIBLE
             badgeTextView.text = quantity.toString()
         }
     }
