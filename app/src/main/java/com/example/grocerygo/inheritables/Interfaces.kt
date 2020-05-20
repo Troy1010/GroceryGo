@@ -18,5 +18,5 @@ interface ActivityHostCallbacks
 
 interface RecyclerViewActivityCallbacks
 {
-    fun bindRecyclerItemView(itemView: View, position: Int)
+    fun bindRecyclerItemView(view: View, i: Int)
 }

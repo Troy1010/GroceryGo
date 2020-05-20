@@ -61,24 +61,24 @@ class FragCart : TMFragment(), RecyclerViewActivityCallbacks {
         }
     }
 
-    override fun bindRecyclerItemView(v: View, i: Int) {
-        v.text_view_name.text = products[i].productName
-        v.text_view_price.text = "$"+products[i].price.toString()
-        v.button_trash.setOnClickListener {
+    override fun bindRecyclerItemView(view: View, i: Int) {
+        view.text_view_name.text = products[i].productName
+        view.text_view_price.text = "$"+products[i].price.toString()
+        view.button_trash.setOnClickListener {
             App.db.deleteProduct(products[i])
             refresh()
         }
-        v.button_plus.setOnClickListener {
+        view.button_plus.setOnClickListener {
             App.db.addProduct(products[i])
             refresh()
         }
-        v.button_minus.setOnClickListener {
+        view.button_minus.setOnClickListener {
             App.db.minusProduct(products[i])
             refresh()
         }
-        v.text_view_number_plus_minus.text = products[i].quantity.toString()
-        v.text_view_add.visibility=View.GONE
-        v.image_view_product.easyPicasso(Endpoints.getImageEndpoint(products[i].image))
+        view.text_view_number_plus_minus.text = products[i].quantity.toString()
+        view.text_view_add.visibility=View.GONE
+        view.image_view_product.easyPicasso(Endpoints.getImageEndpoint(products[i].image))
     }
 
 
