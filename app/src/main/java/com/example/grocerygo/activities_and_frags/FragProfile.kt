@@ -8,16 +8,13 @@ import com.example.grocerygo.R
 import com.example.grocerygo.adapters.AdapterRecyclerView
 import com.example.grocerygo.extras.App
 import com.example.grocerygo.extras.easySnackbar
-import com.example.grocerygo.inheritables.ActivityHostCallbacks
-import com.example.grocerygo.inheritables.GGToolbarActivityCallbacks
-import com.example.grocerygo.inheritables.RecyclerViewActivityCallbacks
-import com.example.grocerygo.inheritables.TMFragment
+import com.example.grocerygo.inheritables.*
 import com.example.grocerygo.models.ProfileItem
 import kotlinx.android.synthetic.main.frag_profile.*
 import kotlinx.android.synthetic.main.item_profile.view.*
 
-class FragProfile : TMFragment(), RecyclerViewActivityCallbacks {
-    val title = "Profile"
+class FragProfile : GGFragment(), RecyclerViewActivityCallbacks {
+    override val title = "Profile"
     override val layout: Int
         get() = R.layout.frag_profile
     val profileItems = arrayListOf(
@@ -29,7 +26,6 @@ class FragProfile : TMFragment(), RecyclerViewActivityCallbacks {
 
     override fun onStart() {
         super.onStart()
-        (activity as GGToolbarActivityCallbacks).setToolbarAttributes(title, true)
         (activity as ActivityHostCallbacks).setNavigationEmpty(false)
         setupListeners()
         setupRecyclerView()

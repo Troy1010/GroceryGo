@@ -16,6 +16,7 @@ import com.android.volley.toolbox.Volley
 import com.example.grocerygo.R
 import com.example.grocerygo.adapters.AdapterRecyclerView
 import com.example.grocerygo.extras.*
+import com.example.grocerygo.inheritables.GGFragment
 import com.example.grocerygo.inheritables.GGToolbarActivityCallbacks
 import com.example.grocerygo.inheritables.RecyclerViewActivityCallbacks
 import com.example.grocerygo.inheritables.TMFragment
@@ -26,25 +27,16 @@ import kotlinx.android.synthetic.main.frag_search_products.recycler_view_product
 import kotlinx.android.synthetic.main.includible_plus_minus.view.*
 import kotlinx.android.synthetic.main.item_product.view.*
 
-class FragSearchProducts : TMFragment(), RecyclerViewActivityCallbacks {
-    val title = "Search"
+class FragSearchProducts : GGFragment(), RecyclerViewActivityCallbacks {
+    override val title = "Search"
     val subCatID by lazy { arguments?.getInt(KEY_SUB_CAT_ID)?:1 }
     lateinit var products:ArrayList<Product>
     override val layout: Int
         get() = R.layout.frag_search_products
 
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
+    override fun onCreateViewInit() {
+        super.onCreateViewInit()
         requestProducts(subCatID)
-        return super.onCreateView(inflater, container, savedInstanceState)
-    }
-
-    override fun onStart() {
-        super.onStart()
-        (activity as GGToolbarActivityCallbacks).setToolbarAttributes(title, true)
     }
 
     private fun setupRecyclerView() {

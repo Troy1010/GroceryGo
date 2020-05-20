@@ -11,18 +11,15 @@ import com.example.grocerygo.R
 import com.example.grocerygo.adapters.AdapterRecyclerView
 import com.example.grocerygo.extras.Endpoints
 import com.example.grocerygo.extras.easyPicasso
-import com.example.grocerygo.inheritables.ActivityHostCallbacks
-import com.example.grocerygo.inheritables.GGToolbarActivityCallbacks
-import com.example.grocerygo.inheritables.RecyclerViewActivityCallbacks
-import com.example.grocerygo.inheritables.TMFragment
+import com.example.grocerygo.inheritables.*
 import com.example.grocerygo.models.Category
 import com.example.grocerygo.models.ReceivedCategoriesObject
 import com.google.gson.GsonBuilder
 import kotlinx.android.synthetic.main.frag_search_categories.*
 import kotlinx.android.synthetic.main.item_category.view.*
 
-class FragSearchCategories : TMFragment(), RecyclerViewActivityCallbacks {
-    val title = "Search"
+class FragSearchCategories : GGFragment(), RecyclerViewActivityCallbacks {
+    override val title = "Search"
     override val layout: Int
         get() = R.layout.frag_search_categories
     lateinit var categories:ArrayList<Category>
@@ -33,7 +30,6 @@ class FragSearchCategories : TMFragment(), RecyclerViewActivityCallbacks {
 
     override fun onStart() {
         super.onStart()
-        (activity as GGToolbarActivityCallbacks).setToolbarAttributes(title, true)
         (activity as ActivityHostCallbacks).setNavigationEmpty(false)
     }
 
