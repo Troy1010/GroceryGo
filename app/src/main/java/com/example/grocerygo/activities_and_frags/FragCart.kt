@@ -40,20 +40,22 @@ class FragCart : GGFragment(), RecyclerViewActivityCallbacks {
         recycler_view_cart_items.adapter?.notifyDataSetChanged()
         if (products.size==0) {
             text_view_cart_is_empty.visibility = View.VISIBLE
+            text_view_item_quantity.visibility = View.INVISIBLE
             text_view_price_total.visibility = View.INVISIBLE
-            text_view_quantity_total.visibility = View.INVISIBLE
             text_view_fake_price_total.visibility = View.INVISIBLE
-            text_view_discount.visibility = View.INVISIBLE
-            text_view_delivery_fee.visibility = View.INVISIBLE
-            text_view_final_price.visibility = View.INVISIBLE
+//            text_view_discount.visibility = View.INVISIBLE
+            text_view_shipping.visibility = View.INVISIBLE
+            text_view_est_total.visibility = View.INVISIBLE
         } else {
-            text_view_quantity_total.text = "# of items: ${orderSummary.quantityTotal}"
-            text_view_fake_price_total.text = "fake total: ${orderSummary.fakePriceTotal}"
+            text_view_coupon_discount.text = "- ${orderSummary.getCouponDiscount()}"
+            text_view_item_quantity.text = "${orderSummary.quantityTotal} Item(s)"
+            text_view_fake_price_total.text = "${orderSummary.fakePriceTotal}"
             text_view_fake_price_total.paintFlags = Paint.STRIKE_THRU_TEXT_FLAG
             text_view_price_total.text = "total: ${orderSummary.priceTotal}"
-            text_view_discount.text = "Discount: ${orderSummary.getDiscount()}"
-            text_view_delivery_fee.text = "Delivery Fee: ${orderSummary.getDeliveryFee()}"
-            text_view_final_price.text = "Final Price: ${orderSummary.getGrandTotal()}"
+            text_view_fake_discount.text = "- ${orderSummary.getFakeDiscount()}"
+            text_view_tax.text = "${orderSummary.getTax()}"
+            text_view_shipping.text = "${orderSummary.getDeliveryFee()}"
+            text_view_est_total.text = "${orderSummary.getGrandTotal()}"
         }
 
     }
