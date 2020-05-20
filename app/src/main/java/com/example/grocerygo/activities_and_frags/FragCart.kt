@@ -6,7 +6,7 @@ import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.grocerygo.R
-import com.example.grocerygo.adapters.AdapterCartItems
+import com.example.grocerygo.adapters.AdapterRecyclerView
 import com.example.grocerygo.extras.*
 import com.example.grocerygo.inheritables.*
 import com.example.grocerygo.models.Product
@@ -28,7 +28,7 @@ class FragCart : GGFragment(), RecyclerViewActivityCallbacks {
 
     private fun setupAdapter() {
         recycler_view_cart_items.layoutManager = LinearLayoutManager(activity!!)
-        recycler_view_cart_items.adapter = AdapterCartItems(this, activity!!, ArrayList())
+        recycler_view_cart_items.adapter = AdapterRecyclerView(this, activity!!)
         recycler_view_cart_items
             .addItemDecoration(DividerItemDecoration(activity, RecyclerView.VERTICAL))
     }
@@ -36,9 +36,8 @@ class FragCart : GGFragment(), RecyclerViewActivityCallbacks {
     fun refresh() {
         products = App.db.getProducts()
         val orderSummary = App.db.getOrderSummary()
-        (recycler_view_cart_items.adapter as AdapterCartItems).products = products // TODO don't pass into Adapter
-        (recycler_view_cart_items.adapter as AdapterCartItems).notifyDataSetChanged()
-        if ((recycler_view_cart_items.adapter as AdapterCartItems).products.size==0) {
+        recycler_view_cart_items.adapter?.notifyDataSetChanged()
+        if (products.size==0) {
             text_view_cart_is_empty.visibility = View.VISIBLE
             text_view_price_total.visibility = View.INVISIBLE
             text_view_quantity_total.visibility = View.INVISIBLE
@@ -76,6 +75,10 @@ class FragCart : GGFragment(), RecyclerViewActivityCallbacks {
         view.text_view_number_plus_minus.text = products[i].quantity.toString()
         view.text_view_add.visibility=View.GONE
         view.image_view_product.easyPicasso(Endpoints.getImageEndpoint(products[i].image))
+    }
+
+    override fun getRecyclerDataSize():Int {
+        return App.db.getProducts().size
     }
 
 

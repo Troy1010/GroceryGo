@@ -20,4 +20,5 @@ interface ActivityHostCallbacks
 interface RecyclerViewActivityCallbacks
 {
     fun bindRecyclerItemView(view: View, i: Int)
+    fun getRecyclerDataSize() : Int
 }
