@@ -32,7 +32,6 @@ class FragCart : GGFragment(), CartRecyclerViewCallbacks {
 
     private fun setupAdapter() {
         layoutManager = GridLayoutManager(activity!!, 1)
-        logz("layoutManager.height:${layoutManager.height}")
         recycler_view_cart_items.layoutManager = layoutManager
         recycler_view_cart_items.adapter = AdapterCart(this, activity!!)
         recycler_view_cart_items

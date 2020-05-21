@@ -31,12 +31,10 @@ abstract class GGToolbarActivity : TMActivity(), ToolbarCallbacks {
         MenuItemCompat.setActionView(menu.findItem(R.id.menu_cart), R.layout.z_cart_icon)
         toolbarMenu = menu
         notifyBadge()
-        logz("GGToolbarActivity`onCreateOptionsMenu")
         return super.onCreateOptionsMenu(menu)
     }
 
     override fun onCreateView(name: String, context: Context, attrs: AttributeSet): View? {
-        logz("GGToolbarActivity`onCreateView")
         notifyBadge()
         return super.onCreateView(name, context, attrs)
     }

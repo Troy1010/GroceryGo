@@ -11,6 +11,7 @@ import com.example.grocerygo.R
 import com.example.grocerygo.adapters.AdapterRecyclerView
 import com.example.grocerygo.extras.Endpoints
 import com.example.grocerygo.extras.easyPicasso
+import com.example.grocerygo.extras.logz
 import com.example.grocerygo.inheritables.*
 import com.example.grocerygo.models.Category
 import com.example.grocerygo.models.ReceivedCategoriesObject
@@ -50,7 +51,7 @@ class FragSearchCategories : GGFragment(), RecyclerViewCallbacks {
                 setupRecyclerView()
             },
             Response.ErrorListener {
-                Log.d("TMLog", "Response.ErrorListener`it:$it")
+                logz("Response.ErrorListener`it:$it")
             })
         requestQueue.add(request)
     }
