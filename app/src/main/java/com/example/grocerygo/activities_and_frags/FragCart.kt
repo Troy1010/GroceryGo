@@ -1,12 +1,13 @@
 package com.example.grocerygo.activities_and_frags
 
-import android.graphics.Paint
+import android.graphics.Color
 import android.view.View
 import androidx.recyclerview.widget.DividerItemDecoration
+import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.grocerygo.R
-import com.example.grocerygo.adapters.AdapterRecyclerView
+import com.example.grocerygo.adapters.AdapterCart
 import com.example.grocerygo.extras.*
 import com.example.grocerygo.inheritables.*
 import com.example.grocerygo.models.Product
@@ -14,10 +15,11 @@ import kotlinx.android.synthetic.main.frag_cart.*
 import kotlinx.android.synthetic.main.includible_plus_minus.view.*
 import kotlinx.android.synthetic.main.item_cart_item.view.*
 
-class FragCart : GGFragment(), RecyclerViewCallbacks {
+class FragCart : GGFragment(), CartRecyclerViewCallbacks {
     override val layout = R.layout.frag_cart
-    lateinit var products:ArrayList<Product>
+    override var products = arrayListOf<Product>()
     override val title = "Cart"
+    lateinit var layoutManager: LinearLayoutManager
 
     override fun onStart() {
         super.onStart()
@@ -27,8 +29,10 @@ class FragCart : GGFragment(), RecyclerViewCallbacks {
     }
 
     private fun setupAdapter() {
-        recycler_view_cart_items.layoutManager = LinearLayoutManager(activity!!)
-        recycler_view_cart_items.adapter = AdapterRecyclerView(this, activity!!, R.layout.item_cart_item)
+        layoutManager = GridLayoutManager(activity!!, 1)
+        logz("layoutManager.height:${layoutManager.height}")
+        recycler_view_cart_items.layoutManager = layoutManager
+        recycler_view_cart_items.adapter = AdapterCart(this, activity!!)
         recycler_view_cart_items
             .addItemDecoration(DividerItemDecoration(activity, RecyclerView.VERTICAL))
     }
@@ -38,25 +42,25 @@ class FragCart : GGFragment(), RecyclerViewCallbacks {
         (activity as ToolbarCallbacks).notifyBadge()
         val orderSummary = App.db.getOrderSummary()
         recycler_view_cart_items.adapter?.notifyDataSetChanged()
-        if (products.size==0) {
-            text_view_cart_is_empty.visibility = View.VISIBLE
-            text_view_item_quantity.visibility = View.INVISIBLE
-            text_view_price_total.visibility = View.INVISIBLE
-            text_view_fake_price_total.visibility = View.INVISIBLE
-//            text_view_discount.visibility = View.INVISIBLE
-            text_view_shipping.visibility = View.INVISIBLE
-            text_view_est_total.visibility = View.INVISIBLE
-        } else {
-            text_view_coupon_discount.text = "- ${orderSummary.getCouponDiscount()}"
-            text_view_item_quantity.text = "${orderSummary.quantityTotal} Item(s)"
-            text_view_fake_price_total.text = "${orderSummary.fakePriceTotal}"
-            text_view_fake_price_total.paintFlags = Paint.STRIKE_THRU_TEXT_FLAG
-            text_view_price_total.text = "total: ${orderSummary.priceTotal}"
-            text_view_fake_discount.text = "- ${orderSummary.getFakeDiscount()}"
-            text_view_tax.text = "${orderSummary.getTax()}"
-            text_view_shipping.text = "${orderSummary.getDeliveryFee()}"
-            text_view_est_total.text = "${orderSummary.getGrandTotal()}"
-        }
+//        if (products.size==0) {
+//            text_view_cart_is_empty.visibility = View.VISIBLE
+//            text_view_item_quantity.visibility = View.INVISIBLE
+//            text_view_price_total.visibility = View.INVISIBLE
+//            text_view_fake_price_total.visibility = View.INVISIBLE
+////            text_view_discount.visibility = View.INVISIBLE
+//            text_view_shipping.visibility = View.INVISIBLE
+//            text_view_est_total.visibility = View.INVISIBLE
+//        } else {
+//            text_view_coupon_discount.text = "- ${orderSummary.getCouponDiscount()}"
+//            text_view_item_quantity.text = "${orderSummary.quantityTotal} Item(s)"
+//            text_view_fake_price_total.text = "${orderSummary.fakePriceTotal}"
+//            text_view_fake_price_total.paintFlags = Paint.STRIKE_THRU_TEXT_FLAG
+//            text_view_price_total.text = "total: ${orderSummary.priceTotal}"
+//            text_view_fake_discount.text = "- ${orderSummary.getFakeDiscount()}"
+//            text_view_tax.text = "${orderSummary.getTax()}"
+//            text_view_shipping.text = "${orderSummary.getDeliveryFee()}"
+//            text_view_est_total.text = "${orderSummary.getGrandTotal()}"
+//        }
 
     }
 
@@ -80,8 +84,14 @@ class FragCart : GGFragment(), RecyclerViewCallbacks {
         view.image_view_category.easyPicasso(Endpoints.getImageEndpoint(products[i].image))
     }
 
-    override fun getRecyclerDataSize():Int {
-        return App.db.getProducts().size
+    override fun bindLastRecyclerItemView(view: View, normalItemHeight: Int) {
+
+        logz("```layoutManager.height:${layoutManager.height}")
+        logz("```view.height:${view.height}")
+        view.layoutParams.height = max(400,layoutManager.height - normalItemHeight*products.size - 200)
+        logz("text_view_est_total_2.height:${text_view_est_total_2.height}")
+        logz("button_checkout.height:${button_checkout.height}")
+        logz("recycler_view_cart_items.height:${recycler_view_cart_items.height}")
     }
 
 

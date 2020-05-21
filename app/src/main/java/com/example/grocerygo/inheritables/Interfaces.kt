@@ -22,3 +22,10 @@ interface RecyclerViewCallbacks
     fun bindRecyclerItemView(view: View, i: Int)
     fun getRecyclerDataSize() : Int
 }
+
+interface CartRecyclerViewCallbacks
+{
+    var products: ArrayList<Product>
+    fun bindRecyclerItemView(view: View, i: Int)
+    fun bindLastRecyclerItemView(view: View, normalItemHeight: Int)
+}
