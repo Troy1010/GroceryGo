@@ -81,7 +81,7 @@ class FragSearchProducts : GGFragment(), RecyclerViewCallbacks {
         view.text_view_price.text = "$"+products[i].price.toString()
         view.text_view_fake_price.text = "$"+products[i].mrp.toString()
         view.text_view_fake_price.paintFlags = Paint.STRIKE_THRU_TEXT_FLAG
-        view.image_view_category.easyPicasso(Endpoints.getImageEndpoint(products[i].image))
+        view.image_view_product.easyPicasso(Endpoints.getImageEndpoint(products[i].image))
         //
         view.setOnClickListener {
             var intent = Intent(context, ActivityDetails::class.java)

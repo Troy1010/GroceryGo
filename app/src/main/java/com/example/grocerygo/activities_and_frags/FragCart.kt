@@ -1,7 +1,6 @@
 package com.example.grocerygo.activities_and_frags
 
 import android.content.Intent
-import android.graphics.Color
 import android.view.View
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.GridLayoutManager
@@ -85,7 +84,7 @@ class FragCart : GGFragment(), CartRecyclerViewCallbacks {
         }
         view.text_view_number_plus_minus.text = products[i].quantity.toString()
         view.text_view_add.visibility=View.GONE
-        view.image_view_category.easyPicasso(Endpoints.getImageEndpoint(products[i].image))
+        view.image_view_product.easyPicasso(Endpoints.getImageEndpoint(products[i].image))
     }
 
     override fun bindLastRecyclerItemView(view: View, normalItemHeight: Int) {
