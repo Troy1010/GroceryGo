@@ -15,7 +15,7 @@ class ActivityPaymentInfo: GGToolbarActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         button_payment_info_send.setOnClickListener {
-            startActivity(Intent(this, ActivityCheckout::class.java))
+            startActivity(Intent(this, ActivityOrderReview::class.java))
         }
         frame_address.setOnClickListener {
             startActivity(Intent(this, ActivityAddress::class.java))

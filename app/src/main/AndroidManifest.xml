@@ -24,7 +24,7 @@
         </activity>
         <activity android:name=".activities_and_frags.ActivityDetails" />
         <activity android:name=".activities_and_frags.ActivityPaymentInfo" />
-        <activity android:name=".activities_and_frags.ActivityCheckout" />
+        <activity android:name=".activities_and_frags.ActivityOrderReview" />
         <activity android:name=".activities_and_frags.ActivityThankYou" />
         <activity android:name=".activities_and_frags.ActivityAddress" />
         <activity android:name=".activities_and_frags.ActivityPayment" />
