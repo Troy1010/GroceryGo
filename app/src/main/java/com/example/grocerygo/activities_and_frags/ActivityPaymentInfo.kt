@@ -17,5 +17,11 @@ class ActivityPaymentInfo: GGToolbarActivity() {
         button_payment_info_send.setOnClickListener {
             startActivity(Intent(this, ActivityCheckout::class.java))
         }
+        frame_address.setOnClickListener {
+            startActivity(Intent(this, ActivityAddress::class.java))
+        }
+        frame_payment.setOnClickListener {
+            startActivity(Intent(this, ActivityPayment::class.java))
+        }
     }
 }
