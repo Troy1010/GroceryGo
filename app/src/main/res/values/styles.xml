@@ -11,6 +11,7 @@
         <item name ="android:colorBackground">@color/colorBackgroundDefault</item>
     </style>
     <style name="MyButtonStyle" parent="Theme.AppCompat.Light.DarkActionBar">
+        <item name="android:gravity">center</item>
         <item name="android:background">@color/colorAccent</item>
         <item name="android:paddingLeft">16dp</item>
         <item name="android:paddingRight">16dp</item>
