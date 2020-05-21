@@ -24,12 +24,12 @@ abstract class GGToolbarActivity : TMActivity(), ToolbarCallbacks {
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
     }
 
-    var mMenu: Menu? = null
+    var toolbarMenu: Menu? = null
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         menuInflater.inflate(R.menu.three_dot_menu, menu)
         MenuItemCompat.setActionView(menu.findItem(R.id.menu_cart), R.layout.z_cart_icon)
-        mMenu = menu
+        toolbarMenu = menu
         notifyBadge()
         logz("GGToolbarActivity`onCreateOptionsMenu")
         return super.onCreateOptionsMenu(menu)
@@ -37,20 +37,21 @@ abstract class GGToolbarActivity : TMActivity(), ToolbarCallbacks {
 
     override fun onCreateView(name: String, context: Context, attrs: AttributeSet): View? {
         logz("GGToolbarActivity`onCreateView")
-        if (mMenu!=null) {
-            notifyBadge()
-        }
+        notifyBadge()
         return super.onCreateView(name, context, attrs)
     }
 
     override fun notifyBadge() {
-        val badgeTextView = MenuItemCompat.getActionView(mMenu?.findItem(R.id.menu_cart)).text_view_badge
-        val quantity = App.db.getOrderSummary().quantityTotal
-        if (quantity == 0) {
-            badgeTextView.visibility = View.GONE
-        } else {
-            badgeTextView.visibility = View.VISIBLE
-            badgeTextView.text = quantity.toString()
+        if (toolbarMenu != null) {
+            val badgeTextView =
+                MenuItemCompat.getActionView(toolbarMenu?.findItem(R.id.menu_cart)).text_view_badge
+            val quantity = App.db.getOrderSummary().quantityTotal
+            if (quantity == 0) {
+                badgeTextView.visibility = View.GONE
+            } else {
+                badgeTextView.visibility = View.VISIBLE
+                badgeTextView.text = quantity.toString()
+            }
         }
     }
 
