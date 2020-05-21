@@ -15,7 +15,9 @@ class ActivityThankYou: GGToolbarActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         button_thanks_back_to_shopping_send.setOnClickListener {
-            startActivity(Intent(this, ActivityHost::class.java))
+            val intent = Intent(this, ActivityHost::class.java)
+            intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+            startActivity(intent)
         }
     }
 }

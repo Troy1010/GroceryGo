@@ -27,15 +27,12 @@ class ActivityOrderReview : GGToolbarActivity(), RecyclerViewCallbacks {
         get() = "Order Review"
     override val layout: Int
         get() = R.layout.activity_c_order_review
-    lateinit var products:ArrayList<Product>
+    lateinit var products: ArrayList<Product>
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         button_place_order.setOnClickListener {
-            val intent = Intent(this, ActivityThankYou::class.java)
-            intent.flags = FLAG_ACTIVITY_CLEAR_TASK // TODO non-functional
-            intent.flags = FLAG_ACTIVITY_NEW_TASK
-            startActivity(intent)
+            startActivity(Intent(this, ActivityThankYou::class.java))
         }
         refresh()
         setupRecyclerView()
@@ -48,7 +45,8 @@ class ActivityOrderReview : GGToolbarActivity(), RecyclerViewCallbacks {
 
     private fun setupRecyclerView() {
         recycler_view_order_review.layoutManager = LinearLayoutManager(this)
-        recycler_view_order_review.adapter = AdapterRecyclerView(this, this, R.layout.item_order_review)
+        recycler_view_order_review.adapter =
+            AdapterRecyclerView(this, this, R.layout.item_order_review)
         recycler_view_order_review
             .addItemDecoration(DividerItemDecoration(this, RecyclerView.VERTICAL))
     }
