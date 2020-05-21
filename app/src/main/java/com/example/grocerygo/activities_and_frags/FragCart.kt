@@ -14,7 +14,7 @@ import kotlinx.android.synthetic.main.frag_cart.*
 import kotlinx.android.synthetic.main.includible_plus_minus.view.*
 import kotlinx.android.synthetic.main.item_cart_item.view.*
 
-class FragCart : GGFragment(), RecyclerViewActivityCallbacks {
+class FragCart : GGFragment(), RecyclerViewCallbacks {
     override val layout = R.layout.frag_cart
     lateinit var products:ArrayList<Product>
     override val title = "Cart"

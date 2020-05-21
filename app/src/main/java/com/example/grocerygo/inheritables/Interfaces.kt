@@ -17,7 +17,7 @@ interface ActivityHostCallbacks
     fun goToProfile()
 }
 
-interface RecyclerViewActivityCallbacks
+interface RecyclerViewCallbacks
 {
     fun bindRecyclerItemView(view: View, i: Int)
     fun getRecyclerDataSize() : Int

@@ -5,11 +5,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.example.grocerygo.R
-import com.example.grocerygo.inheritables.RecyclerViewActivityCallbacks
+import com.example.grocerygo.inheritables.RecyclerViewCallbacks
 
 class AdapterRecyclerView(
-    var binder: RecyclerViewActivityCallbacks,
+    var binder: RecyclerViewCallbacks,
     var context: Context,
     val item_layout: Int
 ): RecyclerView.Adapter<AdapterRecyclerView.ViewHolder>() {

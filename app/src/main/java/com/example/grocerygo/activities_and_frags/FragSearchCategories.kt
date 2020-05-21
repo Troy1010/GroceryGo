@@ -18,7 +18,7 @@ import com.google.gson.GsonBuilder
 import kotlinx.android.synthetic.main.frag_search_categories.*
 import kotlinx.android.synthetic.main.item_category.view.*
 
-class FragSearchCategories : GGFragment(), RecyclerViewActivityCallbacks {
+class FragSearchCategories : GGFragment(), RecyclerViewCallbacks {
     override val title = "Search"
     override val layout: Int
         get() = R.layout.frag_search_categories

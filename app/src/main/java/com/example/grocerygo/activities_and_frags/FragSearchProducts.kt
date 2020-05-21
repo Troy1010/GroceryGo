@@ -3,9 +3,7 @@ package com.example.grocerygo.activities_and_frags
 import android.content.Intent
 import android.graphics.Paint
 import android.os.Bundle
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -18,8 +16,7 @@ import com.example.grocerygo.adapters.AdapterRecyclerView
 import com.example.grocerygo.extras.*
 import com.example.grocerygo.inheritables.GGFragment
 import com.example.grocerygo.inheritables.GGToolbarActivityCallbacks
-import com.example.grocerygo.inheritables.RecyclerViewActivityCallbacks
-import com.example.grocerygo.inheritables.TMFragment
+import com.example.grocerygo.inheritables.RecyclerViewCallbacks
 import com.example.grocerygo.models.Product
 import com.example.grocerygo.models.ReceivedProductsObject
 import com.google.gson.GsonBuilder
@@ -27,7 +24,7 @@ import kotlinx.android.synthetic.main.frag_search_products.recycler_view_product
 import kotlinx.android.synthetic.main.includible_plus_minus.view.*
 import kotlinx.android.synthetic.main.item_product.view.*
 
-class FragSearchProducts : GGFragment(), RecyclerViewActivityCallbacks {
+class FragSearchProducts : GGFragment(), RecyclerViewCallbacks {
     override val title = "Search"
     val subCatID by lazy { arguments?.getInt(KEY_SUB_CAT_ID)?:1 }
     lateinit var products:ArrayList<Product>
