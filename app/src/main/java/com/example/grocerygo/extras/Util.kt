@@ -35,5 +35,13 @@ fun max (num1: Int, num2: Int):Int {
     } else {
         num2
     }
+}
 
+fun round(value:Double):Int {
+    // TODO test if this works..
+    if (value % 1 > 0.5) {
+        return value.toInt() + 1
+    } else {
+        return value.toInt()
+    }
 }

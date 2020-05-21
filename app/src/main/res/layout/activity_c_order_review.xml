@@ -24,17 +24,28 @@
             android:id="@+id/recycler_view_order_review"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            app:layout_constraintBottom_toTopOf="@id/text_view_grand_total"
+            app:layout_constraintBottom_toTopOf="@id/text_view_grand_total_title"
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:id="@+id/text_view_grand_total"
-            android:layout_width="match_parent"
+            android:id="@+id/text_view_grand_total_title"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:gravity="center"
-            android:text="(GRAND_TOTAL)"
+            android:text="Grand Total"
+            android:textColor="@color/TextVsHeads"
             android:textSize="22sp"
-            app:layout_constraintBottom_toTopOf="@id/button_place_order" />
+            app:layout_constraintBottom_toTopOf="@id/button_place_order"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <TextView
+            android:id="@+id/text_view_grand_total_value"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="(GRAND_TOTAL)"
+            android:textColor="@color/TextVsHeads"
+            android:textSize="22sp"
+            app:layout_constraintBottom_toTopOf="@id/button_place_order"
+            app:layout_constraintEnd_toEndOf="parent" />
 
         <Button
             android:id="@+id/button_place_order"
