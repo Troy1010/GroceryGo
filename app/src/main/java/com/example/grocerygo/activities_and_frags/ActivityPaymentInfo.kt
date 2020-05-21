@@ -26,6 +26,7 @@ class ActivityPaymentInfo: GGToolbarActivity() {
         }
     }
 
+    // Setup Toolbar
     override fun onPrepareOptionsMenu(menu: Menu): Boolean {
         menu.findItem(R.id.menu_cart).isVisible = false
         return super.onPrepareOptionsMenu(menu)

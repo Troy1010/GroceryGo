@@ -2,6 +2,7 @@ package com.example.grocerygo.activities_and_frags
 
 import android.content.Intent
 import android.os.Bundle
+import android.view.Menu
 import com.example.grocerygo.R
 import com.example.grocerygo.inheritables.GGToolbarActivity
 import kotlinx.android.synthetic.main.activity_c_thanks.*

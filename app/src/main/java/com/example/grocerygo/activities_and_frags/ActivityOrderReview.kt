@@ -2,6 +2,7 @@ package com.example.grocerygo.activities_and_frags
 
 import android.content.Intent
 import android.os.Bundle
+import android.view.Menu
 import android.view.View
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -29,13 +30,23 @@ class ActivityOrderReview : GGToolbarActivity(), RecyclerViewCallbacks {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        setupClickListeners()
+        refresh()
+        setupRecyclerView()
+    }
+
+    private fun setupClickListeners() {
         button_place_order.setOnClickListener {
             val intent = Intent(this, ActivityThankYou::class.java)
             intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
             startActivity(intent)
         }
-        refresh()
-        setupRecyclerView()
+    }
+
+    // Setup Toolbar
+    override fun onPrepareOptionsMenu(menu: Menu): Boolean {
+        menu.findItem(R.id.menu_cart).isVisible = false
+        return super.onPrepareOptionsMenu(menu)
     }
 
     private fun refresh() {

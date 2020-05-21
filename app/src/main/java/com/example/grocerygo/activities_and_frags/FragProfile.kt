@@ -27,6 +27,7 @@ class FragProfile : GGFragment(), RecyclerViewCallbacks {
     override fun onStart() {
         super.onStart()
         (activity as HostCallbacks).setNavigationEmpty(false)
+        (activity as GGToolbarActivity).toolbarMenu?.findItem(R.id.menu_cart)?.isVisible = true
         setupListeners()
         setupRecyclerView()
     }
