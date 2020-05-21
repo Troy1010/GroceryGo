@@ -1,5 +1,6 @@
 package com.example.grocerygo.activities_and_frags
 
+import android.content.Intent
 import android.graphics.Color
 import android.view.View
 import androidx.recyclerview.widget.DividerItemDecoration
@@ -42,6 +43,9 @@ class FragCart : GGFragment(), CartRecyclerViewCallbacks {
         (activity as ToolbarCallbacks).notifyBadge()
         val orderSummary = App.db.getOrderSummary()
         recycler_view_cart_items.adapter?.notifyDataSetChanged()
+        button_checkout.setOnClickListener {
+            startActivity(Intent(activity!!, ActivityPaymentInfo::class.java))
+        }
 //        if (products.size==0) {
 //            text_view_cart_is_empty.visibility = View.VISIBLE
 //            text_view_item_quantity.visibility = View.INVISIBLE
