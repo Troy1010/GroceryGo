@@ -1,8 +1,6 @@
 package com.example.grocerygo.activities_and_frags
 
 import android.content.Intent
-import android.content.Intent.FLAG_ACTIVITY_CLEAR_TASK
-import android.content.Intent.FLAG_ACTIVITY_NEW_TASK
 import android.os.Bundle
 import android.view.View
 import androidx.recyclerview.widget.DividerItemDecoration
@@ -32,7 +30,9 @@ class ActivityOrderReview : GGToolbarActivity(), RecyclerViewCallbacks {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         button_place_order.setOnClickListener {
-            startActivity(Intent(this, ActivityThankYou::class.java))
+            val intent = Intent(this, ActivityThankYou::class.java)
+            intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+            startActivity(intent)
         }
         refresh()
         setupRecyclerView()

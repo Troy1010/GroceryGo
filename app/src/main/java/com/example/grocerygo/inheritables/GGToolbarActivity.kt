@@ -58,7 +58,9 @@ abstract class GGToolbarActivity : TMActivity(), ToolbarCallbacks {
         var returning = super.onOptionsItemSelected(item)
         when (item.itemId) {
             android.R.id.home -> {
-                if ((this.supportFragmentManager.backStackEntryCount > 0) or (this !is ActivityHost)) { // TODO probably a more reliable way to check..
+                if (this is ActivityThankYou) { // TODO this logic is not the best..
+                    startActivity(Intent(this, ActivityHost::class.java))
+                } else if ((this.supportFragmentManager.backStackEntryCount > 0) or (this !is ActivityHost)) { // TODO probably a more reliable way to check..
                     this.onBackPressed()
                 } else {
                     bottom_navigation_bar.selectedItemId =
