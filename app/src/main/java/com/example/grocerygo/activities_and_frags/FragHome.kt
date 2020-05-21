@@ -21,10 +21,10 @@ class FragHome : GGFragment() {
         (activity as ToolbarCallbacks).setToolbarAttributes(title, false)
         (activity as HostCallbacks).setNavigationEmpty(false)
         setupImageSlider()
-        button_logout.setOnClickListener {
-            App.sm.logout()
-            (activity as HostCallbacks).goToProfile()
-        }
+//        button_logout.setOnClickListener {
+//            App.sm.logout()
+//            (activity as HostCallbacks).goToProfile()
+//        }
 //        Picasso
 //                .get()
 //                .load(Endpoints.HOME_IMAGE)
