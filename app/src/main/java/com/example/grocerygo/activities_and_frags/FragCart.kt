@@ -1,6 +1,7 @@
 package com.example.grocerygo.activities_and_frags
 
 import android.content.Intent
+import android.view.Menu
 import android.view.View
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.GridLayoutManager
@@ -66,6 +67,12 @@ class FragCart : GGFragment(), CartRecyclerViewCallbacks {
 //        }
 
     }
+
+//
+//    override fun onPrepareOptionsMenu(menu: Menu) {
+//        menu.findItem(R.id.menu_cart).isVisible = false
+//        return super.onPrepareOptionsMenu(menu)
+//    }
 
     override fun bindRecyclerItemView(view: View, i: Int) {
         view.text_view_name.text = products[i].productName
