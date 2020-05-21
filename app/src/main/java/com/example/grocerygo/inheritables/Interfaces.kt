@@ -4,7 +4,7 @@ import android.view.View
 import com.example.grocerygo.models.Product
 
 
-interface GGToolbarActivityCallbacks
+interface ToolbarCallbacks
 {
     fun setToolbarAttributes(title: String, hasBackArrow: Boolean? = null)
     fun notifyBadge()

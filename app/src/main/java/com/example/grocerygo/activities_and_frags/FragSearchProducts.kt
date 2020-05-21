@@ -15,7 +15,7 @@ import com.example.grocerygo.R
 import com.example.grocerygo.adapters.AdapterRecyclerView
 import com.example.grocerygo.extras.*
 import com.example.grocerygo.inheritables.GGFragment
-import com.example.grocerygo.inheritables.GGToolbarActivityCallbacks
+import com.example.grocerygo.inheritables.ToolbarCallbacks
 import com.example.grocerygo.inheritables.RecyclerViewCallbacks
 import com.example.grocerygo.models.Product
 import com.example.grocerygo.models.ReceivedProductsObject
@@ -94,12 +94,12 @@ class FragSearchProducts : GGFragment(), RecyclerViewCallbacks {
             view.text_view_add.visibility= View.GONE
             App.db.addProduct(products[i])
             recycler_view_products.adapter?.notifyDataSetChanged()
-            (activity as GGToolbarActivityCallbacks).notifyBadge()
+            (activity as ToolbarCallbacks).notifyBadge()
         }
         view.button_plus.setOnClickListener {
             App.db.addProduct(products[i])
             recycler_view_products.adapter?.notifyDataSetChanged()
-            (activity as GGToolbarActivityCallbacks).notifyBadge()
+            (activity as ToolbarCallbacks).notifyBadge()
         }
         view.button_minus.setOnClickListener {
             if (products[i].quantity == 1) {
@@ -110,7 +110,7 @@ class FragSearchProducts : GGFragment(), RecyclerViewCallbacks {
                 App.db.minusProduct(products[i])
             }
             recycler_view_products.adapter?.notifyDataSetChanged()
-            (activity as GGToolbarActivityCallbacks).notifyBadge()
+            (activity as ToolbarCallbacks).notifyBadge()
         }
         view.text_view_number_plus_minus.text = products[i].quantity.toString()
         if (products[i].quantity > 0) {

@@ -7,8 +7,6 @@ import android.util.AttributeSet
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
-import android.widget.ImageView
-import android.widget.TextView
 import androidx.core.view.MenuItemCompat
 import com.example.grocerygo.R
 import com.example.grocerygo.activities_and_frags.*
@@ -17,7 +15,7 @@ import kotlinx.android.synthetic.main.activity_host.*
 import kotlinx.android.synthetic.main.app_toolbar.*
 import kotlinx.android.synthetic.main.z_cart_icon.view.*
 
-abstract class GGToolbarActivity : TMActivity(), GGToolbarActivityCallbacks {
+abstract class GGToolbarActivity : TMActivity(), ToolbarCallbacks {
     abstract val title: String
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -48,7 +46,6 @@ abstract class GGToolbarActivity : TMActivity(), GGToolbarActivityCallbacks {
     override fun notifyBadge() {
         val badgeTextView = MenuItemCompat.getActionView(mMenu?.findItem(R.id.menu_cart)).text_view_badge
         val quantity = App.db.getOrderSummary().quantityTotal
-        logz("Setting badge # to:$quantity")
         if (quantity == 0) {
             badgeTextView.visibility = View.GONE
         } else {

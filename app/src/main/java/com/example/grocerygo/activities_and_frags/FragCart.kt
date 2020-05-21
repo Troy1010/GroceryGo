@@ -35,7 +35,7 @@ class FragCart : GGFragment(), RecyclerViewCallbacks {
 
     fun refresh() {
         products = App.db.getProducts()
-        (activity as GGToolbarActivityCallbacks).notifyBadge()
+        (activity as ToolbarCallbacks).notifyBadge()
         val orderSummary = App.db.getOrderSummary()
         recycler_view_cart_items.adapter?.notifyDataSetChanged()
         if (products.size==0) {
