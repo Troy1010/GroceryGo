@@ -12,7 +12,7 @@ object Endpoints {
     private const val URL_END_REGISTER = "auth/register"
 
     // derivative
-    val vCategoryEndpoint: String
+    val categories: String
         get() = Config.Base_URL + URL_SUB_DIR_CATEGORY
     val login: String
         get() = Config.Base_URL + URL_END_LOGIN

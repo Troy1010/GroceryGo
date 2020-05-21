@@ -1,6 +1,5 @@
 package com.example.grocerygo.activities_and_frags
 
-import android.util.Log
 import android.view.View
 import androidx.recyclerview.widget.GridLayoutManager
 import com.android.volley.Request
@@ -43,7 +42,7 @@ class FragSearchCategories : GGFragment(), RecyclerViewCallbacks {
     private fun requestCategories() {
         var requestQueue = Volley.newRequestQueue(activity!!)
         var request = StringRequest(
-            Request.Method.GET, Endpoints.vCategoryEndpoint,
+            Request.Method.GET, Endpoints.categories,
             Response.Listener { response ->
                 var receivedCategoriesObject = GsonBuilder().create()
                     .fromJson(response, ReceivedCategoriesObject::class.java)
