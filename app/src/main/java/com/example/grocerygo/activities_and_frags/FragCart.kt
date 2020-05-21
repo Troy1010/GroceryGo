@@ -21,7 +21,7 @@ class FragCart : GGFragment(), RecyclerViewCallbacks {
 
     override fun onStart() {
         super.onStart()
-        (activity as ActivityHostCallbacks).setNavigationEmpty(true)
+        (activity as HostCallbacks).setNavigationEmpty(true)
         setupAdapter()
         refresh()
     }

@@ -30,7 +30,7 @@ class FragSearchCategories : GGFragment(), RecyclerViewCallbacks {
 
     override fun onStart() {
         super.onStart()
-        (activity as ActivityHostCallbacks).setNavigationEmpty(false)
+        (activity as HostCallbacks).setNavigationEmpty(false)
     }
 
     private fun setupRecyclerView() {

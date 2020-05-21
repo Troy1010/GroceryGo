@@ -26,7 +26,7 @@ class FragProfile : GGFragment(), RecyclerViewCallbacks {
 
     override fun onStart() {
         super.onStart()
-        (activity as ActivityHostCallbacks).setNavigationEmpty(false)
+        (activity as HostCallbacks).setNavigationEmpty(false)
         setupListeners()
         setupRecyclerView()
     }
@@ -41,7 +41,7 @@ class FragProfile : GGFragment(), RecyclerViewCallbacks {
     private fun setupListeners() {
         button_logout.setOnClickListener {
             App.sm.logout()
-            (activity as ActivityHostCallbacks).goToProfile()
+            (activity as HostCallbacks).goToProfile()
         }
         fab.setOnClickListener {
             easySnackbar(coordinator_layout_profile, "Saved")

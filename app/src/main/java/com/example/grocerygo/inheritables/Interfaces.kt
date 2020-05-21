@@ -10,7 +10,7 @@ interface GGToolbarActivityCallbacks
     fun notifyBadge()
 }
 
-interface ActivityHostCallbacks
+interface HostCallbacks
 {
     fun setNavigationEmpty(shouldNavigationBarBeEmpty:Boolean)
     fun goToHome()

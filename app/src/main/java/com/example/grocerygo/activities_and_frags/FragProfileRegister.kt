@@ -1,19 +1,15 @@
 package com.example.grocerygo.activities_and_frags
 
-import android.os.Bundle
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
 import com.example.grocerygo.R
 import com.example.grocerygo.extras.App
 import com.example.grocerygo.extras.hasDigit
 import com.example.grocerygo.extras.isAllDigits
-import com.example.grocerygo.inheritables.ActivityHostCallbacks
+import com.example.grocerygo.inheritables.HostCallbacks
 import com.example.grocerygo.inheritables.GGFragment
 import com.example.grocerygo.models.User
 import com.google.android.material.textfield.TextInputEditText
 import com.google.android.material.textfield.TextInputLayout
-import kotlinx.android.synthetic.main.activity_host.*
 import kotlinx.android.synthetic.main.frag_register.*
 
 
@@ -25,7 +21,7 @@ class FragProfileRegister : GGFragment() {
 
     override fun onStart() {
         super.onStart()
-        (activity as ActivityHostCallbacks).setNavigationEmpty(false)
+        (activity as HostCallbacks).setNavigationEmpty(false)
         text_input_email.setOnFocusChangeListener(MyOnFocusChangeListener(text_input_email,text_input_layout_email,RegFieldEnum.EMAIL))
         text_input_name.setOnFocusChangeListener(MyOnFocusChangeListener(text_input_name,text_input_layout_name,RegFieldEnum.NAME))
         text_input_password.setOnFocusChangeListener(MyOnFocusChangeListener(text_input_password,text_input_layout_password,RegFieldEnum.PASSWORD))
@@ -47,7 +43,7 @@ class FragProfileRegister : GGFragment() {
                     errorHandler.handle(FormValidator.mobile(mobile), text_input_layout_mobile)
                     if (!errorHandler.foundError) {
                         App.sm.user = User(name, email, password, mobile)
-                        (activity as ActivityHostCallbacks).goToHome()
+                        (activity as HostCallbacks).goToHome()
                     }
                 }
             }

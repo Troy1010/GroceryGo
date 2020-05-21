@@ -1,17 +1,11 @@
 package com.example.grocerygo.activities_and_frags
 
-import android.content.Intent
-import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
 import com.example.grocerygo.R
 import com.example.grocerygo.extras.App
 import com.example.grocerygo.extras.easyToast
-import com.example.grocerygo.inheritables.ActivityHostCallbacks
+import com.example.grocerygo.inheritables.HostCallbacks
 import com.example.grocerygo.inheritables.GGFragment
 import com.example.grocerygo.models.LoginObject
-import kotlinx.android.synthetic.main.activity_host.*
 import kotlinx.android.synthetic.main.frag_login.*
 
 
@@ -23,7 +17,7 @@ class FragProfileLogin : GGFragment() {
 
     override fun onStart() {
         super.onStart()
-        (activity as ActivityHostCallbacks).setNavigationEmpty(false)
+        (activity as HostCallbacks).setNavigationEmpty(false)
         setupClickListeners()
     }
 
@@ -38,7 +32,7 @@ class FragProfileLogin : GGFragment() {
             if (!App.sm.attemptLogin(user)) {
                 this.easyToast("LOGIN FAILED")
             } else {
-                (activity as ActivityHostCallbacks).goToHome()
+                (activity as HostCallbacks).goToHome()
             }
         }
     }
