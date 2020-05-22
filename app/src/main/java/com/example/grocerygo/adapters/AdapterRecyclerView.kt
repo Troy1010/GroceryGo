@@ -5,10 +5,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.example.grocerygo.inheritables.RecyclerViewCallbacks
 
 class AdapterRecyclerView(
-    var binder: RecyclerViewCallbacks,
+    var binder: Callbacks,
     var context: Context,
     val item_layout: Int
 ): RecyclerView.Adapter<AdapterRecyclerView.ViewHolder>() {
@@ -25,6 +24,12 @@ class AdapterRecyclerView(
 
     override fun onBindViewHolder(holder: AdapterRecyclerView.ViewHolder, position: Int) {
         binder.bindRecyclerItemView(holder.itemView, position)
+    }
+
+    interface Callbacks
+    {
+        fun bindRecyclerItemView(view: View, i: Int)
+        fun getRecyclerDataSize() : Int
     }
 
 }

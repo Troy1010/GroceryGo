@@ -15,13 +15,12 @@ import com.example.grocerygo.extras.DisplayMoney
 import com.example.grocerygo.extras.Endpoints
 import com.example.grocerygo.extras.easyPicasso
 import com.example.grocerygo.inheritables.GGToolbarActivity
-import com.example.grocerygo.inheritables.RecyclerViewCallbacks
 import com.example.grocerygo.models.Product
 import kotlinx.android.synthetic.main.activity_c_order_review.*
 import kotlinx.android.synthetic.main.frag_cart.*
 import kotlinx.android.synthetic.main.item_order_review.view.*
 
-class ActivityOrderReview : GGToolbarActivity(), RecyclerViewCallbacks {
+class ActivityOrderReview : GGToolbarActivity(), AdapterRecyclerView.Callbacks {
     override val title: String
         get() = "Order Review"
     override val layout: Int

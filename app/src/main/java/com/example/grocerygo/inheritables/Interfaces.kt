@@ -17,12 +17,6 @@ interface HostCallbacks
     fun goToProfile()
 }
 
-interface RecyclerViewCallbacks
-{
-    fun bindRecyclerItemView(view: View, i: Int)
-    fun getRecyclerDataSize() : Int
-}
-
 interface CartRecyclerViewCallbacks
 {
     var products: ArrayList<Product>

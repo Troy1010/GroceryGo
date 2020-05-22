@@ -13,7 +13,7 @@ import com.example.grocerygo.models.ProfileItem
 import kotlinx.android.synthetic.main.frag_profile.*
 import kotlinx.android.synthetic.main.item_profile.view.*
 
-class FragProfile : GGFragment(), RecyclerViewCallbacks {
+class FragProfile : GGFragment(), AdapterRecyclerView.Callbacks {
     override val title = "Profile"
     override val layout: Int
         get() = R.layout.frag_profile
