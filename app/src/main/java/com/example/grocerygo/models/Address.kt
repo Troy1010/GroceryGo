@@ -13,4 +13,7 @@ data class Address(
     val streetName: String,
     val type: String,
     val userId: String
-)
+) {
+    var displayableStreetAddress = ""
+        get() = "$houseNo $streetName"
+}

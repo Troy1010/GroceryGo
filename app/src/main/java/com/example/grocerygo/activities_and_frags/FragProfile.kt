@@ -16,18 +16,24 @@ import kotlinx.android.synthetic.main.item_profile.view.*
 class FragProfile : TMFragment(), AdapterRecyclerView.Callbacks {
     override val layout: Int
         get() = R.layout.frag_profile
-    val profileItems = arrayListOf(
-        ProfileItem("Name", App.sm.user.name ?: ""),
-        ProfileItem("Email", App.sm.user.email ?: ""),
-        ProfileItem("Password", "*****"),
-        ProfileItem("Mobile", App.sm.user.mobile ?: "")
-    )
+    var profileItems = ArrayList<ProfileItem>()
 
     override fun onStart() {
         super.onStart()
+        refresh()
         setupParent()
         setupListeners()
         setupRecyclerView()
+    }
+
+    fun refresh() {
+        profileItems = arrayListOf(
+            ProfileItem("Name", App.sm.user.name ?: ""),
+            ProfileItem("Email", App.sm.user.email ?: ""),
+            ProfileItem("Password", "*****"),
+            ProfileItem("Mobile", App.sm.user.mobile ?: ""),
+            ProfileItem("Address", App.sm.user.primaryAddress?.displayableStreetAddress ?: "<NO ADDRESS>")
+        )
     }
 
     private fun setupParent() {
