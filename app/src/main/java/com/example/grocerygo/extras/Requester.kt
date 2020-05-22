@@ -12,6 +12,8 @@ import com.google.gson.GsonBuilder
 import org.json.JSONObject
 
 object Requester {
+    val requestQueue = Volley.newRequestQueue(App.instance)
+
 
     fun requestAddresses(listener: Response.Listener<JSONObject>) {
         var userID = App.sm.user.id
@@ -21,7 +23,6 @@ object Requester {
         } else {
             userID = userID!!
         }
-        val requestQueue = Volley.newRequestQueue(App.instance) // TODO make a global
         val params = HashMap<String, String>()
         // TODO probably don't need params..
         val jsonObject = JSONObject(params as Map<*, *>)
@@ -37,7 +38,6 @@ object Requester {
 
     fun requestDeleteAddress(addressID:String, listener: Response.Listener<JSONObject>) {
         var addressID = addressID
-        val requestQueue = Volley.newRequestQueue(App.instance) // TODO make a global
         val params = HashMap<String, String>()
         // TODO probably don't need params..
         val jsonObject = JSONObject(params as Map<*, *>)
@@ -53,7 +53,6 @@ object Requester {
 
 
     fun requestLogin(user: User, listener: Response.Listener<JSONObject>) {
-        val requestQueue = Volley.newRequestQueue(App.instance) // TODO make a global
         val params = HashMap<String, String>()
         params["email"] = user.email!!
         params["password"] = user.password!!
