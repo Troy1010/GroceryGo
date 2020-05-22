@@ -93,13 +93,7 @@ class FragCart : TMFragment(), CustomAdapterCart.Callbacks {
     }
 
     override fun bindLastRecyclerItemView(view: View, normalItemHeight: Int) {
-
-        logz("```layoutManager.height:${layoutManager.height}")
-        logz("```view.height:${view.height}")
         view.layoutParams.height = max(400,layoutManager.height - normalItemHeight*products.size - 200)
-        logz("text_view_est_total_2.height:${text_view_est_total_2.height}")
-        logz("button_checkout.height:${button_checkout.height}")
-        logz("recycler_view_cart_items.height:${recycler_view_cart_items.height}")
     }
 
 
