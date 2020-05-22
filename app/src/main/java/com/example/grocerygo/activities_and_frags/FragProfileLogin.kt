@@ -7,14 +7,11 @@ import com.android.volley.toolbox.Volley
 import com.example.grocerygo.R
 import com.example.grocerygo.extras.App
 import com.example.grocerygo.extras.Endpoints
-import com.example.grocerygo.extras.easyToast
 import com.example.grocerygo.extras.logz
 import com.example.grocerygo.inheritables.HostCallbacks
 import com.example.grocerygo.inheritables.TMFragment
 import com.example.grocerygo.inheritables.ToolbarCallbacks
-import com.example.grocerygo.models.LoginObject
 import com.example.grocerygo.models.ReceivedLoginObject
-import com.example.grocerygo.models.ReceivedRegistrationObject
 import com.example.grocerygo.models.User
 import com.google.gson.GsonBuilder
 import kotlinx.android.synthetic.main.frag_login.*
@@ -44,14 +41,7 @@ class FragProfileLogin : TMFragment() {
                 .replace(R.id.frame_fragments, FragProfileRegister()).commit()
         }
         button_login_send.setOnClickListener {
-            val user =
-                LoginObject(edit_text_email.text.toString(), edit_text_password.text.toString())
             requestLogin(User(name = null, email = edit_text_email.text.toString(), password = edit_text_password.text.toString(), mobile = null))
-//            if (!App.sm.attemptLogin(user)) {
-//                this.easyToast("LOGIN FAILED")
-//            } else {
-//                (activity as HostCallbacks).goToHome()
-//            }
         }
     }
 

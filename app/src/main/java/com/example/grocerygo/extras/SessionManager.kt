@@ -2,7 +2,6 @@ package com.example.grocerygo.extras
 
 import android.content.Context
 import com.example.grocerygo.models.Address
-import com.example.grocerygo.models.LoginObject
 import com.example.grocerygo.models.User
 import com.google.gson.Gson
 
@@ -34,13 +33,6 @@ class SessionManager {
         }
 
 
-    fun attemptLogin(loginObject: LoginObject): Boolean {
-        return if ((loginObject.email == "") || (loginObject.password == "")) {
-            false
-        } else {
-            (loginObject.email == user.email) and (loginObject.password == user.password)
-        }
-    }
 
     fun isLoggedIn(): Boolean {
         var storedEmail = sharedPref.getString(User.KEY_EMAIL, null)
