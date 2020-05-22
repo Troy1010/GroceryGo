@@ -9,5 +9,13 @@
         android:text="(ADDRESS)"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
+    <ImageView
+        android:id="@+id/button_trash"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:src="@drawable/trash"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_width="15dp"
+        android:layout_height="15dp"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

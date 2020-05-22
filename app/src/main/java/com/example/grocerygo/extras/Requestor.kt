@@ -31,4 +31,20 @@ object Requester {
             })
         requestQueue.add(request)
     }
+
+    fun requestDeleteAddress(addressID:String, listener: Response.Listener<JSONObject>) {
+        var addressID = addressID
+        val requestQueue = Volley.newRequestQueue(App.instance) // TODO make a global
+        val params = HashMap<String, String>()
+        // TODO probably don't need params..
+        val jsonObject = JSONObject(params as Map<*, *>)
+
+        val request = JsonObjectRequest(
+            Request.Method.DELETE, Endpoints.getDeleteAddressEndpoint(addressID), jsonObject,
+            listener,
+            Response.ErrorListener {
+                logz("Response.ErrorListener`it:$it")
+            })
+        requestQueue.add(request)
+    }
 }

@@ -11,7 +11,7 @@ object Endpoints {
     private const val URL_END_LOGIN = "auth/login"
     private const val URL_END_REGISTER = "auth/register"
     private const val URL_END_POST_ADDRESS = "address"
-    private const val URL_END_GET_ADDRESSES = "address/"
+    private const val URL_END_ADDRESS = "address/"
 
     // derivative
     val categories: String
@@ -38,7 +38,11 @@ object Endpoints {
     }
 
     fun getAddressesEndpoint(userID:String):String {
-        return Config.BASE_URL + URL_END_GET_ADDRESSES + userID
+        return Config.BASE_URL + URL_END_ADDRESS + userID
+    }
+
+    fun getDeleteAddressEndpoint(addressID:String):String {
+        return Config.BASE_URL + URL_END_ADDRESS + addressID
     }
 }
 

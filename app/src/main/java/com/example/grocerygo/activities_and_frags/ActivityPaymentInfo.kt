@@ -10,7 +10,9 @@ import androidx.recyclerview.widget.RecyclerView
 import com.android.volley.Response
 import com.example.grocerygo.R
 import com.example.grocerygo.adapters.AdapterRecyclerView
+import com.example.grocerygo.extras.App
 import com.example.grocerygo.extras.Requester
+import com.example.grocerygo.extras.easyToast
 import com.example.grocerygo.extras.logz
 import com.example.grocerygo.inheritables.GGToolbarActivity
 import com.example.grocerygo.models.*
@@ -36,6 +38,11 @@ class ActivityPaymentInfo: GGToolbarActivity(), AdapterRecyclerView.Callbacks {
             addresses = ArrayList(receivedAddressesObject.data)
             recycler_view_addresses.adapter?.notifyDataSetChanged()
         })
+        refreshNonRecyclerViews()
+    }
+
+    fun refreshNonRecyclerViews() {
+        text_view_address_value.text = App.sm.user.primaryAddress?.houseNo + " " + App.sm.user.primaryAddress?.streetName
     }
 
     private fun setupRecyclerView() {
@@ -47,6 +54,30 @@ class ActivityPaymentInfo: GGToolbarActivity(), AdapterRecyclerView.Callbacks {
 
     override fun bindRecyclerItemView(view: View, i: Int) {
         view.text_view_address.text = addresses[i].streetName
+        view.text_view_address.setOnClickListener {
+            App.sm.user = User(App.sm.user.name, App.sm.user.email, App.sm.user.password, App.sm.user.mobile, addresses[i], App.sm.user.id)//TODO this could be simplified
+            refreshNonRecyclerViews()
+        }
+        view.button_trash.setOnClickListener {
+            if (addresses[i] == App.sm.user.primaryAddress) {
+                this.easyToast("Cannot delete primary address")
+            } else {
+                Requester.requestDeleteAddress(addresses[i]._id, Response.Listener { _ ->
+//                    val receivedAddressesObject = GsonBuilder().create()
+//                        .fromJson(response.toString(), ReceivedAddressesObject::class.java)
+                    //
+
+                    Requester.requestAddresses(Response.Listener { response2 ->
+                        val receivedAddressesObject = GsonBuilder().create()
+                            .fromJson(response2.toString(), ReceivedAddressesObject::class.java)
+                        //
+                        addresses = ArrayList(receivedAddressesObject.data)
+                        recycler_view_addresses.adapter?.notifyDataSetChanged()
+                    })
+                })
+            }
+        }
+//        view.
     }
 
     override fun getRecyclerDataSize(): Int {
@@ -55,6 +86,10 @@ class ActivityPaymentInfo: GGToolbarActivity(), AdapterRecyclerView.Callbacks {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        setupListeners()
+    }
+
+    private fun setupListeners() {
         button_payment_info_send.setOnClickListener {
             startActivity(Intent(this, ActivityOrderReview::class.java))
         }
