@@ -26,6 +26,19 @@ abstract class GGToolbarActivity : TMActivity(), ToolbarCallbacks {
 
     override var toolbarMenu: Menu? = null
 
+    override fun setTitle(title: String) {
+        toolbar_main.title = title
+    }
+
+    override fun showBack(showBack: Boolean) {
+        supportActionBar?.setDisplayHomeAsUpEnabled(showBack)
+        supportActionBar?.setHomeButtonEnabled(showBack)
+    }
+
+    override fun showCart(showCart: Boolean) {
+        toolbarMenu?.findItem(R.id.menu_cart)?.isVisible = showCart
+    }
+
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         menuInflater.inflate(R.menu.three_dot_menu, menu)
         MenuItemCompat.setActionView(menu.findItem(R.id.menu_cart), R.layout.z_cart_icon)

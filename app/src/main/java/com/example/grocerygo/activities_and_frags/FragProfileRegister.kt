@@ -7,6 +7,7 @@ import com.example.grocerygo.extras.hasDigit
 import com.example.grocerygo.extras.isAllDigits
 import com.example.grocerygo.inheritables.HostCallbacks
 import com.example.grocerygo.inheritables.GGFragment
+import com.example.grocerygo.inheritables.TMFragment
 import com.example.grocerygo.inheritables.ToolbarCallbacks
 import com.example.grocerygo.models.User
 import com.google.android.material.textfield.TextInputEditText
@@ -14,16 +15,19 @@ import com.google.android.material.textfield.TextInputLayout
 import kotlinx.android.synthetic.main.frag_register.*
 
 
-class FragProfileRegister : GGFragment() {
-    override val title: String
-        get() = "Register"
+class FragProfileRegister : TMFragment() {
     override val layout: Int
         get() = R.layout.frag_register
 
+    private fun setupParent() {
+        (activity as HostCallbacks).showNavigationBar(true)
+        (activity as ToolbarCallbacks).showCart(true)
+        (activity as ToolbarCallbacks).showBack(true)
+        (activity as ToolbarCallbacks).setTitle("Register")
+    }
+
     override fun onStart() {
         super.onStart()
-        (activity as HostCallbacks).setNavigationEmpty(false)
-        (activity as ToolbarCallbacks).toolbarMenu?.findItem(R.id.menu_cart)?.isVisible = true
         text_input_email.setOnFocusChangeListener(MyOnFocusChangeListener(text_input_email,text_input_layout_email,RegFieldEnum.EMAIL))
         text_input_name.setOnFocusChangeListener(MyOnFocusChangeListener(text_input_name,text_input_layout_name,RegFieldEnum.NAME))
         text_input_password.setOnFocusChangeListener(MyOnFocusChangeListener(text_input_password,text_input_layout_password,RegFieldEnum.PASSWORD))

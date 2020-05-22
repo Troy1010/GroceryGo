@@ -24,6 +24,14 @@ class ActivityHost : GGToolbarActivity(), HostCallbacks {
         goToHome()
     }
 
+    override fun showNavigationBar(showNavigationBar: Boolean) {
+        if (showNavigationBar) {
+            bottom_navigation_bar.visibility=View.VISIBLE
+        } else {
+            bottom_navigation_bar.visibility=View.GONE
+        }
+    }
+
     override fun setNavigationEmpty(shouldNavigationBarBeEmpty: Boolean) {
         if (shouldNavigationBarBeEmpty) {
             bottom_navigation_bar.visibility=View.GONE

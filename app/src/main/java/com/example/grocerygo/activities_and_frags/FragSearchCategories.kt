@@ -18,8 +18,7 @@ import com.google.gson.GsonBuilder
 import kotlinx.android.synthetic.main.frag_search_categories.*
 import kotlinx.android.synthetic.main.item_category.view.*
 
-class FragSearchCategories : GGFragment(), AdapterRecyclerView.Callbacks {
-    override val title = "Search"
+class FragSearchCategories : TMFragment(), AdapterRecyclerView.Callbacks {
     override val layout: Int
         get() = R.layout.frag_search_categories
     lateinit var categories:ArrayList<Category>
@@ -30,8 +29,14 @@ class FragSearchCategories : GGFragment(), AdapterRecyclerView.Callbacks {
 
     override fun onStart() {
         super.onStart()
-        (activity as HostCallbacks).setNavigationEmpty(false)
-        (activity as ToolbarCallbacks).toolbarMenu?.findItem(R.id.menu_cart)?.isVisible = true
+        setupParent()
+    }
+
+    private fun setupParent() {
+        (activity as HostCallbacks).showNavigationBar(true)
+        (activity as ToolbarCallbacks).showCart(true)
+        (activity as ToolbarCallbacks).showBack(true)
+        (activity as ToolbarCallbacks).setTitle("Login")
     }
 
     private fun setupRecyclerView() {

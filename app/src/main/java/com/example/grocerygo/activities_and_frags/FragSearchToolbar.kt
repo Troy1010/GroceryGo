@@ -15,6 +15,8 @@ import com.example.grocerygo.extras.Endpoints
 import com.example.grocerygo.extras.KEY_CAT_ID
 import com.example.grocerygo.extras.logz
 import com.example.grocerygo.inheritables.GGFragment
+import com.example.grocerygo.inheritables.HostCallbacks
+import com.example.grocerygo.inheritables.TMFragment
 import com.example.grocerygo.inheritables.ToolbarCallbacks
 import com.example.grocerygo.models.ReceivedSubCategoriesObject
 import com.example.grocerygo.models.SubCategory
@@ -22,16 +24,21 @@ import com.google.android.material.tabs.TabLayout
 import com.google.gson.GsonBuilder
 import kotlinx.android.synthetic.main.frag_search_toolbar.*
 
-class FragSearchToolbar : GGFragment() {
-    override val title: String
-        get() = "Search"
+class FragSearchToolbar : TMFragment() {
     override val layout: Int
         get() = R.layout.frag_search_toolbar
     val catID by lazy { arguments?.getInt(KEY_CAT_ID)?:1 }
 
     override fun onStart() {
         super.onStart()
-        (activity as ToolbarCallbacks).toolbarMenu?.findItem(R.id.menu_cart)?.isVisible = true
+        setupParent()
+    }
+
+    private fun setupParent() {
+        (activity as HostCallbacks).showNavigationBar(true)
+        (activity as ToolbarCallbacks).showCart(true)
+        (activity as ToolbarCallbacks).showBack(true)
+        (activity as ToolbarCallbacks).setTitle("Login")
     }
 
     override fun onCreateViewInit() {

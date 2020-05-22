@@ -15,6 +15,8 @@ import com.example.grocerygo.R
 import com.example.grocerygo.adapters.AdapterRecyclerView
 import com.example.grocerygo.extras.*
 import com.example.grocerygo.inheritables.GGFragment
+import com.example.grocerygo.inheritables.HostCallbacks
+import com.example.grocerygo.inheritables.TMFragment
 import com.example.grocerygo.inheritables.ToolbarCallbacks
 import com.example.grocerygo.models.Product
 import com.example.grocerygo.models.ReceivedProductsObject
@@ -23,8 +25,7 @@ import kotlinx.android.synthetic.main.frag_search_products.recycler_view_product
 import kotlinx.android.synthetic.main.includible_plus_minus.view.*
 import kotlinx.android.synthetic.main.item_product.view.*
 
-class FragSearchProducts : GGFragment(), AdapterRecyclerView.Callbacks {
-    override val title = "Search"
+class FragSearchProducts : TMFragment(), AdapterRecyclerView.Callbacks {
     val subCatID by lazy { arguments?.getInt(KEY_SUB_CAT_ID)?:1 }
     lateinit var products:ArrayList<Product>
     override val layout: Int
@@ -33,6 +34,14 @@ class FragSearchProducts : GGFragment(), AdapterRecyclerView.Callbacks {
     override fun onCreateViewInit() {
         super.onCreateViewInit()
         requestProducts(subCatID)
+        setupParent()
+    }
+
+    private fun setupParent() {
+        (activity as HostCallbacks).showNavigationBar(true)
+        (activity as ToolbarCallbacks).showCart(true)
+        (activity as ToolbarCallbacks).showBack(true)
+        (activity as ToolbarCallbacks).setTitle("Search")
     }
 
     private fun setupRecyclerView() {

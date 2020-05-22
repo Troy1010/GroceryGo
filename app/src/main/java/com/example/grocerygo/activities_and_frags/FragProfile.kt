@@ -13,8 +13,7 @@ import com.example.grocerygo.models.ProfileItem
 import kotlinx.android.synthetic.main.frag_profile.*
 import kotlinx.android.synthetic.main.item_profile.view.*
 
-class FragProfile : GGFragment(), AdapterRecyclerView.Callbacks {
-    override val title = "Profile"
+class FragProfile : TMFragment(), AdapterRecyclerView.Callbacks {
     override val layout: Int
         get() = R.layout.frag_profile
     val profileItems = arrayListOf(
@@ -26,10 +25,16 @@ class FragProfile : GGFragment(), AdapterRecyclerView.Callbacks {
 
     override fun onStart() {
         super.onStart()
-        (activity as HostCallbacks).setNavigationEmpty(false)
-        (activity as ToolbarCallbacks).toolbarMenu?.findItem(R.id.menu_cart)?.isVisible = true
+        setupParent()
         setupListeners()
         setupRecyclerView()
+    }
+
+    private fun setupParent() {
+        (activity as HostCallbacks).showNavigationBar(true)
+        (activity as ToolbarCallbacks).showCart(true)
+        (activity as ToolbarCallbacks).showBack(true)
+        (activity as ToolbarCallbacks).setTitle("Profile")
     }
 
     private fun setupRecyclerView() {

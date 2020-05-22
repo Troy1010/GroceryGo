@@ -15,18 +15,23 @@ import kotlinx.android.synthetic.main.frag_cart.*
 import kotlinx.android.synthetic.main.includible_plus_minus.view.*
 import kotlinx.android.synthetic.main.item_cart_item.view.*
 
-class FragCart : GGFragment(), CustomAdapterCart.Callbacks {
+class FragCart : TMFragment(), CustomAdapterCart.Callbacks {
     override val layout = R.layout.frag_cart
     override var products = arrayListOf<Product>()
-    override val title = "Cart"
     lateinit var layoutManager: LinearLayoutManager
 
     override fun onStart() {
         super.onStart()
-        (activity as HostCallbacks).setNavigationEmpty(true)
-        (activity as ToolbarCallbacks).toolbarMenu?.findItem(R.id.menu_cart)?.isVisible = false
+        setupParent()
         setupAdapter()
         refresh()
+    }
+
+    private fun setupParent() {
+        (activity as HostCallbacks).showNavigationBar(false)
+        (activity as ToolbarCallbacks).showCart(false)
+        (activity as ToolbarCallbacks).showBack(true)
+        (activity as ToolbarCallbacks).setTitle("Cart")
     }
 
     private fun setupAdapter() {
