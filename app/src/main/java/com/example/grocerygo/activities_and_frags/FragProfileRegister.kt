@@ -10,7 +10,7 @@ import com.example.grocerygo.extras.*
 import com.example.grocerygo.inheritables.HostCallbacks
 import com.example.grocerygo.inheritables.TMFragment
 import com.example.grocerygo.inheritables.ToolbarCallbacks
-import com.example.grocerygo.models.ReceivedRegistrationObject
+import com.example.grocerygo.models.received.ReceivedRegistrationObject
 import com.example.grocerygo.models.User
 import com.google.android.material.textfield.TextInputEditText
 import com.google.android.material.textfield.TextInputLayout

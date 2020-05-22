@@ -13,9 +13,9 @@ import com.example.grocerygo.adapters.AdapterRecyclerView
 import com.example.grocerygo.extras.App
 import com.example.grocerygo.extras.Requester
 import com.example.grocerygo.extras.easyToast
-import com.example.grocerygo.extras.logz
 import com.example.grocerygo.inheritables.GGToolbarActivity
 import com.example.grocerygo.models.*
+import com.example.grocerygo.models.received.ReceivedAddressesObject
 import com.google.gson.GsonBuilder
 import kotlinx.android.synthetic.main.activity_c_payment_info.*
 import kotlinx.android.synthetic.main.item_address.view.*

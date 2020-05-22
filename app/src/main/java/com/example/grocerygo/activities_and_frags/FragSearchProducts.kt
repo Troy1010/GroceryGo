@@ -18,7 +18,7 @@ import com.example.grocerygo.inheritables.HostCallbacks
 import com.example.grocerygo.inheritables.TMFragment
 import com.example.grocerygo.inheritables.ToolbarCallbacks
 import com.example.grocerygo.models.Product
-import com.example.grocerygo.models.ReceivedProductsObject
+import com.example.grocerygo.models.received.ReceivedProductsObject
 import com.google.gson.GsonBuilder
 import kotlinx.android.synthetic.main.frag_search_products.recycler_view_products
 import kotlinx.android.synthetic.main.includible_plus_minus.view.*

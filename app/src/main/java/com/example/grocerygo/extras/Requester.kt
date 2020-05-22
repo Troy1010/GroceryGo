@@ -4,11 +4,7 @@ import com.android.volley.Request
 import com.android.volley.Response
 import com.android.volley.toolbox.JsonObjectRequest
 import com.android.volley.toolbox.Volley
-import com.example.grocerygo.inheritables.HostCallbacks
-import com.example.grocerygo.models.ReceivedAddressesObject
-import com.example.grocerygo.models.ReceivedLoginObject
 import com.example.grocerygo.models.User
-import com.google.gson.GsonBuilder
 import org.json.JSONObject
 
 object Requester {

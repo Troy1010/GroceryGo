@@ -1,4 +1,6 @@
-package com.example.grocerygo.models
+package com.example.grocerygo.models.received
+
+import com.example.grocerygo.models.Address
 
 data class ReceivedAddressesObject(
     val count: Int,

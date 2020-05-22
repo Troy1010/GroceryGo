@@ -1,4 +1,4 @@
-package com.example.grocerygo.models
+package com.example.grocerygo.models.received
 
 data class ReceivedLoginObject(
     val token: String,

@@ -4,12 +4,10 @@ import com.android.volley.Response
 import com.example.grocerygo.R
 import com.example.grocerygo.extras.*
 import com.example.grocerygo.extras.App
-import com.example.grocerygo.extras.Endpoints
-import com.example.grocerygo.extras.logz
 import com.example.grocerygo.inheritables.HostCallbacks
 import com.example.grocerygo.inheritables.TMFragment
 import com.example.grocerygo.inheritables.ToolbarCallbacks
-import com.example.grocerygo.models.ReceivedLoginObject
+import com.example.grocerygo.models.received.ReceivedLoginObject
 import com.example.grocerygo.models.User
 import com.google.gson.GsonBuilder
 import kotlinx.android.synthetic.main.frag_login.*

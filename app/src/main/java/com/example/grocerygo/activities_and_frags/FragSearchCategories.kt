@@ -13,7 +13,7 @@ import com.example.grocerygo.extras.easyPicasso
 import com.example.grocerygo.extras.logz
 import com.example.grocerygo.inheritables.*
 import com.example.grocerygo.models.Category
-import com.example.grocerygo.models.ReceivedCategoriesObject
+import com.example.grocerygo.models.received.ReceivedCategoriesObject
 import com.google.gson.GsonBuilder
 import kotlinx.android.synthetic.main.frag_search_categories.*
 import kotlinx.android.synthetic.main.item_category.view.*

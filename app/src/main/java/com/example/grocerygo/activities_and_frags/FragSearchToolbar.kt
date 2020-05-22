@@ -14,7 +14,7 @@ import com.example.grocerygo.extras.logz
 import com.example.grocerygo.inheritables.HostCallbacks
 import com.example.grocerygo.inheritables.TMFragment
 import com.example.grocerygo.inheritables.ToolbarCallbacks
-import com.example.grocerygo.models.ReceivedSubCategoriesObject
+import com.example.grocerygo.models.received.ReceivedSubCategoriesObject
 import com.example.grocerygo.models.SubCategory
 import com.google.android.material.tabs.TabLayout
 import com.google.gson.GsonBuilder
