@@ -1,12 +1,13 @@
 package com.example.grocerygo.activities_and_frags
 
-import android.graphics.Paint
+import android.content.Intent
 import android.view.View
 import androidx.recyclerview.widget.DividerItemDecoration
+import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.grocerygo.R
-import com.example.grocerygo.adapters.AdapterRecyclerView
+import com.example.grocerygo.adapters.CustomAdapterCart
 import com.example.grocerygo.extras.*
 import com.example.grocerygo.inheritables.*
 import com.example.grocerygo.models.Product
@@ -14,47 +15,60 @@ import kotlinx.android.synthetic.main.frag_cart.*
 import kotlinx.android.synthetic.main.includible_plus_minus.view.*
 import kotlinx.android.synthetic.main.item_cart_item.view.*
 
-class FragCart : GGFragment(), RecyclerViewActivityCallbacks {
+class FragCart : TMFragment(), CustomAdapterCart.Callbacks {
     override val layout = R.layout.frag_cart
-    lateinit var products:ArrayList<Product>
-    override val title = "Cart"
+    override var products = arrayListOf<Product>()
+    lateinit var layoutManager: LinearLayoutManager
 
     override fun onStart() {
         super.onStart()
-        (activity as ActivityHostCallbacks).setNavigationEmpty(true)
+        setupParent()
         setupAdapter()
         refresh()
     }
 
+    private fun setupParent() {
+        (activity as HostCallbacks).showNavigationBar(false)
+        (activity as ToolbarCallbacks).showCart(false)
+        (activity as ToolbarCallbacks).showBack(true)
+        (activity as ToolbarCallbacks).setTitle("Cart")
+    }
+
     private fun setupAdapter() {
-        recycler_view_cart_items.layoutManager = LinearLayoutManager(activity!!)
-        recycler_view_cart_items.adapter = AdapterRecyclerView(this, activity!!, R.layout.item_cart_item)
+        layoutManager = GridLayoutManager(activity!!, 1)
+        recycler_view_cart_items.layoutManager = layoutManager
+        recycler_view_cart_items.adapter = CustomAdapterCart(this, activity!!)
         recycler_view_cart_items
             .addItemDecoration(DividerItemDecoration(activity, RecyclerView.VERTICAL))
     }
 
     fun refresh() {
         products = App.db.getProducts()
-        (activity as GGToolbarActivityCallbacks).notifyBadge()
+        (activity as ToolbarCallbacks).notifyCartBadge()
         val orderSummary = App.db.getOrderSummary()
         recycler_view_cart_items.adapter?.notifyDataSetChanged()
-        if (products.size==0) {
-            text_view_cart_is_empty.visibility = View.VISIBLE
-            text_view_price_total.visibility = View.INVISIBLE
-            text_view_quantity_total.visibility = View.INVISIBLE
-            text_view_fake_price_total.visibility = View.INVISIBLE
-            text_view_discount.visibility = View.INVISIBLE
-            text_view_delivery_fee.visibility = View.INVISIBLE
-            text_view_final_price.visibility = View.INVISIBLE
-        } else {
-            text_view_quantity_total.text = "# of items: ${orderSummary.quantityTotal}"
-            text_view_fake_price_total.text = "fake total: ${orderSummary.fakePriceTotal}"
-            text_view_fake_price_total.paintFlags = Paint.STRIKE_THRU_TEXT_FLAG
-            text_view_price_total.text = "total: ${orderSummary.priceTotal}"
-            text_view_discount.text = "Discount: ${orderSummary.getDiscount()}"
-            text_view_delivery_fee.text = "Delivery Fee: ${orderSummary.getDeliveryFee()}"
-            text_view_final_price.text = "Final Price: ${orderSummary.getGrandTotal()}"
+        button_checkout.setOnClickListener {
+            startActivity(Intent(activity!!, ActivityPaymentInfo::class.java))
         }
+//        if (products.size==0) {
+//            text_view_cart_is_empty.visibility = View.VISIBLE
+//            text_view_item_quantity.visibility = View.INVISIBLE
+//            text_view_price_total.visibility = View.INVISIBLE
+//            text_view_fake_price_total.visibility = View.INVISIBLE
+////            text_view_discount.visibility = View.INVISIBLE
+//            text_view_shipping.visibility = View.INVISIBLE
+//            text_view_est_total.visibility = View.INVISIBLE
+//        } else {
+//            text_view_coupon_discount.text = "- ${orderSummary.getCouponDiscount()}"
+//            text_view_item_quantity.text = "${orderSummary.quantityTotal} Item(s)"
+//            text_view_fake_price_total.text = "${orderSummary.fakePriceTotal}"
+//            text_view_fake_price_total.paintFlags = Paint.STRIKE_THRU_TEXT_FLAG
+//            text_view_price_total.text = "total: ${orderSummary.priceTotal}"
+//            text_view_fake_discount.text = "- ${orderSummary.getFakeDiscount()}"
+//            text_view_tax.text = "${orderSummary.getTax()}"
+//            text_view_shipping.text = "${orderSummary.getDeliveryFee()}"
+//            text_view_est_total.text = "${orderSummary.getGrandTotal()}"
+//        }
 
     }
 
@@ -78,8 +92,8 @@ class FragCart : GGFragment(), RecyclerViewActivityCallbacks {
         view.image_view_product.easyPicasso(Endpoints.getImageEndpoint(products[i].image))
     }
 
-    override fun getRecyclerDataSize():Int {
-        return App.db.getProducts().size
+    override fun bindLastRecyclerItemView(view: View, normalItemHeight: Int) {
+        view.layoutParams.height = max(400,layoutManager.height - normalItemHeight*products.size - 200)
     }
 
 

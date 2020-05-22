@@ -1,30 +1,33 @@
 package com.example.grocerygo.activities_and_frags
 
-import android.content.Intent
-import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import com.android.volley.Response
 import com.example.grocerygo.R
+import com.example.grocerygo.extras.*
 import com.example.grocerygo.extras.App
-import com.example.grocerygo.extras.easyToast
-import com.example.grocerygo.inheritables.ActivityHostCallbacks
-import com.example.grocerygo.inheritables.GGFragment
-import com.example.grocerygo.models.LoginObject
-import kotlinx.android.synthetic.main.activity_host.*
+import com.example.grocerygo.inheritables.HostCallbacks
+import com.example.grocerygo.inheritables.TMFragment
+import com.example.grocerygo.inheritables.ToolbarCallbacks
+import com.example.grocerygo.models.received.ReceivedLoginObject
+import com.example.grocerygo.models.User
+import com.google.gson.GsonBuilder
 import kotlinx.android.synthetic.main.frag_login.*
 
 
-class FragProfileLogin : GGFragment() {
-    override val title: String
-        get() = "Login"
+class FragProfileLogin : TMFragment() {
     override val layout: Int
         get() = R.layout.frag_login
 
     override fun onStart() {
         super.onStart()
-        (activity as ActivityHostCallbacks).setNavigationEmpty(false)
+        setupParent()
         setupClickListeners()
+    }
+
+    private fun setupParent() {
+        (activity as HostCallbacks).showNavigationBar(true)
+        (activity as ToolbarCallbacks).showCart(true)
+        (activity as ToolbarCallbacks).showBack(true)
+        (activity as ToolbarCallbacks).setTitle("Login")
     }
 
     private fun setupClickListeners() {
@@ -33,13 +36,23 @@ class FragProfileLogin : GGFragment() {
                 .replace(R.id.frame_fragments, FragProfileRegister()).commit()
         }
         button_login_send.setOnClickListener {
-            val user =
-                LoginObject(edit_text_email.text.toString(), edit_text_password.text.toString())
-            if (!App.sm.attemptLogin(user)) {
-                this.easyToast("LOGIN FAILED")
-            } else {
-                (activity as ActivityHostCallbacks).goToHome()
-            }
+            val user = User(name = null, email = edit_text_email.text.toString(), password = edit_text_password.text.toString(), mobile = null)
+            Requester.requestLogin(user,
+                Response.Listener { response ->
+                    val receivedLoginObject = GsonBuilder().create()
+                        .fromJson(response.toString(), ReceivedLoginObject::class.java)
+                    //
+                    val registrationData = receivedLoginObject.user
+                    App.sm.user = User(
+                        name = registrationData.firstName,
+                        email = registrationData.email,
+                        password = registrationData.password,
+                        mobile = registrationData.mobile,
+                        id = registrationData._id
+                    )
+                    //
+                    (activity as HostCallbacks).goToHome()
+                })
         }
     }
 }

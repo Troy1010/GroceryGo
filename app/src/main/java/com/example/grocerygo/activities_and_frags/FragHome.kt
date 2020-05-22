@@ -4,13 +4,12 @@ import android.os.Handler
 import com.example.grocerygo.R
 import com.example.grocerygo.adapters.AdapterImageSlider
 import com.example.grocerygo.extras.App
-import com.example.grocerygo.inheritables.ActivityHostCallbacks
-import com.example.grocerygo.inheritables.GGToolbarActivityCallbacks
-import com.example.grocerygo.inheritables.GGFragment
+import com.example.grocerygo.inheritables.HostCallbacks
+import com.example.grocerygo.inheritables.ToolbarCallbacks
+import com.example.grocerygo.inheritables.TMFragment
 import kotlinx.android.synthetic.main.frag_home.*
 
-class FragHome : GGFragment() {
-    override val title = "Home"
+class FragHome : TMFragment() {
     override val layout: Int
         get() = R.layout.frag_home
 
@@ -18,13 +17,12 @@ class FragHome : GGFragment() {
 
     override fun onStart() {
         super.onStart()
-        (activity as GGToolbarActivityCallbacks).setToolbarAttributes(title, false)
-        (activity as ActivityHostCallbacks).setNavigationEmpty(false)
+        setupParent()
         setupImageSlider()
-        button_logout.setOnClickListener {
-            App.sm.logout()
-            (activity as ActivityHostCallbacks).goToProfile()
-        }
+//        button_logout.setOnClickListener {
+//            App.sm.logout()
+//            (activity as HostCallbacks).goToProfile()
+//        }
 //        Picasso
 //                .get()
 //                .load(Endpoints.HOME_IMAGE)
@@ -33,6 +31,15 @@ class FragHome : GGFragment() {
 //                .into(image_view)
         // fake-bind text_view_hello
         text_view_hello.text = getString(R.string.hello_start, App.sm.user.name?:"Welcome!")
+    }
+
+
+
+    private fun setupParent() {
+        (activity as HostCallbacks).showNavigationBar(true)
+        (activity as ToolbarCallbacks).showCart(true)
+        (activity as ToolbarCallbacks).showBack(false)
+        (activity as ToolbarCallbacks).setTitle("Home")
     }
 
     private fun setupImageSlider() {

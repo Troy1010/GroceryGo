@@ -3,9 +3,7 @@ package com.example.grocerygo.activities_and_frags
 import android.content.Intent
 import android.graphics.Paint
 import android.os.Bundle
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -16,42 +14,36 @@ import com.android.volley.toolbox.Volley
 import com.example.grocerygo.R
 import com.example.grocerygo.adapters.AdapterRecyclerView
 import com.example.grocerygo.extras.*
-import com.example.grocerygo.inheritables.GGToolbarActivityCallbacks
-import com.example.grocerygo.inheritables.RecyclerViewActivityCallbacks
+import com.example.grocerygo.inheritables.HostCallbacks
 import com.example.grocerygo.inheritables.TMFragment
+import com.example.grocerygo.inheritables.ToolbarCallbacks
 import com.example.grocerygo.models.Product
-import com.example.grocerygo.models.ReceivedProductsObject
+import com.example.grocerygo.models.received.ReceivedProductsObject
 import com.google.gson.GsonBuilder
-import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.frag_search_products.recycler_view_products
 import kotlinx.android.synthetic.main.includible_plus_minus.view.*
 import kotlinx.android.synthetic.main.item_product.view.*
 
-class FragSearchProducts : TMFragment(), RecyclerViewActivityCallbacks {
-    val title = "Search"
+class FragSearchProducts : TMFragment(), AdapterRecyclerView.Callbacks {
     val subCatID by lazy { arguments?.getInt(KEY_SUB_CAT_ID)?:1 }
     lateinit var products:ArrayList<Product>
     override val layout: Int
         get() = R.layout.frag_search_products
 
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
+    override fun onCreateViewInit() {
+        super.onCreateViewInit()
         requestProducts(subCatID)
-        return super.onCreateView(inflater, container, savedInstanceState)
+        setupParent()
     }
 
-    override fun onStart() {
-        super.onStart()
-        (activity as GGToolbarActivityCallbacks).setToolbarAttributes(title, true)
+    private fun setupParent() {
+        (activity as HostCallbacks).showNavigationBar(true)
+        (activity as ToolbarCallbacks).showCart(true)
+        (activity as ToolbarCallbacks).showBack(true)
+        (activity as ToolbarCallbacks).setTitle("Search")
     }
 
-    private fun setupRecyclerView(products: ArrayList<Product>) {
-        for (product in products) {
-            product.quantity = App.db.getProductQuantityByProductID(product._id)?:0
-        }
+    private fun setupRecyclerView() {
         recycler_view_products.layoutManager = LinearLayoutManager(activity!!)
         recycler_view_products.adapter = AdapterRecyclerView(this, activity!!, R.layout.item_product)
         recycler_view_products
@@ -67,9 +59,13 @@ class FragSearchProducts : TMFragment(), RecyclerViewActivityCallbacks {
                 var gson = GsonBuilder().create()
                 var receivedProductsObject =
                     gson.fromJson(response.toString(), ReceivedProductsObject::class.java)
-                // give to AdapterProducts
+                // add quantities from db
                 products = receivedProductsObject.data
-                setupRecyclerView(products)
+                for (product in products) {
+                    product.quantity = App.db.getProductQuantityByProductID(product._id)?:0
+                }
+                // give to AdapterProducts
+                setupRecyclerView()
             },
             Response.ErrorListener {
                 logz("Response.ErrorListener`it:$it")
@@ -105,12 +101,12 @@ class FragSearchProducts : TMFragment(), RecyclerViewActivityCallbacks {
             view.text_view_add.visibility= View.GONE
             App.db.addProduct(products[i])
             recycler_view_products.adapter?.notifyDataSetChanged()
-            (activity as GGToolbarActivityCallbacks).notifyBadge()
+            (activity as ToolbarCallbacks).notifyCartBadge()
         }
         view.button_plus.setOnClickListener {
             App.db.addProduct(products[i])
             recycler_view_products.adapter?.notifyDataSetChanged()
-            (activity as GGToolbarActivityCallbacks).notifyBadge()
+            (activity as ToolbarCallbacks).notifyCartBadge()
         }
         view.button_minus.setOnClickListener {
             if (products[i].quantity == 1) {
@@ -121,7 +117,7 @@ class FragSearchProducts : TMFragment(), RecyclerViewActivityCallbacks {
                 App.db.minusProduct(products[i])
             }
             recycler_view_products.adapter?.notifyDataSetChanged()
-            (activity as GGToolbarActivityCallbacks).notifyBadge()
+            (activity as ToolbarCallbacks).notifyCartBadge()
         }
         view.text_view_number_plus_minus.text = products[i].quantity.toString()
         if (products[i].quantity > 0) {

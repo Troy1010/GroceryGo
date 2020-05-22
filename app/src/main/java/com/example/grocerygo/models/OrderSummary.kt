@@ -11,7 +11,7 @@ class OrderSummary(
 //            get() = if (priceTotal > 300) baseDeliveryFee else 0.0
 //    } // TODO refactor this in
 
-    fun getDiscount():Double {
+    fun getFakeDiscount():Double {
         return ((fakePriceTotal-priceTotal)/fakePriceTotal)*fakePriceTotal // TODO is this the right formula?
     }
 
@@ -19,7 +19,14 @@ class OrderSummary(
         val baseDeliveryFee = 16.50
         return if (priceTotal > 300) baseDeliveryFee else 0.0
     }
+    fun getTax():Double {
+        val taxMult = 0.08
+        return priceTotal*taxMult
+    }
+    fun getCouponDiscount():Double {
+        return 0.0
+    }
     fun getGrandTotal():Double {
-        return getDeliveryFee() + priceTotal
+        return getDeliveryFee() + getTax() + priceTotal
     }
 }

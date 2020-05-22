@@ -5,7 +5,6 @@ import android.view.View
 import com.example.grocerygo.R
 import com.example.grocerygo.extras.*
 import com.example.grocerygo.inheritables.GGToolbarActivity
-import com.example.grocerygo.inheritables.GGToolbarActivityCallbacks
 import com.example.grocerygo.models.Product
 import kotlinx.android.synthetic.main.activity_details.*
 import kotlinx.android.synthetic.main.includible_plus_minus.*
@@ -30,12 +29,12 @@ class ActivityDetails : GGToolbarActivity() {
             text_view_add.visibility= View.GONE
             App.db.addProduct(product)
             text_view_number_plus_minus.text = product.quantity.toString()
-            notifyBadge()
+            notifyCartBadge()
         }
         button_plus.setOnClickListener {
             App.db.addProduct(product)
             text_view_number_plus_minus.text = product.quantity.toString()
-            notifyBadge()
+            notifyCartBadge()
         }
         button_minus.setOnClickListener {
             if (product.quantity == 1) {
@@ -46,7 +45,7 @@ class ActivityDetails : GGToolbarActivity() {
                 App.db.minusProduct(product)
             }
             text_view_number_plus_minus.text = product.quantity.toString()
-            notifyBadge()
+            notifyCartBadge()
         }
     }
 }

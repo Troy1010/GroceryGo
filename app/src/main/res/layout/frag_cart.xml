@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
+
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
@@ -13,65 +14,34 @@
         android:text="Your cart is empty"
         android:visibility="invisible" />
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Est. Total"
+        app:layout_constraintBottom_toTopOf="@id/button_checkout"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/text_view_est_total_2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="(FINAL_PRICE)"
+        app:layout_constraintBottom_toTopOf="@id/button_checkout"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <Button
+        android:id="@+id/button_checkout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="Checkout"
+        android:textColor="@color/TextVsTails"
+        app:layout_constraintBottom_toBottomOf="parent" />
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recycler_view_cart_items"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        app:layout_constraintBottom_toTopOf="@id/text_view_quantity_total"
+        app:layout_constraintBottom_toTopOf="@id/text_view_est_total_2"
         app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
-        android:id="@+id/text_view_quantity_total"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="(LISTSIZE)"
-        android:textSize="12sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintBottom_toTopOf="@id/text_view_fake_price_total"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <TextView
-        android:id="@+id/text_view_fake_price_total"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="(FAKE_PRICE_TOTAL)"
-        android:textSize="14sp"
-        app:layout_constraintBottom_toTopOf="@id/text_view_price_total"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <TextView
-        android:id="@+id/text_view_price_total"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="(PRICE_TOTAL)"
-        android:textSize="14sp"
-        app:layout_constraintBottom_toTopOf="@id/text_view_discount"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <TextView
-        android:id="@+id/text_view_discount"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="(DISCOUNT)"
-        android:textSize="14sp"
-        app:layout_constraintBottom_toTopOf="@id/text_view_delivery_fee"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <TextView
-        android:id="@+id/text_view_delivery_fee"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="(DELIVERY_FEE)"
-        android:textSize="14sp"
-        app:layout_constraintBottom_toTopOf="@id/text_view_final_price"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <TextView
-        android:id="@+id/text_view_final_price"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="(FINAL_PRICE)"
-        android:textSize="14sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>

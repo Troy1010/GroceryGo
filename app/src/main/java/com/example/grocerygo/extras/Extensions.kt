@@ -13,6 +13,12 @@ import com.example.grocerygo.models.Product
 import com.google.android.material.snackbar.Snackbar
 import kotlinx.android.synthetic.main.frag_profile.*
 
+fun Double.round(decimals: Int): Double {
+    var multiplier = 1.0
+    repeat(decimals) { multiplier *= 10 }
+    return round((this * multiplier)) / multiplier
+}
+
 fun Context.easyToast(s: String) {
     Toast.makeText(this, s, Toast.LENGTH_SHORT).show()
 }

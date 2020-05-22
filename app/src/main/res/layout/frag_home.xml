@@ -7,15 +7,10 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center_horizontal"
-        android:text="Hello &lt;user&gt;"/>
-    <TextView
-        android:id="@+id/button_logout"
-        android:textSize="12sp"
-        android:textColor="@color/colorTextClickable"
-        android:text="Sign out"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/>
+        android:text="Hello &lt;user&gt;"
+        android:textSize="36dp"/>
     <androidx.viewpager.widget.ViewPager
+        android:layout_marginTop="20dp"
         android:id="@+id/view_pager_image_slider"
         android:layout_width="match_parent"
         android:layout_height="240dp"/>

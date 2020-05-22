@@ -1,24 +1,21 @@
 package com.example.grocerygo.inheritables
 
+import android.view.Menu
 import android.view.View
 import com.example.grocerygo.models.Product
 
 
-interface GGToolbarActivityCallbacks
+interface ToolbarCallbacks
 {
-    fun setToolbarAttributes(title: String, hasBackArrow: Boolean? = null)
-    fun notifyBadge()
+    fun setTitle(title:String)
+    fun showCart(showCart:Boolean)
+    fun showBack(showBack:Boolean)
+    fun notifyCartBadge()
 }
 
-interface ActivityHostCallbacks
+interface HostCallbacks
 {
-    fun setNavigationEmpty(shouldNavigationBarBeEmpty:Boolean)
+    fun showNavigationBar(showNavigationBar:Boolean)
     fun goToHome()
     fun goToProfile()
-}
-
-interface RecyclerViewActivityCallbacks
-{
-    fun bindRecyclerItemView(view: View, i: Int)
-    fun getRecyclerDataSize() : Int
 }

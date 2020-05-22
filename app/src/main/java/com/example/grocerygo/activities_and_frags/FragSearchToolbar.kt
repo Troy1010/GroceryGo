@@ -1,9 +1,6 @@
 package com.example.grocerygo.activities_and_frags
 
 import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentTransaction
 import com.android.volley.Request
@@ -14,8 +11,10 @@ import com.example.grocerygo.R
 import com.example.grocerygo.extras.Endpoints
 import com.example.grocerygo.extras.KEY_CAT_ID
 import com.example.grocerygo.extras.logz
+import com.example.grocerygo.inheritables.HostCallbacks
 import com.example.grocerygo.inheritables.TMFragment
-import com.example.grocerygo.models.ReceivedSubCategoriesObject
+import com.example.grocerygo.inheritables.ToolbarCallbacks
+import com.example.grocerygo.models.received.ReceivedSubCategoriesObject
 import com.example.grocerygo.models.SubCategory
 import com.google.android.material.tabs.TabLayout
 import com.google.gson.GsonBuilder
@@ -26,14 +25,21 @@ class FragSearchToolbar : TMFragment() {
         get() = R.layout.frag_search_toolbar
     val catID by lazy { arguments?.getInt(KEY_CAT_ID)?:1 }
 
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        val v = super.onCreateView(inflater, container, savedInstanceState)
+    override fun onStart() {
+        super.onStart()
+        setupParent()
+    }
+
+    private fun setupParent() {
+        (activity as HostCallbacks).showNavigationBar(true)
+        (activity as ToolbarCallbacks).showCart(true)
+        (activity as ToolbarCallbacks).showBack(true)
+        (activity as ToolbarCallbacks).setTitle("Login")
+    }
+
+    override fun onCreateViewInit() {
+        super.onCreateViewInit()
         requestSubCategoryData(catID) // TODO make other requests run by onCreateView b/c com.google.android.material.tabs.TabLayout was null
-        return v
     }
 
     private fun setupTabLayout(subCategories: ArrayList<SubCategory>) {

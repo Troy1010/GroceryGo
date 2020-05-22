@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_gravity="bottom"
+    app:layout_constraintBottom_toBottomOf="parent"
+    android:layout_alignParentBottom="true">
+
+    <TextView
+        android:id="@+id/text_view_fake_price_total"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="(FAKE_PRICE_TOTAL)"
+        android:textSize="14sp"
+        app:layout_constraintBottom_toTopOf="@id/text_view_fake_discount"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <TextView
+        android:id="@+id/text_view_fake_discount"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="(FAKE_DISCOUNT)"
+        android:textSize="14sp"
+        app:layout_constraintBottom_toTopOf="@id/text_view_coupon_discount"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <TextView
+        android:id="@+id/text_view_coupon_discount"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="(COUPON_DISCOUNT)"
+        android:textSize="14sp"
+        app:layout_constraintBottom_toTopOf="@id/text_view_price_total"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <TextView
+        android:id="@+id/text_view_price_total"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="(PRICE_TOTAL)"
+        android:textSize="14sp"
+        app:layout_constraintBottom_toTopOf="@id/text_view_tax"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <TextView
+        android:id="@+id/text_view_tax"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="(TAX)"
+        android:textSize="14sp"
+        app:layout_constraintBottom_toTopOf="@id/text_view_shipping"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <TextView
+        android:id="@+id/text_view_shipping"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="(DELIVERY_FEE)"
+        android:textSize="14sp"
+        app:layout_constraintBottom_toTopOf="@id/text_view_est_total"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <TextView
+        android:id="@+id/text_view_est_total"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="(FINAL_PRICE)"
+        android:textSize="14sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <!--    LABELS BEGIN-->
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Est. Total"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@id/text_view_est_total" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Shipping"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@id/text_view_shipping" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Tax"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@id/text_view_tax" />
+
+    <TextView
+        android:id="@+id/text_view_item_quantity"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="(# OF ITEMS)"
+        app:layout_constraintBottom_toBottomOf="@id/text_view_price_total"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@id/text_view_fake_price_total" />
+</androidx.constraintlayout.widget.ConstraintLayout>

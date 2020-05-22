@@ -8,5 +8,7 @@
     <color name="colorTextClickable">#0086bf</color>
     <color name="TextSoft">#555</color>
     <color name="TextVsHeads">#000</color>
+    <color name="TextVsHeadsSoft">#555</color>
     <color name="TextVsTails">#fff</color>
+    <color name="Heads">#fff</color>
 </resources>
