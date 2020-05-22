@@ -63,10 +63,7 @@ class ActivityPaymentInfo: GGToolbarActivity(), AdapterRecyclerView.Callbacks {
                 this.easyToast("Cannot delete primary address")
             } else {
                 Requester.requestDeleteAddress(addresses[i]._id, Response.Listener { _ ->
-//                    val receivedAddressesObject = GsonBuilder().create()
-//                        .fromJson(response.toString(), ReceivedAddressesObject::class.java)
-                    //
-
+                    //Once you're done deleting, update the addresses
                     Requester.requestAddresses(Response.Listener { response2 ->
                         val receivedAddressesObject = GsonBuilder().create()
                             .fromJson(response2.toString(), ReceivedAddressesObject::class.java)
