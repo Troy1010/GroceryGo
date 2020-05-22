@@ -29,12 +29,12 @@ class ActivityDetails : GGToolbarActivity() {
             text_view_add.visibility= View.GONE
             App.db.addProduct(product)
             text_view_number_plus_minus.text = product.quantity.toString()
-            notifyBadge()
+            notifyCartBadge()
         }
         button_plus.setOnClickListener {
             App.db.addProduct(product)
             text_view_number_plus_minus.text = product.quantity.toString()
-            notifyBadge()
+            notifyCartBadge()
         }
         button_minus.setOnClickListener {
             if (product.quantity == 1) {
@@ -45,7 +45,7 @@ class ActivityDetails : GGToolbarActivity() {
                 App.db.minusProduct(product)
             }
             text_view_number_plus_minus.text = product.quantity.toString()
-            notifyBadge()
+            notifyCartBadge()
         }
     }
 }

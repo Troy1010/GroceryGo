@@ -1,9 +1,6 @@
 package com.example.grocerygo.activities_and_frags
 
 import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentTransaction
 import com.android.volley.Request
@@ -14,7 +11,6 @@ import com.example.grocerygo.R
 import com.example.grocerygo.extras.Endpoints
 import com.example.grocerygo.extras.KEY_CAT_ID
 import com.example.grocerygo.extras.logz
-import com.example.grocerygo.inheritables.GGFragment
 import com.example.grocerygo.inheritables.HostCallbacks
 import com.example.grocerygo.inheritables.TMFragment
 import com.example.grocerygo.inheritables.ToolbarCallbacks

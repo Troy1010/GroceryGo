@@ -4,7 +4,6 @@ import com.example.grocerygo.R
 import com.example.grocerygo.extras.App
 import com.example.grocerygo.extras.easyToast
 import com.example.grocerygo.inheritables.HostCallbacks
-import com.example.grocerygo.inheritables.GGFragment
 import com.example.grocerygo.inheritables.TMFragment
 import com.example.grocerygo.inheritables.ToolbarCallbacks
 import com.example.grocerygo.models.LoginObject

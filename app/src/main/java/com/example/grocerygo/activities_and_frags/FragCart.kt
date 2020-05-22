@@ -44,7 +44,7 @@ class FragCart : TMFragment(), CustomAdapterCart.Callbacks {
 
     fun refresh() {
         products = App.db.getProducts()
-        (activity as ToolbarCallbacks).notifyBadge()
+        (activity as ToolbarCallbacks).notifyCartBadge()
         val orderSummary = App.db.getOrderSummary()
         recycler_view_cart_items.adapter?.notifyDataSetChanged()
         button_checkout.setOnClickListener {

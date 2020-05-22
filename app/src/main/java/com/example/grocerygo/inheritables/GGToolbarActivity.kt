@@ -24,7 +24,7 @@ abstract class GGToolbarActivity : TMActivity(), ToolbarCallbacks {
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
     }
 
-    override var toolbarMenu: Menu? = null
+    var toolbarMenu: Menu? = null
 
     override fun setTitle(title: String) {
         toolbar_main.title = title
@@ -43,16 +43,16 @@ abstract class GGToolbarActivity : TMActivity(), ToolbarCallbacks {
         menuInflater.inflate(R.menu.three_dot_menu, menu)
         MenuItemCompat.setActionView(menu.findItem(R.id.menu_cart), R.layout.z_cart_icon)
         toolbarMenu = menu
-        notifyBadge()
+        notifyCartBadge()
         return super.onCreateOptionsMenu(menu)
     }
 
     override fun onCreateView(name: String, context: Context, attrs: AttributeSet): View? {
-        notifyBadge()
+        notifyCartBadge()
         return super.onCreateView(name, context, attrs)
     }
 
-    override fun notifyBadge() {
+    override fun notifyCartBadge() {
         if (toolbarMenu != null) {
             val badgeTextView =
                 MenuItemCompat.getActionView(toolbarMenu?.findItem(R.id.menu_cart)).text_view_badge
@@ -97,13 +97,6 @@ abstract class GGToolbarActivity : TMActivity(), ToolbarCallbacks {
             }
         }
         return returning
-    }
-
-    override fun setToolbarAttributes(title: String, hasBackArrow: Boolean?) {
-        toolbar_main.title = title
-        if (hasBackArrow != null) {
-            this.supportActionBar?.setDisplayHomeAsUpEnabled(hasBackArrow)
-        }
     }
 
 }

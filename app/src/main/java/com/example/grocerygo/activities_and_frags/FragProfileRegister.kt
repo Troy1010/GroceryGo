@@ -6,7 +6,6 @@ import com.example.grocerygo.extras.App
 import com.example.grocerygo.extras.hasDigit
 import com.example.grocerygo.extras.isAllDigits
 import com.example.grocerygo.inheritables.HostCallbacks
-import com.example.grocerygo.inheritables.GGFragment
 import com.example.grocerygo.inheritables.TMFragment
 import com.example.grocerygo.inheritables.ToolbarCallbacks
 import com.example.grocerygo.models.User
@@ -28,6 +27,7 @@ class FragProfileRegister : TMFragment() {
 
     override fun onStart() {
         super.onStart()
+        setupParent()
         text_input_email.setOnFocusChangeListener(MyOnFocusChangeListener(text_input_email,text_input_layout_email,RegFieldEnum.EMAIL))
         text_input_name.setOnFocusChangeListener(MyOnFocusChangeListener(text_input_name,text_input_layout_name,RegFieldEnum.NAME))
         text_input_password.setOnFocusChangeListener(MyOnFocusChangeListener(text_input_password,text_input_layout_password,RegFieldEnum.PASSWORD))

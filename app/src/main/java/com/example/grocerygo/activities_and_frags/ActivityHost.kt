@@ -32,14 +32,6 @@ class ActivityHost : GGToolbarActivity(), HostCallbacks {
         }
     }
 
-    override fun setNavigationEmpty(shouldNavigationBarBeEmpty: Boolean) {
-        if (shouldNavigationBarBeEmpty) {
-            bottom_navigation_bar.visibility=View.GONE
-        } else {
-            bottom_navigation_bar.visibility=View.VISIBLE
-        }
-    }
-
     private fun setupNavigationBar() {
         bottom_navigation_bar.setOnNavigationItemSelectedListener { item ->
             val frag = when (item.itemId) {

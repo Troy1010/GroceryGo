@@ -14,7 +14,6 @@ import com.android.volley.toolbox.Volley
 import com.example.grocerygo.R
 import com.example.grocerygo.adapters.AdapterRecyclerView
 import com.example.grocerygo.extras.*
-import com.example.grocerygo.inheritables.GGFragment
 import com.example.grocerygo.inheritables.HostCallbacks
 import com.example.grocerygo.inheritables.TMFragment
 import com.example.grocerygo.inheritables.ToolbarCallbacks
@@ -102,12 +101,12 @@ class FragSearchProducts : TMFragment(), AdapterRecyclerView.Callbacks {
             view.text_view_add.visibility= View.GONE
             App.db.addProduct(products[i])
             recycler_view_products.adapter?.notifyDataSetChanged()
-            (activity as ToolbarCallbacks).notifyBadge()
+            (activity as ToolbarCallbacks).notifyCartBadge()
         }
         view.button_plus.setOnClickListener {
             App.db.addProduct(products[i])
             recycler_view_products.adapter?.notifyDataSetChanged()
-            (activity as ToolbarCallbacks).notifyBadge()
+            (activity as ToolbarCallbacks).notifyCartBadge()
         }
         view.button_minus.setOnClickListener {
             if (products[i].quantity == 1) {
@@ -118,7 +117,7 @@ class FragSearchProducts : TMFragment(), AdapterRecyclerView.Callbacks {
                 App.db.minusProduct(products[i])
             }
             recycler_view_products.adapter?.notifyDataSetChanged()
-            (activity as ToolbarCallbacks).notifyBadge()
+            (activity as ToolbarCallbacks).notifyCartBadge()
         }
         view.text_view_number_plus_minus.text = products[i].quantity.toString()
         if (products[i].quantity > 0) {

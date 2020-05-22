@@ -6,7 +6,6 @@ import com.example.grocerygo.adapters.AdapterImageSlider
 import com.example.grocerygo.extras.App
 import com.example.grocerygo.inheritables.HostCallbacks
 import com.example.grocerygo.inheritables.ToolbarCallbacks
-import com.example.grocerygo.inheritables.GGFragment
 import com.example.grocerygo.inheritables.TMFragment
 import kotlinx.android.synthetic.main.frag_home.*
 
