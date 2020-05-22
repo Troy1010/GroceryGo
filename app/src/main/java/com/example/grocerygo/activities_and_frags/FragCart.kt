@@ -7,7 +7,7 @@ import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.grocerygo.R
-import com.example.grocerygo.adapters.AdapterCart
+import com.example.grocerygo.adapters.CustomAdapterCart
 import com.example.grocerygo.extras.*
 import com.example.grocerygo.inheritables.*
 import com.example.grocerygo.models.Product
@@ -15,7 +15,7 @@ import kotlinx.android.synthetic.main.frag_cart.*
 import kotlinx.android.synthetic.main.includible_plus_minus.view.*
 import kotlinx.android.synthetic.main.item_cart_item.view.*
 
-class FragCart : GGFragment(), AdapterCart.Callbacks {
+class FragCart : GGFragment(), CustomAdapterCart.Callbacks {
     override val layout = R.layout.frag_cart
     override var products = arrayListOf<Product>()
     override val title = "Cart"
@@ -32,7 +32,7 @@ class FragCart : GGFragment(), AdapterCart.Callbacks {
     private fun setupAdapter() {
         layoutManager = GridLayoutManager(activity!!, 1)
         recycler_view_cart_items.layoutManager = layoutManager
-        recycler_view_cart_items.adapter = AdapterCart(this, activity!!)
+        recycler_view_cart_items.adapter = CustomAdapterCart(this, activity!!)
         recycler_view_cart_items
             .addItemDecoration(DividerItemDecoration(activity, RecyclerView.VERTICAL))
     }

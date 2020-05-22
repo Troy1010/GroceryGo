@@ -10,10 +10,10 @@ import com.example.grocerygo.extras.logz
 import com.example.grocerygo.models.Product
 
 
-class AdapterCart(
+class CustomAdapterCart(
     var parent: Callbacks,
     var context: Context
-) : RecyclerView.Adapter<AdapterCart.ViewHolder>() {
+) : RecyclerView.Adapter<CustomAdapterCart.ViewHolder>() {
     lateinit var zsfsParent : ViewGroup
     var zsfsHeight : Int = -1
     lateinit var oldView : View
@@ -29,7 +29,7 @@ class AdapterCart(
         }
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): AdapterCart.ViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CustomAdapterCart.ViewHolder {
         zsfsParent = parent
         logz("*******************parent.height:${parent.height}")
         val view = if (viewType == ItemViewTypeEnums.last.typeID) {
@@ -46,7 +46,7 @@ class AdapterCart(
         return parent.products.size + 1
     }
 
-    override fun onBindViewHolder(holder: AdapterCart.ViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: CustomAdapterCart.ViewHolder, position: Int) {
         logz("*****parent.height:${zsfsParent.height}")
 //        logz("*****parent:${parent.}")
         if (position < parent.products.size) {
