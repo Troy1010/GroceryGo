@@ -27,10 +27,8 @@ class ActivityHost : GGToolbarActivity(), HostCallbacks {
     override fun setNavigationEmpty(shouldNavigationBarBeEmpty: Boolean) {
         if (shouldNavigationBarBeEmpty) {
             bottom_navigation_bar.visibility=View.GONE
-            frame_navigation_bar_area.visibility=View.VISIBLE
         } else {
             bottom_navigation_bar.visibility=View.VISIBLE
-            frame_navigation_bar_area.visibility=View.GONE // TODO this is probably not necessary
         }
     }
 
