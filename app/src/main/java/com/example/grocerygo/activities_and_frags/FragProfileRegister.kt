@@ -1,18 +1,22 @@
 package com.example.grocerygo.activities_and_frags
 
 import android.view.View
+import com.android.volley.Request
+import com.android.volley.Response
+import com.android.volley.toolbox.JsonObjectRequest
+import com.android.volley.toolbox.Volley
 import com.example.grocerygo.R
-import com.example.grocerygo.extras.App
-import com.example.grocerygo.extras.hasDigit
-import com.example.grocerygo.extras.isAllDigits
-import com.example.grocerygo.extras.logz
+import com.example.grocerygo.extras.*
 import com.example.grocerygo.inheritables.HostCallbacks
 import com.example.grocerygo.inheritables.TMFragment
 import com.example.grocerygo.inheritables.ToolbarCallbacks
+import com.example.grocerygo.models.ReceivedRegistrationObject
 import com.example.grocerygo.models.User
 import com.google.android.material.textfield.TextInputEditText
 import com.google.android.material.textfield.TextInputLayout
+import com.google.gson.GsonBuilder
 import kotlinx.android.synthetic.main.frag_register.*
+import org.json.JSONObject
 
 
 class FragProfileRegister : TMFragment() {
@@ -52,12 +56,46 @@ class FragProfileRegister : TMFragment() {
                     errorHandler.handle(FormValidator.mobile(mobile), text_input_layout_mobile)
                     if (!errorHandler.foundError) {
                         logz("register")
-                        App.sm.user = User(name, email, password, mobile)
-                        (activity as HostCallbacks).goToHome()
+                        requestRegistration(User(name, email, password, mobile))
+//                        App.sm.user = User(name, email, password, mobile)
                     }
-
-
         }
+    }
+
+
+
+    private fun requestRegistration(user: User) {
+        val requestQueue = Volley.newRequestQueue(activity!!)
+        val params = HashMap<String, String>()
+        params["email"] = user.email!!
+        params["password"] = user.password!!
+        params["firstName"] = user.name!!
+        params["mobile"] = user.mobile!!
+        //typecast params into jsonObject
+        val jsonObject = JSONObject(params as Map<*, *>)
+
+        val request = JsonObjectRequest(
+            Request.Method.POST, Endpoints.register, jsonObject,
+            Response.Listener { response ->
+                val receivedCategoriesObject = GsonBuilder().create()
+                    .fromJson(response.toString(), ReceivedRegistrationObject::class.java)
+                //
+                val registrationData = receivedCategoriesObject.data
+                App.sm.user = User(
+                    name = registrationData.firstName,
+                    email = registrationData.email,
+                    password = registrationData.password,
+                    mobile = registrationData.mobile,
+                    id = registrationData._id
+                )
+                logz("App.sm.user:${App.sm.user}")
+                //
+                (activity as HostCallbacks).goToHome()
+            },
+            Response.ErrorListener {
+                logz("Response.ErrorListener`it:$it")
+            })
+        requestQueue.add(request)
     }
 }
 

@@ -4,7 +4,8 @@ data class User (
     val name:String?,
     val email:String?,
     val password:String?,
-    val mobile:String?
+    val mobile:String?,
+    val id:String? = null
 ) {
     companion object {
         const val KEY_NAME = "NAME"
