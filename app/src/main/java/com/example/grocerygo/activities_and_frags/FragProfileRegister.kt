@@ -5,6 +5,7 @@ import com.example.grocerygo.R
 import com.example.grocerygo.extras.App
 import com.example.grocerygo.extras.hasDigit
 import com.example.grocerygo.extras.isAllDigits
+import com.example.grocerygo.extras.logz
 import com.example.grocerygo.inheritables.HostCallbacks
 import com.example.grocerygo.inheritables.TMFragment
 import com.example.grocerygo.inheritables.ToolbarCallbacks
@@ -36,9 +37,7 @@ class FragProfileRegister : TMFragment() {
         text_input_name.setOnFocusChangeListener(MyOnFocusChangeListener(text_input_name,text_input_layout_name,RegFieldEnum.NAME))
         text_input_password.setOnFocusChangeListener(MyOnFocusChangeListener(text_input_password,text_input_layout_password,RegFieldEnum.PASSWORD))
         text_input_mobile.setOnFocusChangeListener(MyOnFocusChangeListener(text_input_mobile,text_input_layout_mobile,RegFieldEnum.MOBILE))
-        button_register_send.setOnClickListener {v ->
-            when (v?.id) {
-                R.id.button_register_send -> {
+        button_register_send.setOnClickListener {
                     var name = text_input_name.text.toString().trim()
                     var email = text_input_email.text.toString().trim()
                     var password = text_input_password.text.toString().trim()
@@ -52,11 +51,12 @@ class FragProfileRegister : TMFragment() {
                     errorHandler.handle(FormValidator.email(email), text_input_layout_email)
                     errorHandler.handle(FormValidator.mobile(mobile), text_input_layout_mobile)
                     if (!errorHandler.foundError) {
+                        logz("register")
                         App.sm.user = User(name, email, password, mobile)
                         (activity as HostCallbacks).goToHome()
                     }
-                }
-            }
+
+
         }
     }
 }
