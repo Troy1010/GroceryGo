@@ -1,7 +1,6 @@
 package com.example.grocerygo.activities_and_frags
 
 import android.content.Intent
-import android.view.Menu
 import android.view.View
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.GridLayoutManager
@@ -16,7 +15,7 @@ import kotlinx.android.synthetic.main.frag_cart.*
 import kotlinx.android.synthetic.main.includible_plus_minus.view.*
 import kotlinx.android.synthetic.main.item_cart_item.view.*
 
-class FragCart : GGFragment(), CartRecyclerViewCallbacks {
+class FragCart : GGFragment(), AdapterCart.Callbacks {
     override val layout = R.layout.frag_cart
     override var products = arrayListOf<Product>()
     override val title = "Cart"

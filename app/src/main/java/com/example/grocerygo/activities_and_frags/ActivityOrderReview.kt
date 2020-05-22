@@ -8,7 +8,6 @@ import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.grocerygo.R
-import com.example.grocerygo.adapters.AdapterCart
 import com.example.grocerygo.adapters.AdapterRecyclerView
 import com.example.grocerygo.extras.App
 import com.example.grocerygo.extras.DisplayMoney
@@ -17,7 +16,6 @@ import com.example.grocerygo.extras.easyPicasso
 import com.example.grocerygo.inheritables.GGToolbarActivity
 import com.example.grocerygo.models.Product
 import kotlinx.android.synthetic.main.activity_c_order_review.*
-import kotlinx.android.synthetic.main.frag_cart.*
 import kotlinx.android.synthetic.main.item_order_review.view.*
 
 class ActivityOrderReview : GGToolbarActivity(), AdapterRecyclerView.Callbacks {

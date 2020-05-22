@@ -7,11 +7,11 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.grocerygo.R
 import com.example.grocerygo.extras.logz
-import com.example.grocerygo.inheritables.CartRecyclerViewCallbacks
+import com.example.grocerygo.models.Product
 
 
 class AdapterCart(
-    var parent: CartRecyclerViewCallbacks,
+    var parent: Callbacks,
     var context: Context
 ) : RecyclerView.Adapter<AdapterCart.ViewHolder>() {
     lateinit var zsfsParent : ViewGroup
@@ -63,8 +63,17 @@ class AdapterCart(
             parent.bindLastRecyclerItemView(holder.itemView, oldView.height)
         }
     }
+
+
+
+    interface Callbacks
+    {
+        var products: ArrayList<Product>
+        fun bindRecyclerItemView(view: View, i: Int)
+        fun bindLastRecyclerItemView(view: View, normalItemHeight: Int)
+    }
+    enum class ItemViewTypeEnums(val typeID: Int) {
+        normalItem(0), last(1)
+    }
 }
 
-enum class ItemViewTypeEnums(val typeID: Int) {
-    normalItem(0), last(1)
-}

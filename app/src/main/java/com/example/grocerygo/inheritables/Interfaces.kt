@@ -16,10 +16,3 @@ interface HostCallbacks
     fun goToHome()
     fun goToProfile()
 }
-
-interface CartRecyclerViewCallbacks
-{
-    var products: ArrayList<Product>
-    fun bindRecyclerItemView(view: View, i: Int)
-    fun bindLastRecyclerItemView(view: View, normalItemHeight: Int)
-}
