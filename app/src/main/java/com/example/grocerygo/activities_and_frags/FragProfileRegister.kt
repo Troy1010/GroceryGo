@@ -55,7 +55,6 @@ class FragProfileRegister : TMFragment() {
                     errorHandler.handle(FormValidator.email(email), text_input_layout_email)
                     errorHandler.handle(FormValidator.mobile(mobile), text_input_layout_mobile)
                     if (!errorHandler.foundError) {
-                        logz("register")
                         requestRegistration(User(name, email, password, mobile))
 //                        App.sm.user = User(name, email, password, mobile)
                     }

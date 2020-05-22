@@ -42,7 +42,6 @@ class ActivityOrderReview : GGToolbarActivity(), AdapterRecyclerView.Callbacks {
         button_place_order.setOnClickListener {
 
             // TODO refactor to Requester
-            logz(java.util.Calendar.getInstance().toString())
             val objectToPost = ReceivedOrderObject(
                 user = App.sm.user,
                 userId = App.sm.user._id!!,
@@ -55,13 +54,10 @@ class ActivityOrderReview : GGToolbarActivity(), AdapterRecyclerView.Callbacks {
                 orderStatus = "Getting Ready" // TODO
             )
             val jsonObject = JSONObject(Gson().toJson(objectToPost))
-            logz(Endpoints.getPostOrderEndpoint())
-            logz("json..")
-            logz(Gson().toJson(objectToPost))
             val request = JsonObjectRequest(
                 Request.Method.POST, Endpoints.getPostOrderEndpoint(), jsonObject,
                 Response.Listener {
-                    logz("it:$it")
+                    // do nothing with the response
                 },
                 Response.ErrorListener {
                     logz("Response.ErrorListener`it:$it")
