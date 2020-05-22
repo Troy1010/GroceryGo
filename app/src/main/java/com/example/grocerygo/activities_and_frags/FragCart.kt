@@ -24,7 +24,7 @@ class FragCart : GGFragment(), CustomAdapterCart.Callbacks {
     override fun onStart() {
         super.onStart()
         (activity as HostCallbacks).setNavigationEmpty(true)
-        (activity as GGToolbarActivity).toolbarMenu?.findItem(R.id.menu_cart)?.isVisible = false
+        (activity as ToolbarCallbacks).toolbarMenu?.findItem(R.id.menu_cart)?.isVisible = false
         setupAdapter()
         refresh()
     }

@@ -15,8 +15,7 @@ import com.example.grocerygo.extras.Endpoints
 import com.example.grocerygo.extras.KEY_CAT_ID
 import com.example.grocerygo.extras.logz
 import com.example.grocerygo.inheritables.GGFragment
-import com.example.grocerygo.inheritables.GGToolbarActivity
-import com.example.grocerygo.inheritables.TMFragment
+import com.example.grocerygo.inheritables.ToolbarCallbacks
 import com.example.grocerygo.models.ReceivedSubCategoriesObject
 import com.example.grocerygo.models.SubCategory
 import com.google.android.material.tabs.TabLayout
@@ -32,7 +31,7 @@ class FragSearchToolbar : GGFragment() {
 
     override fun onStart() {
         super.onStart()
-        (activity as GGToolbarActivity).toolbarMenu?.findItem(R.id.menu_cart)?.isVisible = true
+        (activity as ToolbarCallbacks).toolbarMenu?.findItem(R.id.menu_cart)?.isVisible = true
     }
 
     override fun onCreateViewInit() {

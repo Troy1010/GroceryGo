@@ -5,7 +5,7 @@ import com.example.grocerygo.extras.App
 import com.example.grocerygo.extras.easyToast
 import com.example.grocerygo.inheritables.HostCallbacks
 import com.example.grocerygo.inheritables.GGFragment
-import com.example.grocerygo.inheritables.GGToolbarActivity
+import com.example.grocerygo.inheritables.ToolbarCallbacks
 import com.example.grocerygo.models.LoginObject
 import kotlinx.android.synthetic.main.frag_login.*
 
@@ -19,7 +19,7 @@ class FragProfileLogin : GGFragment() {
     override fun onStart() {
         super.onStart()
         (activity as HostCallbacks).setNavigationEmpty(false)
-        (activity as GGToolbarActivity).toolbarMenu?.findItem(R.id.menu_cart)?.isVisible = true
+        (activity as ToolbarCallbacks).toolbarMenu?.findItem(R.id.menu_cart)?.isVisible = true
         setupClickListeners()
     }
 

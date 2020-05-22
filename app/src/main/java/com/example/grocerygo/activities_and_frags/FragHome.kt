@@ -7,7 +7,6 @@ import com.example.grocerygo.extras.App
 import com.example.grocerygo.inheritables.HostCallbacks
 import com.example.grocerygo.inheritables.ToolbarCallbacks
 import com.example.grocerygo.inheritables.GGFragment
-import com.example.grocerygo.inheritables.GGToolbarActivity
 import kotlinx.android.synthetic.main.frag_home.*
 
 class FragHome : GGFragment() {
@@ -21,7 +20,7 @@ class FragHome : GGFragment() {
         super.onStart()
         (activity as ToolbarCallbacks).setToolbarAttributes(title, false)
         (activity as HostCallbacks).setNavigationEmpty(false)
-        (activity as GGToolbarActivity).toolbarMenu?.findItem(R.id.menu_cart)?.isVisible = true
+        (activity as ToolbarCallbacks).toolbarMenu?.findItem(R.id.menu_cart)?.isVisible = true
         setupImageSlider()
 //        button_logout.setOnClickListener {
 //            App.sm.logout()
