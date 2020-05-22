@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+    <TextView
+        android:text="(DATE)"
+        android:textColor="@color/TextVsHeads"
+        android:textSize="32sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/text_view_quantity_value"
+        android:id="@+id/text_view_date_value"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        />
+
+    <TextView
+        android:id="@+id/text_view_quantity_value"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="(Quantity)"
+        android:textSize="20sp"
+        android:textColor="@color/TextVsHeadsSoft"
+        app:layout_constraintBottom_toTopOf="@id/text_view_grand_total_title"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
+    <TextView
+        android:id="@+id/text_view_grand_total_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Total"
+        android:textSize="20sp"
+        android:textColor="@color/TextVsHeadsSoft"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/text_view_grand_total_value"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="(TOTAL)"
+        android:textColor="@color/TextVsHeadsSoft"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
