@@ -86,7 +86,7 @@ class FragProfileRegister : TMFragment() {
                     email = registrationData.email,
                     password = registrationData.password,
                     mobile = registrationData.mobile,
-                    id = registrationData._id
+                    _id = registrationData._id
                 )
                 logz("App.sm.user:${App.sm.user}")
                 //

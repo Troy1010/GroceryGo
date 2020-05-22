@@ -31,15 +31,19 @@ class ActivityPaymentInfo: GGToolbarActivity(), AdapterRecyclerView.Callbacks {
     override fun onStart() {
         super.onStart()
         setupRecyclerView()
-        Requester.requestAddresses(App.sm.user.id,
-            Response.Listener { response ->
-            val receivedAddressesObject = GsonBuilder().create()
-                .fromJson(response.toString(), ReceivedAddressesObject::class.java)
-            //
-            addresses = ArrayList(receivedAddressesObject.data)
-            recycler_view_addresses.adapter?.notifyDataSetChanged()
-        })
         refreshNonRecyclerViews()
+    }
+
+    private fun setupListeners() {
+        button_payment_info_send.setOnClickListener {
+            startActivity(Intent(this, ActivityOrderReview::class.java))
+        }
+        frame_address.setOnClickListener {
+            startActivity(Intent(this, ActivityAddress::class.java))
+        }
+        frame_payment.setOnClickListener {
+            startActivity(Intent(this, ActivityPayment::class.java))
+        }
     }
 
     fun refreshNonRecyclerViews() {
@@ -47,6 +51,14 @@ class ActivityPaymentInfo: GGToolbarActivity(), AdapterRecyclerView.Callbacks {
     }
 
     private fun setupRecyclerView() {
+        Requester.requestAddresses(App.sm.user._id,
+            Response.Listener { response ->
+                val receivedAddressesObject = GsonBuilder().create()
+                    .fromJson(response.toString(), ReceivedAddressesObject::class.java)
+                //
+                addresses = ArrayList(receivedAddressesObject.data)
+                recycler_view_addresses.adapter?.notifyDataSetChanged()
+            })
         recycler_view_addresses.layoutManager = LinearLayoutManager(this)
         recycler_view_addresses.adapter = AdapterRecyclerView(this, this, R.layout.item_address)
         recycler_view_addresses
@@ -56,7 +68,7 @@ class ActivityPaymentInfo: GGToolbarActivity(), AdapterRecyclerView.Callbacks {
     override fun bindRecyclerItemView(view: View, i: Int) {
         view.text_view_address.text = addresses[i].streetName
         view.text_view_address.setOnClickListener {
-            App.sm.user = User(App.sm.user.name, App.sm.user.email, App.sm.user.password, App.sm.user.mobile, addresses[i], App.sm.user.id)//TODO this could be simplified
+            App.sm.user = User(App.sm.user.name, App.sm.user.email, App.sm.user.password, App.sm.user.mobile, addresses[i], App.sm.user._id)//TODO this could be simplified
             refreshNonRecyclerViews()
         }
         view.button_trash.setOnClickListener {
@@ -65,7 +77,7 @@ class ActivityPaymentInfo: GGToolbarActivity(), AdapterRecyclerView.Callbacks {
             } else {
                 Requester.requestDeleteAddress(addresses[i]._id, Response.Listener { _ ->
                     //Once you're done deleting, update the addresses
-                    Requester.requestAddresses(App.sm.user.id,
+                    Requester.requestAddresses(App.sm.user._id,
                         Response.Listener { response2 ->
                         val receivedAddressesObject = GsonBuilder().create()
                             .fromJson(response2.toString(), ReceivedAddressesObject::class.java)
@@ -86,18 +98,6 @@ class ActivityPaymentInfo: GGToolbarActivity(), AdapterRecyclerView.Callbacks {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setupListeners()
-    }
-
-    private fun setupListeners() {
-        button_payment_info_send.setOnClickListener {
-            startActivity(Intent(this, ActivityOrderReview::class.java))
-        }
-        frame_address.setOnClickListener {
-            startActivity(Intent(this, ActivityAddress::class.java))
-        }
-        frame_payment.setOnClickListener {
-            startActivity(Intent(this, ActivityPayment::class.java))
-        }
     }
 
     // Setup Toolbar

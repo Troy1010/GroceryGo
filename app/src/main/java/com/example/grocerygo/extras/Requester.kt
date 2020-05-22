@@ -5,6 +5,7 @@ import com.android.volley.Response
 import com.android.volley.toolbox.JsonObjectRequest
 import com.android.volley.toolbox.Volley
 import com.example.grocerygo.models.User
+import com.google.gson.Gson
 import org.json.JSONObject
 
 object Requester {
@@ -37,12 +38,7 @@ object Requester {
 
 
     fun requestLogin(user: User, listener: Response.Listener<JSONObject>) {
-        val params = HashMap<String, String>()
-        params["email"] = user.email!!
-        params["password"] = user.password!!
-        //typecast params into jsonObject
-        val jsonObject = JSONObject(params as Map<*, *>)
-
+        val jsonObject = JSONObject(Gson().toJson(user))
         val request = JsonObjectRequest(
             Request.Method.POST, Endpoints.login, jsonObject,
             listener,

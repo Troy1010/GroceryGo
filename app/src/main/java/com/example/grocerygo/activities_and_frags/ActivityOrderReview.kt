@@ -7,16 +7,22 @@ import android.view.View
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.android.volley.Request
+import com.android.volley.Response
+import com.android.volley.toolbox.JsonObjectRequest
 import com.example.grocerygo.R
 import com.example.grocerygo.adapters.AdapterRecyclerView
-import com.example.grocerygo.extras.App
-import com.example.grocerygo.extras.DisplayMoney
-import com.example.grocerygo.extras.Endpoints
-import com.example.grocerygo.extras.easyPicasso
+import com.example.grocerygo.extras.*
 import com.example.grocerygo.inheritables.GGToolbarActivity
 import com.example.grocerygo.models.Product
+import com.example.grocerygo.models.received.OrderSummary_PASSABLE
+import com.example.grocerygo.models.received.ReceivedOrderObject
+import com.google.gson.Gson
 import kotlinx.android.synthetic.main.activity_c_order_review.*
 import kotlinx.android.synthetic.main.item_order_review.view.*
+import org.json.JSONObject
+import java.text.SimpleDateFormat
+import java.time.LocalDateTime
 
 class ActivityOrderReview : GGToolbarActivity(), AdapterRecyclerView.Callbacks {
     override val title: String
@@ -34,6 +40,37 @@ class ActivityOrderReview : GGToolbarActivity(), AdapterRecyclerView.Callbacks {
 
     private fun setupClickListeners() {
         button_place_order.setOnClickListener {
+
+            // TODO refactor to Requester
+            logz(java.util.Calendar.getInstance().toString())
+            val objectToPost = ReceivedOrderObject(
+                user = App.sm.user,
+                userId = App.sm.user._id!!,
+                shippingAddress = App.sm.user.primaryAddress!!,
+                products = App.db.getProducts(),
+                orderSummary = OrderSummary_PASSABLE(
+                    deliveryCharges = App.db.getOrderSummary().getDeliveryFee(),
+                    totalAmount = App.db.getOrderSummary().priceTotal
+                ),
+                orderStatus = "Getting Ready" // TODO
+            )
+            val jsonObject = JSONObject(Gson().toJson(objectToPost))
+            logz(Endpoints.getPostOrderEndpoint())
+            logz("json..")
+            logz(Gson().toJson(objectToPost))
+            val request = JsonObjectRequest(
+                Request.Method.POST, Endpoints.getPostOrderEndpoint(), jsonObject,
+                Response.Listener {
+                    logz("it:$it")
+                },
+                Response.ErrorListener {
+                    logz("Response.ErrorListener`it:$it")
+                })
+            Requester.requestQueue.add(request)
+
+            // TODO refactor to Requester
+
+
             val intent = Intent(this, ActivityThankYou::class.java)
             intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
             startActivity(intent)

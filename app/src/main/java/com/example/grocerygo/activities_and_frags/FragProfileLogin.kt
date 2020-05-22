@@ -48,7 +48,7 @@ class FragProfileLogin : TMFragment() {
                         email = registrationData.email,
                         password = registrationData.password,
                         mobile = registrationData.mobile,
-                        id = registrationData._id
+                        _id = registrationData._id
                     )
                     //
                     (activity as HostCallbacks).goToHome()

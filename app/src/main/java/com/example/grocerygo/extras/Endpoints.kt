@@ -12,6 +12,8 @@ object Endpoints {
     private const val URL_END_REGISTER = "auth/register"
     private const val URL_END_POST_ADDRESS = "address"
     private const val URL_END_ADDRESS = "address/"
+    private const val URL_END_POST_ORDERS = "orders"
+    private const val URL_END_ORDERS = "orders/"
 
     // derivative
     val categories: String
@@ -43,6 +45,10 @@ object Endpoints {
 
     fun getDeleteAddressEndpoint(addressID:String):String {
         return Config.BASE_URL + URL_END_ADDRESS + addressID
+    }
+
+    fun getPostOrderEndpoint():String {
+        return Config.BASE_URL + URL_END_POST_ORDERS
     }
 }
 

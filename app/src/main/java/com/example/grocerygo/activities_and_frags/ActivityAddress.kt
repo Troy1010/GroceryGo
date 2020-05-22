@@ -36,7 +36,7 @@ class ActivityAddress : GGToolbarActivity() {
                     pincode = text_input_zip_code.text.toString(),
                     streetName = addressNameAndNum?.name ?: "",
                     type = "Mobile",
-                    userId = App.sm.user.id.toString(),
+                    userId = App.sm.user._id.toString(),
                     houseNo = addressNameAndNum?.num.toString()
                 )
             )
@@ -85,8 +85,8 @@ class ActivityAddress : GGToolbarActivity() {
         val request = JsonObjectRequest(
             Request.Method.POST, Endpoints.getPostAddressEndpoint(), jsonObject,
             Response.Listener { response ->
-                val receivedPostedAddressObject = GsonBuilder().create()
-                    .fromJson(response.toString(), ReceivedPostedAddressObject::class.java)
+//                val receivedPostedAddressObject = GsonBuilder().create()
+//                    .fromJson(response.toString(), ReceivedPostedAddressObject::class.java)
                 // do nothing with the response and just go back
                 startActivity(Intent(this, ActivityPaymentInfo::class.java))
             },
