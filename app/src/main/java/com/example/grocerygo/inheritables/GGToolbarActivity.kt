@@ -24,7 +24,7 @@ abstract class GGToolbarActivity : TMActivity(), ToolbarCallbacks {
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
     }
 
-    var toolbarMenu: Menu? = null
+    override var toolbarMenu: Menu? = null
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         menuInflater.inflate(R.menu.three_dot_menu, menu)
