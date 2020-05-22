@@ -15,20 +15,13 @@ object Requester {
     val requestQueue = Volley.newRequestQueue(App.instance)
 
 
-    fun requestAddresses(listener: Response.Listener<JSONObject>) {
-        var userID = App.sm.user.id
+    fun requestAddresses(userID:String?, listener: Response.Listener<JSONObject>) {
         if (userID == null) {
             logz("requestAddress received a null userID")
             return
-        } else {
-            userID = userID!!
         }
-        val params = HashMap<String, String>()
-        // TODO probably don't need params..
-        val jsonObject = JSONObject(params as Map<*, *>)
-
         val request = JsonObjectRequest(
-            Request.Method.GET, Endpoints.getAddressesEndpoint(userID), jsonObject,
+            Request.Method.GET, Endpoints.getAddressesEndpoint(userID), null,
             listener,
             Response.ErrorListener {
                 logz("Response.ErrorListener`it:$it")
@@ -37,13 +30,8 @@ object Requester {
     }
 
     fun requestDeleteAddress(addressID:String, listener: Response.Listener<JSONObject>) {
-        var addressID = addressID
-        val params = HashMap<String, String>()
-        // TODO probably don't need params..
-        val jsonObject = JSONObject(params as Map<*, *>)
-
         val request = JsonObjectRequest(
-            Request.Method.DELETE, Endpoints.getDeleteAddressEndpoint(addressID), jsonObject,
+            Request.Method.DELETE, Endpoints.getDeleteAddressEndpoint(addressID), null,
             listener,
             Response.ErrorListener {
                 logz("Response.ErrorListener`it:$it")
