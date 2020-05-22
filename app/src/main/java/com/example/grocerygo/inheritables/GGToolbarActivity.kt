@@ -95,6 +95,9 @@ abstract class GGToolbarActivity : TMActivity(), ToolbarCallbacks {
             R.id.menu_setTitle -> {
 //                setToolbarTitle("TestTitle")
             }
+            R.id.menu_order_history -> {
+                startActivity(Intent(this, ActivityOrderHistory::class.java))
+            }
         }
         return returning
     }

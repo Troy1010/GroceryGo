@@ -22,4 +22,8 @@
         android:id="@+id/menu_setTitle"
         android:title="Set Title"
         app:showAsAction="never" />
+    <item
+        android:id="@+id/menu_order_history"
+        android:title="Order History"
+        app:showAsAction="never" />
 </menu>

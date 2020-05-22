@@ -15,14 +15,12 @@ import com.example.grocerygo.adapters.AdapterRecyclerView
 import com.example.grocerygo.extras.*
 import com.example.grocerygo.inheritables.GGToolbarActivity
 import com.example.grocerygo.models.Product
-import com.example.grocerygo.models.received.OrderSummary_PASSABLE
-import com.example.grocerygo.models.received.ReceivedOrderObject
+import com.example.grocerygo.models.OrderSummary_PASSABLE
+import com.example.grocerygo.models.Order
 import com.google.gson.Gson
 import kotlinx.android.synthetic.main.activity_c_order_review.*
 import kotlinx.android.synthetic.main.item_order_review.view.*
 import org.json.JSONObject
-import java.text.SimpleDateFormat
-import java.time.LocalDateTime
 
 class ActivityOrderReview : GGToolbarActivity(), AdapterRecyclerView.Callbacks {
     override val title: String

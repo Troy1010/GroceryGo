@@ -25,6 +25,19 @@ object Requester {
             })
         requestQueue.add(request)
     }
+    fun requestOrders(userID:String?, listener: Response.Listener<JSONObject>) {
+        if (userID == null) {
+            logz("requestOrders received a null userID")
+            return
+        }
+        val request = JsonObjectRequest(
+            Request.Method.GET, Endpoints.getOrdersEndpoint(userID), null,
+            listener,
+            Response.ErrorListener {
+                logz("Response.ErrorListener`it:$it")
+            })
+        requestQueue.add(request)
+    }
 
     fun requestDeleteAddress(addressID:String, listener: Response.Listener<JSONObject>) {
         val request = JsonObjectRequest(

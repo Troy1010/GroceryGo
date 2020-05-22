@@ -50,5 +50,9 @@ object Endpoints {
     fun getPostOrderEndpoint():String {
         return Config.BASE_URL + URL_END_POST_ORDERS
     }
+
+    fun getOrdersEndpoint(userID:String):String {
+        return Config.BASE_URL + URL_END_ORDERS + userID
+    }
 }
 

@@ -1,10 +1,6 @@
-package com.example.grocerygo.models.received
+package com.example.grocerygo.models
 
-import com.example.grocerygo.models.Address
-import com.example.grocerygo.models.Product
-import com.example.grocerygo.models.User
-
-data class ReceivedOrderObject(
+data class Order(
     val __v: Int? = null,
     val _id: String? = null,
     val date: String? = null,
