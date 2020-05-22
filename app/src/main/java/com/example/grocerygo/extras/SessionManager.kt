@@ -16,13 +16,15 @@ class SessionManager {
             var storedEmail = sharedPref.getString(User.KEY_EMAIL, null)
             var storedPassword = sharedPref.getString(User.KEY_PASSWORD, null)
             var storedMobile = sharedPref.getString(User.KEY_MOBILE, null)
-            return User(storedName, storedEmail, storedPassword, storedMobile)
+            var storedID = sharedPref.getString(User.KEY_ID, null)
+            return User(storedName, storedEmail, storedPassword, storedMobile, storedID)
         }
         set(value) {
             editor.putString(User.KEY_EMAIL, value.email)
             editor.putString(User.KEY_NAME, value.name)
             editor.putString(User.KEY_PASSWORD, value.password)
             editor.putString(User.KEY_MOBILE, value.mobile)
+            editor.putString(User.KEY_ID, value.id)
             editor.commit()
         }
 
