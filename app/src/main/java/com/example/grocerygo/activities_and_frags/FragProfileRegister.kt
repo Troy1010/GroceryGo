@@ -18,6 +18,12 @@ class FragProfileRegister : TMFragment() {
     override val layout: Int
         get() = R.layout.frag_register
 
+    override fun onStart() {
+        super.onStart()
+        setupParent()
+        setupListeners()
+    }
+
     private fun setupParent() {
         (activity as HostCallbacks).showNavigationBar(true)
         (activity as ToolbarCallbacks).showCart(true)
@@ -25,9 +31,7 @@ class FragProfileRegister : TMFragment() {
         (activity as ToolbarCallbacks).setTitle("Register")
     }
 
-    override fun onStart() {
-        super.onStart()
-        setupParent()
+    private fun setupListeners() {
         text_input_email.setOnFocusChangeListener(MyOnFocusChangeListener(text_input_email,text_input_layout_email,RegFieldEnum.EMAIL))
         text_input_name.setOnFocusChangeListener(MyOnFocusChangeListener(text_input_name,text_input_layout_name,RegFieldEnum.NAME))
         text_input_password.setOnFocusChangeListener(MyOnFocusChangeListener(text_input_password,text_input_layout_password,RegFieldEnum.PASSWORD))
