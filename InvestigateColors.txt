@@ -1,0 +1,44 @@
+LightMode
+	Main
+		background	LGrey		Heads
+		clickableB	White		HeadsAccent
+		text/Icon	Black		TextVsHeads
+		textSoft	DGrey		TextVsHeadsSoft
+	Toolbar 1
+		background	DTeal		TailsPrimaryColor
+		text/Icon	White		TextVsTails
+	Toolbar 2
+		background	LTeal		HeadsPrimaryColor
+		text		Black		TextVsHeads
+		textSoft	DGrey		TextVsHeadsSoft 		
+	Button
+		background	DATeal		PrimaryColor
+		text		White		TextVsPrimaryColor
+	NavigationBar
+		background	White		HeadsAccent
+		text/Icon	?Grey		TextVsHeadsSoft
+		highlight	LTeal		HeadsPrimaryColor
+		
+		
+		
+		
+DarkMode
+	Main
+		background	DGrey		DMHeads
+		clickableB	Black		MainAccent
+		text/Icon	White
+		textSoft	LGrey
+	Toolbar 1
+		background	DTeal
+		text/Icon	White
+	Toolbar 2
+		background	LTeal
+		text		Black
+		textSoft	DGrey
+	Button
+		background	LATeal
+		text		Black
+	NavigationBar
+		background	Black		MainAccent
+		text/Icon	
+		highlight	
