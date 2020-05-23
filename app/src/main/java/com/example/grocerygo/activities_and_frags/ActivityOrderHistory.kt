@@ -63,13 +63,9 @@ class ActivityOrderHistory : GGToolbarActivity(), AdapterRecyclerView.Callbacks 
     }
 
     override fun bindRecyclerItemView(view: View, i: Int) {
-        //
-        var totalQuantity = 0
-        for (product in orders[i].products) {
-            totalQuantity += product.quantity
-        }
-        view.text_view_quantity_value.text = totalQuantity.toString()
-        view.text_view_grand_total_value.text = DisplayMoney(OrderSummary(orders[i].products).grandTotal)
+        val orderSummary = OrderSummary(orders[i].products)
+        view.text_view_quantity_value.text = orderSummary.totalQuantity.toString()
+        view.text_view_grand_total_value.text = DisplayMoney(orderSummary.grandTotal)
         view.text_view_date_value.text = orders[i].date
     }
 
