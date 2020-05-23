@@ -9,9 +9,7 @@ import com.example.grocerygo.extras.App
 import com.example.grocerygo.activities_and_frags.Inheritables.TMFragment
 import kotlinx.android.synthetic.main.frag_home.*
 
-class FragHome : TMFragment() {
-    override val layout: Int
-        get() = R.layout.frag_home
+class FragHome : TMFragment(layout = R.layout.frag_home) {
 
 
 

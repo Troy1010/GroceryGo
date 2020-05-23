@@ -19,9 +19,7 @@ import kotlinx.android.synthetic.main.frag_register.*
 import org.json.JSONObject
 
 
-class FragProfileRegister : TMFragment() {
-    override val layout: Int
-        get() = R.layout.frag_register
+class FragProfileRegister : TMFragment(layout = R.layout.frag_register) {
 
     override fun onStart() {
         super.onStart()

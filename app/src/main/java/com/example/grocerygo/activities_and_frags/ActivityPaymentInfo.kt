@@ -20,11 +20,11 @@ import com.google.gson.GsonBuilder
 import kotlinx.android.synthetic.main.activity_c_payment_info.*
 import kotlinx.android.synthetic.main.item_address.view.*
 
-class ActivityPaymentInfo: GGToolbarActivity(), AdapterRecyclerView.Callbacks {
+class ActivityPaymentInfo :
+    GGToolbarActivity(layout = R.layout.activity_c_payment_info),
+    AdapterRecyclerView.Callbacks {
     override val title: String
         get() = "Payment Info"
-    override val layout: Int
-        get() = R.layout.activity_c_payment_info
 
     var addresses = arrayListOf<Address>()
 
@@ -47,7 +47,8 @@ class ActivityPaymentInfo: GGToolbarActivity(), AdapterRecyclerView.Callbacks {
     }
 
     fun refreshNonRecyclerViews() {
-        text_view_address_value.text = App.sm.user.primaryAddress?.houseNo + " " + App.sm.user.primaryAddress?.streetName
+        text_view_address_value.text =
+            App.sm.user.primaryAddress?.houseNo + " " + App.sm.user.primaryAddress?.streetName
     }
 
     private fun setupRecyclerView() {
@@ -68,7 +69,14 @@ class ActivityPaymentInfo: GGToolbarActivity(), AdapterRecyclerView.Callbacks {
     override fun bindRecyclerItemView(view: View, i: Int) {
         view.text_view_address.text = addresses[i].streetName
         view.text_view_address.setOnClickListener {
-            App.sm.user = User(App.sm.user.name, App.sm.user.email, App.sm.user.password, App.sm.user.mobile, addresses[i], App.sm.user._id)//TODO this could be simplified
+            App.sm.user = User(
+                App.sm.user.name,
+                App.sm.user.email,
+                App.sm.user.password,
+                App.sm.user.mobile,
+                addresses[i],
+                App.sm.user._id
+            )//TODO this could be simplified
             refreshNonRecyclerViews()
         }
         view.button_trash.setOnClickListener {
@@ -79,12 +87,12 @@ class ActivityPaymentInfo: GGToolbarActivity(), AdapterRecyclerView.Callbacks {
                     //Once you're done deleting, update the addresses
                     Requester.requestAddresses(App.sm.user._id,
                         Response.Listener { response2 ->
-                        val receivedAddressesObject = GsonBuilder().create()
-                            .fromJson(response2.toString(), ReceivedAddressesObject::class.java)
-                        //
-                        addresses = ArrayList(receivedAddressesObject.data)
-                        recycler_view_addresses.adapter?.notifyDataSetChanged()
-                    })
+                            val receivedAddressesObject = GsonBuilder().create()
+                                .fromJson(response2.toString(), ReceivedAddressesObject::class.java)
+                            //
+                            addresses = ArrayList(receivedAddressesObject.data)
+                            recycler_view_addresses.adapter?.notifyDataSetChanged()
+                        })
                 })
             }
         }

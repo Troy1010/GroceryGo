@@ -15,9 +15,7 @@ import com.example.grocerygo.models.ProfileItem
 import kotlinx.android.synthetic.main.frag_profile.*
 import kotlinx.android.synthetic.main.item_profile.view.*
 
-class FragProfile : TMFragment(), AdapterRecyclerView.Callbacks {
-    override val layout: Int
-        get() = R.layout.frag_profile
+class FragProfile : TMFragment(layout = R.layout.frag_profile), AdapterRecyclerView.Callbacks {
     var profileItems = ArrayList<ProfileItem>()
 
     override fun onStart() {

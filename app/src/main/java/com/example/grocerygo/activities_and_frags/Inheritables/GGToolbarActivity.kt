@@ -16,7 +16,7 @@ import kotlinx.android.synthetic.main.activity_host.*
 import kotlinx.android.synthetic.main.app_toolbar.*
 import kotlinx.android.synthetic.main.z_cart_icon.view.*
 
-abstract class GGToolbarActivity : TMActivity(),
+abstract class GGToolbarActivity(override val layout:Int) : TMActivity(layout),
     ToolbarCallbacks {
     abstract val title: String
     override fun onCreate(savedInstanceState: Bundle?) {

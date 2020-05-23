@@ -24,11 +24,9 @@ import kotlinx.android.synthetic.main.frag_search_products.recycler_view_product
 import kotlinx.android.synthetic.main.includible_plus_minus.view.*
 import kotlinx.android.synthetic.main.item_product.view.*
 
-class FragSearchProducts : TMFragment(), AdapterRecyclerView.Callbacks {
+class FragSearchProducts : TMFragment(layout = R.layout.frag_search_products), AdapterRecyclerView.Callbacks {
     val subCatID by lazy { arguments?.getInt(KEY_SUB_CAT_ID)?:1 }
     lateinit var products:ArrayList<Product>
-    override val layout: Int
-        get() = R.layout.frag_search_products
 
     override fun onCreateViewInit() {
         super.onCreateViewInit()

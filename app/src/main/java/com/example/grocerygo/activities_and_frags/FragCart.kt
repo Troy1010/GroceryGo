@@ -18,8 +18,7 @@ import kotlinx.android.synthetic.main.frag_cart.*
 import kotlinx.android.synthetic.main.includible_plus_minus.view.*
 import kotlinx.android.synthetic.main.item_cart_item.view.*
 
-class FragCart : TMFragment(), CustomAdapterCart.Callbacks {
-    override val layout = R.layout.frag_cart
+class FragCart : TMFragment(layout = R.layout.frag_cart), CustomAdapterCart.Callbacks {
     override var products = arrayListOf<Product>()
     lateinit var layoutManager: LinearLayoutManager
 

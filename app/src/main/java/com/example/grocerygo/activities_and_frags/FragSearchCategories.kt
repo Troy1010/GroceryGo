@@ -20,9 +20,7 @@ import com.google.gson.GsonBuilder
 import kotlinx.android.synthetic.main.frag_search_categories.*
 import kotlinx.android.synthetic.main.item_category.view.*
 
-class FragSearchCategories : TMFragment(), AdapterRecyclerView.Callbacks {
-    override val layout: Int
-        get() = R.layout.frag_search_categories
+class FragSearchCategories : TMFragment(layout = R.layout.frag_search_categories), AdapterRecyclerView.Callbacks {
     lateinit var categories:ArrayList<Category>
 
     override fun onCreateViewInit() {

@@ -15,11 +15,9 @@ import com.example.grocerygo.models.PostAddressObject
 import kotlinx.android.synthetic.main.activity_c_address.*
 import org.json.JSONObject
 
-class ActivityAddress : GGToolbarActivity() {
+class ActivityAddress : GGToolbarActivity(layout = R.layout.activity_c_address) {
     override val title: String
         get() = "Update Address"
-    override val layout: Int
-        get() = R.layout.activity_c_address
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

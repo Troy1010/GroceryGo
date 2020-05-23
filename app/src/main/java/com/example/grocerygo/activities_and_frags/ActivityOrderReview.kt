@@ -23,11 +23,9 @@ import kotlinx.android.synthetic.main.activity_c_order_review.*
 import kotlinx.android.synthetic.main.item_order_review.view.*
 import org.json.JSONObject
 
-class ActivityOrderReview : GGToolbarActivity(), AdapterRecyclerView.Callbacks {
+class ActivityOrderReview : GGToolbarActivity(layout = R.layout.activity_c_order_review), AdapterRecyclerView.Callbacks {
     override val title: String
         get() = "Order Review"
-    override val layout: Int
-        get() = R.layout.activity_c_order_review
     lateinit var products: ArrayList<Product>
 
     override fun onCreate(savedInstanceState: Bundle?) {

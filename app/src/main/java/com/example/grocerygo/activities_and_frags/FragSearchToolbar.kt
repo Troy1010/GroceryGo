@@ -20,9 +20,7 @@ import com.google.android.material.tabs.TabLayout
 import com.google.gson.GsonBuilder
 import kotlinx.android.synthetic.main.frag_search_toolbar.*
 
-class FragSearchToolbar : TMFragment() {
-    override val layout: Int
-        get() = R.layout.frag_search_toolbar
+class FragSearchToolbar : TMFragment(layout = R.layout.frag_search_toolbar) {
     val catID by lazy { arguments?.getInt(KEY_CAT_ID)?:1 }
 
     override fun onStart() {

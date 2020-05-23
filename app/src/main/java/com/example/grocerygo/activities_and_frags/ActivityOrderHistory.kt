@@ -20,11 +20,9 @@ import com.google.gson.GsonBuilder
 import kotlinx.android.synthetic.main.activity_order_history.*
 import kotlinx.android.synthetic.main.item_order_history.view.*
 
-class ActivityOrderHistory : GGToolbarActivity(), AdapterRecyclerView.Callbacks {
+class ActivityOrderHistory : GGToolbarActivity(layout = R.layout.activity_order_history), AdapterRecyclerView.Callbacks {
     override val title: String
         get() = "Order History"
-    override val layout: Int
-        get() = R.layout.activity_order_history
     var orders = ArrayList<Order>()
 
     override fun onCreate(savedInstanceState: Bundle?) {

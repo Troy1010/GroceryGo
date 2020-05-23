@@ -6,11 +6,9 @@ import com.example.grocerygo.R
 import com.example.grocerygo.activities_and_frags.Inheritables.GGToolbarActivity
 import kotlinx.android.synthetic.main.activity_c_thanks.*
 
-class ActivityThankYou: GGToolbarActivity() {
+class ActivityThankYou: GGToolbarActivity(layout = R.layout.activity_c_thanks) {
     override val title: String
         get() = "Thank you"
-    override val layout: Int
-        get() = R.layout.activity_c_thanks
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

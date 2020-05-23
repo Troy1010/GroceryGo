@@ -13,9 +13,7 @@ import com.google.gson.GsonBuilder
 import kotlinx.android.synthetic.main.frag_login.*
 
 
-class FragProfileLogin : TMFragment() {
-    override val layout: Int
-        get() = R.layout.frag_login
+class FragProfileLogin : TMFragment(layout = R.layout.frag_login) {
 
     override fun onStart() {
         super.onStart()
