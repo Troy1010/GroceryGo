@@ -12,11 +12,11 @@ import com.android.volley.Response
 import com.android.volley.toolbox.JsonObjectRequest
 import com.android.volley.toolbox.Volley
 import com.example.grocerygo.R
+import com.example.grocerygo.activities_and_frags.Inheritables.HostCallbacks
+import com.example.grocerygo.activities_and_frags.Inheritables.ToolbarCallbacks
 import com.example.grocerygo.adapters.AdapterRecyclerView
 import com.example.grocerygo.extras.*
-import com.example.grocerygo.inheritables.HostCallbacks
-import com.example.grocerygo.inheritables.TMFragment
-import com.example.grocerygo.inheritables.ToolbarCallbacks
+import com.example.grocerygo.activities_and_frags.Inheritables.TMFragment
 import com.example.grocerygo.models.Product
 import com.example.grocerygo.models.received.ReceivedProductsObject
 import com.google.gson.GsonBuilder
@@ -24,11 +24,9 @@ import kotlinx.android.synthetic.main.frag_search_products.recycler_view_product
 import kotlinx.android.synthetic.main.includible_plus_minus.view.*
 import kotlinx.android.synthetic.main.item_product.view.*
 
-class FragSearchProducts : TMFragment(), AdapterRecyclerView.Callbacks {
+class FragSearchProducts : TMFragment(layout = R.layout.frag_search_products), AdapterRecyclerView.Callbacks {
     val subCatID by lazy { arguments?.getInt(KEY_SUB_CAT_ID)?:1 }
     lateinit var products:ArrayList<Product>
-    override val layout: Int
-        get() = R.layout.frag_search_products
 
     override fun onCreateViewInit() {
         super.onCreateViewInit()
@@ -122,6 +120,8 @@ class FragSearchProducts : TMFragment(), AdapterRecyclerView.Callbacks {
         view.text_view_number_plus_minus.text = products[i].quantity.toString()
         if (products[i].quantity > 0) {
             view.text_view_add.visibility= View.GONE
+        } else {
+            view.text_view_add.visibility= View.VISIBLE
         }
     }
 

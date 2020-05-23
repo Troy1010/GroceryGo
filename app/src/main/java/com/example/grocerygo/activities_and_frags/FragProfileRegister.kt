@@ -6,10 +6,10 @@ import com.android.volley.Response
 import com.android.volley.toolbox.JsonObjectRequest
 import com.android.volley.toolbox.Volley
 import com.example.grocerygo.R
+import com.example.grocerygo.activities_and_frags.Inheritables.HostCallbacks
+import com.example.grocerygo.activities_and_frags.Inheritables.ToolbarCallbacks
 import com.example.grocerygo.extras.*
-import com.example.grocerygo.inheritables.HostCallbacks
-import com.example.grocerygo.inheritables.TMFragment
-import com.example.grocerygo.inheritables.ToolbarCallbacks
+import com.example.grocerygo.activities_and_frags.Inheritables.TMFragment
 import com.example.grocerygo.models.received.ReceivedRegistrationObject
 import com.example.grocerygo.models.User
 import com.google.android.material.textfield.TextInputEditText
@@ -19,9 +19,7 @@ import kotlinx.android.synthetic.main.frag_register.*
 import org.json.JSONObject
 
 
-class FragProfileRegister : TMFragment() {
-    override val layout: Int
-        get() = R.layout.frag_register
+class FragProfileRegister : TMFragment(layout = R.layout.frag_register) {
 
     override fun onStart() {
         super.onStart()
@@ -55,7 +53,6 @@ class FragProfileRegister : TMFragment() {
                     errorHandler.handle(FormValidator.email(email), text_input_layout_email)
                     errorHandler.handle(FormValidator.mobile(mobile), text_input_layout_mobile)
                     if (!errorHandler.foundError) {
-                        logz("register")
                         requestRegistration(User(name, email, password, mobile))
 //                        App.sm.user = User(name, email, password, mobile)
                     }
@@ -86,7 +83,7 @@ class FragProfileRegister : TMFragment() {
                     email = registrationData.email,
                     password = registrationData.password,
                     mobile = registrationData.mobile,
-                    id = registrationData._id
+                    _id = registrationData._id
                 )
                 logz("App.sm.user:${App.sm.user}")
                 //

@@ -1,4 +1,4 @@
-package com.example.grocerygo.inheritables
+package com.example.grocerygo.activities_and_frags.Inheritables
 
 import android.content.Context
 import android.content.Intent
@@ -11,11 +11,13 @@ import androidx.core.view.MenuItemCompat
 import com.example.grocerygo.R
 import com.example.grocerygo.activities_and_frags.*
 import com.example.grocerygo.extras.*
+import com.example.grocerygo.models.OrderSummary
 import kotlinx.android.synthetic.main.activity_host.*
 import kotlinx.android.synthetic.main.app_toolbar.*
 import kotlinx.android.synthetic.main.z_cart_icon.view.*
 
-abstract class GGToolbarActivity : TMActivity(), ToolbarCallbacks {
+abstract class GGToolbarActivity(override val layout:Int) : TMActivity(layout),
+    ToolbarCallbacks {
     abstract val title: String
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -56,7 +58,7 @@ abstract class GGToolbarActivity : TMActivity(), ToolbarCallbacks {
         if (toolbarMenu != null) {
             val badgeTextView =
                 MenuItemCompat.getActionView(toolbarMenu?.findItem(R.id.menu_cart)).text_view_badge
-            val quantity = App.db.getOrderSummary().quantityTotal
+            val quantity = OrderSummary(App.db.getProducts()).totalQuantity
             if (quantity == 0) {
                 badgeTextView.visibility = View.GONE
             } else {
@@ -94,6 +96,9 @@ abstract class GGToolbarActivity : TMActivity(), ToolbarCallbacks {
             }
             R.id.menu_setTitle -> {
 //                setToolbarTitle("TestTitle")
+            }
+            R.id.menu_order_history -> {
+                startActivity(Intent(this, ActivityOrderHistory::class.java))
             }
         }
         return returning

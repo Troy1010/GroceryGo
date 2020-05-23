@@ -10,18 +10,14 @@ import com.example.grocerygo.R
 import com.example.grocerygo.extras.App
 import com.example.grocerygo.extras.Endpoints
 import com.example.grocerygo.extras.logz
-import com.example.grocerygo.inheritables.GGToolbarActivity
+import com.example.grocerygo.activities_and_frags.Inheritables.GGToolbarActivity
 import com.example.grocerygo.models.PostAddressObject
-import com.example.grocerygo.models.received.ReceivedPostedAddressObject
-import com.google.gson.GsonBuilder
 import kotlinx.android.synthetic.main.activity_c_address.*
 import org.json.JSONObject
 
-class ActivityAddress : GGToolbarActivity() {
+class ActivityAddress : GGToolbarActivity(layout = R.layout.activity_c_address) {
     override val title: String
         get() = "Update Address"
-    override val layout: Int
-        get() = R.layout.activity_c_address
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -36,7 +32,7 @@ class ActivityAddress : GGToolbarActivity() {
                     pincode = text_input_zip_code.text.toString(),
                     streetName = addressNameAndNum?.name ?: "",
                     type = "Mobile",
-                    userId = App.sm.user.id.toString(),
+                    userId = App.sm.user._id.toString(),
                     houseNo = addressNameAndNum?.num.toString()
                 )
             )
@@ -85,8 +81,8 @@ class ActivityAddress : GGToolbarActivity() {
         val request = JsonObjectRequest(
             Request.Method.POST, Endpoints.getPostAddressEndpoint(), jsonObject,
             Response.Listener { response ->
-                val receivedPostedAddressObject = GsonBuilder().create()
-                    .fromJson(response.toString(), ReceivedPostedAddressObject::class.java)
+//                val receivedPostedAddressObject = GsonBuilder().create()
+//                    .fromJson(response.toString(), ReceivedPostedAddressObject::class.java)
                 // do nothing with the response and just go back
                 startActivity(Intent(this, ActivityPaymentInfo::class.java))
             },

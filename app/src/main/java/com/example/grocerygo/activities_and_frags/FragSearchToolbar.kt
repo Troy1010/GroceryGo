@@ -8,21 +8,19 @@ import com.android.volley.Response
 import com.android.volley.toolbox.JsonObjectRequest
 import com.android.volley.toolbox.Volley
 import com.example.grocerygo.R
+import com.example.grocerygo.activities_and_frags.Inheritables.HostCallbacks
+import com.example.grocerygo.activities_and_frags.Inheritables.ToolbarCallbacks
 import com.example.grocerygo.extras.Endpoints
 import com.example.grocerygo.extras.KEY_CAT_ID
 import com.example.grocerygo.extras.logz
-import com.example.grocerygo.inheritables.HostCallbacks
-import com.example.grocerygo.inheritables.TMFragment
-import com.example.grocerygo.inheritables.ToolbarCallbacks
+import com.example.grocerygo.activities_and_frags.Inheritables.TMFragment
 import com.example.grocerygo.models.received.ReceivedSubCategoriesObject
 import com.example.grocerygo.models.SubCategory
 import com.google.android.material.tabs.TabLayout
 import com.google.gson.GsonBuilder
 import kotlinx.android.synthetic.main.frag_search_toolbar.*
 
-class FragSearchToolbar : TMFragment() {
-    override val layout: Int
-        get() = R.layout.frag_search_toolbar
+class FragSearchToolbar : TMFragment(layout = R.layout.frag_search_toolbar) {
     val catID by lazy { arguments?.getInt(KEY_CAT_ID)?:1 }
 
     override fun onStart() {

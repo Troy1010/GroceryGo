@@ -4,16 +4,14 @@ import android.os.Bundle
 import android.view.View
 import com.example.grocerygo.R
 import com.example.grocerygo.extras.*
-import com.example.grocerygo.inheritables.GGToolbarActivity
+import com.example.grocerygo.activities_and_frags.Inheritables.GGToolbarActivity
 import com.example.grocerygo.models.Product
 import kotlinx.android.synthetic.main.activity_details.*
 import kotlinx.android.synthetic.main.includible_plus_minus.*
 
-class ActivityDetails : GGToolbarActivity() {
+class ActivityDetails : GGToolbarActivity(layout = R.layout.activity_details) {
     override val title: String
         get() = (intent.getSerializableExtra(KEY_PRODUCT) as Product).productName
-    override val layout: Int
-        get() = R.layout.activity_details
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

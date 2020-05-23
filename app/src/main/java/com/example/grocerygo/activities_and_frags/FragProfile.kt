@@ -5,17 +5,17 @@ import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.grocerygo.R
+import com.example.grocerygo.activities_and_frags.Inheritables.HostCallbacks
+import com.example.grocerygo.activities_and_frags.Inheritables.TMFragment
+import com.example.grocerygo.activities_and_frags.Inheritables.ToolbarCallbacks
 import com.example.grocerygo.adapters.AdapterRecyclerView
 import com.example.grocerygo.extras.App
 import com.example.grocerygo.extras.easySnackbar
-import com.example.grocerygo.inheritables.*
 import com.example.grocerygo.models.ProfileItem
 import kotlinx.android.synthetic.main.frag_profile.*
 import kotlinx.android.synthetic.main.item_profile.view.*
 
-class FragProfile : TMFragment(), AdapterRecyclerView.Callbacks {
-    override val layout: Int
-        get() = R.layout.frag_profile
+class FragProfile : TMFragment(layout = R.layout.frag_profile), AdapterRecyclerView.Callbacks {
     var profileItems = ArrayList<ProfileItem>()
 
     override fun onStart() {
