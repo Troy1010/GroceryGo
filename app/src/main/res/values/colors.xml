@@ -1,17 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-<!--    <color name="colorPrimary">#00a897</color>-->
-<!--    <color name="colorPrimaryDark">#003b35</color>-->
-    <color name="colorAccent">#006e63</color>
-    <color name="colorBackgroundDefault">#eee</color>
-    <color name="colorTextDefault">#000</color>
-    <color name="TextSoft">#555</color>
-<!--    <color name="TextVsHeads">#000</color>-->
-<!--    <color name="TextVsHeadsSoft">#555</color>-->
-<!--    <color name="TextVsTails">#fff</color>-->
-<!--    <color name="Heads">#fff</color>-->
-
-
 <!--    light/dark DEFINED-->
     <color name="colorPrimaryLight">#00a897</color>
     <color name="colorPrimaryDark">#003b35</color>
