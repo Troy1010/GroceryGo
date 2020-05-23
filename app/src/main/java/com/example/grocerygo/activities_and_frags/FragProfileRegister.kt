@@ -6,10 +6,10 @@ import com.android.volley.Response
 import com.android.volley.toolbox.JsonObjectRequest
 import com.android.volley.toolbox.Volley
 import com.example.grocerygo.R
+import com.example.grocerygo.activities_and_frags.Inheritables.HostCallbacks
+import com.example.grocerygo.activities_and_frags.Inheritables.ToolbarCallbacks
 import com.example.grocerygo.extras.*
-import com.example.grocerygo.inheritables.HostCallbacks
-import com.example.grocerygo.inheritables.TMFragment
-import com.example.grocerygo.inheritables.ToolbarCallbacks
+import com.example.grocerygo.activities_and_frags.Inheritables.TMFragment
 import com.example.grocerygo.models.received.ReceivedRegistrationObject
 import com.example.grocerygo.models.User
 import com.google.android.material.textfield.TextInputEditText

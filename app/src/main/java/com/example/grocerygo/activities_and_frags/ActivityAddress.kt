@@ -10,10 +10,8 @@ import com.example.grocerygo.R
 import com.example.grocerygo.extras.App
 import com.example.grocerygo.extras.Endpoints
 import com.example.grocerygo.extras.logz
-import com.example.grocerygo.inheritables.GGToolbarActivity
+import com.example.grocerygo.activities_and_frags.Inheritables.GGToolbarActivity
 import com.example.grocerygo.models.PostAddressObject
-import com.example.grocerygo.models.received.ReceivedPostedAddressObject
-import com.google.gson.GsonBuilder
 import kotlinx.android.synthetic.main.activity_c_address.*
 import org.json.JSONObject
 

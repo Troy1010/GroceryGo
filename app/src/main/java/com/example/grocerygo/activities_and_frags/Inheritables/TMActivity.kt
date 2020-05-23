@@ -1,4 +1,4 @@
-package com.example.grocerygo.inheritables
+package com.example.grocerygo.activities_and_frags.Inheritables
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity

@@ -3,12 +3,13 @@ package com.example.grocerygo.activities_and_frags
 import android.os.Bundle
 import android.view.View
 import com.example.grocerygo.R
+import com.example.grocerygo.activities_and_frags.Inheritables.HostCallbacks
 import com.example.grocerygo.extras.App
-import com.example.grocerygo.inheritables.HostCallbacks
-import com.example.grocerygo.inheritables.GGToolbarActivity
+import com.example.grocerygo.activities_and_frags.Inheritables.GGToolbarActivity
 import kotlinx.android.synthetic.main.activity_host.*
 
-class ActivityHost : GGToolbarActivity(), HostCallbacks {
+class ActivityHost : GGToolbarActivity(),
+    HostCallbacks {
     override val title: String
         get() = "Host"
     override val layout: Int

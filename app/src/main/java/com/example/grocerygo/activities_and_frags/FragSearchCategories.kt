@@ -7,11 +7,13 @@ import com.android.volley.Response
 import com.android.volley.toolbox.StringRequest
 import com.android.volley.toolbox.Volley
 import com.example.grocerygo.R
+import com.example.grocerygo.activities_and_frags.Inheritables.HostCallbacks
+import com.example.grocerygo.activities_and_frags.Inheritables.TMFragment
+import com.example.grocerygo.activities_and_frags.Inheritables.ToolbarCallbacks
 import com.example.grocerygo.adapters.AdapterRecyclerView
 import com.example.grocerygo.extras.Endpoints
 import com.example.grocerygo.extras.easyPicasso
 import com.example.grocerygo.extras.logz
-import com.example.grocerygo.inheritables.*
 import com.example.grocerygo.models.Category
 import com.example.grocerygo.models.received.ReceivedCategoriesObject
 import com.google.gson.GsonBuilder

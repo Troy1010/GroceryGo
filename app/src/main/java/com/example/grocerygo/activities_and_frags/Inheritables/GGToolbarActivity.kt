@@ -1,4 +1,4 @@
-package com.example.grocerygo.inheritables
+package com.example.grocerygo.activities_and_frags.Inheritables
 
 import android.content.Context
 import android.content.Intent
@@ -11,13 +11,13 @@ import androidx.core.view.MenuItemCompat
 import com.example.grocerygo.R
 import com.example.grocerygo.activities_and_frags.*
 import com.example.grocerygo.extras.*
-import com.example.grocerygo.models.Order
 import com.example.grocerygo.models.OrderSummary
 import kotlinx.android.synthetic.main.activity_host.*
 import kotlinx.android.synthetic.main.app_toolbar.*
 import kotlinx.android.synthetic.main.z_cart_icon.view.*
 
-abstract class GGToolbarActivity : TMActivity(), ToolbarCallbacks {
+abstract class GGToolbarActivity : TMActivity(),
+    ToolbarCallbacks {
     abstract val title: String
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

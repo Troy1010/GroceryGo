@@ -4,7 +4,7 @@ import android.os.Bundle
 import android.view.View
 import com.example.grocerygo.R
 import com.example.grocerygo.extras.*
-import com.example.grocerygo.inheritables.GGToolbarActivity
+import com.example.grocerygo.activities_and_frags.Inheritables.GGToolbarActivity
 import com.example.grocerygo.models.Product
 import kotlinx.android.synthetic.main.activity_details.*
 import kotlinx.android.synthetic.main.includible_plus_minus.*
