@@ -5,7 +5,6 @@
     <color name="colorAccent">#006e63</color>
     <color name="colorBackgroundDefault">#eee</color>
     <color name="colorTextDefault">#000</color>
-    <color name="colorTextClickable">#0086bf</color>
     <color name="TextSoft">#555</color>
 <!--    <color name="TextVsHeads">#000</color>-->
 <!--    <color name="TextVsHeadsSoft">#555</color>-->
@@ -13,19 +12,21 @@
 <!--    <color name="Heads">#fff</color>-->
 
 
+<!--    light/dark DEFINED-->
     <color name="colorPrimaryLight">#00a897</color>
     <color name="colorPrimaryDark">#003b35</color>
     <color name="TextVsLight">#000</color>
     <color name="TextVsLightSoft">#555</color>
     <color name="TextVsDark">#fff</color>
     <color name="TextVsDarkSoft">#aaa</color>
-<!--    light/dark variant-->
-    <color name="Main">#eee</color>
-    <color name="MainAccent">#fff</color>
+<!--    light/dark UNDEFINED-->
+    <color name="colorMain">#eee</color>
+    <color name="colorMainAccent">#fff</color>
     <color name="colorPrimary">#006e63</color>
-<!--    light/dark variant text counterparts-->
+<!--    light/dark UNDEFINED - inheriting counterparts-->
     <color name="TextVsColorPrimary">@color/TextVsDark</color>
     <color name="TextVsMain">@color/TextVsLight</color>
     <color name="TextVsMainSoft">@color/TextVsLightSoft</color>
-
+<!--    light/dark INVARIANT-->
+    <color name="TextClickable">#0086bf</color>
 </resources>
