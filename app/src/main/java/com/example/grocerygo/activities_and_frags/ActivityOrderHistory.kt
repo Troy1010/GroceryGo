@@ -1,6 +1,5 @@
 package com.example.grocerygo.activities_and_frags
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import androidx.recyclerview.widget.DividerItemDecoration
@@ -17,7 +16,6 @@ import com.example.grocerygo.inheritables.GGToolbarActivity
 import com.example.grocerygo.models.Order
 import com.example.grocerygo.models.received.ReceivedOrdersObject
 import com.google.gson.GsonBuilder
-import kotlinx.android.synthetic.main.activity_c_order_review.*
 import kotlinx.android.synthetic.main.activity_order_history.*
 import kotlinx.android.synthetic.main.item_order_history.view.*
 
@@ -64,8 +62,13 @@ class ActivityOrderHistory : GGToolbarActivity(), AdapterRecyclerView.Callbacks 
     }
 
     override fun bindRecyclerItemView(view: View, i: Int) {
-        view.text_view_quantity_value.text = orders[i].products.size.toString()
-        view.text_view_grand_total_title.text = DisplayMoney(orders[i].orderSummary.totalAmount)
+        //
+        var totalQuantity = 0
+        for (product in orders[i].products) {
+            totalQuantity += product.quantity
+        }
+        view.text_view_quantity_value.text = totalQuantity.toString()
+        view.text_view_grand_total_value.text = DisplayMoney(orders[i].orderSummary.totalAmount)
         view.text_view_date_value.text = orders[i].date
     }
 
