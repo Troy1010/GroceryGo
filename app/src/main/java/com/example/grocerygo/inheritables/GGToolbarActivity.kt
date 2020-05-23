@@ -11,6 +11,8 @@ import androidx.core.view.MenuItemCompat
 import com.example.grocerygo.R
 import com.example.grocerygo.activities_and_frags.*
 import com.example.grocerygo.extras.*
+import com.example.grocerygo.models.Order
+import com.example.grocerygo.models.OrderSummary
 import kotlinx.android.synthetic.main.activity_host.*
 import kotlinx.android.synthetic.main.app_toolbar.*
 import kotlinx.android.synthetic.main.z_cart_icon.view.*
@@ -56,7 +58,7 @@ abstract class GGToolbarActivity : TMActivity(), ToolbarCallbacks {
         if (toolbarMenu != null) {
             val badgeTextView =
                 MenuItemCompat.getActionView(toolbarMenu?.findItem(R.id.menu_cart)).text_view_badge
-            val quantity = App.db.getOrderSummary().quantityTotal
+            val quantity = OrderSummary(App.db.getProducts()).totalQuantity
             if (quantity == 0) {
                 badgeTextView.visibility = View.GONE
             } else {

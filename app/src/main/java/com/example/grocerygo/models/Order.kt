@@ -17,7 +17,7 @@ data class OrderSummary_PASSABLE(
     val _id: String? = null,
     val deliveryCharges: Double,
     val discount: Int? =null,
-    val orderAmount: Int? =null,
+    val orderAmount: Double,
     val ourPrice: Int?=null,
-    val totalAmount: Double
+    val totalAmount: Int?=null
 )

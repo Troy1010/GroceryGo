@@ -1,32 +1,39 @@
 package com.example.grocerygo.models
 
-class OrderSummary(
-    val quantityTotal: Int,
-    val priceTotal: Double,
-    val fakePriceTotal: Double
-) {
-    //    companion object {
-//        val baseDeliveryFee = 16.50
-//        val deliveryFee:Double
-//            get() = if (priceTotal > 300) baseDeliveryFee else 0.0
-//    } // TODO refactor this in
+class OrderSummary(products: ArrayList<Product>) {
+    constructor(products:List<Product>):this(ArrayList(products))
 
-    fun getFakeDiscount():Double {
-        return ((fakePriceTotal-priceTotal)/fakePriceTotal)*fakePriceTotal // TODO is this the right formula?
-    }
+    val totalQuantity: Int
+    val totalPrice: Double
+    val totalFakePrice: Double
 
-    fun getDeliveryFee():Double {
-        val baseDeliveryFee = 16.50
-        return if (priceTotal > 300) baseDeliveryFee else 0.0
+    init {
+        var totalQuantityVar = 0
+        var totalPriceVar = 0.0
+        var totalFakePriceVar = 0.0
+        for (product in products) {
+            totalQuantityVar += product.quantity
+            totalPriceVar += product.quantity * product.price
+            totalFakePriceVar += product.quantity * product.mrp
+        }
+        totalQuantity = totalQuantityVar
+        totalPrice = totalPriceVar
+        totalFakePrice = totalFakePriceVar
     }
-    fun getTax():Double {
-        val taxMult = 0.08
-        return priceTotal*taxMult
-    }
-    fun getCouponDiscount():Double {
-        return 0.0
-    }
-    fun getGrandTotal():Double {
-        return getDeliveryFee() + getTax() + priceTotal
-    }
+    var deliveryFee = 0.0
+        get() {
+            val baseDeliveryFee = 16.50
+            return if (totalPrice > 300) baseDeliveryFee else 0.0
+        }
+    var grandTotal = 0.0
+        get() = deliveryFee + tax + totalPrice
+    var fakeDiscount = 0.0
+        get() = totalFakePrice - totalPrice
+    var fakeDiscountPercentage = 0.0
+        get() = fakeDiscount/totalFakePrice
+    var tax = 0.0
+        get() {
+            val taxMult = 0.08
+            return totalPrice * taxMult
+        }
 }

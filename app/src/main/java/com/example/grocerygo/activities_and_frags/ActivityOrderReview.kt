@@ -17,6 +17,7 @@ import com.example.grocerygo.inheritables.GGToolbarActivity
 import com.example.grocerygo.models.Product
 import com.example.grocerygo.models.OrderSummary_PASSABLE
 import com.example.grocerygo.models.Order
+import com.example.grocerygo.models.OrderSummary
 import com.google.gson.Gson
 import kotlinx.android.synthetic.main.activity_c_order_review.*
 import kotlinx.android.synthetic.main.item_order_review.view.*
@@ -40,14 +41,16 @@ class ActivityOrderReview : GGToolbarActivity(), AdapterRecyclerView.Callbacks {
         button_place_order.setOnClickListener {
 
             // TODO refactor to Requester
-            val objectToPost = ReceivedOrderObject(
+            val products = App.db.getProducts()
+            val orderSummary = OrderSummary(products)
+            val objectToPost = Order(
                 user = App.sm.user,
                 userId = App.sm.user._id!!,
                 shippingAddress = App.sm.user.primaryAddress!!,
-                products = App.db.getProducts(),
+                products = products,
                 orderSummary = OrderSummary_PASSABLE(
-                    deliveryCharges = App.db.getOrderSummary().getDeliveryFee(),
-                    totalAmount = App.db.getOrderSummary().priceTotal
+                    deliveryCharges = orderSummary.deliveryFee,
+                    orderAmount = orderSummary.grandTotal
                 ),
                 orderStatus = "Getting Ready" // TODO
             )
@@ -79,7 +82,7 @@ class ActivityOrderReview : GGToolbarActivity(), AdapterRecyclerView.Callbacks {
 
     private fun refresh() {
         products = App.db.getProducts()
-        text_view_grand_total_value.text = DisplayMoney(App.db.getOrderSummary().getGrandTotal())
+        text_view_grand_total_value.text = DisplayMoney(OrderSummary(App.db.getProducts()).grandTotal)
     }
 
     private fun setupRecyclerView() {

@@ -14,6 +14,7 @@ import com.example.grocerygo.extras.Requester
 import com.example.grocerygo.extras.logz
 import com.example.grocerygo.inheritables.GGToolbarActivity
 import com.example.grocerygo.models.Order
+import com.example.grocerygo.models.OrderSummary
 import com.example.grocerygo.models.received.ReceivedOrdersObject
 import com.google.gson.GsonBuilder
 import kotlinx.android.synthetic.main.activity_order_history.*
@@ -68,7 +69,7 @@ class ActivityOrderHistory : GGToolbarActivity(), AdapterRecyclerView.Callbacks 
             totalQuantity += product.quantity
         }
         view.text_view_quantity_value.text = totalQuantity.toString()
-        view.text_view_grand_total_value.text = DisplayMoney(orders[i].orderSummary.totalAmount)
+        view.text_view_grand_total_value.text = DisplayMoney(OrderSummary(orders[i].products).grandTotal)
         view.text_view_date_value.text = orders[i].date
     }
 

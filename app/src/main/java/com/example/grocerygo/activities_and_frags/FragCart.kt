@@ -10,6 +10,7 @@ import com.example.grocerygo.R
 import com.example.grocerygo.adapters.CustomAdapterCart
 import com.example.grocerygo.extras.*
 import com.example.grocerygo.inheritables.*
+import com.example.grocerygo.models.OrderSummary
 import com.example.grocerygo.models.Product
 import kotlinx.android.synthetic.main.frag_cart.*
 import kotlinx.android.synthetic.main.includible_plus_minus.view.*
@@ -45,7 +46,7 @@ class FragCart : TMFragment(), CustomAdapterCart.Callbacks {
     fun refresh() {
         products = App.db.getProducts()
         (activity as ToolbarCallbacks).notifyCartBadge()
-        val orderSummary = App.db.getOrderSummary()
+        val orderSummary = OrderSummary(products)
         recycler_view_cart_items.adapter?.notifyDataSetChanged()
         button_checkout.setOnClickListener {
             startActivity(Intent(activity!!, ActivityPaymentInfo::class.java))

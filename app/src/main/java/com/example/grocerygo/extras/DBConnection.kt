@@ -71,19 +71,6 @@ class DBConnection :
         )
     }
 
-    fun getOrderSummary() : OrderSummary {
-        val products = getProducts() // TODO could just grab directly from db
-        var priceTotal = 0.0
-        var quantityTotal : Int = 0
-        var fakePriceTotal = 0.0
-        for (product in products) {
-            priceTotal += product.quantity * product.price
-            quantityTotal += product.quantity
-            fakePriceTotal += product.quantity * product.mrp
-        }
-        return OrderSummary(quantityTotal, priceTotal, fakePriceTotal)
-    }
-
     //////////////// DOES NOT DEAL WITH ALL COLUMNS
 
     fun addProduct(product: Product) {
