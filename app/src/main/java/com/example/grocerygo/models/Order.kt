@@ -21,9 +21,3 @@ data class OrderSummary_PASSABLE(
     val ourPrice: Int?=null,
     val totalAmount: Double
 )
-
-data class Payment(
-    val _id: String,
-    val paymentMode: String,
-    val paymentStatus: String
-)
