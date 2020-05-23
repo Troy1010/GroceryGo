@@ -112,7 +112,9 @@ class DBConnection :
         val cursor =
             databaseSQL.rawQuery("Select * from $TABLE_NAME where $COL_PRODUCT_ID=?", arrayOf(_id))
         if (cursor != null && cursor.moveToFirst()) {
-            return generateProductFromPrimedCursor(cursor)
+            val product = generateProductFromPrimedCursor(cursor)
+            cursor.close()
+            return product
         } else {
             return null
         }
@@ -122,7 +124,9 @@ class DBConnection :
         val cursor =
             databaseSQL.rawQuery("Select * from $TABLE_NAME where $COL_PRODUCT_ID=?", arrayOf(_id))
         if (cursor != null && cursor.moveToFirst()) {
-            return cursor.getInt(cursor.getColumnIndex(COL_QUANTITY))
+            val quantity = cursor.getInt(cursor.getColumnIndex(COL_QUANTITY))
+            cursor.close()
+            return quantity
         } else {
             return null
         }
@@ -133,7 +137,9 @@ class DBConnection :
             "Select * from $TABLE_NAME where $COL_PRODUCT_ID=?",
             arrayOf(product._id)
         )
-        return cursor.count != 0 // TODO close cursor?
+        val hasProduct = cursor.count != 0
+        cursor.close()
+        return hasProduct
     }
 
     override fun onUpgrade(sqlDatabase: SQLiteDatabase, oldVersion: Int, newVersion: Int) {
@@ -147,15 +153,6 @@ class DBConnection :
         val whereClause = "$COL_PRODUCT_ID=?"
         val whereArgs = arrayOf(product._id.toString())
         databaseSQL.delete(TABLE_NAME, whereClause, whereArgs)
-    }
-
-    fun deleteProductByIndex(i: Int) {
-        val products = getProducts()
-        if (!products.hasKey(i)) {
-            logz("DBConnection`Tried to delete from a non-existent index")
-        } else {
-            deleteProduct(products[i])
-        }
     }
 
 }
