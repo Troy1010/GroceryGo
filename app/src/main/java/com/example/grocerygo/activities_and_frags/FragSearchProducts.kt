@@ -122,6 +122,8 @@ class FragSearchProducts : TMFragment(), AdapterRecyclerView.Callbacks {
         view.text_view_number_plus_minus.text = products[i].quantity.toString()
         if (products[i].quantity > 0) {
             view.text_view_add.visibility= View.GONE
+        } else {
+            view.text_view_add.visibility= View.VISIBLE
         }
     }
 
