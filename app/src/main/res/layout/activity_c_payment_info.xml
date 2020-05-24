@@ -24,7 +24,7 @@
             android:id="@+id/frame_address"
             android:layout_width="0dp"
             android:layout_height="0dp"
-            android:background="@color/colorBackgroundAccent"
+            android:background="?colorBackgroundHighlight"
             app:layout_constraintStart_toStartOf="@id/text_view_address_title"
             app:layout_constraintEnd_toEndOf="@id/image_view_address_arrow"
             app:layout_constraintTop_toTopOf="@id/text_view_address_title"
@@ -41,14 +41,14 @@
             app:layout_constraintTop_toBottomOf="@id/text_view_address_title"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textColor="@color/TextVsBackgroundSoft"
+            android:textColor="?colorVsBackgroundSoft"
             android:text="(ADDRESS)"/>
         <ImageView
             android:id="@+id/image_view_address_arrow"
             android:layout_width="45dp"
             android:layout_height="45dp"
             android:src="@drawable/ic_keyboard_arrow_right_black_24dp"
-            android:tint="@color/TextVsBackground"
+            android:tint="?colorVsBackground"
             app:layout_constraintBottom_toBottomOf="@id/text_view_address_value"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="@id/text_view_address_title" />
@@ -56,7 +56,7 @@
 
         <FrameLayout
             android:id="@+id/frame_payment"
-            android:background="@color/colorBackgroundAccent"
+            android:background="?colorBackgroundHighlight"
             android:layout_width="0dp"
             android:layout_height="0dp"
             app:layout_constraintStart_toStartOf="@id/text_view_payment_title"
@@ -75,14 +75,14 @@
             android:id="@+id/text_view_payment_value"
             app:layout_constraintTop_toBottomOf="@id/text_view_payment_title"
             android:layout_width="match_parent"
-            android:textColor="@color/TextVsBackgroundSoft"
+            android:textColor="?colorVsBackgroundSoft"
             android:layout_height="wrap_content"
             android:text="(PAYMENT)"/>
         <ImageView
             android:id="@+id/image_view_payment_arrow"
             android:layout_width="45dp"
             android:layout_height="45dp"
-            android:tint="@color/TextVsBackground"
+            android:tint="?colorVsBackground"
             android:src="@drawable/ic_keyboard_arrow_right_black_24dp"
             app:layout_constraintBottom_toBottomOf="@id/text_view_payment_value"
             app:layout_constraintEnd_toEndOf="parent"
