@@ -11,17 +11,36 @@ class SessionManager {
         Context.MODE_PRIVATE
     )
     private var editor = sharedPref.edit()
-    lateinit var primaryAddress : Address // TODO
+    var primaryAddress: Address?
+        get() {
+            val storedPrimaryAddress = sharedPref.getString(KEY_PRIMARY_ADDRESS, null)
+            return if (storedPrimaryAddress == null) null else {
+                Gson().fromJson(storedPrimaryAddress, Address::class.java)
+            }
+        }
+        set(value) {
+            if (value == null) {
+                editor.remove(KEY_PRIMARY_ADDRESS)
+            } else {
+                editor.putString(KEY_PRIMARY_ADDRESS, Gson().toJson(value))
+            }
+            editor.commit()
+        }
 
-    var user: User
+    var user: User?
         get() {
             val storedName = sharedPref.getString(User.KEY_NAME, null)
             val storedEmail = sharedPref.getString(User.KEY_EMAIL, null)
             val storedPassword = sharedPref.getString(User.KEY_PASSWORD, null)
             val storedMobile = sharedPref.getString(User.KEY_MOBILE, null)
             val storedID = sharedPref.getString(User.KEY_ID, null)
-            var storedPrimaryAddress = Gson().fromJson(sharedPref.getString(User.KEY_PRIMARY_ADDRESS, null), Address::class.java)
-            return User(storedName, storedEmail, storedPassword, storedMobile, _id =  storedID, primaryAddress = storedPrimaryAddress)
+            return User(
+                storedName,
+                storedEmail,
+                storedPassword,
+                storedMobile,
+                _id = storedID
+            )
         }
         set(value) {
             editor.putString(User.KEY_EMAIL, value.email)
@@ -29,10 +48,8 @@ class SessionManager {
             editor.putString(User.KEY_PASSWORD, value.password)
             editor.putString(User.KEY_MOBILE, value.mobile)
             editor.putString(User.KEY_ID, value._id)
-            editor.putString(User.KEY_PRIMARY_ADDRESS, Gson().toJson(value.primaryAddress))
             editor.commit()
         }
-
 
 
     fun isLoggedIn(): Boolean {
@@ -45,4 +62,5 @@ class SessionManager {
         editor.clear()
         editor.commit()
     }
+}
 }

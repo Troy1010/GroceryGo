@@ -69,32 +69,25 @@ class ActivityPaymentInfo :
     override fun bindRecyclerItemView(view: View, i: Int) {
         view.text_view_address.text = addresses[i].streetName
         view.text_view_address.setOnClickListener {
-            App.sm.user = User(
-                App.sm.user.name,
-                App.sm.user.email,
-                App.sm.user.password,
-                App.sm.user.mobile,
-                addresses[i],
-                App.sm.user._id
-            )//TODO this could be simplified
+            App.sm.primaryAddress = addresses[i]
             refreshNonRecyclerViews()
         }
         view.button_trash.setOnClickListener {
-            if (addresses[i] == App.sm.user.primaryAddress) {
+            if (addresses[i] == App.sm.primaryAddress) {
+                App.sm.primaryAddress = null
                 this.easyToast("Cannot delete primary address")
-            } else {
-                Requester.requestDeleteAddress(addresses[i]._id, Response.Listener { _ ->
-                    //Once you're done deleting, update the addresses
-                    Requester.requestAddresses(App.sm.user._id,
-                        Response.Listener { response2 ->
-                            val receivedAddressesObject = GsonBuilder().create()
-                                .fromJson(response2.toString(), ReceivedAddressesObject::class.java)
-                            //
-                            addresses = ArrayList(receivedAddressesObject.data)
-                            recycler_view_addresses.adapter?.notifyDataSetChanged()
-                        })
-                })
             }
+            Requester.requestDeleteAddress(addresses[i]._id, Response.Listener { _ ->
+                //Once you're done deleting, update the addresses
+                Requester.requestAddresses(App.sm.user._id,
+                    Response.Listener { response2 ->
+                        val receivedAddressesObject = GsonBuilder().create()
+                            .fromJson(response2.toString(), ReceivedAddressesObject::class.java)
+                        //
+                        addresses = ArrayList(receivedAddressesObject.data)
+                        recycler_view_addresses.adapter?.notifyDataSetChanged()
+                    })
+            })
         }
 //        view.
     }
