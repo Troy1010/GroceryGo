@@ -56,14 +56,14 @@ abstract class GGToolbarActivity(override val layout:Int) : TMActivity(layout),
 
     override fun notifyCartBadge() {
         if (toolbarMenu != null) {
-            val badgeTextView =
-                MenuItemCompat.getActionView(toolbarMenu?.findItem(R.id.menu_cart)).text_view_badge
+            val cartIconView =
+                MenuItemCompat.getActionView(toolbarMenu?.findItem(R.id.menu_cart))
             val quantity = OrderSummary(App.db.getProducts()).totalQuantity
             if (quantity == 0) {
-                badgeTextView.visibility = View.GONE
+                cartIconView.text_view_badge.visibility = View.GONE
             } else {
-                badgeTextView.visibility = View.VISIBLE
-                badgeTextView.text = quantity.toString()
+                cartIconView.text_view_badge.visibility = View.VISIBLE
+                cartIconView.text_view_badge.text = quantity.toString()
             }
         }
     }
