@@ -52,7 +52,7 @@ class ActivityPaymentInfo :
     }
 
     private fun setupRecyclerView() {
-        Requester.requestAddresses(App.sm.user._id,
+        Requester.requestAddresses(App.sm.user?._id,
             Response.Listener { response ->
                 val receivedAddressesObject = GsonBuilder().create()
                     .fromJson(response.toString(), ReceivedAddressesObject::class.java)
@@ -79,7 +79,7 @@ class ActivityPaymentInfo :
             }
             Requester.requestDeleteAddress(addresses[i]._id, Response.Listener { _ ->
                 //Once you're done deleting, update the addresses
-                Requester.requestAddresses(App.sm.user._id,
+                Requester.requestAddresses(App.sm.user?._id,
                     Response.Listener { response2 ->
                         val receivedAddressesObject = GsonBuilder().create()
                             .fromJson(response2.toString(), ReceivedAddressesObject::class.java)

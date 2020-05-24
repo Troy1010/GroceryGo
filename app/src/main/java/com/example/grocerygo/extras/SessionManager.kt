@@ -34,33 +34,38 @@ class SessionManager {
             val storedPassword = sharedPref.getString(User.KEY_PASSWORD, null)
             val storedMobile = sharedPref.getString(User.KEY_MOBILE, null)
             val storedID = sharedPref.getString(User.KEY_ID, null)
-            return User(
-                storedName,
-                storedEmail,
-                storedPassword,
-                storedMobile,
-                _id = storedID
-            )
+            return if ((storedEmail == null) or (storedPassword == null) or (storedID == null)) {
+                null
+            } else {
+                User(
+                    storedName?:"",
+                    storedEmail?:"",
+                    storedPassword?:"",
+                    storedMobile?:"",
+                    _id = storedID
+                )
+            }
         }
         set(value) {
-            editor.putString(User.KEY_EMAIL, value.email)
-            editor.putString(User.KEY_NAME, value.name)
-            editor.putString(User.KEY_PASSWORD, value.password)
-            editor.putString(User.KEY_MOBILE, value.mobile)
-            editor.putString(User.KEY_ID, value._id)
+            if (value == null) {
+                editor.clear()
+            } else {
+                editor.putString(User.KEY_EMAIL, value.email)
+                editor.putString(User.KEY_NAME, value.name)
+                editor.putString(User.KEY_PASSWORD, value.password)
+                editor.putString(User.KEY_MOBILE, value.mobile)
+                editor.putString(User.KEY_ID, value._id)
+            }
             editor.commit()
         }
 
 
     fun isLoggedIn(): Boolean {
-        var storedEmail = sharedPref.getString(User.KEY_EMAIL, null)
-        var storedPassword = sharedPref.getString((User.KEY_PASSWORD), null)
-        return !((storedEmail == null) or (storedEmail == "") or (storedPassword == null) or (storedPassword == ""))
+        return user != null
     }
 
     fun logout() {
         editor.clear()
         editor.commit()
     }
-}
 }
