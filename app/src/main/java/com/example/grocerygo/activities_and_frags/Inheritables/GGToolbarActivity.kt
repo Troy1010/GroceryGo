@@ -29,7 +29,7 @@ abstract class GGToolbarActivity(override val layout:Int) : TMActivity(layout),
     var toolbarMenu: Menu? = null
 
     override fun setTitle(title: String) {
-        toolbar_main.title = title
+        supportActionBar?.title = title
     }
 
     override fun showBack(showBack: Boolean) {
@@ -57,13 +57,13 @@ abstract class GGToolbarActivity(override val layout:Int) : TMActivity(layout),
     override fun notifyCartBadge() {
         if (toolbarMenu != null) {
             val cartIconView =
-                toolbarMenu?.findItem(R.id.menu_cart).actionView
+                toolbarMenu?.findItem(R.id.menu_cart)?.actionView
             val quantity = OrderSummary(App.db.getProducts()).totalQuantity
             if (quantity == 0) {
-                cartIconView.text_view_badge.visibility = View.GONE
+                cartIconView?.text_view_badge?.visibility = View.GONE
             } else {
-                cartIconView.text_view_badge.visibility = View.VISIBLE
-                cartIconView.text_view_badge.text = quantity.toString()
+                cartIconView?.text_view_badge?.visibility = View.VISIBLE
+                cartIconView?.text_view_badge?.text = quantity.toString()
             }
         }
     }
