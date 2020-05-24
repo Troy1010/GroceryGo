@@ -22,9 +22,9 @@
 
         <FrameLayout
             android:id="@+id/frame_address"
-            android:background="@color/Heads"
             android:layout_width="0dp"
             android:layout_height="0dp"
+            android:background="@color/colorBackgroundAccent"
             app:layout_constraintStart_toStartOf="@id/text_view_address_title"
             app:layout_constraintEnd_toEndOf="@id/image_view_address_arrow"
             app:layout_constraintTop_toTopOf="@id/text_view_address_title"
@@ -33,7 +33,6 @@
             android:id="@+id/text_view_address_title"
             app:layout_constraintTop_toTopOf="parent"
             android:textStyle="bold"
-            android:textColor="@color/TextVsHeads"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Address"/>
@@ -42,12 +41,14 @@
             app:layout_constraintTop_toBottomOf="@id/text_view_address_title"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:textColor="@color/TextVsBackgroundSoft"
             android:text="(ADDRESS)"/>
         <ImageView
             android:id="@+id/image_view_address_arrow"
             android:layout_width="45dp"
             android:layout_height="45dp"
             android:src="@drawable/ic_keyboard_arrow_right_black_24dp"
+            android:tint="@color/TextVsBackground"
             app:layout_constraintBottom_toBottomOf="@id/text_view_address_value"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="@id/text_view_address_title" />
@@ -55,7 +56,7 @@
 
         <FrameLayout
             android:id="@+id/frame_payment"
-            android:background="@color/Heads"
+            android:background="@color/colorBackgroundAccent"
             android:layout_width="0dp"
             android:layout_height="0dp"
             app:layout_constraintStart_toStartOf="@id/text_view_payment_title"
@@ -67,7 +68,6 @@
             android:layout_marginTop="10dp"
             app:layout_constraintTop_toBottomOf="@id/frame_address"
             android:textStyle="bold"
-            android:textColor="@color/TextVsHeads"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Payment"/>
@@ -75,12 +75,14 @@
             android:id="@+id/text_view_payment_value"
             app:layout_constraintTop_toBottomOf="@id/text_view_payment_title"
             android:layout_width="match_parent"
+            android:textColor="@color/TextVsBackgroundSoft"
             android:layout_height="wrap_content"
-            android:text="(Payment)"/>
+            android:text="(PAYMENT)"/>
         <ImageView
             android:id="@+id/image_view_payment_arrow"
             android:layout_width="45dp"
             android:layout_height="45dp"
+            android:tint="@color/TextVsBackground"
             android:src="@drawable/ic_keyboard_arrow_right_black_24dp"
             app:layout_constraintBottom_toBottomOf="@id/text_view_payment_value"
             app:layout_constraintEnd_toEndOf="parent"
@@ -101,8 +103,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Submit"
-            android:textColor="@color/TextVsTails"/>
+            android:text="Submit"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </LinearLayout>

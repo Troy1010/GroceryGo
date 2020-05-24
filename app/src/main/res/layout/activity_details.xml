@@ -4,7 +4,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/colorBackgroundDefault"
     android:orientation="vertical"
     tools:context="com.example.grocerygo.activities_and_frags.ActivityDetails">
 

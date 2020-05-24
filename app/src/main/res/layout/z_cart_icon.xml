@@ -18,7 +18,7 @@
         android:gravity="center"
         android:padding="2dp"
         android:text="22"
-        android:textColor="@color/TextVsTails"
+        android:textColor="@color/TextVsColorPrimary"
         android:textSize="12sp"
         android:background="@drawable/simple_oval"
         app:layout_constraintEnd_toEndOf="parent"

@@ -33,8 +33,7 @@
             android:layout_marginTop="20dp"
             android:text="Done"
             android:textSize="24sp"
-            android:background="@drawable/button_usual_background"
-            android:textColor="@color/TextVsTails" />
+            android:background="@drawable/button_usual_background" />
 
     </LinearLayout>
 </LinearLayout>

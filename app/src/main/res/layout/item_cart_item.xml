@@ -27,7 +27,7 @@
         android:layout_marginStart="8dp"
         android:text="(PRICE)"
         android:textSize="18sp"
-        android:textColor="@color/TextSoft"
+        android:textColor="@color/TextVsBackgroundSoft"
         app:layout_constraintStart_toStartOf="@id/text_view_name"
         app:layout_constraintTop_toBottomOf="@id/text_view_name" />
 
