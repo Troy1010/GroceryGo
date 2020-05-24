@@ -7,12 +7,12 @@
     <color name="TextVsLightSoft">#555</color>
     <color name="TextVsDark">#fff</color>
     <color name="TextVsDarkSoft">#aaa</color>
-<!--    light/dark UNDEFINED-->
+<!--    light/dark UNDEFINED - inheriting from color sets-->
     <color name="colorPrimary">#006e63</color>
     <color name="colorBackground">#eee</color>
     <color name="colorBackgroundAccent">#fff</color>
     <color name="TextClickable">#0086bf</color>
-<!--    light/dark UNDEFINED - inheriting counterparts-->
+<!--    light/dark UNDEFINED - inheriting from defined-->
     <color name="TextVsColorPrimary">@color/TextVsDark</color>
     <color name="TextVsBackground">@color/TextVsLight</color>
     <color name="TextVsBackgroundSoft">@color/TextVsLightSoft</color>
