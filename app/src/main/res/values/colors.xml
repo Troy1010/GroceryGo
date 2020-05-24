@@ -8,13 +8,13 @@
     <color name="TextVsDark">#fff</color>
     <color name="TextVsDarkSoft">#aaa</color>
 <!--    light/dark UNDEFINED-->
-    <color name="colorMain">#eee</color>
-    <color name="colorMainAccent">#fff</color>
     <color name="colorPrimary">#006e63</color>
+    <color name="colorBackground">#eee</color>
+    <color name="colorBackgroundAccent">#fff</color>
 <!--    light/dark UNDEFINED - inheriting counterparts-->
     <color name="TextVsColorPrimary">@color/TextVsDark</color>
-    <color name="TextVsMain">@color/TextVsLight</color>
-    <color name="TextVsMainSoft">@color/TextVsLightSoft</color>
+    <color name="TextVsBackground">@color/TextVsLight</color>
+    <color name="TextVsBackgroundSoft">@color/TextVsLightSoft</color>
 <!--    light/dark INVARIANT-->
     <color name="TextClickable">#0086bf</color>
 </resources>
