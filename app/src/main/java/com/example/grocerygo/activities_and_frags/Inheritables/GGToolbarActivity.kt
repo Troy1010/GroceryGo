@@ -57,7 +57,7 @@ abstract class GGToolbarActivity(override val layout:Int) : TMActivity(layout),
     override fun notifyCartBadge() {
         if (toolbarMenu != null) {
             val cartIconView =
-                MenuItemCompat.getActionView(toolbarMenu?.findItem(R.id.menu_cart))
+                toolbarMenu?.findItem(R.id.menu_cart).actionView
             val quantity = OrderSummary(App.db.getProducts()).totalQuantity
             if (quantity == 0) {
                 cartIconView.text_view_badge.visibility = View.GONE
