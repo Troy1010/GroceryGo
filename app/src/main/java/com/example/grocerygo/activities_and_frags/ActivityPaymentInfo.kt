@@ -47,7 +47,7 @@ class ActivityPaymentInfo :
     }
 
     fun refreshNonRecyclerViews() {
-        text_view_address_value.text = App.sm.primaryAddress?.displayableStreetAddress
+        text_view_address_value.text = App.sm.primaryAddress?.displayableStreetAddress ?: "Primary address not selected"
     }
 
     private fun setupRecyclerView() {
