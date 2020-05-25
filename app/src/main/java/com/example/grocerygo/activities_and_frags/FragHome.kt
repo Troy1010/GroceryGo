@@ -7,6 +7,9 @@ import com.example.grocerygo.activities_and_frags.Inheritables.ToolbarCallbacks
 import com.example.grocerygo.adapters.AdapterImageSlider
 import com.example.grocerygo.extras.App
 import com.example.grocerygo.activities_and_frags.Inheritables.TMFragment
+import com.example.grocerygo.adapters.AdapterImageSlider2
+import com.smarteist.autoimageslider.IndicatorAnimations
+import com.smarteist.autoimageslider.SliderAnimations
 import kotlinx.android.synthetic.main.frag_home.*
 
 class FragHome : TMFragment(layout = R.layout.frag_home) {
@@ -47,19 +50,9 @@ class FragHome : TMFragment(layout = R.layout.frag_home) {
             R.drawable.si_stock_veggies,
             R.drawable.si_supermarketcart_main
         )
-        view_pager_image_slider.adapter = AdapterImageSlider(activity!!, images)
-        view_pager_image_slider.setOnTouchListener { _, _ ->
-            true
-        }
-        // slide it on your own
-        doInThree(Handler())
-    }
-    private fun doInThree(handler: Handler) {
-        handler.postDelayed({
-            view_pager_image_slider?.apply {
-                view_pager_image_slider.currentItem += 1
-                doInThree(handler)
-            }
-        },3000)
+        slider_view.setSliderAdapter(AdapterImageSlider2(activity!!, images))
+        slider_view.startAutoCycle()
+        slider_view.setIndicatorAnimation(IndicatorAnimations.WORM)
+        slider_view.setSliderTransformAnimation(SliderAnimations.SIMPLETRANSFORMATION)
     }
 }
