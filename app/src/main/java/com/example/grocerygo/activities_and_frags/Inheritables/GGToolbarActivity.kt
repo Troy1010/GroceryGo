@@ -102,6 +102,9 @@ abstract class GGToolbarActivity(override val layout: Int) : TMActivity(layout),
             R.id.menu_order_history -> {
                 startActivity(Intent(this, ActivityOrderHistory::class.java))
             }
+            R.id.menu_choose_theme -> {
+                startActivity(Intent(this, ActivityChooseTheme::class.java))
+            }
         }
         return returning
     }

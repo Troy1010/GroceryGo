@@ -29,6 +29,7 @@
         <activity android:name=".activities_and_frags.ActivityThankYou" />
         <activity android:name=".activities_and_frags.ActivityAddress" />
         <activity android:name=".activities_and_frags.ActivityPayment" />
+        <activity android:name=".activities_and_frags.ActivityChooseTheme" />
         <activity android:name=".activities_and_frags.FragSearchProducts" />
         <activity android:name=".activities_and_frags.FragHome" />
     </application>
