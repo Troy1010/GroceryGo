@@ -27,12 +27,12 @@ class ActivityAddress : GGToolbarActivity(layout = R.layout.activity_c_address) 
                 PostAddressObject(
                     city = text_input_city.text.toString(),
                     location = text_input_state.text.toString(),
-                    mobile = App.sm.user.mobile!!,
-                    name = App.sm.user.name!!,
+                    mobile = App.sm.user?.mobile!!,
+                    name = App.sm.user?.name!!,
                     pincode = text_input_zip_code.text.toString(),
                     streetName = addressNameAndNum?.name ?: "",
                     type = "Mobile",
-                    userId = App.sm.user._id.toString(),
+                    userId = App.sm.user?._id.toString(),
                     houseNo = addressNameAndNum?.num.toString()
                 )
             )

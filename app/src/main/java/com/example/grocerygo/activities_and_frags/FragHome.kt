@@ -28,7 +28,7 @@ class FragHome : TMFragment(layout = R.layout.frag_home) {
 //                .error(R.drawable.no_image_available_vector_illustration_260nw_744886198)
 //                .into(image_view)
         // fake-bind text_view_hello
-        text_view_hello.text = getString(R.string.hello_start, App.sm.user.name?:"Welcome!")
+        text_view_hello.text = getString(R.string.hello_start, App.sm.user?.name?:"Welcome!")
     }
 
 

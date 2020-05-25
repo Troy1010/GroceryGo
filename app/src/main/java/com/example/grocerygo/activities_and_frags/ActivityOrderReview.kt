@@ -37,14 +37,15 @@ class ActivityOrderReview : GGToolbarActivity(layout = R.layout.activity_c_order
 
     private fun setupClickListeners() {
         button_place_order.setOnClickListener {
-
+            val user = App.sm.user!!
+            val address = App.sm.primaryAddress!!
             // TODO refactor to Requester
             val products = App.db.getProducts()
             val orderSummary = OrderSummary(products)
             val objectToPost = Order(
-                user = App.sm.user,
-                userId = App.sm.user._id!!,
-                shippingAddress = App.sm.user.primaryAddress!!,
+                user = user,
+                userId = user._id!!,
+                shippingAddress = address,
                 products = products,
                 orderSummary = OrderSummary_PASSABLE(
                     deliveryCharges = orderSummary.deliveryFee,

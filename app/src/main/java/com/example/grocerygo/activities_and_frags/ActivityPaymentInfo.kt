@@ -47,8 +47,7 @@ class ActivityPaymentInfo :
     }
 
     fun refreshNonRecyclerViews() {
-        text_view_address_value.text =
-            App.sm.user.primaryAddress?.houseNo + " " + App.sm.user.primaryAddress?.streetName
+        text_view_address_value.text = App.sm.primaryAddress?.displayableStreetAddress
     }
 
     private fun setupRecyclerView() {

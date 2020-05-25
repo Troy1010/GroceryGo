@@ -15,3 +15,8 @@ data class User (
         const val KEY_ID = "ID"
     }
 }
+
+data class LoginObject (
+    val email:String,
+    val password:String
+)
