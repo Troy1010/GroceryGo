@@ -37,9 +37,10 @@ class ActivityChooseTheme : GGToolbarActivity(R.layout.activity_choose_theme), V
 
     override fun onClick(v: View) {
         if (v is RadioButton && v in themeButtonMap) {
-            val themeZ = themeButtonMap[v]!!
-            App.sm.theme = themeZ
-            startActivity(Intent(this, ActivityChooseTheme::class.java))
+            App.sm.theme = themeButtonMap[v]!!
+            val intent = Intent(this, ActivityChooseTheme::class.java)
+            intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+            startActivity(intent)
             finish()
         }
     }

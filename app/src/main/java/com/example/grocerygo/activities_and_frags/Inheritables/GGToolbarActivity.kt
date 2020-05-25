@@ -74,7 +74,7 @@ abstract class GGToolbarActivity(override val layout: Int) : TMActivity(layout),
         var returning = super.onOptionsItemSelected(item)
         when (item.itemId) {
             android.R.id.home -> {
-                if (this is ActivityThankYou) { // TODO this logic is not the best..
+                if (this is ActivityThankYou || this is ActivityChooseTheme) { // TODO this logic is not the best..
                     startActivity(Intent(this, ActivityHost::class.java))
                 } else if ((this.supportFragmentManager.backStackEntryCount > 0) or (this !is ActivityHost)) { // TODO probably a more reliable way to check..
                     this.onBackPressed()
