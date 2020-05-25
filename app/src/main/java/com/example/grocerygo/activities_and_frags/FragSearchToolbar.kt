@@ -32,7 +32,7 @@ class FragSearchToolbar : TMFragment(layout = R.layout.frag_search_toolbar) {
         (activity as HostCallbacks).showNavigationBar(true)
         (activity as ToolbarCallbacks).showCart(true)
         (activity as ToolbarCallbacks).showBack(true)
-        (activity as ToolbarCallbacks).setTitle("Login")
+        (activity as ToolbarCallbacks).setTitle("Search")
     }
 
     override fun onCreateViewInit() {
