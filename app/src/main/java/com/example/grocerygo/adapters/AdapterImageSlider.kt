@@ -4,6 +4,7 @@ import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import com.example.grocerygo.R
 import com.smarteist.autoimageslider.SliderViewAdapter
 import kotlinx.android.synthetic.main.item_image_slider.view.*
@@ -23,5 +24,6 @@ class AdapterImageSlider(val context: Context, val images: ArrayList<Int>) : Sli
 
     override fun onBindViewHolder(viewHolder: SliderAdapterVH, position: Int) {
         viewHolder.itemView.image_view_of_slider.setImageResource(images[position%images.size])
+        viewHolder.itemView.image_view_of_slider.scaleType = ImageView.ScaleType.CENTER_CROP
     }
 }
