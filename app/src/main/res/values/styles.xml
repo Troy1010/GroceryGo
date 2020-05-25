@@ -37,7 +37,6 @@
         <item name="android:textViewStyle">@style/MyTextViewStyle</item>
     </style>
 
-
     <style name="GenericTheme.BlueLightTheme" parent="Theme.AppCompat.Light.NoActionBar">
         <!--    light/dark DEFINED-->
         <item name="colorPrimaryLight">#0696BF</item>
@@ -61,25 +60,35 @@
         <item name ="android:colorBackground">@color/colorBackground</item>
     </style>
 
-<!--    <style name="GenericTheme.PurpleDarkTheme">-->
-<!--        &lt;!&ndash;    light/dark DEFINED&ndash;&gt;-->
-<!--        <item name="colorPrimaryLight">#0696BF</item>-->
-<!--        <item name="colorPrimaryDark">#01313F</item>-->
-<!--        <item name="colorVsLight">#000</item>-->
-<!--        <item name="colorVsLightSoft">#555</item>-->
-<!--        <item name="colorVsDark">#fff</item>-->
-<!--        <item name="colorVsDarkSoft">#aaa</item>-->
-<!--        &lt;!&ndash;    light/dark UNDEFINED - inheriting from color sets&ndash;&gt;-->
-<!--        <item name="colorAccent">#AE5800</item>-->
-<!--        <item name="colorPrimary">#03556C</item>-->
-<!--        <item name="colorBackground">#eee</item>-->
-<!--        <item name="colorBackgroundHighlight">#fff</item>-->
-<!--        <item name="colorClickable">#0086bf</item>-->
-<!--        &lt;!&ndash;    light/dark UNDEFINED - inheriting from defined&ndash;&gt;-->
-<!--        <item name="colorVsPrimary">?colorVsDark</item>-->
-<!--        <item name="colorVsBackground">?colorVsLight</item>-->
-<!--        <item name="colorVsBackgroundSoft">?colorVsLightSoft</item>-->
-<!--    </style>-->
+
+
+    <style name="GenericTheme.PurpleDarkTheme.Propagated">
+        <item name="android:buttonStyle">@style/ColorButton</item>
+        <item name="android:textViewStyle">@style/MyTextViewStyle</item>
+    </style>
+
+    <style name="GenericTheme.PurpleDarkTheme" parent="Theme.AppCompat.NoActionBar">
+        <!--    light/dark DEFINED-->
+        <item name="colorPrimaryLight">#b453f5</item>
+        <item name="colorPrimaryDark">#33084d</item>
+        <item name="colorPrimaryDarkBackup">#33084d</item> <!-- for some reason, the toolbar couldn't find colorPrimaryDark-->
+        <item name="colorVsLight">#000</item>
+        <item name="colorVsLightSoft">#555</item>
+        <item name="colorVsDark">#fff</item>
+        <item name="colorVsDarkSoft">#aaa</item>
+        <!--    light/dark UNDEFINED - inheriting from color sets-->
+        <item name="colorAccent">#FFFD0C</item>
+        <item name="colorPrimary">#7111ab</item>
+        <item name="colorBackground">#444</item>
+        <item name="colorBackgroundHighlight">#333</item>
+        <item name="colorClickable">#00a5eb</item>
+        <!--    light/dark UNDEFINED - inheriting from defined-->
+        <item name="colorVsPrimary">?colorVsDark</item>
+        <item name="colorVsBackground">?colorVsLight</item>
+        <item name="colorVsBackgroundSoft">?colorVsLightSoft</item>
+        <!--    -->
+        <item name ="android:colorBackground">@color/colorBackground</item>
+    </style>
 
     <style name="ColorButton">
         <item name="android:gravity">center</item>

@@ -42,6 +42,12 @@
                 android:layout_height="wrap_content"
                 android:text="(THEME TWO)" />
 
+            <RadioButton
+                android:id="@+id/radio_button_three"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="(THEME THREE)" />
+
         </RadioGroup>
     </androidx.constraintlayout.widget.ConstraintLayout>
 </LinearLayout>
