@@ -1,11 +1,16 @@
 package com.example.grocerygo.extras
 
 import android.content.Context
+import com.example.grocerygo.R
 import com.example.grocerygo.models.Address
 import com.example.grocerygo.models.User
 import com.google.gson.Gson
 
 class SessionManager {
+    companion object {
+        const val KEY_THEME = "THEME"
+    }
+
     private var sharedPref = App.instance.getSharedPreferences(
         Config.SHARED_PREF_FILE_NAME,
         Context.MODE_PRIVATE
@@ -26,6 +31,16 @@ class SessionManager {
             }
             editor.commit()
         }
+    var theme: Int
+    get() {
+        val storedThemeInt = sharedPref.getInt(KEY_THEME,-1)
+        return if (storedThemeInt == -1) {
+            R.style.GenericTheme_DefaultTheme_Propagated
+        } else {
+            storedThemeInt
+        }
+    }
+    set(value) { editor.putInt(KEY_THEME, value) }
 
     var user: User?
         get() {
