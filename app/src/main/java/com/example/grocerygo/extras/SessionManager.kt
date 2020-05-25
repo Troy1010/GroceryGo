@@ -32,15 +32,18 @@ class SessionManager {
             editor.commit()
         }
     var theme: Int
-    get() {
-        val storedThemeInt = sharedPref.getInt(KEY_THEME,-1)
-        return if (storedThemeInt == -1) {
-            R.style.GenericTheme_DefaultTheme_Propagated
-        } else {
-            storedThemeInt
+        get() {
+            val storedThemeInt = sharedPref.getInt(KEY_THEME, -1)
+            return if (storedThemeInt == -1) {
+                R.style.GenericTheme_DefaultTheme_Propagated
+            } else {
+                storedThemeInt
+            }
         }
-    }
-    set(value) { editor.putInt(KEY_THEME, value) }
+        set(value) {
+            editor.putInt(KEY_THEME, value)
+            editor.commit()
+        }
 
     var user: User?
         get() {
@@ -53,10 +56,10 @@ class SessionManager {
                 null
             } else {
                 User(
-                    storedName?:"",
-                    storedEmail?:"",
-                    storedPassword?:"",
-                    storedMobile?:"",
+                    storedName ?: "",
+                    storedEmail ?: "",
+                    storedPassword ?: "",
+                    storedMobile ?: "",
                     _id = storedID
                 )
             }
