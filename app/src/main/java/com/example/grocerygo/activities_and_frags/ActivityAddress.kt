@@ -39,29 +39,6 @@ class ActivityAddress : GGToolbarActivity(layout = R.layout.activity_c_address) 
         }
     }
 
-    fun splitAddressIntoNumAndName(address: String): StreetNumAndName? {
-        if (address.length == 0) {
-            logz("splitAddressIntoNumAndName`String too short")
-            return null
-        }
-        if (!address[0].isDefined()) {
-            logz("splitAddressIntoNumAndName`No Number")
-            return null
-        }
-        var endPos = 0
-        for (i in 0 until address.length) {
-            if (!address[i].isDigit()) {
-                endPos = i
-                break
-            }
-        }
-        var v = StreetNumAndName(
-            address.substring(0, endPos).toInt(),
-            address.substring(endPos, address.length).trim()
-        )
-        return v
-    }
-
 
     private fun postAddress(postAddressObject: PostAddressObject) {
         val requestQueue = Volley.newRequestQueue(this)
@@ -94,3 +71,27 @@ class ActivityAddress : GGToolbarActivity(layout = R.layout.activity_c_address) 
 }
 
 data class StreetNumAndName(val num: Int, val name: String)
+
+
+fun splitAddressIntoNumAndName(address: String): StreetNumAndName? {
+    if (address.length == 0) {
+        logz("splitAddressIntoNumAndName`String too short")
+        return null
+    }
+    if (!address[0].isDefined()) {
+        logz("splitAddressIntoNumAndName`No Number")
+        return null
+    }
+    var endPos = 0
+    for (i in 0 until address.length) {
+        if (!address[i].isDigit()) {
+            endPos = i
+            break
+        }
+    }
+    var v = StreetNumAndName(
+        address.substring(0, endPos).toInt(),
+        address.substring(endPos, address.length).trim()
+    )
+    return v
+}
