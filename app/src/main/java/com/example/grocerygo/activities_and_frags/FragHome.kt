@@ -41,7 +41,12 @@ class FragHome : TMFragment(layout = R.layout.frag_home) {
     }
 
     private fun setupImageSlider() {
-        val images = arrayListOf<Int>(R.drawable.grocery_basket_icons_bag_food_icon, R.drawable.slider_image_two)
+        val images = arrayListOf<Int>(
+            R.drawable.si_fruitsandveggies_custom,
+            R.drawable.si_grocery_isle,
+            R.drawable.si_stock_veggies,
+            R.drawable.si_supermarketcart_main
+        )
         view_pager_image_slider.adapter = AdapterImageSlider(activity!!, images)
         view_pager_image_slider.setOnTouchListener { _, _ ->
             true
