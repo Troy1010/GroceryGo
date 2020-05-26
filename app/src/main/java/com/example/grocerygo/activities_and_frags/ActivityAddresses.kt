@@ -1,7 +1,9 @@
 package com.example.grocerygo.activities_and_frags
 
 import android.content.Intent
+import android.graphics.Color
 import android.os.Bundle
+import android.util.TypedValue
 import android.view.View
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -10,9 +12,7 @@ import com.android.volley.Response
 import com.example.grocerygo.R
 import com.example.grocerygo.activities_and_frags.Inheritables.GGToolbarActivity
 import com.example.grocerygo.adapters.AdapterRecyclerView
-import com.example.grocerygo.extras.App
-import com.example.grocerygo.extras.Requester
-import com.example.grocerygo.extras.easyToast
+import com.example.grocerygo.extras.*
 import com.example.grocerygo.models.Address
 import com.example.grocerygo.models.received.ReceivedAddressesObject
 import com.google.gson.GsonBuilder
@@ -21,6 +21,20 @@ import kotlinx.android.synthetic.main.item_address.view.*
 
 class ActivityAddresses : GGToolbarActivity(R.layout.activity_addresses), AdapterRecyclerView.Callbacks {
     override val title = "Select Address"
+    val defaultBackgroundColor by lazy {
+        val typedValue = TypedValue()
+        this.theme.resolveAttribute(android.R.attr.colorBackground, typedValue, true)
+        typedValue.data
+    }
+    val highlightColor by lazy {
+        val typedValue = TypedValue()
+        this.theme.resolveAttribute(R.attr.colorHardAccent, typedValue, true)
+        typedValue.string
+        val colorString = typedValue.coerceToString()
+        val highlightColorWithReducedAlpha = "#22${colorString.takeLast(6)}"
+        Color.parseColor(highlightColorWithReducedAlpha)
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setupListeners()
@@ -64,9 +78,15 @@ class ActivityAddresses : GGToolbarActivity(R.layout.activity_addresses), Adapte
 
     override fun bindRecyclerItemView(view: View, i: Int) {
         view.text_view_address.text = addresses[i].displayableFullAddress
+        if (addresses[i] == App.sm.primaryAddress) {
+            view.setBackgroundColor(highlightColor)
+        } else {
+            view.setBackgroundColor(defaultBackgroundColor)
+        }
 
         view.text_view_address.setOnClickListener {
             App.sm.primaryAddress = addresses[i]
+            refresh()
         }
         view.button_trash.setOnClickListener {
             if (addresses[i] == App.sm.primaryAddress) {
