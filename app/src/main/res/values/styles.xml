@@ -21,11 +21,7 @@
         <item name="colorVsPrimary">?colorVsDark</item>
         <item name="colorVsBackground">?colorVsLight</item>
         <item name="colorVsBackgroundSoft">?colorVsLightSoft</item>
-        <!--            Duplicates-->
-        <!--          This is a hacky way to allow AppCompat children to get style colors-->
-        <!--          This might not be necessary if I knew how to set up inheritance properly..-->
-        <item name="colorPrimaryDarkDuplicate">#003b35</item>
-        <item name="colorPrimaryDuplicate">#006e63</item>
+<!--        -->
         <item name="colorAccent">#00a897</item>
         <!--    -->
         <item name ="android:colorBackground">@color/colorBackground</item>

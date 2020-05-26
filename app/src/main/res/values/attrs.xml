@@ -18,8 +18,5 @@
     <attr name="colorVsBackground" format="color" />
     <attr name="colorVsBackgroundSoft" format="color" />
 <!--    -->
-
-    <attr name="colorPrimaryDarkDuplicate" format="color" />
-    <attr name="colorPrimaryDuplicate" format="color" />
     <attr name="colorHardAccent" format="color" />
 </resources>

@@ -20,7 +20,7 @@
         android:padding="0dp"
         android:paddingTop="8dp"
         android:src="@drawable/simple_oval"
-        android:tint="?colorPrimaryDuplicate"
+        android:tint="?colorPrimary"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
