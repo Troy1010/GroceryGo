@@ -26,7 +26,21 @@ class FragCart : TMFragment(layout = R.layout.frag_cart), CustomAdapterCart.Call
         super.onStart()
         setupParent()
         setupAdapter()
+        setupListeners()
         refresh()
+    }
+
+    private fun setupListeners() {
+        button_checkout.setOnClickListener {
+            if (App.sm.user == null) {
+                App.sm.goToPaymentInfoAfterLogin = true
+                val intent = Intent(activity!!, ActivityHost::class.java)
+                intent.putExtra(ActivityHost.KEY_TAB_ID, ActivityHost.TabEnum.Profile.id)
+                startActivity(intent)
+            } else {
+                startActivity(Intent(activity!!, ActivityPaymentInfo::class.java))
+            }
+        }
     }
 
     private fun setupParent() {
@@ -49,9 +63,6 @@ class FragCart : TMFragment(layout = R.layout.frag_cart), CustomAdapterCart.Call
         (activity as ToolbarCallbacks).notifyCartBadge()
         val orderSummary = OrderSummary(products)
         recycler_view_cart_items.adapter?.notifyDataSetChanged()
-        button_checkout.setOnClickListener {
-            startActivity(Intent(activity!!, ActivityPaymentInfo::class.java))
-        }
 //        if (products.size==0) {
 //            text_view_cart_is_empty.visibility = View.VISIBLE
 //            text_view_item_quantity.visibility = View.INVISIBLE
@@ -76,7 +87,7 @@ class FragCart : TMFragment(layout = R.layout.frag_cart), CustomAdapterCart.Call
 
     override fun bindRecyclerItemView(view: View, i: Int) {
         view.text_view_name.text = products[i].productName
-        view.text_view_price.text = "$"+products[i].price.toString()
+        view.text_view_price.text = "$" + products[i].price.toString()
         view.button_trash.setOnClickListener {
             App.db.deleteProduct(products[i])
             refresh()
@@ -90,12 +101,13 @@ class FragCart : TMFragment(layout = R.layout.frag_cart), CustomAdapterCart.Call
             refresh()
         }
         view.text_view_number_plus_minus.text = products[i].quantity.toString()
-        view.text_view_add.visibility=View.GONE
+        view.text_view_add.visibility = View.GONE
         view.image_view_product.easyPicasso(Endpoints.getImageEndpoint(products[i].image))
     }
 
     override fun bindLastRecyclerItemView(view: View, normalItemHeight: Int?) {
-        view.layoutParams.height = max(400,layoutManager.height - (normalItemHeight?:0)*products.size - 200)
+        view.layoutParams.height =
+            max(400, layoutManager.height - (normalItemHeight ?: 0) * products.size - 200)
     }
 
 

@@ -16,6 +16,7 @@ class SessionManager {
         Context.MODE_PRIVATE
     )
     private var editor = sharedPref.edit()
+    var goToPaymentInfoAfterLogin = false // TODO this is probably not the best place to store this..
     var primaryAddress: Address?
         get() {
             val storedPrimaryAddress = sharedPref.getString(KEY_PRIMARY_ADDRESS, null)

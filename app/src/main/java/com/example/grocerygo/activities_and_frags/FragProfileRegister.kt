@@ -1,5 +1,6 @@
 package com.example.grocerygo.activities_and_frags
 
+import android.content.Intent
 import android.view.View
 import com.android.volley.Request
 import com.android.volley.Response
@@ -87,7 +88,12 @@ class FragProfileRegister : TMFragment(layout = R.layout.frag_register) {
                 )
                 logz("App.sm.user:${App.sm.user}")
                 //
-                (activity as HostCallbacks).goToHome()
+                if (App.sm.goToPaymentInfoAfterLogin) {
+                    App.sm.goToPaymentInfoAfterLogin = false
+                    startActivity(Intent(activity!!, ActivityPaymentInfo::class.java))
+                } else {
+                    (activity as HostCallbacks).goToTab(ActivityHost.TabEnum.Home)
+                }
             },
             Response.ErrorListener {
                 logz("Response.ErrorListener`it:$it")
