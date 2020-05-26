@@ -62,9 +62,9 @@ class ActivityOrderHistory : GGToolbarActivity(layout = R.layout.activity_order_
 
     override fun bindRecyclerItemView(view: View, i: Int) {
         val orderSummary = OrderSummary(orders[i].products)
-        view.text_view_quantity_value.text = orderSummary.totalQuantity.toString()
+        view.text_view_date_value.text = orders[i].date?.take(10)
+        view.text_view_quantity_value.text = "${orderSummary.totalQuantity} item(s)"
         view.text_view_grand_total_value.text = DisplayMoney(orderSummary.grandTotal)
-        view.text_view_date_value.text = orders[i].date
     }
 
     override fun getRecyclerDataSize(): Int {
