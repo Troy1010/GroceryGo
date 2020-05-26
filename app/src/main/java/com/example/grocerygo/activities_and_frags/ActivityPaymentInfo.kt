@@ -50,7 +50,7 @@ class ActivityPaymentInfo : GGToolbarActivity(layout = R.layout.activity_payment
     fun refresh() {
         text_view_profile_value.text = App.sm.user?.name ?: "User not logged in"
         text_view_address_value.text = App.sm.primaryAddress?.displayableStreetAddress ?: "Primary address not selected"
-        text_view_payment_value.text = "" // TODO
+        text_view_payment_value.text = App.sm.displayPayment?: "Payment method not selected"
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
