@@ -14,6 +14,9 @@
         <item name="colorVsPrimary">?colorVsDark</item>
         <item name="colorVsBackground">?colorVsLight</item>
         <item name="colorVsBackgroundSoft">?colorVsLightSoft</item>
+        <!--    propagation-->
+        <item name="android:buttonStyle">@style/ColorButton</item>
+        <item name="android:textViewStyle">@style/MyTextViewStyle</item>
     </style>
 
     <style name="GroceryGoLight.DefaultTheme">
@@ -23,9 +26,6 @@
         <item name="colorHardAccent">#FF6C00</item>
         <!--    inheriting-->
         <item name="colorAccent">?colorPrimary</item>
-        <!--    propagation-->
-        <item name="android:buttonStyle">@style/ColorButton</item>
-        <item name="android:textViewStyle">@style/MyTextViewStyle</item>
     </style>
 <!--    <style name="GroceryGoLight.BlueTheme">-->
 <!--        <item name="colorPrimaryLight">#00a897</item>-->
