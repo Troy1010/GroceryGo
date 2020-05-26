@@ -18,9 +18,13 @@ class ActivityChooseTheme : GGToolbarActivity(R.layout.activity_choose_theme), V
         super.onCreate(savedInstanceState)
         // define themeButtonMap
         themeButtonMap[radio_button_one] = R.style.GroceryGoLight_DefaultTheme
+        radio_button_one.text = "Default Light Teal Theme"
         themeButtonMap[radio_button_two] = R.style.GroceryGoLight_BlueTheme
+        radio_button_two.text = "Light Blue Theme"
         themeButtonMap[radio_button_three] = R.style.GroceryGoLight_PurpleTheme
+        radio_button_three.text = "Light Purple Theme"
         themeButtonMap[radio_button_four] = R.style.GroceryGoDark_PurpleTheme
+        radio_button_four.text = "Dark Purple Theme"
         // check the theme we have
         for ((radio_button, themeInt) in themeButtonMap) {
             if (themeInt == App.sm.theme) {
