@@ -9,7 +9,6 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.android.volley.Response
 import com.example.grocerygo.R
-import com.example.grocerygo.activities_and_frags.Inheritables.HostCallbacks
 import com.example.grocerygo.activities_and_frags.Inheritables.TMFragment
 import com.example.grocerygo.activities_and_frags.Inheritables.ToolbarCallbacks
 import com.example.grocerygo.adapters.AdapterRecyclerView
@@ -20,7 +19,27 @@ import kotlinx.android.synthetic.main.frag_order_review.*
 import kotlinx.android.synthetic.main.item_order_review.view.*
 import kotlinx.android.synthetic.main.z_cart_last_item.*
 
-class FragOrderReview(val products:ArrayList<Product>) : TMFragment(R.layout.frag_order_review), AdapterRecyclerView.Callbacks {
+class FragOrderReview : TMFragment(R.layout.frag_order_review), AdapterRecyclerView.Callbacks {
+    val products by lazy {
+        var returning = arguments?.getSerializable(KEY_PRODUCTS)
+        if (returning == null) {
+            logz("FragOrderReview`could not retrieve products")
+            returning = arrayListOf<Product>()
+        }
+        returning as ArrayList<Product>
+    }
+
+    companion object {
+        const val KEY_PRODUCTS = "PRODUCTS"
+        @JvmStatic
+        fun newInstance(products: ArrayList<Product>) =
+            FragOrderReview().apply {
+                arguments = Bundle().apply {
+                    putSerializable(KEY_PRODUCTS, products)
+                }
+            }
+    }
+
 
     override fun onCreateViewInit() {
         setupParent()
@@ -44,8 +63,10 @@ class FragOrderReview(val products:ArrayList<Product>) : TMFragment(R.layout.fra
 
     private fun refresh() {
         text_view_profile_value.text = App.sm.user?.name ?: "!WARNING: User not logged in"
-        text_view_address_value.text = App.sm.primaryAddress?.displayableStreetAddress ?: "!WARNING: Primary address not selected"
-        text_view_payment_value.text = App.sm.displayPayment?: "!WARNING: Payment method not selected"
+        text_view_address_value.text = App.sm.primaryAddress?.displayableStreetAddress
+            ?: "!WARNING: Primary address not selected"
+        text_view_payment_value.text =
+            App.sm.displayPayment ?: "!WARNING: Payment method not selected"
         //
         val orderSummary = OrderSummary(products)
         text_view_item_quantity.text = "${orderSummary.totalQuantity} item(s)"
@@ -56,7 +77,8 @@ class FragOrderReview(val products:ArrayList<Product>) : TMFragment(R.layout.fra
         text_view_price_total.text = DisplayMoney(orderSummary.totalPrice)
         text_view_tax.text = DisplayMoney(orderSummary.tax)
         text_view_shipping.text = DisplayMoney(orderSummary.deliveryFee)
-        text_view_grand_total_value.text = DisplayMoney(OrderSummary(App.db.getProducts()).grandTotal)
+        text_view_grand_total_value.text =
+            DisplayMoney(OrderSummary(App.db.getProducts()).grandTotal)
     }
 
     private fun setupClickListeners() {

@@ -24,7 +24,7 @@ class ActivityOrderReview : GGToolbarActivity(layout = R.layout.activity_order_r
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        val frag = FragOrderReview(App.db.getProducts())
+        val frag = FragOrderReview.newInstance(App.db.getProducts())
         supportFragmentManager.beginTransaction().replace(R.id.frame_frag_order_review, frag).commit()
     }
 }
