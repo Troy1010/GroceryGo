@@ -1,5 +1,6 @@
 package com.example.grocerygo.activities_and_frags
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import androidx.recyclerview.widget.DividerItemDecoration
@@ -22,12 +23,24 @@ class ActivityAddresses : GGToolbarActivity(R.layout.activity_addresses), Adapte
     override val title = "Select Address"
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        setupListeners()
         setupRecyclerView()
     }
+
+    private fun setupListeners() {
+        button_add_address.setOnClickListener {
+            startActivity(Intent(this, ActivityAddress::class.java))
+        }
+    }
+
     var addresses = arrayListOf<Address>()
 
-    private fun setupRecyclerView() {
+    override fun onStart() {
+        super.onStart()
+        refresh()
+    }
 
+    private fun refresh() {
         Requester.requestAddresses(
             App.sm.user?._id,
             Response.Listener { response ->
@@ -37,6 +50,9 @@ class ActivityAddresses : GGToolbarActivity(R.layout.activity_addresses), Adapte
                 addresses = ArrayList(receivedAddressesObject.data)
                 recycler_view_addresses.adapter?.notifyDataSetChanged()
             })
+    }
+
+    private fun setupRecyclerView() {
         recycler_view_addresses.layoutManager = LinearLayoutManager(this)
         recycler_view_addresses.adapter = AdapterRecyclerView(this, this, R.layout.item_address)
         recycler_view_addresses

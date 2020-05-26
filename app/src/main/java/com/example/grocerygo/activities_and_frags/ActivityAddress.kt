@@ -12,6 +12,8 @@ import com.example.grocerygo.extras.Endpoints
 import com.example.grocerygo.extras.logz
 import com.example.grocerygo.activities_and_frags.Inheritables.GGToolbarActivity
 import com.example.grocerygo.models.PostAddressObject
+import com.example.grocerygo.models.received.ReceivedPostedAddressObject
+import com.google.gson.GsonBuilder
 import kotlinx.android.synthetic.main.activity_c_address.*
 import org.json.JSONObject
 
@@ -58,9 +60,11 @@ class ActivityAddress : GGToolbarActivity(layout = R.layout.activity_c_address) 
         val request = JsonObjectRequest(
             Request.Method.POST, Endpoints.getPostAddressEndpoint(), jsonObject,
             Response.Listener { response ->
-//                val receivedPostedAddressObject = GsonBuilder().create()
-//                    .fromJson(response.toString(), ReceivedPostedAddressObject::class.java)
-                // do nothing with the response and just go back
+                // save as primaryAddress
+                val receivedPostedAddressObject = GsonBuilder().create()
+                    .fromJson(response.toString(), ReceivedPostedAddressObject::class.java)
+                App.sm.primaryAddress = receivedPostedAddressObject.data
+                // go back to PaymentInfo
                 startActivity(Intent(this, ActivityPaymentInfo::class.java))
             },
             Response.ErrorListener {
