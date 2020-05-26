@@ -50,7 +50,7 @@ class ActivityHost : GGToolbarActivity(layout = R.layout.activity_host),
         }
     }
 
-    fun goToTab(eTab:TabEnum) {
+    override fun goToTab(eTab:TabEnum) {
         bottom_navigation_bar.selectedItemId = eTab.id
     }
 
