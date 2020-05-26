@@ -20,12 +20,11 @@ import kotlinx.android.synthetic.main.frag_order_review.*
 import kotlinx.android.synthetic.main.item_order_review.view.*
 import kotlinx.android.synthetic.main.z_cart_last_item.*
 
-class FragOrderReview : TMFragment(R.layout.frag_order_review), AdapterRecyclerView.Callbacks {
-    lateinit var products: ArrayList<Product>
+class FragOrderReview(val products:ArrayList<Product>) : TMFragment(R.layout.frag_order_review), AdapterRecyclerView.Callbacks {
 
     override fun onCreateViewInit() {
-        super.onCreateViewInit()
         setupParent()
+        super.onCreateViewInit()
     }
 
     override fun onStart() {
@@ -33,6 +32,7 @@ class FragOrderReview : TMFragment(R.layout.frag_order_review), AdapterRecyclerV
         setupRecyclerView()
         setupClickListeners()
         refresh()
+        setupParent()
     }
 
 
@@ -47,7 +47,6 @@ class FragOrderReview : TMFragment(R.layout.frag_order_review), AdapterRecyclerV
         text_view_address_value.text = App.sm.primaryAddress?.displayableStreetAddress ?: "!WARNING: Primary address not selected"
         text_view_payment_value.text = App.sm.displayPayment?: "!WARNING: Payment method not selected"
         //
-        products = App.db.getProducts()
         val orderSummary = OrderSummary(products)
         text_view_item_quantity.text = "${orderSummary.totalQuantity} item(s)"
         text_view_fake_price_total.text = DisplayMoney(orderSummary.totalFakePrice)
