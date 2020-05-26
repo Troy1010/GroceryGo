@@ -66,6 +66,7 @@ class SessionManager {
         }
         set(value) {
             if (value == null) {
+                reset()
                 editor.clear()
             } else {
                 editor.putString(User.KEY_EMAIL, value.email)
@@ -76,6 +77,11 @@ class SessionManager {
             }
             editor.commit()
         }
+
+    fun reset() {
+        primaryAddress = null
+        App.db.clear()
+    }
 
 
     fun isLoggedIn(): Boolean {
