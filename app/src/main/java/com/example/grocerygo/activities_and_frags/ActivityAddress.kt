@@ -14,10 +14,10 @@ import com.example.grocerygo.activities_and_frags.Inheritables.GGToolbarActivity
 import com.example.grocerygo.models.PostAddressObject
 import com.example.grocerygo.models.received.ReceivedPostedAddressObject
 import com.google.gson.GsonBuilder
-import kotlinx.android.synthetic.main.activity_c_address.*
+import kotlinx.android.synthetic.main.activity_address.*
 import org.json.JSONObject
 
-class ActivityAddress : GGToolbarActivity(layout = R.layout.activity_c_address) {
+class ActivityAddress : GGToolbarActivity(layout = R.layout.activity_address) {
     override val title: String
         get() = "Update Address"
 
