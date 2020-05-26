@@ -17,11 +17,11 @@ import com.example.grocerygo.activities_and_frags.Inheritables.GGToolbarActivity
 import com.example.grocerygo.models.*
 import com.example.grocerygo.models.received.ReceivedAddressesObject
 import com.google.gson.GsonBuilder
-import kotlinx.android.synthetic.main.activity_c_payment_info.*
+import kotlinx.android.synthetic.main.activity_payment_info.*
 import kotlinx.android.synthetic.main.item_address.view.*
 
 class ActivityPaymentInfo :
-    GGToolbarActivity(layout = R.layout.activity_c_payment_info),
+    GGToolbarActivity(layout = R.layout.activity_payment_info),
     AdapterRecyclerView.Callbacks {
     override val title: String
         get() = "Payment Info"
