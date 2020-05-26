@@ -89,9 +89,10 @@ fun splitAddressIntoNumAndName(address: String): StreetNumAndName? {
             break
         }
     }
-    var v = StreetNumAndName(
-        address.substring(0, endPos).toInt(),
-        address.substring(endPos, address.length).trim()
-    )
-    return v
+    return if (endPos==0) { null } else {
+        StreetNumAndName(
+            address.substring(0, endPos).toInt(),
+            address.substring(endPos, address.length).trim()
+        )
+    }
 }
