@@ -9,5 +9,6 @@
         android:layout_width="match_parent"
         android:layout_height="40dp"
         android:background="?colorPrimaryLight"
-        app:tabTextColor="?colorVsLight" />
+        app:tabTextColor="?colorVsLightSoft"
+        app:tabSelectedTextColor="?colorVsLight"/>
 </LinearLayout>
