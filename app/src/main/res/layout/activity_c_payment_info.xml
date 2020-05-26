@@ -97,7 +97,6 @@
             android:layout_height="0dp"/>
 
         <Button
-            android:background="@drawable/button_usual_background"
             android:id="@+id/button_payment_info_send"
             android:gravity="center_horizontal"
             app:layout_constraintBottom_toBottomOf="parent"
