@@ -6,7 +6,7 @@
     card_view:cardCornerRadius="6dp"
     card_view:cardElevation="3dp">
     <LinearLayout
-        android:background="#fff"
+        android:background="?colorBackgroundHighlight"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical">
