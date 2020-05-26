@@ -1,28 +1,45 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/qwer"
     android:layout_width="32dp"
-    android:layout_height="28dp"
-    android:id="@+id/qwer">
+    android:layout_height="28dp">
 
     <ImageView
-        android:paddingTop="8dp"
-        android:src="@drawable/ic_shopping_cart_white_24dp"
-        android:tint="?colorVsDark"
+        style="@style/MyImageViewStyle"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="match_parent"
+        android:paddingTop="8dp"
+        android:src="@drawable/ic_shopping_cart"
+        android:tint="?colorVsDark" />
+
+    <ImageView
+        android:id="@+id/image_view_badge_oval"
+        style="@style/MyImageViewStyle"
+        android:layout_width="16dp"
+        android:layout_height="16dp"
+        android:layout_margin="0dp"
+        android:padding="0dp"
+        android:paddingTop="8dp"
+        android:src="@drawable/simple_oval"
+        android:tint="?colorPrimaryDuplicate"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <TextView
-        android:paddingBottom="5dp"
         android:id="@+id/text_view_badge"
+        style="@style/MyTextViewStyle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="1dp"
         android:gravity="center"
-        android:padding="2dp"
+        android:padding="0dp"
+        android:paddingBottom="5dp"
         android:text="22"
         android:textColor="?colorVsPrimary"
         android:textSize="12sp"
-        android:background="@drawable/simple_oval"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"/>
+        app:layout_constraintBottom_toBottomOf="@id/image_view_badge_oval"
+        app:layout_constraintEnd_toEndOf="@id/image_view_badge_oval"
+        app:layout_constraintStart_toStartOf="@id/image_view_badge_oval" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
