@@ -7,48 +7,40 @@
         <item name="colorVsLightSoft">#555</item>
         <item name="colorVsDark">#fff</item>
         <item name="colorVsDarkSoft">#aaa</item>
+        <item name="colorBackground">#eee</item>
+        <item name="colorBackgroundHighlight">#fff</item>
+        <item name="colorClickable">#0086bf</item>
+        <!--    inheriting-->
+        <item name="colorVsPrimary">?colorVsDark</item>
+        <item name="colorVsBackground">?colorVsLight</item>
+        <item name="colorVsBackgroundSoft">?colorVsLightSoft</item>
     </style>
 
     <style name="GroceryGoLight.DefaultTheme">
         <item name="colorPrimaryLight">#00a897</item>
         <item name="colorPrimaryDark">#003b35</item>
         <item name="colorPrimary">#006e63</item>
-        <item name="colorBackground">#eee</item>
-        <item name="colorBackgroundHighlight">#fff</item>
-        <item name="colorClickable">#0086bf</item>
         <item name="colorHardAccent">#FF6C00</item>
         <!--    inheriting-->
-        <item name="colorVsPrimary">?colorVsDark</item>
-        <item name="colorVsBackground">?colorVsLight</item>
-        <item name="colorVsBackgroundSoft">?colorVsLightSoft</item>
         <item name="colorAccent">?colorPrimary</item>
         <!--    propagation-->
         <item name="android:buttonStyle">@style/ColorButton</item>
         <item name="android:textViewStyle">@style/MyTextViewStyle</item>
     </style>
-<!--    <style name="GenericTheme.DefaultTheme" parent="Theme.AppCompat.Light.NoActionBar">-->
-<!--        <item name="colorPrimary">#006e63</item>-->
+<!--    <style name="GroceryGoLight.BlueTheme">-->
 <!--        <item name="colorPrimaryLight">#00a897</item>-->
 <!--        <item name="colorPrimaryDark">#003b35</item>-->
-<!--        <item name="colorHardAccent">#FF6C00</item>-->
+<!--        <item name="colorPrimary">#006e63</item>-->
+<!--        <item name="colorBackground">#eee</item>-->
 <!--        <item name="colorBackgroundHighlight">#fff</item>-->
 <!--        <item name="colorClickable">#0086bf</item>-->
-<!--        <item name="colorBackground">#0f0</item>-->
-<!--        &lt;!&ndash;        ..The only way that I've found to link background is programmatically&ndash;&gt;-->
-<!--        &lt;!&ndash;            Pointers&ndash;&gt;-->
+<!--        <item name="colorHardAccent">#FF6C00</item>-->
+<!--        &lt;!&ndash;    inheriting&ndash;&gt;-->
 <!--        <item name="colorVsPrimary">?colorVsDark</item>-->
 <!--        <item name="colorVsBackground">?colorVsLight</item>-->
 <!--        <item name="colorVsBackgroundSoft">?colorVsLightSoft</item>-->
-<!--        &lt;!&ndash;            Duplicates&ndash;&gt;-->
-<!--        &lt;!&ndash;          This is a hacky way to allow AppCompat children to get style colors&ndash;&gt;-->
-<!--        &lt;!&ndash;          This might not be necessary if I knew how to set up inheritance properly..&ndash;&gt;-->
-<!--        <item name="colorPrimaryDarkDuplicate">#003b35</item>-->
-<!--        <item name="colorPrimaryDuplicate">#006e63</item>-->
-<!--        <item name="colorAccent">#00a897</item>-->
-
-<!--        <item name ="android:colorBackground">@color/colorBackground</item>-->
-<!--        &lt;!&ndash;            Propagation&ndash;&gt;-->
-<!--        &lt;!&ndash;        Do I need these..?&ndash;&gt;-->
+<!--        <item name="colorAccent">?colorPrimary</item>-->
+<!--        &lt;!&ndash;    propagation&ndash;&gt;-->
 <!--        <item name="android:buttonStyle">@style/ColorButton</item>-->
 <!--        <item name="android:textViewStyle">@style/MyTextViewStyle</item>-->
 <!--    </style>-->
