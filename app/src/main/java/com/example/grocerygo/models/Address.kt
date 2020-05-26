@@ -16,4 +16,8 @@ data class Address(
 ) {
     var displayableStreetAddress = ""
         get() = "$houseNo $streetName"
+    var displayableFullAddress = ""
+        get() {
+            return "$displayableStreetAddress\n$city, $location $pincode"
+        }
 }

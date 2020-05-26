@@ -76,8 +76,10 @@ abstract class GGToolbarActivity(override val layout: Int) : TMActivity(layout),
             val quantity = OrderSummary(App.db.getProducts()).totalQuantity
             if (quantity == 0) {
                 cartIconView?.text_view_badge?.visibility = View.GONE
+                cartIconView?.image_view_badge_oval?.visibility = View.GONE
             } else {
                 cartIconView?.text_view_badge?.visibility = View.VISIBLE
+                cartIconView?.image_view_badge_oval?.visibility = View.VISIBLE
                 cartIconView?.text_view_badge?.text = quantity.toString()
             }
         }

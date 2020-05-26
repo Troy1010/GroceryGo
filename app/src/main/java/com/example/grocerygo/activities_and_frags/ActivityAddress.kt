@@ -12,12 +12,14 @@ import com.example.grocerygo.extras.Endpoints
 import com.example.grocerygo.extras.logz
 import com.example.grocerygo.activities_and_frags.Inheritables.GGToolbarActivity
 import com.example.grocerygo.models.PostAddressObject
-import kotlinx.android.synthetic.main.activity_c_address.*
+import com.example.grocerygo.models.received.ReceivedPostedAddressObject
+import com.google.gson.Gson
+import com.google.gson.GsonBuilder
+import kotlinx.android.synthetic.main.activity_address.*
 import org.json.JSONObject
 
-class ActivityAddress : GGToolbarActivity(layout = R.layout.activity_c_address) {
-    override val title: String
-        get() = "Update Address"
+class ActivityAddress : GGToolbarActivity(layout = R.layout.activity_address) {
+    override val title = "Update Address"
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -42,25 +44,15 @@ class ActivityAddress : GGToolbarActivity(layout = R.layout.activity_c_address) 
 
     private fun postAddress(postAddressObject: PostAddressObject) {
         val requestQueue = Volley.newRequestQueue(this)
-        val params = HashMap<String, String>()
-        params["city"] = postAddressObject.city
-        params["location"] = postAddressObject.location
-        params["mobile"] = postAddressObject.mobile
-        params["name"] = postAddressObject.name
-        params["pincode"] = postAddressObject.pincode
-        params["streetName"] = postAddressObject.streetName
-        params["type"] = postAddressObject.type
-        params["userId"] = postAddressObject.userId
-        params["houseNo"] = postAddressObject.houseNo
-        //typecast params into jsonObject
-        val jsonObject = JSONObject(params as Map<*, *>)
-
+        val jsonObject = JSONObject(Gson().toJson(postAddressObject))
         val request = JsonObjectRequest(
             Request.Method.POST, Endpoints.getPostAddressEndpoint(), jsonObject,
             Response.Listener { response ->
-//                val receivedPostedAddressObject = GsonBuilder().create()
-//                    .fromJson(response.toString(), ReceivedPostedAddressObject::class.java)
-                // do nothing with the response and just go back
+                // save as primaryAddress
+                val receivedPostedAddressObject = GsonBuilder().create()
+                    .fromJson(response.toString(), ReceivedPostedAddressObject::class.java)
+                App.sm.primaryAddress = receivedPostedAddressObject.data
+                // go back to PaymentInfo
                 startActivity(Intent(this, ActivityPaymentInfo::class.java))
             },
             Response.ErrorListener {
@@ -89,9 +81,10 @@ fun splitAddressIntoNumAndName(address: String): StreetNumAndName? {
             break
         }
     }
-    var v = StreetNumAndName(
-        address.substring(0, endPos).toInt(),
-        address.substring(endPos, address.length).trim()
-    )
-    return v
+    return if (endPos==0) { null } else {
+        StreetNumAndName(
+            address.substring(0, endPos).toInt(),
+            address.substring(endPos, address.length).trim()
+        )
+    }
 }

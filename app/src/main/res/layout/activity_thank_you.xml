@@ -32,8 +32,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
             android:text="Done"
-            android:textSize="24sp"
-            android:background="@drawable/button_usual_background" />
+            android:textSize="24sp"/>
 
     </LinearLayout>
 </LinearLayout>

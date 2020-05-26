@@ -16,6 +16,8 @@ class SessionManager {
         Context.MODE_PRIVATE
     )
     private var editor = sharedPref.edit()
+    var goToPaymentInfoAfterLogin = false // TODO this is probably not the best place to store this..
+    var displayPayment:String? = null
     var primaryAddress: Address?
         get() {
             val storedPrimaryAddress = sharedPref.getString(KEY_PRIMARY_ADDRESS, null)
@@ -66,6 +68,7 @@ class SessionManager {
         }
         set(value) {
             if (value == null) {
+                reset()
                 editor.clear()
             } else {
                 editor.putString(User.KEY_EMAIL, value.email)
@@ -76,6 +79,11 @@ class SessionManager {
             }
             editor.commit()
         }
+
+    fun reset() {
+        primaryAddress = null
+        App.db.clear()
+    }
 
 
     fun isLoggedIn(): Boolean {

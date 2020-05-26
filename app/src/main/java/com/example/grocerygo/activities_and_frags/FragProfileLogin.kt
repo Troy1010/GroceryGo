@@ -1,5 +1,6 @@
 package com.example.grocerygo.activities_and_frags
 
+import android.content.Intent
 import com.android.volley.Response
 import com.example.grocerygo.R
 import com.example.grocerygo.activities_and_frags.Inheritables.HostCallbacks
@@ -50,7 +51,12 @@ class FragProfileLogin : TMFragment(layout = R.layout.frag_login) {
                         _id = registrationData._id
                     )
                     //
-                    (activity as HostCallbacks).goToHome()
+                    if (App.sm.goToPaymentInfoAfterLogin) {
+                        App.sm.goToPaymentInfoAfterLogin = false
+                        startActivity(Intent(activity!!, ActivityPaymentInfo::class.java))
+                    } else {
+                        (activity as HostCallbacks).goToTab(ActivityHost.TabEnum.Home)
+                    }
                 })
         }
     }

@@ -19,4 +19,5 @@
     <attr name="colorVsBackgroundSoft" format="color" />
 <!--    -->
     <attr name="colorHardAccent" format="color" />
+    <attr name="colorHardAccentGood" format="color"/>
 </resources>

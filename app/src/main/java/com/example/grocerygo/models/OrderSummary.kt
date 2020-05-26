@@ -1,5 +1,8 @@
 package com.example.grocerygo.models
 
+import com.example.grocerygo.extras.logz
+import com.example.grocerygo.extras.round
+
 class OrderSummary(products: ArrayList<Product>) {
     constructor(products:List<Product>):this(ArrayList(products))
 
@@ -23,14 +26,14 @@ class OrderSummary(products: ArrayList<Product>) {
     var deliveryFee = 0.0
         get() {
             val baseDeliveryFee = 16.50
-            return if (totalPrice > 300) baseDeliveryFee else 0.0
+            return if (totalPrice < 300) baseDeliveryFee else 0.0
         }
     var grandTotal = 0.0
         get() = deliveryFee + tax + totalPrice
     var fakeDiscount = 0.0
         get() = totalFakePrice - totalPrice
     var fakeDiscountPercentage = 0.0
-        get() = fakeDiscount/totalFakePrice
+        get() = round(100*fakeDiscount/totalFakePrice).toDouble()
     var tax = 0.0
         get() {
             val taxMult = 0.08

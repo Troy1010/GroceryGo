@@ -5,5 +5,5 @@ class DisplayAndValidationHandlers {
 }
 
 fun DisplayMoney(value:Double):String {
-    return ("$" + value.round(2).toString())
+    return ("$" + "%.2f".format(value.round(2)))
 }

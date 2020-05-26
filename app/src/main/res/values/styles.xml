@@ -10,6 +10,7 @@
         <item name="colorBackground">#eee</item>
         <item name="colorBackgroundHighlight">#fff</item>
         <item name="colorClickable">#0086bf</item>
+        <item name="colorHardAccentGood">#25e657</item>
         <!--    inheriting-->
         <item name="colorVsBackground">?colorVsLight</item>
         <item name="colorVsBackgroundSoft">?colorVsLightSoft</item>
@@ -58,6 +59,7 @@
         <item name="colorBackground">#333</item>
         <item name="colorBackgroundHighlight">#222</item>
         <item name="colorClickable">#0086bf</item>
+        <item name="colorHardAccentGood">#25e657</item>
         <!--    inheriting-->
         <item name="colorVsBackground">?colorVsDark</item>
         <item name="colorVsBackgroundSoft">?colorVsDarkSoft</item>
@@ -77,8 +79,8 @@
     </style>
 
     <style name="ColorButton">
+        <item name="android:background">@drawable/button_usual_background</item>
         <item name="android:gravity">center</item>
-        <item name="android:background">?colorPrimary</item>
         <item name="android:textColor">?colorVsPrimary</item>
         <item name="android:paddingLeft">16dp</item>
         <item name="android:paddingRight">16dp</item>
