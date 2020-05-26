@@ -41,11 +41,14 @@ class FragCart : TMFragment(layout = R.layout.frag_cart), CustomAdapterCart.Call
                 val intent = Intent(activity!!, ActivityHost::class.java)
                 intent.putExtra(ActivityHost.KEY_TAB_ID, ActivityHost.TabEnum.Profile.id)
                 startActivity(intent)
+            } else if (products.isEmpty()) {
+                this.easyToast("Must have at least one item")
             } else {
                 startActivity(Intent(activity!!, ActivityPaymentInfo::class.java))
             }
         }
     }
+
 
     private fun setupParent() {
         (activity as HostCallbacks).showNavigationBar(false)
@@ -64,7 +67,7 @@ class FragCart : TMFragment(layout = R.layout.frag_cart), CustomAdapterCart.Call
 
     fun refresh() {
         products = App.db.getProducts()
-        if (products.size==0) {
+        if (products.size == 0) {
             recycler_view_cart_items.visibility = View.GONE
         } else {
             recycler_view_cart_items.visibility = View.VISIBLE
@@ -99,7 +102,7 @@ class FragCart : TMFragment(layout = R.layout.frag_cart), CustomAdapterCart.Call
         view.layoutParams.height =
             max(400, layoutManager.height - (normalItemHeight ?: 0) * products.size - 200)
 
-        if (products.size!=0) {
+        if (products.size != 0) {
             view.text_view_item_quantity.text = "${orderSummary.totalQuantity} item(s)"
             view.text_view_fake_price_total.text = DisplayMoney(orderSummary.totalFakePrice)
             view.text_view_fake_price_total.paintFlags = Paint.STRIKE_THRU_TEXT_FLAG
