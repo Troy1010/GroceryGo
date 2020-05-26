@@ -16,7 +16,7 @@ class CustomAdapterCart(
 ) : RecyclerView.Adapter<CustomAdapterCart.ViewHolder>() {
     lateinit var zsfsParent : ViewGroup
     var zsfsHeight : Int = -1
-    lateinit var oldView : View
+    var oldView : View? = null
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView)
 
     override fun getItemViewType(position: Int): Int {
@@ -33,7 +33,7 @@ class CustomAdapterCart(
             LayoutInflater.from(context).inflate(R.layout.z_cart_last_item, parent, false)
         } else {
             oldView = LayoutInflater.from(context).inflate(R.layout.item_cart_item, parent, false)
-            oldView
+            oldView!!
         }
         return ViewHolder(view)
     }
@@ -48,7 +48,7 @@ class CustomAdapterCart(
             zsfsHeight = holder.itemView.height
             holder.itemView
         } else {
-            parent.bindLastRecyclerItemView(holder.itemView, oldView.height)
+            parent.bindLastRecyclerItemView(holder.itemView, oldView?.height)
         }
     }
 
@@ -58,7 +58,7 @@ class CustomAdapterCart(
     {
         var products: ArrayList<Product>
         fun bindRecyclerItemView(view: View, i: Int)
-        fun bindLastRecyclerItemView(view: View, normalItemHeight: Int)
+        fun bindLastRecyclerItemView(view: View, normalItemHeight: Int?)
     }
     enum class ItemViewTypeEnums(val typeID: Int) {
         normalItem(0), last(1)
