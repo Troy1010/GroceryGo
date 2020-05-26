@@ -9,6 +9,7 @@ import com.example.grocerygo.adapters.AdapterRecyclerView
 import com.example.grocerygo.extras.App
 import com.example.grocerygo.activities_and_frags.Inheritables.GGToolbarActivity
 import com.example.grocerygo.extras.Requester
+import com.example.grocerygo.extras.easyToast
 import com.example.grocerygo.extras.logz
 import com.example.grocerygo.models.*
 import com.example.grocerygo.models.received.ReceivedAddressesObject
@@ -26,7 +27,14 @@ class ActivityPaymentInfo : GGToolbarActivity(layout = R.layout.activity_payment
 
     private fun setupListeners() {
         button_payment_info_send.setOnClickListener {
-            startActivity(Intent(this, ActivityOrderReview::class.java))
+            if (App.sm.user != null &&
+                App.sm.primaryAddress != null &&
+                App.sm.displayPayment != null
+            ) {
+                startActivity(Intent(this, ActivityOrderReview::class.java))
+            } else {
+                this.easyToast("Please complete the form")
+            }
         }
         frame_profile.setOnClickListener {
             val intent = Intent(this, ActivityHost::class.java)
@@ -54,8 +62,9 @@ class ActivityPaymentInfo : GGToolbarActivity(layout = R.layout.activity_payment
 
     fun refresh() {
         text_view_profile_value.text = App.sm.user?.name ?: "User not logged in"
-        text_view_address_value.text = App.sm.primaryAddress?.displayableStreetAddress ?: "Primary address not selected"
-        text_view_payment_value.text = App.sm.displayPayment?: "Payment method not selected"
+        text_view_address_value.text =
+            App.sm.primaryAddress?.displayableStreetAddress ?: "Primary address not selected"
+        text_view_payment_value.text = App.sm.displayPayment ?: "Payment method not selected"
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
