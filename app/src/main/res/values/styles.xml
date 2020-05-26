@@ -1,15 +1,10 @@
 <resources>
-
-    <style name="GenericTheme">
-        <item name="android:layout_gravity">center_horizontal</item>
-    </style>
-
-    <style name="GenericTheme.DefaultTheme.Propagated">
+    <style name="DefaultTheme.Propagated">
         <item name="android:buttonStyle">@style/ColorButton</item>
         <item name="android:textViewStyle">@style/MyTextViewStyle</item>
     </style>
 
-    <style name="GenericTheme.DefaultTheme" parent="Theme.AppCompat.Light.NoActionBar">
+    <style name="DefaultTheme" parent="Theme.AppCompat.Light.NoActionBar">
         <!--    light/dark DEFINED-->
         <item name="colorPrimaryLight">#00a897</item>
         <item name="colorPrimaryDark">#003b35</item>

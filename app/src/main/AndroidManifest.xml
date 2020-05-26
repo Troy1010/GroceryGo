@@ -11,7 +11,7 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/GenericTheme.DefaultTheme.Propagated">
+        android:theme="@style/DefaultTheme.Propagated">
         <activity android:name=".activities_and_frags.ActivityOrderHistory"></activity>
         <activity android:name=".activities_and_frags.FragCart" />
         <activity android:name=".activities_and_frags.ActivityHost" />

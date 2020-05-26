@@ -35,7 +35,7 @@ class SessionManager {
         get() {
             val storedThemeInt = sharedPref.getInt(KEY_THEME, -1)
             return if (storedThemeInt == -1) {
-                R.style.GenericTheme_DefaultTheme_Propagated
+                R.style.DefaultTheme_Propagated
             } else {
                 storedThemeInt
             }
