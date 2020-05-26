@@ -17,9 +17,9 @@ class ActivityChooseTheme : GGToolbarActivity(R.layout.activity_choose_theme), V
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         // define themeButtonMap
-        themeButtonMap[radio_button_one] = R.style.GenericTheme_BlueLightTheme_Propagated
-        themeButtonMap[radio_button_two] = R.style.GenericTheme_DefaultTheme_Propagated
-        themeButtonMap[radio_button_three] = R.style.GenericTheme_PurpleDarkTheme_Propagated
+//        themeButtonMap[radio_button_one] = R.style.GenericTheme_BlueLightTheme_Propagated
+//        themeButtonMap[radio_button_two] = R.style.GenericTheme_DefaultTheme_Propagated
+//        themeButtonMap[radio_button_three] = R.style.GenericTheme_PurpleDarkTheme_Propagated
         // check the theme we have
         for ((radio_button, themeInt) in themeButtonMap) {
             if (themeInt == App.sm.theme) {
