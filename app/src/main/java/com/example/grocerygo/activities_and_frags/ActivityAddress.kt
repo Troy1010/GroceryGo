@@ -27,39 +27,16 @@ class ActivityAddress : GGToolbarActivity(layout = R.layout.activity_c_address) 
                 PostAddressObject(
                     city = text_input_city.text.toString(),
                     location = text_input_state.text.toString(),
-                    mobile = App.sm.user.mobile!!,
-                    name = App.sm.user.name!!,
+                    mobile = App.sm.user?.mobile!!,
+                    name = App.sm.user?.name!!,
                     pincode = text_input_zip_code.text.toString(),
                     streetName = addressNameAndNum?.name ?: "",
                     type = "Mobile",
-                    userId = App.sm.user._id.toString(),
+                    userId = App.sm.user?._id.toString(),
                     houseNo = addressNameAndNum?.num.toString()
                 )
             )
         }
-    }
-
-    fun splitAddressIntoNumAndName(address: String): StreetNumAndName? {
-        if (address.length == 0) {
-            logz("splitAddressIntoNumAndName`String too short")
-            return null
-        }
-        if (!address[0].isDefined()) {
-            logz("splitAddressIntoNumAndName`No Number")
-            return null
-        }
-        var endPos = 0
-        for (i in 0 until address.length) {
-            if (!address[i].isDigit()) {
-                endPos = i
-                break
-            }
-        }
-        var v = StreetNumAndName(
-            address.substring(0, endPos).toInt(),
-            address.substring(endPos, address.length).trim()
-        )
-        return v
     }
 
 
@@ -94,3 +71,27 @@ class ActivityAddress : GGToolbarActivity(layout = R.layout.activity_c_address) 
 }
 
 data class StreetNumAndName(val num: Int, val name: String)
+
+
+fun splitAddressIntoNumAndName(address: String): StreetNumAndName? {
+    if (address.length == 0) {
+        logz("splitAddressIntoNumAndName`String too short")
+        return null
+    }
+    if (!address[0].isDefined()) {
+        logz("splitAddressIntoNumAndName`No Number")
+        return null
+    }
+    var endPos = 0
+    for (i in 0 until address.length) {
+        if (!address[i].isDigit()) {
+            endPos = i
+            break
+        }
+    }
+    var v = StreetNumAndName(
+        address.substring(0, endPos).toInt(),
+        address.substring(endPos, address.length).trim()
+    )
+    return v
+}

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!--    light/dark DEFINED-->
+    <attr name="colorPrimaryLight" format="color" />
+<!--    <attr name="colorPrimaryDark" format="color" />-->
+    <attr name="colorVsLight" format="color" />
+    <attr name="colorVsLightSoft" format="color" />
+    <attr name="colorVsDark" format="color" />
+    <attr name="colorVsDarkSoft" format="color" />
+    <!--    light/dark UNDEFINED - inheriting from color sets-->
+<!--    <attr name="colorAccent" format="color" />-->
+<!--    <attr name="colorPrimary" format="color" />-->
+    <attr name="colorBackground" format="color" />
+    <attr name="colorBackgroundHighlight" format="color" />
+    <attr name="colorClickable" format="color" />
+    <!--    light/dark UNDEFINED - inheriting from defined-->
+    <attr name="colorVsPrimary" format="color" />
+    <attr name="colorVsBackground" format="color" />
+    <attr name="colorVsBackgroundSoft" format="color" />
+<!--    -->
+    <attr name="colorHardAccent" format="color" />
+</resources>

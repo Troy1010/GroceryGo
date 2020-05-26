@@ -1,11 +1,10 @@
 package com.example.grocerygo.models
 
 data class User (
-    val name:String?,
-    val email:String?,
-    val password:String?,
-    val mobile:String?,
-    val primaryAddress:Address?=null,
+    val name:String,
+    val email:String,
+    val password:String,
+    val mobile:String,
     val _id:String? = null
 ) {
     companion object {
@@ -14,6 +13,10 @@ data class User (
         const val KEY_EMAIL = "EMAIL"
         const val KEY_MOBILE = "MOBILE"
         const val KEY_ID = "ID"
-        const val KEY_PRIMARY_ADDRESS = "PRIMARY_ADDRESS"
     }
 }
+
+data class LoginObject (
+    val email:String,
+    val password:String
+)

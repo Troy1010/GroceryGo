@@ -16,20 +16,22 @@ import kotlinx.android.synthetic.main.activity_host.*
 import kotlinx.android.synthetic.main.app_toolbar.*
 import kotlinx.android.synthetic.main.z_cart_icon.view.*
 
-abstract class GGToolbarActivity(override val layout:Int) : TMActivity(layout),
+abstract class GGToolbarActivity(override val layout: Int) : TMActivity(layout),
     ToolbarCallbacks {
     abstract val title: String
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        toolbar_main.title = title
-        setSupportActionBar(toolbar_main)
+        if (toolbar_main != null) {
+            toolbar_main.title = title
+            setSupportActionBar(toolbar_main)
+        }
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
     }
 
     var toolbarMenu: Menu? = null
 
     override fun setTitle(title: String) {
-        toolbar_main.title = title
+        supportActionBar?.title = title
     }
 
     override fun showBack(showBack: Boolean) {
@@ -45,8 +47,21 @@ abstract class GGToolbarActivity(override val layout:Int) : TMActivity(layout),
         menuInflater.inflate(R.menu.three_dot_menu, menu)
         MenuItemCompat.setActionView(menu.findItem(R.id.menu_cart), R.layout.z_cart_icon)
         toolbarMenu = menu
+        setupMenuActionListeners()
         notifyCartBadge()
         return super.onCreateOptionsMenu(menu)
+    }
+
+    private fun setupMenuActionListeners() {
+        toolbarMenu?.findItem(R.id.menu_cart)?.actionView?.setOnClickListener {
+            if (this is ActivityHost) {
+                bottom_navigation_bar?.selectedItemId = R.id.item_cart
+            } else {
+                val intent = Intent(this, ActivityHost::class.java)
+                intent.putExtra(ActivityHost.KEY_TAB_ID, ActivityHost.TabEnum.Cart.id)
+                startActivity(intent)
+            }
+        }
     }
 
     override fun onCreateView(name: String, context: Context, attrs: AttributeSet): View? {
@@ -56,14 +71,14 @@ abstract class GGToolbarActivity(override val layout:Int) : TMActivity(layout),
 
     override fun notifyCartBadge() {
         if (toolbarMenu != null) {
-            val badgeTextView =
-                MenuItemCompat.getActionView(toolbarMenu?.findItem(R.id.menu_cart)).text_view_badge
+            val cartIconView =
+                toolbarMenu?.findItem(R.id.menu_cart)?.actionView
             val quantity = OrderSummary(App.db.getProducts()).totalQuantity
             if (quantity == 0) {
-                badgeTextView.visibility = View.GONE
+                cartIconView?.text_view_badge?.visibility = View.GONE
             } else {
-                badgeTextView.visibility = View.VISIBLE
-                badgeTextView.text = quantity.toString()
+                cartIconView?.text_view_badge?.visibility = View.VISIBLE
+                cartIconView?.text_view_badge?.text = quantity.toString()
             }
         }
     }
@@ -72,13 +87,12 @@ abstract class GGToolbarActivity(override val layout:Int) : TMActivity(layout),
         var returning = super.onOptionsItemSelected(item)
         when (item.itemId) {
             android.R.id.home -> {
-                if (this is ActivityThankYou) { // TODO this logic is not the best..
+                if (this is ActivityThankYou || this is ActivityChooseTheme) { // TODO this logic is not the best..
                     startActivity(Intent(this, ActivityHost::class.java))
                 } else if ((this.supportFragmentManager.backStackEntryCount > 0) or (this !is ActivityHost)) { // TODO probably a more reliable way to check..
                     this.onBackPressed()
                 } else {
-                    bottom_navigation_bar.selectedItemId =
-                        R.id.item_home // TODO probably shouldn't reference bottom navigation bar directly..
+                    bottom_navigation_bar?.selectedItemId = R.id.item_home
                 }
             }
             R.id.menu_cart -> {
@@ -99,6 +113,9 @@ abstract class GGToolbarActivity(override val layout:Int) : TMActivity(layout),
             }
             R.id.menu_order_history -> {
                 startActivity(Intent(this, ActivityOrderHistory::class.java))
+            }
+            R.id.menu_choose_theme -> {
+                startActivity(Intent(this, ActivityChooseTheme::class.java))
             }
         }
         return returning

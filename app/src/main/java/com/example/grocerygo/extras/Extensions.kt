@@ -3,6 +3,7 @@ package com.example.grocerygo.extras
 import android.content.Context
 import android.service.autofill.Validators.and
 import android.view.View
+import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
@@ -12,6 +13,14 @@ import androidx.fragment.app.Fragment
 import com.example.grocerygo.models.Product
 import com.google.android.material.snackbar.Snackbar
 import kotlinx.android.synthetic.main.frag_profile.*
+
+fun AppCompatActivity.getView(): View? {
+    val returning = this.findViewById<ViewGroup>(android.R.id.content).getChildAt(0)
+    if (returning==null) {
+        logz("AppCompatActivity.getView`returning null")
+    }
+    return returning
+}
 
 fun Double.round(decimals: Int): Double {
     var multiplier = 1.0

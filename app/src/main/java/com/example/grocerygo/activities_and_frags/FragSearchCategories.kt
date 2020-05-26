@@ -36,7 +36,7 @@ class FragSearchCategories : TMFragment(layout = R.layout.frag_search_categories
         (activity as HostCallbacks).showNavigationBar(true)
         (activity as ToolbarCallbacks).showCart(true)
         (activity as ToolbarCallbacks).showBack(true)
-        (activity as ToolbarCallbacks).setTitle("Login")
+        (activity as ToolbarCallbacks).setTitle("Search")
     }
 
     private fun setupRecyclerView() {

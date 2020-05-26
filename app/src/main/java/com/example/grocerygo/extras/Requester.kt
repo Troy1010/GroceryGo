@@ -4,7 +4,7 @@ import com.android.volley.Request
 import com.android.volley.Response
 import com.android.volley.toolbox.JsonObjectRequest
 import com.android.volley.toolbox.Volley
-import com.example.grocerygo.models.User
+import com.example.grocerygo.models.*
 import com.google.gson.Gson
 import org.json.JSONObject
 
@@ -50,14 +50,42 @@ object Requester {
     }
 
 
-    fun requestLogin(user: User, listener: Response.Listener<JSONObject>) {
-        val jsonObject = JSONObject(Gson().toJson(user))
+    fun requestLogin(loginObject: LoginObject, listener: Response.Listener<JSONObject>) {
+        val jsonObject = JSONObject(Gson().toJson(loginObject))
         val request = JsonObjectRequest(
             Request.Method.POST, Endpoints.login, jsonObject,
             listener,
             Response.ErrorListener {
                 logz("Response.ErrorListener`it:$it")
             })
+        requestQueue.add(request)
+    }
+
+    fun requestOrderPlacement(listener: Response.Listener<JSONObject>? = null, errorListener:Response.ErrorListener? = null) {
+        val listenerToUse = listener ?: Response.Listener<JSONObject> { }
+        val errorListenerToUse = errorListener?: Response.ErrorListener {
+            logz("Response.ErrorListener`it:$it")
+        }
+        val user = App.sm.user!!
+        val address = App.sm.primaryAddress!!
+        val products = App.db.getProducts()
+        val orderSummary = OrderSummary(products)
+        val objectToPost = Order(
+            user = user,
+            userId = user._id!!,
+            shippingAddress = address,
+            products = products,
+            orderSummary = OrderSummary_PASSABLE(
+                deliveryCharges = orderSummary.deliveryFee,
+                orderAmount = orderSummary.grandTotal
+            ),
+            orderStatus = "Getting Ready" // TODO
+        )
+        val jsonObject = JSONObject(Gson().toJson(objectToPost))
+        val request = JsonObjectRequest(
+            Request.Method.POST, Endpoints.getPostOrderEndpoint(), jsonObject,
+            listenerToUse,
+            errorListenerToUse)
         requestQueue.add(request)
     }
 }

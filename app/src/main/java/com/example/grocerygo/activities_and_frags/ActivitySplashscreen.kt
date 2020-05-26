@@ -1,6 +1,7 @@
 package com.example.grocerygo.activities_and_frags
 
 import android.content.Intent
+import android.content.res.Resources
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
@@ -11,6 +12,7 @@ class ActivitySplashscreen : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+//        this.setTheme(R.style.AppTheme)
         setContentView(R.layout.app_spashscreen)
         logz("I'M ALIVE")
         init()

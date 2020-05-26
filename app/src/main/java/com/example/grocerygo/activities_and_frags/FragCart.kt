@@ -94,8 +94,8 @@ class FragCart : TMFragment(layout = R.layout.frag_cart), CustomAdapterCart.Call
         view.image_view_product.easyPicasso(Endpoints.getImageEndpoint(products[i].image))
     }
 
-    override fun bindLastRecyclerItemView(view: View, normalItemHeight: Int) {
-        view.layoutParams.height = max(400,layoutManager.height - normalItemHeight*products.size - 200)
+    override fun bindLastRecyclerItemView(view: View, normalItemHeight: Int?) {
+        view.layoutParams.height = max(400,layoutManager.height - (normalItemHeight?:0)*products.size - 200)
     }
 
 

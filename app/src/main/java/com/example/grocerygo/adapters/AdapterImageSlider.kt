@@ -4,38 +4,26 @@ import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.viewpager.widget.PagerAdapter
-import androidx.viewpager.widget.ViewPager
+import android.widget.ImageView
 import com.example.grocerygo.R
+import com.smarteist.autoimageslider.SliderViewAdapter
 import kotlinx.android.synthetic.main.item_image_slider.view.*
 
 
-class AdapterImageSlider(var context: Context, var imageLayouts: ArrayList<Int>) : PagerAdapter() {
-    override fun isViewFromObject(view: View, `object`: Any): Boolean {
-        return view == `object`
+class AdapterImageSlider(val context: Context, val images: ArrayList<Int>) : SliderViewAdapter<AdapterImageSlider.SliderAdapterVH>() {
+    inner class SliderAdapterVH(itemView: View) : SliderViewAdapter.ViewHolder(itemView)
+
+    override fun onCreateViewHolder(parent: ViewGroup?): SliderAdapterVH {
+        val v = LayoutInflater.from(context).inflate(R.layout.item_image_slider, null)
+        return SliderAdapterVH(v)
     }
 
     override fun getCount(): Int {
-        return Int.MAX_VALUE
+        return images.size
     }
 
-    override fun instantiateItem(container: ViewGroup, position: Int): Any {
-        val inflater = LayoutInflater.from(context)
-        val view = inflater.inflate(R.layout.item_image_slider, container, false)
-        view.image_view_of_slider.setImageResource(imageLayouts[getVirtualPosition(position)])
-        container.addView(view)
-        return view
+    override fun onBindViewHolder(viewHolder: SliderAdapterVH, position: Int) {
+        viewHolder.itemView.image_view_of_slider.setImageResource(images[position%images.size])
+        viewHolder.itemView.image_view_of_slider.scaleType = ImageView.ScaleType.CENTER_CROP
     }
-
-    override fun destroyItem(container: ViewGroup, position: Int, `object`: Any) {
-        container.removeView(container.getChildAt(getVirtualPosition(position)))
-        //removeViewAt is buggy. It will crash if the object at i was already destroyed.
-    }
-
-    private fun getVirtualPosition(position:Int):Int {
-        return position % imageLayouts.size
-    }
-
-
-
 }

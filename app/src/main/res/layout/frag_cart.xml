@@ -35,7 +35,6 @@
         android:layout_height="wrap_content"
         android:gravity="center"
         android:text="Checkout"
-        android:textColor="@color/TextVsTails"
         app:layout_constraintBottom_toBottomOf="parent" />
 
     <androidx.recyclerview.widget.RecyclerView

@@ -18,8 +18,7 @@
         android:textSize="18sp"
         app:layout_constraintStart_toEndOf="@id/image_view_product"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:textColor="@color/TextVsHeads"/>
+        app:layout_constraintEnd_toEndOf="parent"/>
 
     <TextView
         android:id="@+id/text_view_quantity_price"
@@ -28,7 +27,6 @@
         android:layout_marginStart="8dp"
         android:text="(QTY_PRICE)"
         android:textSize="18sp"
-        android:textColor="@color/TextVsHeads"
         app:layout_constraintStart_toStartOf="@id/text_view_name"
         app:layout_constraintTop_toBottomOf="@id/text_view_name" />
 
@@ -39,7 +37,6 @@
         android:layout_marginStart="8dp"
         android:text="(QUANTITY)"
         android:textSize="18sp"
-        android:textColor="@color/TextVsHeadsSoft"
         app:layout_constraintStart_toStartOf="@id/text_view_name"
         app:layout_constraintTop_toBottomOf="@id/text_view_quantity_price" />
 

@@ -38,7 +38,7 @@ class ActivityOrderHistory : GGToolbarActivity(layout = R.layout.activity_order_
 
 
     private fun refresh() {
-        Requester.requestOrders(App.sm.user._id,
+        Requester.requestOrders(App.sm.user?._id,
             Response.Listener {
                 val receivedOrdersObject = GsonBuilder().create()
                     .fromJson(it.toString(), ReceivedOrdersObject::class.java)

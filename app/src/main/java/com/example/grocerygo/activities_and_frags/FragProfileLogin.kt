@@ -7,6 +7,7 @@ import com.example.grocerygo.activities_and_frags.Inheritables.ToolbarCallbacks
 import com.example.grocerygo.extras.*
 import com.example.grocerygo.extras.App
 import com.example.grocerygo.activities_and_frags.Inheritables.TMFragment
+import com.example.grocerygo.models.LoginObject
 import com.example.grocerygo.models.received.ReceivedLoginObject
 import com.example.grocerygo.models.User
 import com.google.gson.GsonBuilder
@@ -34,8 +35,8 @@ class FragProfileLogin : TMFragment(layout = R.layout.frag_login) {
                 .replace(R.id.frame_fragments, FragProfileRegister()).commit()
         }
         button_login_send.setOnClickListener {
-            val user = User(name = null, email = edit_text_email.text.toString(), password = edit_text_password.text.toString(), mobile = null)
-            Requester.requestLogin(user,
+            val loginObject = LoginObject(email = edit_text_email.text.toString(), password = edit_text_password.text.toString())
+            Requester.requestLogin(loginObject,
                 Response.Listener { response ->
                     val receivedLoginObject = GsonBuilder().create()
                         .fromJson(response.toString(), ReceivedLoginObject::class.java)

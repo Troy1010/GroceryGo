@@ -28,11 +28,11 @@ class FragProfile : TMFragment(layout = R.layout.frag_profile), AdapterRecyclerV
 
     fun refresh() {
         profileItems = arrayListOf(
-            ProfileItem("Name", App.sm.user.name ?: ""),
-            ProfileItem("Email", App.sm.user.email ?: ""),
+            ProfileItem("Name", App.sm.user?.name ?: ""),
+            ProfileItem("Email", App.sm.user?.email ?: ""),
             ProfileItem("Password", "*****"),
-            ProfileItem("Mobile", App.sm.user.mobile ?: ""),
-            ProfileItem("Address", App.sm.user.primaryAddress?.displayableStreetAddress ?: "<NO ADDRESS>")
+            ProfileItem("Mobile", App.sm.user?.mobile ?: ""),
+            ProfileItem("Address", App.sm.primaryAddress?.displayableStreetAddress ?: "<NO ADDRESS>")
         )
     }
 

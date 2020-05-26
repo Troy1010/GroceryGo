@@ -3,7 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:background="#fff"
+    android:background="?colorBackgroundHighlight"
     android:layout_margin="5dp">
 
 
@@ -20,6 +20,7 @@
         android:layout_width="45dp"
         android:layout_height="45dp"
         android:src="@drawable/ic_keyboard_arrow_right_black_24dp"
+        android:tint="?colorVsBackground"
         app:layout_constraintBottom_toBottomOf="@id/text_view_value"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="@id/text_view_title" />
@@ -29,7 +30,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="(Value)"
-        android:textColor="@color/TextSoft"
+        android:textColor="?colorVsBackgroundSoft"
         android:textSize="18sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/text_view_title" />
