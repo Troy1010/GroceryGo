@@ -69,7 +69,7 @@
     <style name="GroceryGoDark.PurpleTheme">
         <item name="colorPrimaryLight">#b453f5</item>
         <item name="colorPrimaryDark">#33084d</item>
-        <item name="colorPrimary">#8412c9</item>
+        <item name="colorPrimary">#6f0fa8</item>
         <item name="colorHardAccent">#FFFD0C</item>
         <!--    inheriting-->
         <item name="colorVsPrimary">?colorVsDark</item>
