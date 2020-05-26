@@ -47,8 +47,21 @@ abstract class GGToolbarActivity(override val layout: Int) : TMActivity(layout),
         menuInflater.inflate(R.menu.three_dot_menu, menu)
         MenuItemCompat.setActionView(menu.findItem(R.id.menu_cart), R.layout.z_cart_icon)
         toolbarMenu = menu
+        setupMenuActionListeners()
         notifyCartBadge()
         return super.onCreateOptionsMenu(menu)
+    }
+
+    private fun setupMenuActionListeners() {
+        toolbarMenu?.findItem(R.id.menu_cart)?.actionView?.setOnClickListener {
+            if (this is ActivityHost) {
+                bottom_navigation_bar?.selectedItemId = R.id.item_cart
+            } else {
+                val intent = Intent(this, ActivityHost::class.java)
+                intent.putExtra(ActivityHost.KEY_TAB_ID, ActivityHost.TabEnum.Cart.id)
+                startActivity(intent)
+            }
+        }
     }
 
     override fun onCreateView(name: String, context: Context, attrs: AttributeSet): View? {
