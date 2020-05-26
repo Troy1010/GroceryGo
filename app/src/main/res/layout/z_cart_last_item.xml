@@ -11,25 +11,18 @@
         android:id="@+id/text_view_fake_price_total"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:textColor="?colorVsBackgroundSoft"
         android:text="(FAKE_PRICE_TOTAL)"
         android:textSize="14sp"
         app:layout_constraintBottom_toTopOf="@id/text_view_fake_discount"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintStart_toStartOf="@id/text_view_fake_discount" />
 
     <TextView
         android:id="@+id/text_view_fake_discount"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:textColor="?colorVsBackgroundSoft"
         android:text="(FAKE_DISCOUNT)"
-        android:textSize="14sp"
-        app:layout_constraintBottom_toTopOf="@id/text_view_coupon_discount"
-        app:layout_constraintEnd_toEndOf="parent" />
-
-    <TextView
-        android:id="@+id/text_view_coupon_discount"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="(COUPON_DISCOUNT)"
         android:textSize="14sp"
         app:layout_constraintBottom_toTopOf="@id/text_view_price_total"
         app:layout_constraintEnd_toEndOf="parent" />
@@ -58,26 +51,10 @@
         android:layout_height="wrap_content"
         android:text="(DELIVERY_FEE)"
         android:textSize="14sp"
-        app:layout_constraintBottom_toTopOf="@id/text_view_est_total"
-        app:layout_constraintEnd_toEndOf="parent" />
-
-    <TextView
-        android:id="@+id/text_view_est_total"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="(FINAL_PRICE)"
-        android:textSize="14sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 
     <!--    LABELS BEGIN-->
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Est. Total"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@id/text_view_est_total" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -99,6 +76,5 @@
         android:layout_height="wrap_content"
         android:text="(# OF ITEMS)"
         app:layout_constraintBottom_toBottomOf="@id/text_view_price_total"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@id/text_view_fake_price_total" />
+        app:layout_constraintStart_toStartOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>

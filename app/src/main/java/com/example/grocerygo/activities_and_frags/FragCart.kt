@@ -1,6 +1,7 @@
 package com.example.grocerygo.activities_and_frags
 
 import android.content.Intent
+import android.graphics.Paint
 import android.view.View
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.GridLayoutManager
@@ -17,9 +18,12 @@ import com.example.grocerygo.models.Product
 import kotlinx.android.synthetic.main.frag_cart.*
 import kotlinx.android.synthetic.main.includible_plus_minus.view.*
 import kotlinx.android.synthetic.main.item_cart_item.view.*
+import kotlinx.android.synthetic.main.z_cart_last_item.*
+import kotlinx.android.synthetic.main.z_cart_last_item.view.*
 
 class FragCart : TMFragment(layout = R.layout.frag_cart), CustomAdapterCart.Callbacks {
     override var products = arrayListOf<Product>()
+    lateinit var orderSummary: OrderSummary
     lateinit var layoutManager: LinearLayoutManager
 
     override fun onStart() {
@@ -60,29 +64,15 @@ class FragCart : TMFragment(layout = R.layout.frag_cart), CustomAdapterCart.Call
 
     fun refresh() {
         products = App.db.getProducts()
-        (activity as ToolbarCallbacks).notifyCartBadge()
-        val orderSummary = OrderSummary(products)
+        if (products.size==0) {
+            recycler_view_cart_items.visibility = View.GONE
+        } else {
+            recycler_view_cart_items.visibility = View.VISIBLE
+        }
         recycler_view_cart_items.adapter?.notifyDataSetChanged()
-//        if (products.size==0) {
-//            text_view_cart_is_empty.visibility = View.VISIBLE
-//            text_view_item_quantity.visibility = View.INVISIBLE
-//            text_view_price_total.visibility = View.INVISIBLE
-//            text_view_fake_price_total.visibility = View.INVISIBLE
-////            text_view_discount.visibility = View.INVISIBLE
-//            text_view_shipping.visibility = View.INVISIBLE
-//            text_view_est_total.visibility = View.INVISIBLE
-//        } else {
-//            text_view_coupon_discount.text = "- ${orderSummary.getCouponDiscount()}"
-//            text_view_item_quantity.text = "${orderSummary.quantityTotal} Item(s)"
-//            text_view_fake_price_total.text = "${orderSummary.fakePriceTotal}"
-//            text_view_fake_price_total.paintFlags = Paint.STRIKE_THRU_TEXT_FLAG
-//            text_view_price_total.text = "total: ${orderSummary.priceTotal}"
-//            text_view_fake_discount.text = "- ${orderSummary.getFakeDiscount()}"
-//            text_view_tax.text = "${orderSummary.getTax()}"
-//            text_view_shipping.text = "${orderSummary.getDeliveryFee()}"
-//            text_view_est_total.text = "${orderSummary.getGrandTotal()}"
-//        }
-
+        orderSummary = OrderSummary(products)
+        (activity as ToolbarCallbacks).notifyCartBadge()
+        text_view_est_total_2.text = DisplayMoney(orderSummary.grandTotal)
     }
 
     override fun bindRecyclerItemView(view: View, i: Int) {
@@ -108,6 +98,17 @@ class FragCart : TMFragment(layout = R.layout.frag_cart), CustomAdapterCart.Call
     override fun bindLastRecyclerItemView(view: View, normalItemHeight: Int?) {
         view.layoutParams.height =
             max(400, layoutManager.height - (normalItemHeight ?: 0) * products.size - 200)
+
+        if (products.size!=0) {
+            view.text_view_item_quantity.text = "${orderSummary.totalQuantity} item(s)"
+            view.text_view_fake_price_total.text = DisplayMoney(orderSummary.totalFakePrice)
+            view.text_view_fake_price_total.paintFlags = Paint.STRIKE_THRU_TEXT_FLAG
+            view.text_view_fake_discount.text =
+                "- ${DisplayMoney(orderSummary.fakeDiscount)} (${orderSummary.fakeDiscountPercentage}%)"
+            view.text_view_price_total.text = DisplayMoney(orderSummary.totalPrice)
+            view.text_view_tax.text = DisplayMoney(orderSummary.tax)
+            view.text_view_shipping.text = DisplayMoney(orderSummary.deliveryFee)
+        }
     }
 
 
