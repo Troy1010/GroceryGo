@@ -11,7 +11,7 @@
         app:showAsAction="never" />
     <item
         android:id="@+id/menu_cart"
-        android:icon="@drawable/ic_shopping_cart_white_24dp"
+        android:icon="@drawable/ic_shopping_cart"
         android:title="Share"
         app:showAsAction="always" />
     <item

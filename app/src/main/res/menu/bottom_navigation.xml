@@ -11,7 +11,8 @@
         android:title="Search" />
     <item
         android:id="@+id/item_cart"
-        android:icon="@drawable/ic_shopping_cart_black_24dp"
+        android:icon="@drawable/ic_shopping_cart"
+        android:iconTint="?colorVsDark"
         android:title="Cart" />
     <item
         android:id="@+id/item_profile"
