@@ -28,6 +28,11 @@ class ActivityPaymentInfo : GGToolbarActivity(layout = R.layout.activity_payment
         button_payment_info_send.setOnClickListener {
             startActivity(Intent(this, ActivityOrderReview::class.java))
         }
+        frame_profile.setOnClickListener {
+            val intent = Intent(this, ActivityHost::class.java)
+            intent.putExtra(ActivityHost.KEY_TAB_ID, ActivityHost.TabEnum.Profile.id)
+            startActivity(intent)
+        }
         frame_address.setOnClickListener {
             Requester.requestAddresses(
                 App.sm.user?._id, Response.Listener {
