@@ -79,8 +79,7 @@ abstract class GGToolbarActivity(override val layout: Int) : TMActivity(layout),
                 } else if ((this.supportFragmentManager.backStackEntryCount > 0) or (this !is ActivityHost)) { // TODO probably a more reliable way to check..
                     this.onBackPressed()
                 } else {
-                    bottom_navigation_bar?.selectedItemId =
-                        R.id.item_home // TODO probably shouldn't reference bottom navigation bar directly..
+                    bottom_navigation_bar?.selectedItemId = R.id.item_home
                 }
             }
             R.id.menu_cart -> {
