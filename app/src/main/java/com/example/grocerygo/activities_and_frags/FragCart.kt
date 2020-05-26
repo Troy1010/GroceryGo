@@ -104,7 +104,7 @@ class FragCart : TMFragment(layout = R.layout.frag_cart), CustomAdapterCart.Call
             view.text_view_fake_price_total.text = DisplayMoney(orderSummary.totalFakePrice)
             view.text_view_fake_price_total.paintFlags = Paint.STRIKE_THRU_TEXT_FLAG
             view.text_view_fake_discount.text =
-                "- ${DisplayMoney(orderSummary.fakeDiscount)} (${orderSummary.fakeDiscountPercentage}%)"
+                "${DisplayMoney(orderSummary.fakeDiscount)} discount (${orderSummary.fakeDiscountPercentage}%)"
             view.text_view_price_total.text = DisplayMoney(orderSummary.totalPrice)
             view.text_view_tax.text = DisplayMoney(orderSummary.tax)
             view.text_view_shipping.text = DisplayMoney(orderSummary.deliveryFee)

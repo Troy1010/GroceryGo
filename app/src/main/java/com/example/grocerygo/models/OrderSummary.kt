@@ -32,8 +32,8 @@ class OrderSummary(products: ArrayList<Product>) {
         get() = deliveryFee + tax + totalPrice
     var fakeDiscount = 0.0
         get() = totalFakePrice - totalPrice
-    var fakeDiscountPercentage = 0.0
-        get() = round(100*fakeDiscount/totalFakePrice).toDouble()
+    var fakeDiscountPercentage = 0
+        get() = round(100*fakeDiscount/totalFakePrice)
     var tax = 0.0
         get() {
             val taxMult = 0.08

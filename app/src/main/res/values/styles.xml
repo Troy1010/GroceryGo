@@ -100,5 +100,9 @@
     <style name="MyTextViewStyle" parent="Theme.AppCompat.Light.DarkActionBar">
         <item name="android:textColor">?colorVsBackground</item>
     </style>
+    <style name="GrandTotalCalculations" parent="MyTextViewStyle">
+        <item name="android:textColor">?colorVsBackground</item>
+        <item name="android:textSize">17sp</item>
+    </style>
 
 </resources>
