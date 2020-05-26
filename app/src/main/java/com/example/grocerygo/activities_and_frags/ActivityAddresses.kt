@@ -63,7 +63,8 @@ class ActivityAddresses : GGToolbarActivity(R.layout.activity_addresses), Adapte
     }
 
     override fun bindRecyclerItemView(view: View, i: Int) {
-        view.text_view_address.text = addresses[i].streetName
+        view.text_view_address.text = addresses[i].displayableFullAddress
+
         view.text_view_address.setOnClickListener {
             App.sm.primaryAddress = addresses[i]
         }
