@@ -142,11 +142,15 @@ class DBConnection :
         return hasProduct
     }
 
+    fun clear() {
+        val sqlDropTable = "DROP TABLE IF EXISTS $TABLE_NAME"
+        databaseSQL.execSQL(sqlDropTable)
+        this.onCreate(databaseSQL)
+    }
+
     override fun onUpgrade(sqlDatabase: SQLiteDatabase, oldVersion: Int, newVersion: Int) {
         logz("DBConnection`onUpgrade")
-        val sqlDropTable = "DROP TABLE IF EXISTS $TABLE_NAME"
-        sqlDatabase.execSQL(sqlDropTable)
-        this.onCreate(sqlDatabase)
+        this.clear()
     }
 
     fun deleteProduct(product: Product) {

@@ -37,36 +37,9 @@ class ActivityOrderReview : GGToolbarActivity(layout = R.layout.activity_c_order
 
     private fun setupClickListeners() {
         button_place_order.setOnClickListener {
-            val user = App.sm.user!!
-            val address = App.sm.primaryAddress!!
-            // TODO refactor to Requester
-            val products = App.db.getProducts()
-            val orderSummary = OrderSummary(products)
-            val objectToPost = Order(
-                user = user,
-                userId = user._id!!,
-                shippingAddress = address,
-                products = products,
-                orderSummary = OrderSummary_PASSABLE(
-                    deliveryCharges = orderSummary.deliveryFee,
-                    orderAmount = orderSummary.grandTotal
-                ),
-                orderStatus = "Getting Ready" // TODO
-            )
-            val jsonObject = JSONObject(Gson().toJson(objectToPost))
-            val request = JsonObjectRequest(
-                Request.Method.POST, Endpoints.getPostOrderEndpoint(), jsonObject,
-                Response.Listener {
-                    // do nothing with the response
-                },
-                Response.ErrorListener {
-                    logz("Response.ErrorListener`it:$it")
-                })
-            Requester.requestQueue.add(request)
-
-            // TODO refactor to Requester
-
-
+            Requester.requestOrderPlacement(Response.Listener {
+                App.db.clear()
+            })
             val intent = Intent(this, ActivityThankYou::class.java)
             intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
             startActivity(intent)
