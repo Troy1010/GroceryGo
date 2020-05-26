@@ -1,8 +1,6 @@
 <resources>
-    <style name="GroceryGoLight.DefaultTheme.Propagated">
-        <item name="android:buttonStyle">@style/ColorButton</item>
-        <item name="android:textViewStyle">@style/MyTextViewStyle</item>
-    </style>
+<!--    I'm not sure why, but simply declaring this makes propagation work-->
+    <style name="GroceryGoLight.DefaultTheme.Propagated"/>
 
     <style name="GroceryGoLight" parent="Theme.AppCompat.Light.NoActionBar">
         <item name="colorVsLight">#000</item>
@@ -24,6 +22,9 @@
         <item name="colorVsBackground">?colorVsLight</item>
         <item name="colorVsBackgroundSoft">?colorVsLightSoft</item>
         <item name="colorAccent">?colorPrimary</item>
+        <!--    propagation-->
+        <item name="android:buttonStyle">@style/ColorButton</item>
+        <item name="android:textViewStyle">@style/MyTextViewStyle</item>
     </style>
 <!--    <style name="GenericTheme.DefaultTheme" parent="Theme.AppCompat.Light.NoActionBar">-->
 <!--        <item name="colorPrimary">#006e63</item>-->
