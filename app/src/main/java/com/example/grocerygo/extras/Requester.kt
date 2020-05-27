@@ -11,6 +11,16 @@ import org.json.JSONObject
 object Requester {
     val requestQueue = Volley.newRequestQueue(App.instance)
 
+    fun requestCategories(listener: Response.Listener<JSONObject>) {
+        var request = JsonObjectRequest(
+            Request.Method.GET, Endpoints.categories, null,
+            listener,
+            Response.ErrorListener {
+                logz("Response.ErrorListener`it:$it")
+            })
+        requestQueue.add(request)
+    }
+
 
     fun requestAddresses(userID:String?, listener: Response.Listener<JSONObject>) {
         if (userID == null) {
