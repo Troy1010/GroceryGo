@@ -45,7 +45,6 @@ class ActivityOrderHistory : GGToolbarActivity(layout = R.layout.activity_order_
                     .fromJson(it.toString(), ReceivedOrdersObject::class.java)
                 //
                 orders = ArrayList(receivedOrdersObject.data)
-                logz(orders.toString())
                 recycler_view_order_history.adapter?.notifyDataSetChanged()
             }
         )
