@@ -100,19 +100,6 @@ abstract class GGToolbarActivity(override val layout: Int) : TMActivity(layout),
             R.id.menu_cart -> {
                 logz("GGToolbarActivity`Selected Cart")
             }
-            R.id.menu_profile -> {
-                var intent = Intent(this, FragProfile::class.java)
-                this.startActivity(intent)
-            }
-            R.id.menu_settings -> {
-                logz("GGToolbarActivity`Selected Settings")
-            }
-            R.id.menu_printList -> {
-                logz(App.db.getProducts().narrate())
-            }
-            R.id.menu_setTitle -> {
-//                setToolbarTitle("TestTitle")
-            }
             R.id.menu_order_history -> {
                 startActivity(Intent(this, ActivityOrderHistory::class.java))
             }
