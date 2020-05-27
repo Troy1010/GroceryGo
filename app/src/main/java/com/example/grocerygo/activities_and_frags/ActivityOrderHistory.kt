@@ -29,16 +29,6 @@ class ActivityOrderHistory : GGToolbarActivity(layout = R.layout.activity_order_
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setupRecyclerView()
-    }
-
-
-    override fun onStart() {
-        super.onStart()
-        refresh()
-    }
-
-
-    private fun refresh() {
         Requester.requestOrders(App.sm.user?._id,
             Response.Listener {
                 val receivedOrdersObject = GsonBuilder().create()
@@ -46,8 +36,19 @@ class ActivityOrderHistory : GGToolbarActivity(layout = R.layout.activity_order_
                 //
                 orders = ArrayList(receivedOrdersObject.data)
                 recycler_view_order_history.adapter?.notifyDataSetChanged()
+                //
+                refresh()
             }
         )
+    }
+
+
+    private fun refresh() {
+        if (orders.size==0) {
+            text_view_order_history_is_empty.visibility = View.VISIBLE
+        } else {
+            text_view_order_history_is_empty.visibility = View.GONE
+        }
     }
 
 
