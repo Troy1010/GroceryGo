@@ -40,7 +40,6 @@ class ActivitySearch : GGToolbarActivity(R.layout.activity_search), AdapterRecyc
 
     private fun requestProductsBySearch(s:String) {
         val endpoint = Endpoints.getSearchEndpoint(s)
-        logz(endpoint)
         var requestQueue = Volley.newRequestQueue(this)
         var request = JsonObjectRequest(
             Request.Method.GET, endpoint, null,
