@@ -53,7 +53,9 @@ class ActivityAddress : GGToolbarActivity(layout = R.layout.activity_address) {
                     .fromJson(response.toString(), ReceivedPostedAddressObject::class.java)
                 App.sm.primaryAddress = receivedPostedAddressObject.data
                 // go back to PaymentInfo
-                startActivity(Intent(this, ActivityPaymentInfo::class.java))
+                onBackPressed()
+                finish() //TODO just navigate all the way back, without ruining backstack
+//                startActivity(Intent(this, ActivityPaymentInfo::class.java))
             },
             Response.ErrorListener {
                 logz("Response.ErrorListener`it:$it")

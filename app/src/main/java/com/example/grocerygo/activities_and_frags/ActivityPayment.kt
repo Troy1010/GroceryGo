@@ -14,7 +14,9 @@ class ActivityPayment: GGToolbarActivity(layout = R.layout.activity_payment) {
         super.onCreate(savedInstanceState)
         button_payment_submit.setOnClickListener {
             App.sm.displayPayment = hidePayment(text_input_card_number.text.toString())
-            startActivity(Intent(this, ActivityPaymentInfo::class.java))
+//            startActivity(Intent(this, ActivityPaymentInfo::class.java))
+            onBackPressed()
+            finish()
         }
     }
 }
