@@ -98,6 +98,7 @@ abstract class GGToolbarActivity(override val layout: Int) : TMActivity(layout),
                 }
             }
             R.id.menu_cart -> {
+                //TODO put the goto cart logic here
                 logz("GGToolbarActivity`Selected Cart")
             }
             R.id.menu_order_history -> {
