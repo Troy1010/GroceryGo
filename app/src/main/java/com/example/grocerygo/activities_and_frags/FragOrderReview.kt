@@ -77,8 +77,7 @@ class FragOrderReview : TMFragment(R.layout.frag_order_review), AdapterRecyclerV
         text_view_price_total.text = DisplayMoney(orderSummary.totalPrice)
         text_view_tax.text = DisplayMoney(orderSummary.tax)
         text_view_shipping.text = DisplayMoney(orderSummary.deliveryFee)
-        text_view_grand_total_value.text =
-            DisplayMoney(OrderSummary(App.db.getProducts()).grandTotal)
+        text_view_grand_total_value.text = DisplayMoney(orderSummary.grandTotal)
     }
 
     private fun setupClickListeners() {
