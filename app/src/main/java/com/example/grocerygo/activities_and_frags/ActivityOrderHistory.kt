@@ -1,5 +1,6 @@
 package com.example.grocerygo.activities_and_frags
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import androidx.recyclerview.widget.DividerItemDecoration
@@ -15,14 +16,14 @@ import com.example.grocerygo.extras.logz
 import com.example.grocerygo.activities_and_frags.Inheritables.GGToolbarActivity
 import com.example.grocerygo.models.Order
 import com.example.grocerygo.models.OrderSummary
+import com.example.grocerygo.models.Product
 import com.example.grocerygo.models.received.ReceivedOrdersObject
 import com.google.gson.GsonBuilder
 import kotlinx.android.synthetic.main.activity_order_history.*
 import kotlinx.android.synthetic.main.item_order_history.view.*
 
 class ActivityOrderHistory : GGToolbarActivity(layout = R.layout.activity_order_history), AdapterRecyclerView.Callbacks {
-    override val title: String
-        get() = "Order History"
+    override val title = "Order History"
     var orders = ArrayList<Order>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -44,7 +45,6 @@ class ActivityOrderHistory : GGToolbarActivity(layout = R.layout.activity_order_
                     .fromJson(it.toString(), ReceivedOrdersObject::class.java)
                 //
                 orders = ArrayList(receivedOrdersObject.data)
-                logz(orders.toString())
                 recycler_view_order_history.adapter?.notifyDataSetChanged()
             }
         )
@@ -62,9 +62,16 @@ class ActivityOrderHistory : GGToolbarActivity(layout = R.layout.activity_order_
 
     override fun bindRecyclerItemView(view: View, i: Int) {
         val orderSummary = OrderSummary(orders[i].products)
-        view.text_view_quantity_value.text = orderSummary.totalQuantity.toString()
+        view.text_view_date_value.text = orders[i].date?.take(10)
+        view.text_view_quantity_value.text = "${orderSummary.totalQuantity} item(s)"
         view.text_view_grand_total_value.text = DisplayMoney(orderSummary.grandTotal)
-        view.text_view_date_value.text = orders[i].date
+        view.setOnClickListener {
+            val intent = Intent(this, ActivityOrderHistoryItemDetails::class.java)
+            val products = orders[i].products as ArrayList<Product>
+            intent.putExtra(ActivityOrderHistoryItemDetails.KEY_PRODUCTS, products)
+            intent.putExtra(ActivityOrderHistoryItemDetails.KEY_DATE, orders[i].date)
+            startActivity(intent)
+        }
     }
 
     override fun getRecyclerDataSize(): Int {

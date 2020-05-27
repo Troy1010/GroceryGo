@@ -46,7 +46,9 @@ class ActivityAddresses : GGToolbarActivity(R.layout.activity_addresses), Adapte
             startActivity(Intent(this, ActivityAddress::class.java))
         }
         button_accept_primary_address.setOnClickListener {
-            startActivity(Intent(this, ActivityPaymentInfo::class.java))
+//            startActivity(Intent(this, ActivityPaymentInfo::class.java))
+            onBackPressed()
+            finish()
         }
     }
 

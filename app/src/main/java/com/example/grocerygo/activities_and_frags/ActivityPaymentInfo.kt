@@ -3,12 +3,14 @@ package com.example.grocerygo.activities_and_frags
 import android.content.Intent
 import android.os.Bundle
 import android.view.Menu
+import android.view.View
 import com.android.volley.Response
 import com.example.grocerygo.R
 import com.example.grocerygo.adapters.AdapterRecyclerView
 import com.example.grocerygo.extras.App
 import com.example.grocerygo.activities_and_frags.Inheritables.GGToolbarActivity
 import com.example.grocerygo.extras.Requester
+import com.example.grocerygo.extras.easyToast
 import com.example.grocerygo.extras.logz
 import com.example.grocerygo.models.*
 import com.example.grocerygo.models.received.ReceivedAddressesObject
@@ -26,7 +28,14 @@ class ActivityPaymentInfo : GGToolbarActivity(layout = R.layout.activity_payment
 
     private fun setupListeners() {
         button_payment_info_send.setOnClickListener {
-            startActivity(Intent(this, ActivityOrderReview::class.java))
+            if (App.sm.user != null &&
+                App.sm.primaryAddress != null &&
+                App.sm.displayPayment != null
+            ) {
+                startActivity(Intent(this, ActivityOrderReview::class.java))
+            } else {
+                this.easyToast("Please complete the form")
+            }
         }
         frame_profile.setOnClickListener {
             val intent = Intent(this, ActivityHost::class.java)
@@ -54,8 +63,31 @@ class ActivityPaymentInfo : GGToolbarActivity(layout = R.layout.activity_payment
 
     fun refresh() {
         text_view_profile_value.text = App.sm.user?.name ?: "User not logged in"
-        text_view_address_value.text = App.sm.primaryAddress?.displayableStreetAddress ?: "Primary address not selected"
-        text_view_payment_value.text = App.sm.displayPayment?: "Payment method not selected"
+        text_view_address_value.text =
+            App.sm.primaryAddress?.displayableStreetAddress ?: "Primary address not selected"
+        text_view_payment_value.text = App.sm.displayPayment ?: "Payment method not selected"
+
+        if(App.sm.user?.name == null) {
+            image_view_profile_good.visibility = View.GONE
+            image_view_profile_bad.visibility = View.VISIBLE
+        } else {
+            image_view_profile_good.visibility = View.VISIBLE
+            image_view_profile_bad.visibility = View.GONE
+        }
+        if(App.sm.primaryAddress == null) {
+            image_view_address_good.visibility = View.GONE
+            image_view_address_bad.visibility = View.VISIBLE
+        } else {
+            image_view_address_good.visibility = View.VISIBLE
+            image_view_address_bad.visibility = View.GONE
+        }
+        if(App.sm.displayPayment == null) {
+            image_view_payment_good.visibility = View.GONE
+            image_view_payment_bad.visibility = View.VISIBLE
+        } else {
+            image_view_payment_good.visibility = View.VISIBLE
+            image_view_payment_bad.visibility = View.GONE
+        }
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {

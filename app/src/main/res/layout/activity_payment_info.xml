@@ -46,6 +46,22 @@
             android:layout_height="wrap_content"
             android:text="(USER)"/>
         <ImageView
+            style="@style/GoodOrBadIcon"
+            android:id="@+id/image_view_profile_bad"
+            android:tint="?colorHardAccent"
+            android:src="@drawable/ic_red_x"
+            app:layout_constraintBottom_toBottomOf="@id/text_view_profile_value"
+            app:layout_constraintEnd_toStartOf="@id/image_view_profile_arrow"
+            app:layout_constraintTop_toTopOf="@id/text_view_profile_title" />
+        <ImageView
+            style="@style/GoodOrBadIcon"
+            android:id="@+id/image_view_profile_good"
+            android:tint="?colorHardAccentGood"
+            android:src="@drawable/ic_green_checkmark"
+            app:layout_constraintBottom_toBottomOf="@id/text_view_profile_value"
+            app:layout_constraintEnd_toStartOf="@id/image_view_profile_arrow"
+            app:layout_constraintTop_toTopOf="@id/text_view_profile_title"  />
+        <ImageView
             android:id="@+id/image_view_profile_arrow"
             android:layout_width="45dp"
             android:layout_height="45dp"
@@ -79,6 +95,22 @@
             android:layout_height="wrap_content"
             android:textColor="?colorVsBackgroundSoft"
             android:text="(ADDRESS)"/>
+        <ImageView
+            style="@style/GoodOrBadIcon"
+            android:id="@+id/image_view_address_bad"
+            android:tint="?colorHardAccent"
+            android:src="@drawable/ic_red_x"
+            app:layout_constraintBottom_toBottomOf="@id/text_view_address_value"
+            app:layout_constraintEnd_toStartOf="@id/image_view_address_arrow"
+            app:layout_constraintTop_toTopOf="@id/text_view_address_title" />
+        <ImageView
+            style="@style/GoodOrBadIcon"
+            android:id="@+id/image_view_address_good"
+            android:tint="?colorHardAccentGood"
+            android:src="@drawable/ic_green_checkmark"
+            app:layout_constraintBottom_toBottomOf="@id/text_view_address_value"
+            app:layout_constraintEnd_toStartOf="@id/image_view_address_arrow"
+            app:layout_constraintTop_toTopOf="@id/text_view_address_title"  />
         <ImageView
             android:id="@+id/image_view_address_arrow"
             android:layout_width="45dp"
@@ -114,6 +146,22 @@
             android:textColor="?colorVsBackgroundSoft"
             android:layout_height="wrap_content"
             android:text="(PAYMENT)"/>
+        <ImageView
+            style="@style/GoodOrBadIcon"
+            android:id="@+id/image_view_payment_bad"
+            android:tint="?colorHardAccent"
+            android:src="@drawable/ic_red_x"
+            app:layout_constraintBottom_toBottomOf="@id/text_view_payment_value"
+            app:layout_constraintEnd_toStartOf="@id/image_view_payment_arrow"
+            app:layout_constraintTop_toTopOf="@id/text_view_payment_title" />
+        <ImageView
+            style="@style/GoodOrBadIcon"
+            android:id="@+id/image_view_payment_good"
+            android:tint="?colorHardAccentGood"
+            android:src="@drawable/ic_green_checkmark"
+            app:layout_constraintBottom_toBottomOf="@id/text_view_payment_value"
+            app:layout_constraintEnd_toStartOf="@id/image_view_payment_arrow"
+            app:layout_constraintTop_toTopOf="@id/text_view_payment_title"  />
         <ImageView
             android:id="@+id/image_view_payment_arrow"
             android:layout_width="45dp"

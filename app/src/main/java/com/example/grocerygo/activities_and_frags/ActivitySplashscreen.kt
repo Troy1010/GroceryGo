@@ -26,7 +26,7 @@ class ActivitySplashscreen : AppCompatActivity() {
     }
 
     private fun startLandingActivity() {
-        startActivity(Intent(this, ActivityHost::class.java))
+        ActivityHost.start(this, ActivityHost.TabEnum.Home)
         finish()
     }
 
