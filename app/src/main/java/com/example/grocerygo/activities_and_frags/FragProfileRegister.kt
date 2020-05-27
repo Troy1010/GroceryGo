@@ -58,6 +58,10 @@ class FragProfileRegister : TMFragment(layout = R.layout.frag_profile_register) 
 //                        App.sm.user = User(name, email, password, mobile)
                     }
         }
+        button_go_to_login.setOnClickListener {
+            activity!!.supportFragmentManager.beginTransaction()
+                .replace(R.id.frame_fragments, FragProfileLogin()).commit()
+        }
     }
 
 

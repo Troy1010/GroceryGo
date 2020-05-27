@@ -32,9 +32,11 @@
         android:text="Login"/>
 
     <TextView
+        android:layout_marginTop="16dp"
+        android:textSize="18sp"
         android:id="@+id/button_not_yet_registered"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Not yet registered? Click here!"
+        android:text="Not yet registered? Click here"
         android:textColor="?colorClickable" />
 </LinearLayout>
