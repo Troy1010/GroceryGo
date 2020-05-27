@@ -16,11 +16,11 @@ import com.example.grocerygo.models.User
 import com.google.android.material.textfield.TextInputEditText
 import com.google.android.material.textfield.TextInputLayout
 import com.google.gson.GsonBuilder
-import kotlinx.android.synthetic.main.frag_register.*
+import kotlinx.android.synthetic.main.frag_profile_register.*
 import org.json.JSONObject
 
 
-class FragProfileRegister : TMFragment(layout = R.layout.frag_register) {
+class FragProfileRegister : TMFragment(layout = R.layout.frag_profile_register) {
 
     override fun onStart() {
         super.onStart()
