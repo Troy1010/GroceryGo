@@ -32,6 +32,7 @@
         <activity android:name=".activities_and_frags.ActivityChooseTheme" />
         <activity android:name=".activities_and_frags.ActivityAddresses" />
         <activity android:name=".activities_and_frags.ActivityOrderHistoryItemDetails" />
+        <activity android:name=".activities_and_frags.ActivitySearch" />
         <activity android:name=".activities_and_frags.FragSearchProducts" />
         <activity android:name=".activities_and_frags.FragHome" />
     </application>
