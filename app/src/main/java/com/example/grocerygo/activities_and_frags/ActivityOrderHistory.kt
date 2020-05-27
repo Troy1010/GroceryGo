@@ -40,6 +40,7 @@ class ActivityOrderHistory : GGToolbarActivity(layout = R.layout.activity_order_
                 refresh()
             }
         )
+        refresh()
     }
 
 
