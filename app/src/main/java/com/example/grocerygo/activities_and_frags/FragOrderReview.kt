@@ -4,6 +4,8 @@ import android.content.Intent
 import android.graphics.Paint
 import android.os.Bundle
 import android.view.View
+import androidx.core.app.NotificationCompat
+import androidx.core.app.NotificationManagerCompat
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -84,11 +86,26 @@ class FragOrderReview : TMFragment(R.layout.frag_order_review), AdapterRecyclerV
         button_place_order.setOnClickListener {
             Requester.requestOrderPlacement(Response.Listener {
                 App.db.clear()
+                sendNotification("Getting Ready") // TODO
             })
             val intent = Intent(activity!!, ActivityThankYou::class.java)
             intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
             startActivity(intent)
         }
+    }
+
+    private fun sendNotification(status:String) {
+        val builder = NotificationCompat.Builder(activity!!, Config.NOTIFICATION_CHANNEL)
+        builder
+            .setSmallIcon(R.drawable.ic_whatshot_black_24dp)
+            .setContentTitle("GroceryGo Order Sent")
+            .setContentText("Status: $status")
+            .setAutoCancel(true)
+            .setPriority(NotificationCompat.PRIORITY_DEFAULT)
+
+        NotificationManagerCompat
+            .from(activity!!)
+            .notify(Config.NOTIFICATION_ID_ORDERCONFIRMED, builder.build())
     }
 
     private fun setupRecyclerView() {

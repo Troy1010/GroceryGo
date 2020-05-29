@@ -8,6 +8,9 @@ object Config {
         "https://www.incimages.com/uploaded_files/image/970x450/GettyImages-840253474_349532.jpg"
 //    const val ENDPOINT_SPLASHSCREEN =
 //        "https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcQ9Sf-Bs7y51Yvtp-FPtNN43WpWcfNjci1K6dtmUmkh65HIi1_f&usqp=CAU"
+
+    const val NOTIFICATION_CHANNEL = "CHANNEL"
+    const val NOTIFICATION_ID_ORDERCONFIRMED = 0
 }
 
 const val KEY_PRIMARY_ADDRESS = "PRIMARY_ADDRESS"
