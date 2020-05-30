@@ -12,8 +12,11 @@ fun DisplayMoney(value:Double):String {
 
 
 
-enum class Validator(val id: Int, val lambda: ()->String) {
-    Name(0, {
-        "qwer"
-    })
+enum class Validator {
+    Name {
+        override fun invoke(): String {
+            return "qwer"
+        }
+    };
+    abstract operator fun invoke(): String
 }

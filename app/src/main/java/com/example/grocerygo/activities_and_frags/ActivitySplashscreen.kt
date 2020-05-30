@@ -21,7 +21,7 @@ class ActivitySplashscreen : AppCompatActivity() {
     }
 
     private fun init2() {
-        Validator.Name.lambda()
+        logz("Validator.Name():${Validator.Name()}")
     }
 
     private fun init() {
