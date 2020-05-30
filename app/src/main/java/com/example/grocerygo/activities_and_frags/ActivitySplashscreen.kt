@@ -15,7 +15,13 @@ class ActivitySplashscreen : AppCompatActivity() {
 //        this.setTheme(R.style.AppTheme)
         setContentView(R.layout.app_spashscreen)
         logz("I'M ALIVE")
+        init2()
         init()
+    }
+
+    private fun startLandingActivity() {
+        ActivityHost.start(this, ActivityHost.TabEnum.Home)
+        finish()
     }
 
     private fun init() {
@@ -25,9 +31,15 @@ class ActivitySplashscreen : AppCompatActivity() {
         }, 1000)
     }
 
-    private fun startLandingActivity() {
-        ActivityHost.start(this, ActivityHost.TabEnum.Home)
-        finish()
+    private fun init2() {
+        logz(qwer(ArrayList<Int>()))
+        logz(qwer(ArrayList<String>()))
     }
+}
 
+fun qwer(a:ArrayList<Int>):String {
+    return "qwer"
+}
+fun qwer(a:ArrayList<String>):String {
+    return "rewq"
 }
