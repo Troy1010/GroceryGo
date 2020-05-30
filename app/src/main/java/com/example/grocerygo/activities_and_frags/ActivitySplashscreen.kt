@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
 import com.example.grocerygo.R
+import com.example.grocerygo.extras.Validator
 import com.example.grocerygo.extras.logz
 
 class ActivitySplashscreen : AppCompatActivity() {
@@ -15,7 +16,12 @@ class ActivitySplashscreen : AppCompatActivity() {
 //        this.setTheme(R.style.AppTheme)
         setContentView(R.layout.app_spashscreen)
         logz("I'M ALIVE")
+        init2()
         init()
+    }
+
+    private fun init2() {
+        logz("Validator.Name():${Validator.Name()}")
     }
 
     private fun init() {
