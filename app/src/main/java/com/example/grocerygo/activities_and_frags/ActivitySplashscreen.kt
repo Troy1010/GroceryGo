@@ -37,9 +37,11 @@ class ActivitySplashscreen : AppCompatActivity() {
     }
 }
 
+@JvmName("qwerInt")
 fun qwer(a:ArrayList<Int>):String {
     return "qwer"
 }
+@JvmName("qwerString")
 fun qwer(a:ArrayList<String>):String {
     return "rewq"
 }
