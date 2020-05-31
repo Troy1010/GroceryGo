@@ -63,7 +63,7 @@ class InputValidation {
             return this
         }
 
-        fun ifWarning(warningLambda: (errorMsg: String) -> Unit): Result {
+        fun ifWarning(warningLambda: (warningMsg: String) -> Unit): Result {
             if (this is Warning) {
                 warningLambda(this.msg)
             }
