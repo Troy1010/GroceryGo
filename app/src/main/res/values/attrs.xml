@@ -19,5 +19,7 @@
     <attr name="colorVsBackgroundSoft" format="color" />
 <!--    -->
     <attr name="colorHardAccent" format="color" />
-    <attr name="colorHardAccentGood" format="color"/>
+    <attr name="colorGood" format="color"/>
+    <attr name="colorWarning" format="color"/>
+    <attr name="colorBad" format="color"/>
 </resources>

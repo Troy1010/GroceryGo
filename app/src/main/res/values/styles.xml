@@ -10,7 +10,9 @@
         <item name="colorBackground">#eee</item>
         <item name="colorBackgroundHighlight">#fff</item>
         <item name="colorClickable">#0086bf</item>
-        <item name="colorHardAccentGood">#25e657</item>
+        <item name="colorGood">@color/colorGood</item>
+        <item name="colorWarning">@color/colorWarning</item>
+        <item name="colorBad">@color/colorBad</item>
         <!--    inheriting-->
         <item name="colorVsBackground">?colorVsLight</item>
         <item name="colorVsBackgroundSoft">?colorVsLightSoft</item>
@@ -59,7 +61,9 @@
         <item name="colorBackground">#333</item>
         <item name="colorBackgroundHighlight">#222</item>
         <item name="colorClickable">#0086bf</item>
-        <item name="colorHardAccentGood">#25e657</item>
+        <item name="colorGood">@color/colorGood</item>
+        <item name="colorWarning">@color/colorWarning</item>
+        <item name="colorBad">@color/colorBad</item>
         <!--    inheriting-->
         <item name="colorVsBackground">?colorVsDark</item>
         <item name="colorVsBackgroundSoft">?colorVsDarkSoft</item>
@@ -110,6 +114,16 @@
         <item name="android:backgroundTint">?colorBackground</item>
         <item name="android:layout_width">31dp</item>
         <item name="android:layout_height">31dp</item>
+    </style>
+
+    <style name="ErrorText" parent="@android:style/TextAppearance">
+        <item name="android:textColor">?colorBad</item>
+        <item name="android:textSize">14sp</item>
+    </style>
+
+    <style name="WarningText" parent="@android:style/TextAppearance">
+        <item name="android:textColor">?colorWarning</item>
+        <item name="android:textSize">14sp</item>
     </style>
 
 </resources>
