@@ -13,6 +13,7 @@ import com.example.grocerygo.extras.*
 import com.example.grocerygo.activities_and_frags.Inheritables.TMFragment
 import com.example.grocerygo.models.received.ReceivedRegistrationObject
 import com.example.grocerygo.models.User
+import com.example.tmcommonkotlin.easyToast
 import com.example.tmcommonkotlin.exhaustive
 import com.example.tmcommonkotlin.logz
 import com.google.android.material.textfield.TextInputLayout
@@ -139,6 +140,7 @@ class FragProfileRegister : TMFragment(layout = R.layout.frag_profile_register),
                 }
             },
             Response.ErrorListener {
+                easyToast(activity!!, "Registration Failed")
                 logz("Response.ErrorListener`it:$it")
             })
         requestQueue.add(request)
