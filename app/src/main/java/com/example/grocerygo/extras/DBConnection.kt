@@ -6,6 +6,7 @@ import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteOpenHelper
 import com.example.grocerygo.models.OrderSummary
 import com.example.grocerygo.models.Product
+import com.example.tmcommonkotlin.logz
 
 class DBConnection :
     SQLiteOpenHelper(App.instance, DATABASE_NAME, null, DATABASE_VERSION) {

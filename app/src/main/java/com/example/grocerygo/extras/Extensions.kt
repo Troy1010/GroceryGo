@@ -11,6 +11,7 @@ import androidx.appcompat.widget.Toolbar
 import androidx.coordinatorlayout.widget.CoordinatorLayout
 import androidx.fragment.app.Fragment
 import com.example.grocerygo.models.Product
+import com.example.tmcommonkotlin.logz
 import com.google.android.material.snackbar.Snackbar
 import kotlinx.android.synthetic.main.frag_profile.*
 

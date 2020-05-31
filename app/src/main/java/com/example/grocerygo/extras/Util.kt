@@ -7,9 +7,7 @@ import androidx.coordinatorlayout.widget.CoordinatorLayout
 import com.example.grocerygo.models.Product
 import com.google.android.material.snackbar.Snackbar
 
-fun logz (msg:String) {
-    Log.d("TMLog", "TM`$msg")
-}
+
 
 
 fun easySnackbar(

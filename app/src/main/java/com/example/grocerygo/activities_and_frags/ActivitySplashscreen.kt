@@ -4,7 +4,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
 import com.example.grocerygo.R
-import com.example.grocerygo.extras.logz
+import com.example.tmcommonkotlin.logz
 
 class ActivitySplashscreen : AppCompatActivity() {
 

@@ -6,15 +6,11 @@ import android.view.Menu
 import android.view.View
 import com.android.volley.Response
 import com.example.grocerygo.R
-import com.example.grocerygo.adapters.AdapterRecyclerView
 import com.example.grocerygo.extras.App
 import com.example.grocerygo.activities_and_frags.Inheritables.GGToolbarActivity
 import com.example.grocerygo.extras.Requester
 import com.example.grocerygo.extras.easyToast
-import com.example.grocerygo.extras.logz
-import com.example.grocerygo.models.*
 import com.example.grocerygo.models.received.ReceivedAddressesObject
-import com.example.grocerygo.models.received.ReceivedLoginObject
 import com.google.gson.GsonBuilder
 import kotlinx.android.synthetic.main.activity_payment_info.*
 

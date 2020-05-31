@@ -8,8 +8,6 @@ import com.example.grocerygo.R
 import com.example.grocerygo.activities_and_frags.Inheritables.HostCallbacks
 import com.example.grocerygo.extras.App
 import com.example.grocerygo.activities_and_frags.Inheritables.GGToolbarActivity
-import com.example.grocerygo.extras.logz
-import com.example.grocerygo.models.Product
 import kotlinx.android.synthetic.main.activity_host.*
 
 class ActivityHost : GGToolbarActivity(layout = R.layout.activity_host),

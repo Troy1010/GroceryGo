@@ -12,6 +12,7 @@ import com.example.grocerygo.R
 import com.example.grocerygo.activities_and_frags.*
 import com.example.grocerygo.extras.*
 import com.example.grocerygo.models.OrderSummary
+import com.example.tmcommonkotlin.logz
 import kotlinx.android.synthetic.main.activity_host.*
 import kotlinx.android.synthetic.main.app_toolbar.*
 import kotlinx.android.synthetic.main.z_cart_icon.view.*

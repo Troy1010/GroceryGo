@@ -6,7 +6,6 @@ import com.example.grocerygo.activities_and_frags.Inheritables.ToolbarCallbacks
 import com.example.grocerygo.extras.App
 import com.example.grocerygo.activities_and_frags.Inheritables.TMFragment
 import com.example.grocerygo.adapters.AdapterImageSlider
-import com.example.grocerygo.extras.logz
 import com.smarteist.autoimageslider.IndicatorAnimations
 import com.smarteist.autoimageslider.SliderAnimations
 import kotlinx.android.synthetic.main.frag_home.*

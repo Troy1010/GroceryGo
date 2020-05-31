@@ -12,10 +12,10 @@ import com.example.grocerygo.activities_and_frags.Inheritables.HostCallbacks
 import com.example.grocerygo.activities_and_frags.Inheritables.ToolbarCallbacks
 import com.example.grocerygo.extras.Endpoints
 import com.example.grocerygo.extras.KEY_CAT_ID
-import com.example.grocerygo.extras.logz
 import com.example.grocerygo.activities_and_frags.Inheritables.TMFragment
 import com.example.grocerygo.models.received.ReceivedSubCategoriesObject
 import com.example.grocerygo.models.SubCategory
+import com.example.tmcommonkotlin.logz
 import com.google.android.material.tabs.TabLayout
 import com.google.gson.GsonBuilder
 import kotlinx.android.synthetic.main.frag_search_toolbar.*

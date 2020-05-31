@@ -13,6 +13,7 @@ import com.example.grocerygo.extras.*
 import com.example.grocerygo.activities_and_frags.Inheritables.TMFragment
 import com.example.grocerygo.models.received.ReceivedRegistrationObject
 import com.example.grocerygo.models.User
+import com.example.tmcommonkotlin.logz
 import com.google.android.material.textfield.TextInputLayout
 import com.google.gson.GsonBuilder
 import kotlinx.android.synthetic.main.frag_profile_register.*

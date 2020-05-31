@@ -7,7 +7,6 @@ import android.widget.RadioButton
 import com.example.grocerygo.R
 import com.example.grocerygo.activities_and_frags.Inheritables.GGToolbarActivity
 import com.example.grocerygo.extras.App
-import com.example.grocerygo.extras.logz
 import kotlinx.android.synthetic.main.activity_choose_theme.*
 
 class ActivityChooseTheme : GGToolbarActivity(R.layout.activity_choose_theme), View.OnClickListener {

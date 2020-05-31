@@ -17,6 +17,7 @@ import com.example.grocerygo.adapters.AdapterRecyclerView
 import com.example.grocerygo.extras.*
 import com.example.grocerygo.models.OrderSummary
 import com.example.grocerygo.models.Product
+import com.example.tmcommonkotlin.logz
 import kotlinx.android.synthetic.main.frag_order_review.*
 import kotlinx.android.synthetic.main.item_order_review.view.*
 import kotlinx.android.synthetic.main.z_cart_last_item.*

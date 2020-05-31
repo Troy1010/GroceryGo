@@ -3,10 +3,8 @@ package com.example.grocerygo.activities_and_frags
 import android.os.Bundle
 import com.example.grocerygo.R
 import com.example.grocerygo.activities_and_frags.Inheritables.GGToolbarActivity
-import com.example.grocerygo.extras.App
-import com.example.grocerygo.extras.logz
-import com.example.grocerygo.models.Order
 import com.example.grocerygo.models.Product
+import com.example.tmcommonkotlin.logz
 import kotlinx.android.synthetic.main.activity_order_history_item_details.*
 
 class ActivityOrderHistoryItemDetails(): GGToolbarActivity(R.layout.activity_order_history_item_details) {

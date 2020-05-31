@@ -12,7 +12,6 @@ import com.example.grocerygo.adapters.AdapterRecyclerView
 import com.example.grocerygo.extras.App
 import com.example.grocerygo.extras.DisplayMoney
 import com.example.grocerygo.extras.Requester
-import com.example.grocerygo.extras.logz
 import com.example.grocerygo.activities_and_frags.Inheritables.GGToolbarActivity
 import com.example.grocerygo.models.Order
 import com.example.grocerygo.models.OrderSummary

@@ -17,6 +17,7 @@ import com.example.grocerygo.adapters.AdapterRecyclerView
 import com.example.grocerygo.extras.*
 import com.example.grocerygo.models.Product
 import com.example.grocerygo.models.received.ReceivedProductsObject
+import com.example.tmcommonkotlin.logz
 import com.google.gson.GsonBuilder
 import kotlinx.android.synthetic.main.activity_search.*
 import kotlinx.android.synthetic.main.frag_search_products.*
