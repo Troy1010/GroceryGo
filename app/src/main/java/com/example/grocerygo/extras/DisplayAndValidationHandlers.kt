@@ -1,5 +1,7 @@
 package com.example.grocerygo.extras
 
+import com.example.tmcommonkotlin.logz
+
 fun DisplayMoney(value: Double): String {
     return ("$" + "%.2f".format(value.round(2)))
 }
@@ -18,13 +20,16 @@ class InputValidation {
         val asEmail = { email: String ->
             if (email.isEmpty()) {
                 Result.Error("Required")
-            } else if (!email.contains("@")) {
-                Result.Error("Must contain an @")
+            } else if (!Regex("""@..*\.com\s*${'$'}""").containsMatchIn(email)) {
+                Result.Error("Must contain an email domain")
+            } else if (!Regex("""..*@..*\.com\s*${'$'}""").containsMatchIn(email)) {
+                Result.Error("Must contain an email name")
             } else {
                 Result.Success
             }
         }
-        val asPassword = { password:String ->
+
+        val asPassword = { password: String ->
             if (password.isEmpty()) {
                 Result.Error("Required")
             } else if (password.length < 6) {
@@ -37,7 +42,7 @@ class InputValidation {
                 Result.Success
             }
         }
-        val asPhone = { phone:String ->
+        val asPhone = { phone: String ->
             if (phone.isEmpty()) {
                 Result.Error("Required")
             } else if (!(phone.isAllDigits())) {
@@ -55,6 +60,7 @@ class InputValidation {
         data class Error(var msg: String) : Result()
         data class Warning(var msg: String) : Result()
         object Success : Result()
+
         //
         fun ifError(errorLambda: (errorMsg: String) -> Unit): Result {
             if (this is Error) {
