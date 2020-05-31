@@ -67,10 +67,12 @@ class FragProfileRegister : TMFragment(layout = R.layout.frag_profile_register),
         }
         return when (validationResult) {
             is InputValidation.Result.Error -> {
+                layout.setErrorTextAppearance(R.style.ErrorText)
                 layout.error = validationResult.msg
                 true
             }
             is InputValidation.Result.Warning -> {
+                layout.setErrorTextAppearance(R.style.WarningText)
                 layout.error = validationResult.msg
                 false
             }
