@@ -13,14 +13,14 @@ import com.example.grocerygo.extras.*
 import com.example.grocerygo.activities_and_frags.Inheritables.TMFragment
 import com.example.grocerygo.models.received.ReceivedRegistrationObject
 import com.example.grocerygo.models.User
-import com.google.android.material.textfield.TextInputEditText
 import com.google.android.material.textfield.TextInputLayout
 import com.google.gson.GsonBuilder
 import kotlinx.android.synthetic.main.frag_profile_register.*
 import org.json.JSONObject
 
 
-class FragProfileRegister : TMFragment(layout = R.layout.frag_profile_register) {
+class FragProfileRegister : TMFragment(layout = R.layout.frag_profile_register),
+    View.OnFocusChangeListener {
 
     override fun onStart() {
         super.onStart()
@@ -35,35 +35,69 @@ class FragProfileRegister : TMFragment(layout = R.layout.frag_profile_register) 
         (activity as ToolbarCallbacks).setTitle("Register")
     }
 
+
+    override fun onFocusChange(v: View, hasFocus: Boolean) {
+        when (v) {
+            text_input_name -> handleResult(
+                InputValidation.asName(text_input_name.text.toString()),
+                text_input_layout_name, hasFocus
+            )
+            text_input_email -> handleResult(
+                InputValidation.asEmail(text_input_email.text.toString()),
+                text_input_layout_email, hasFocus
+            )
+            text_input_password -> handleResult(
+                InputValidation.asPassword(text_input_password.text.toString()),
+                text_input_layout_password, hasFocus
+            )
+            text_input_mobile -> handleResult(
+                InputValidation.asPhone(text_input_mobile.text.toString()),
+                text_input_layout_mobile, hasFocus
+            )
+        }
+    }
+
+    fun handleResult(validationResult:InputValidation.Result, layout: TextInputLayout, bClearError:Boolean=false):Boolean {
+        if (bClearError) {
+            layout.isErrorEnabled = false
+            return false
+        }
+        when (validationResult) {
+            is InputValidation.Result.Error -> {
+                layout.error = validationResult.msg
+                return true
+            }
+            is InputValidation.Result.Success -> {
+                layout.isErrorEnabled = false
+                return false
+            }
+        } // TODO make this .exhaustive
+        return false
+    }
+
     private fun setupListeners() {
-        text_input_email.setOnFocusChangeListener(MyOnFocusChangeListener(text_input_email,text_input_layout_email,RegFieldEnum.EMAIL))
-        text_input_name.setOnFocusChangeListener(MyOnFocusChangeListener(text_input_name,text_input_layout_name,RegFieldEnum.NAME))
-        text_input_password.setOnFocusChangeListener(MyOnFocusChangeListener(text_input_password,text_input_layout_password,RegFieldEnum.PASSWORD))
-        text_input_mobile.setOnFocusChangeListener(MyOnFocusChangeListener(text_input_mobile,text_input_layout_mobile,RegFieldEnum.MOBILE))
+        text_input_name.setOnFocusChangeListener(this)
+        text_input_email.setOnFocusChangeListener(this)
+        text_input_password.setOnFocusChangeListener(this)
+        text_input_mobile.setOnFocusChangeListener(this)
         button_register_send.setOnClickListener {
-                    var name = text_input_name.text.toString().trim()
-                    var email = text_input_email.text.toString().trim()
-                    var password = text_input_password.text.toString().trim()
-                    var mobile = text_input_mobile.text.toString().trim()
-                    var errorHandler = ErrorHandler()
-                    errorHandler.handle(FormValidator.name(name), text_input_layout_name)
-                    errorHandler.handle(
-                        FormValidator.password(password),
-                        text_input_layout_password
-                    )
-                    errorHandler.handle(FormValidator.email(email), text_input_layout_email)
-                    errorHandler.handle(FormValidator.mobile(mobile), text_input_layout_mobile)
-                    if (!errorHandler.foundError) {
-                        requestRegistration(User(name, email, password, mobile))
-//                        App.sm.user = User(name, email, password, mobile)
-                    }
+            val name = text_input_name.text.toString().trim()
+            val email = text_input_email.text.toString().trim()
+            val password = text_input_password.text.toString().trim()
+            val phone = text_input_mobile.text.toString().trim()
+            var areAnyErrors = handleResult(InputValidation.asName(name), text_input_layout_name)
+            areAnyErrors = areAnyErrors || handleResult(InputValidation.asEmail(email), text_input_layout_email)
+            areAnyErrors = areAnyErrors || handleResult(InputValidation.asPassword(password), text_input_layout_password)
+            areAnyErrors = areAnyErrors || handleResult(InputValidation.asPhone(phone), text_input_layout_mobile)
+            if (!areAnyErrors) {
+                requestRegistration(User(name, email, password, phone))
+            }
         }
         button_go_to_login.setOnClickListener {
             activity!!.supportFragmentManager.beginTransaction()
                 .replace(R.id.frame_fragments, FragProfileLogin()).commit()
         }
     }
-
 
 
     private fun requestRegistration(user: User) {
@@ -104,85 +138,4 @@ class FragProfileRegister : TMFragment(layout = R.layout.frag_profile_register) 
             })
         requestQueue.add(request)
     }
-}
-
-class MyOnFocusChangeListener(var textInputEditText: TextInputEditText, var layoutOfTextInput: TextInputLayout, var e:RegFieldEnum) : View.OnFocusChangeListener {
-    override fun onFocusChange(v: View?, hasFocus: Boolean) {
-        if (!hasFocus) {
-            ErrorHandler().handle(
-                FormValidator.validate(e,
-                    textInputEditText.text.toString()
-                ), layoutOfTextInput)
-        } else {
-            layoutOfTextInput.isErrorEnabled = false
-        }
-    }
-
-}
-
-enum class RegFieldEnum { EMAIL, NAME, PASSWORD, MOBILE }
-
-
-class ErrorHandler {
-    var foundError = false
-    fun handle(error: ValidationError?, layoutOfTextInput: TextInputLayout) {
-        if (error != null) {
-            layoutOfTextInput.error = error.msg
-            foundError = true
-        } else {
-            layoutOfTextInput.isErrorEnabled = false
-        }
-    }
-}
-
-data class ValidationError(var msg: String)
-
-object FormValidator {
-    fun validate(e: RegFieldEnum, stringToValidate: String): ValidationError? {
-        return when (e) {
-            RegFieldEnum.EMAIL -> this.email(stringToValidate)
-            RegFieldEnum.NAME -> this.name(stringToValidate)
-            RegFieldEnum.PASSWORD -> this.password(stringToValidate)
-            RegFieldEnum.MOBILE -> this.mobile(stringToValidate)
-        }
-    }
-
-    fun name(name: String): ValidationError? {
-        if (name.isEmpty()) {
-            return ValidationError("Required")
-        }
-        return null
-    }
-
-    fun email(email: String): ValidationError? {
-        if (email.isEmpty()) {
-            return ValidationError("Required")
-        } else if (!email.contains("@")) {
-            return ValidationError("Must contain an @")
-        }
-        return null
-    }
-
-    fun password(password: String): ValidationError? {
-        if (password.isEmpty()) {
-            return ValidationError("Required")
-        } else if (password.length < 6) {
-            return ValidationError("Mst have at least 6 characters")
-        } else if (!password.hasDigit()) {
-            return ValidationError("Must contain at least 1 digit")
-        }
-        return null
-    }
-
-    fun mobile(mobile: String): ValidationError? {
-        if (mobile.isEmpty()) {
-            return ValidationError("Required")
-        } else if (!(mobile.isAllDigits())) {
-            return ValidationError("Must only contain digits")
-        } else if (mobile.length != 10) {
-            return ValidationError("Must have 10 characters")
-        }
-        return null
-    }
-
 }
