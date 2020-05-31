@@ -13,6 +13,7 @@ import com.example.grocerygo.extras.*
 import com.example.grocerygo.activities_and_frags.Inheritables.TMFragment
 import com.example.grocerygo.models.received.ReceivedRegistrationObject
 import com.example.grocerygo.models.User
+import com.example.tmcommonkotlin.exhaustive
 import com.example.tmcommonkotlin.logz
 import com.google.android.material.textfield.TextInputLayout
 import com.google.gson.GsonBuilder
@@ -63,17 +64,20 @@ class FragProfileRegister : TMFragment(layout = R.layout.frag_profile_register),
             layout.isErrorEnabled = false
             return false
         }
-        when (validationResult) {
+        return when (validationResult) {
             is InputValidation.Result.Error -> {
                 layout.error = validationResult.msg
-                return true
+                true
+            }
+            is InputValidation.Result.Warning -> {
+                layout.error = validationResult.msg
+                false
             }
             is InputValidation.Result.Success -> {
                 layout.isErrorEnabled = false
-                return false
+                false
             }
-        } // TODO make this .exhaustive
-        return false
+        }
     }
 
     private fun setupListeners() {
