@@ -65,7 +65,7 @@ class InputValidation {
         val asZipCode = { zipCode :String ->
             if (zipCode.isEmpty()) {
                 Result.Error("Required")
-            } else if (!Regex("""[A-z]""").containsMatchIn(zipCode)) {
+            } else if (Regex("""[A-z]""").containsMatchIn(zipCode)) {
                 Result.Error("Must not contain letters")
             } else {
                 Result.Success(zipCode.trim())
