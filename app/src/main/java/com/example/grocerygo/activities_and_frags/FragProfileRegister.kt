@@ -81,6 +81,7 @@ class FragProfileRegister : TMFragment(layout = R.layout.frag_profile_register),
                 false
             }
             is InputValidation.Result.Success -> {
+                layout.editText?.setText(validationResult.correctedValue)
                 layout.isErrorEnabled = false
                 false
             }
