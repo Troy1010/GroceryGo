@@ -11,6 +11,7 @@ import com.example.grocerygo.extras.App
 import com.example.grocerygo.extras.Endpoints
 import com.example.grocerygo.activities_and_frags.Inheritables.GGToolbarActivity
 import com.example.grocerygo.extras.InputValidation
+import com.example.grocerygo.extras.handleResult
 import com.example.grocerygo.models.PostAddressObject
 import com.example.grocerygo.models.received.ReceivedPostedAddressObject
 import com.example.tmcommonkotlin.logz
@@ -87,38 +88,9 @@ class ActivityAddress : GGToolbarActivity(layout = R.layout.activity_address),
         }
     }
 
-    fun handleResult(
-        validationResult: InputValidation.Result,
-        layout: TextInputLayout,
-        bClearError: Boolean = false
-    ): Boolean {
-        if (bClearError) {
-            layout.isErrorEnabled = false
-            return false
-        }
-        return when (validationResult) {
-            is InputValidation.Result.Error -> {
-                layout.setErrorTextAppearance(R.style.ErrorText)
-                layout.error = validationResult.msg
-                true
-            }
-            is InputValidation.Result.Warning -> {
-                layout.setErrorTextAppearance(R.style.WarningText)
-                layout.error = validationResult.msg
-                false
-            }
-            is InputValidation.Result.Success -> {
-                layout.editText?.setText(validationResult.correctedValue)
-                layout.isErrorEnabled = false
-                false
-            }
-        }
-    }
-
     override fun onClick(v: View?) {
         when (v) {
             button_address_submit -> {
-                logz("button_address_submit")
                 var areAnyErrors = handleResult(
                     InputValidation.asStreetAddress(text_input_street_address.text.toString()),
                     text_input_layout_street_address)

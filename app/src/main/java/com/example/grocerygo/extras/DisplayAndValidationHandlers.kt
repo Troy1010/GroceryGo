@@ -1,13 +1,29 @@
 package com.example.grocerygo.extras
 
+import com.example.grocerygo.R
 import com.example.tmcommonkotlin.logz
-
-fun DisplayMoney(value: Double): String {
-    return ("$" + "%.2f".format(value.round(2)))
-}
+import com.google.android.material.textfield.TextInputLayout
 
 class InputValidation {
     companion object {
+        val asCardNumber = {cardNumber:String ->
+            if (cardNumber.isEmpty()) {
+                Result.Error("Required")
+            } else if (Regex("""[A-z]""").containsMatchIn(cardNumber)) {
+                Result.Error("Must not contain letters")
+            } else if (Regex("""[0-9]""").findAll(cardNumber).count()!=16) {
+                Result.Error("Must contain 16 digits")
+            } else {
+                Result.Success(cardNumber)
+            }
+        }
+        val asExpirationDate = {expirationDate:String ->
+            if (expirationDate.isEmpty()) {
+                Result.Error("Required")
+            } else {
+                Result.Success(expirationDate)
+            }
+        }
         val asStreetAddress = { streetAddress :String ->
             if (streetAddress.isEmpty()) {
                 Result.Error("Required")
@@ -129,4 +145,39 @@ class InputValidation {
             return this
         }
     }
+}
+
+
+
+fun handleResult(
+    validationResult: InputValidation.Result,
+    layout: TextInputLayout,
+    bClearError: Boolean = false
+): Boolean {
+    if (bClearError) {
+        layout.isErrorEnabled = false
+        return false
+    }
+    return when (validationResult) {
+        is InputValidation.Result.Error -> {
+            layout.setErrorTextAppearance(R.style.ErrorText)
+            layout.error = validationResult.msg
+            true
+        }
+        is InputValidation.Result.Warning -> {
+            layout.setErrorTextAppearance(R.style.WarningText)
+            layout.error = validationResult.msg
+            false
+        }
+        is InputValidation.Result.Success -> {
+            layout.editText?.setText(validationResult.correctedValue)
+            layout.isErrorEnabled = false
+            false
+        }
+    }
+}
+
+
+fun DisplayMoney(value: Double): String {
+    return ("$" + "%.2f".format(value.round(2)))
 }

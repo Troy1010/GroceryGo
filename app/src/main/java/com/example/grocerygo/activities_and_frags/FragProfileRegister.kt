@@ -60,34 +60,6 @@ class FragProfileRegister : TMFragment(layout = R.layout.frag_profile_register),
         }
     }
 
-    fun handleResult(
-        validationResult: InputValidation.Result,
-        layout: TextInputLayout,
-        bClearError: Boolean = false
-    ): Boolean {
-        if (bClearError) {
-            layout.isErrorEnabled = false
-            return false
-        }
-        return when (validationResult) {
-            is InputValidation.Result.Error -> {
-                layout.setErrorTextAppearance(R.style.ErrorText)
-                layout.error = validationResult.msg
-                true
-            }
-            is InputValidation.Result.Warning -> {
-                layout.setErrorTextAppearance(R.style.WarningText)
-                layout.error = validationResult.msg
-                false
-            }
-            is InputValidation.Result.Success -> {
-                layout.editText?.setText(validationResult.correctedValue)
-                layout.isErrorEnabled = false
-                false
-            }
-        }
-    }
-
     private fun setupListeners() {
         text_input_name.setOnFocusChangeListener(this)
         text_input_email.setOnFocusChangeListener(this)
