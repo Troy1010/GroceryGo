@@ -60,7 +60,11 @@ class FragProfileRegister : TMFragment(layout = R.layout.frag_profile_register),
         }
     }
 
-    fun handleResult(validationResult:InputValidation.Result, layout: TextInputLayout, bClearError:Boolean=false):Boolean {
+    fun handleResult(
+        validationResult: InputValidation.Result,
+        layout: TextInputLayout,
+        bClearError: Boolean = false
+    ): Boolean {
         if (bClearError) {
             layout.isErrorEnabled = false
             return false
@@ -94,11 +98,46 @@ class FragProfileRegister : TMFragment(layout = R.layout.frag_profile_register),
             val password = text_input_password.text.toString().trim()
             val phone = text_input_mobile.text.toString().trim()
             var areAnyErrors = handleResult(InputValidation.asName(name), text_input_layout_name)
-            areAnyErrors = areAnyErrors || handleResult(InputValidation.asEmail(email), text_input_layout_email)
-            areAnyErrors = areAnyErrors || handleResult(InputValidation.asPassword(password), text_input_layout_password)
-            areAnyErrors = areAnyErrors || handleResult(InputValidation.asPhone(phone), text_input_layout_mobile)
+            areAnyErrors = areAnyErrors || handleResult(
+                InputValidation.asEmail(email),
+                text_input_layout_email
+            )
+            areAnyErrors = areAnyErrors || handleResult(
+                InputValidation.asPassword(password),
+                text_input_layout_password
+            )
+            areAnyErrors = areAnyErrors || handleResult(
+                InputValidation.asPhone(phone),
+                text_input_layout_mobile
+            )
             if (!areAnyErrors) {
-                requestRegistration(User(name, email, password, phone))
+                Requester.requestRegistration(User(name, email, password, phone),
+                    Response.Listener<JSONObject> { response ->
+                        val receivedRegistrationObject = GsonBuilder().create()
+                            .fromJson(response.toString(), ReceivedRegistrationObject::class.java)
+                        // save user into App.sm.user
+                        val registrationData = receivedRegistrationObject.data
+                        App.sm.user = User(
+                            name = registrationData.firstName,
+                            email = registrationData.email,
+                            password = registrationData.password,
+                            mobile = registrationData.mobile,
+                            _id = registrationData._id
+                        )
+                        logz("App.sm.user:${App.sm.user}")
+                        // navigate to next page
+                        if (App.sm.goToPaymentInfoAfterLogin) {
+                            App.sm.goToPaymentInfoAfterLogin = false
+                            startActivity(Intent(activity!!, ActivityPaymentInfo::class.java))
+                        } else {
+                            (activity as HostCallbacks).goToTab(ActivityHost.TabEnum.Home)
+                        }
+                    },
+                    Response.ErrorListener {
+                        easyToast(activity!!, "Registration Failed")
+                        logz("Response.ErrorListener`it:$it")
+                    }
+                )
             }
         }
         button_go_to_login.setOnClickListener {
@@ -108,43 +147,4 @@ class FragProfileRegister : TMFragment(layout = R.layout.frag_profile_register),
     }
 
 
-    private fun requestRegistration(user: User) {
-        val requestQueue = Volley.newRequestQueue(activity!!)
-        val params = HashMap<String, String>()
-        params["email"] = user.email!!
-        params["password"] = user.password!!
-        params["firstName"] = user.name!!
-        params["mobile"] = user.mobile!!
-        //typecast params into jsonObject
-        val jsonObject = JSONObject(params as Map<*, *>)
-
-        val request = JsonObjectRequest(
-            Request.Method.POST, Endpoints.register, jsonObject,
-            Response.Listener { response ->
-                val receivedCategoriesObject = GsonBuilder().create()
-                    .fromJson(response.toString(), ReceivedRegistrationObject::class.java)
-                //
-                val registrationData = receivedCategoriesObject.data
-                App.sm.user = User(
-                    name = registrationData.firstName,
-                    email = registrationData.email,
-                    password = registrationData.password,
-                    mobile = registrationData.mobile,
-                    _id = registrationData._id
-                )
-                logz("App.sm.user:${App.sm.user}")
-                //
-                if (App.sm.goToPaymentInfoAfterLogin) {
-                    App.sm.goToPaymentInfoAfterLogin = false
-                    startActivity(Intent(activity!!, ActivityPaymentInfo::class.java))
-                } else {
-                    (activity as HostCallbacks).goToTab(ActivityHost.TabEnum.Home)
-                }
-            },
-            Response.ErrorListener {
-                easyToast(activity!!, "Registration Failed")
-                logz("Response.ErrorListener`it:$it")
-            })
-        requestQueue.add(request)
-    }
 }
