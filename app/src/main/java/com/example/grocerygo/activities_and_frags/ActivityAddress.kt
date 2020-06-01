@@ -10,10 +10,10 @@ import com.example.grocerygo.R
 import com.example.grocerygo.extras.App
 import com.example.grocerygo.extras.Endpoints
 import com.example.grocerygo.activities_and_frags.Inheritables.GGToolbarActivity
-import com.example.grocerygo.extras.InputValidation
 import com.example.grocerygo.extras.handleResult
 import com.example.grocerygo.models.PostAddressObject
 import com.example.grocerygo.models.received.ReceivedPostedAddressObject
+import com.example.tmcommonkotlin.InputValidation
 import com.example.tmcommonkotlin.logz
 import com.google.android.material.textfield.TextInputLayout
 import com.google.gson.Gson
