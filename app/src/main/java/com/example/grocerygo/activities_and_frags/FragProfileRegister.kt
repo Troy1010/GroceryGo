@@ -99,18 +99,18 @@ class FragProfileRegister : TMFragment(layout = R.layout.frag_profile_register),
             val password = text_input_password.text.toString().trim()
             val phone = text_input_mobile.text.toString().trim()
             var areAnyErrors = handleResult(InputValidation.asName(name), text_input_layout_name)
-            areAnyErrors = areAnyErrors || handleResult(
+            areAnyErrors = handleResult(
                 InputValidation.asEmail(email),
                 text_input_layout_email
-            )
-            areAnyErrors = areAnyErrors || handleResult(
+            ) || areAnyErrors
+            areAnyErrors = handleResult(
                 InputValidation.asPassword(password),
                 text_input_layout_password
-            )
-            areAnyErrors = areAnyErrors || handleResult(
+            ) || areAnyErrors
+            areAnyErrors = handleResult(
                 InputValidation.asPhone(phone),
                 text_input_layout_mobile
-            )
+            ) || areAnyErrors
             if (!areAnyErrors) {
                 Requester.requestRegistration(User(name, email, password, phone),
                     Response.Listener<JSONObject> { response ->
