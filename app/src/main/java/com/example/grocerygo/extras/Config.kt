@@ -1,7 +1,7 @@
 package com.example.grocerygo.extras
 
 object Config {
-    const val BASE_URL_ITEM_IMAGES = "http://rjtmobile.com/grocery/images/"
+    const val BASE_URL_ITEM_IMAGES = "https://rjtmobile.com/grocery/images/"
     const val BASE_URL = "https://apolis-grocery.herokuapp.com/api/"
     const val SHARED_PREF_FILE_NAME = "shared_pref_main"
     const val ENDPOINT_HOME_IMAGE =
