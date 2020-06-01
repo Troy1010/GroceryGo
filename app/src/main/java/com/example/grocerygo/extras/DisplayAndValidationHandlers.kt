@@ -1,11 +1,60 @@
 package com.example.grocerygo.extras
 
+import com.example.tmcommonkotlin.logz
+
 fun DisplayMoney(value: Double): String {
     return ("$" + "%.2f".format(value.round(2)))
 }
 
 class InputValidation {
     companion object {
+        val asStreetAddress = { streetAddress :String ->
+            if (streetAddress.isEmpty()) {
+                Result.Error("Required")
+            } else if (!Regex("""[0-9][0-9]*""").containsMatchIn(streetAddress)) {
+                Result.Error("Must have a number")
+            } else if (!Regex("""[0-9][0-9]*..*""").containsMatchIn(streetAddress.trim())) {
+                Result.Error("Must have a street name")
+            } else {
+                val numMatch = Regex("""[0-9][0-9]*""").find(streetAddress)
+                val streetNameMatch = Regex("""..*""").find(streetAddress, (numMatch?.range?.last?:-1)+1)
+                Result.Success(numMatch?.value + " " + streetNameMatch?.value?.trim()?.capitalize()?.noDoubleSpaces())
+            }
+        }
+        val asAptNum = { aptNum:String ->
+            if (Regex(""".\s.""").containsMatchIn(aptNum)) {
+                Result.Error("Must not contain spaces")
+            } else {
+                Result.Success(aptNum.trim())
+            }
+        }
+        val asCity = { city :String ->
+            if (city.isEmpty()) {
+                Result.Error("Required")
+            } else if (Regex(""".\s.""").containsMatchIn(city)) {
+                Result.Error("Must not contain spaces")
+            } else {
+                Result.Success(city.trim().capitalize())
+            }
+        }
+        val asState = { state :String ->
+            if (state.isEmpty()) {
+                Result.Error("Required")
+            } else if (!Regex("""[A-z][A-z]""").matches(state)) {
+                Result.Error("Must contain two letters")
+            } else {
+                Result.Success(state.trim().toUpperCase())
+            }
+        }
+        val asZipCode = { zipCode :String ->
+            if (zipCode.isEmpty()) {
+                Result.Error("Required")
+            } else if (!Regex("""[A-z]""").containsMatchIn(zipCode)) {
+                Result.Error("Must not contain letters")
+            } else {
+                Result.Success(zipCode.trim())
+            }
+        }
         val asName = { name: String ->
             if (name.isEmpty()) {
                 Result.Error("Required")
