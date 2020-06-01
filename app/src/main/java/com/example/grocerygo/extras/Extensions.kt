@@ -15,6 +15,14 @@ import com.example.tmcommonkotlin.logz
 import com.google.android.material.snackbar.Snackbar
 import kotlinx.android.synthetic.main.frag_profile.*
 
+fun String.noDoubleSpaces():String {
+    return if (this.contains("  ")) {
+        this.replace("  ", " ").noDoubleSpaces()
+    } else {
+        this
+    }
+}
+
 fun AppCompatActivity.getView(): View? {
     val returning = this.findViewById<ViewGroup>(android.R.id.content).getChildAt(0)
     if (returning==null) {
