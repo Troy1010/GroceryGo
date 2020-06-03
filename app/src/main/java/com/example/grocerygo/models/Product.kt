@@ -13,7 +13,7 @@ data class Product(
     val position: Int=0,
     val price: Double=0.0,
     val productName: String="PRODUCTNAME",
-    val quantity: Int=0,
+    var quantity: Int=0,
     val status: Boolean=false,
     val subId: Int=0,
     val unit: String=""

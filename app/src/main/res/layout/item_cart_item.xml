@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <ImageView
+        android:id="@+id/image_view_product"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_width="80dp"
+        android:layout_height="80dp"/>
+    <TextView
+        android:layout_marginStart="8dp"
+        android:id="@+id/text_view_name"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="(NAME)"
+        android:textSize="18sp"
+        app:layout_constraintStart_toEndOf="@id/image_view_product"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/button_trash"/>
+
+    <TextView
+        android:id="@+id/text_view_price"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:text="(PRICE)"
+        android:textSize="18sp"
+        android:textColor="?colorVsBackgroundSoft"
+        app:layout_constraintStart_toStartOf="@id/text_view_name"
+        app:layout_constraintTop_toBottomOf="@id/text_view_name" />
+
+    <ImageView
+        android:id="@+id/button_trash"
+        android:layout_width="25dp"
+        android:layout_height="25dp"
+        android:layout_margin="5dp"
+        android:src="@drawable/trash"
+        android:tint="?colorVsBackground"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <FrameLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <include layout="@layout/includible_plus_minus" />
+    </FrameLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

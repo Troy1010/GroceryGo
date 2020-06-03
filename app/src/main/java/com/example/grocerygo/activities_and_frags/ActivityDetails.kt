@@ -1,36 +1,49 @@
 package com.example.grocerygo.activities_and_frags
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
 import com.example.grocerygo.R
-import com.example.grocerygo.extras.PRODUCT_KEY
+import com.example.grocerygo.extras.*
+import com.example.grocerygo.activities_and_frags.Inheritables.GGToolbarActivity
 import com.example.grocerygo.models.Product
-import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.activity_details.*
+import kotlinx.android.synthetic.main.includible_plus_minus.*
 
-class ActivityDetails : AppCompatActivity() {
+class ActivityDetails : GGToolbarActivity(layout = R.layout.activity_details) {
+    override val title: String
+        get() = (intent.getSerializableExtra(KEY_PRODUCT) as Product).productName
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_details)
-        init()
-    }
-
-    private fun init() {
-        val product = intent.getSerializableExtra(PRODUCT_KEY) as Product
-
-        text_view_name.text = product.productName
+        val product = intent.getSerializableExtra(KEY_PRODUCT) as Product
         text_view_price.text = "$"+product.price.toString()
         text_view_details.text = product.description
-
-        var imagePath = "http://rjtmobile.com/grocery/images/" + product.image
-        if (imagePath.isNotEmpty()) {
-            Picasso
-                .get()
-                .load(imagePath)
-                .placeholder(R.drawable.not_found)
-                .error(R.drawable.no_image_available_vector_illustration_260nw_744886198)
-                .into(image_view)
+        image_view_product.easyPicasso(Config.BASE_URL_ITEM_IMAGES + product.image)
+        text_view_number_plus_minus.text = product.quantity.toString()
+        if (product.quantity!=0) {
+            text_view_add.visibility=View.GONE
+        }
+        text_view_add.setOnClickListener {
+            text_view_add.visibility= View.GONE
+            App.db.addProduct(product)
+            text_view_number_plus_minus.text = product.quantity.toString()
+            notifyCartBadge()
+        }
+        button_plus.setOnClickListener {
+            App.db.addProduct(product)
+            text_view_number_plus_minus.text = product.quantity.toString()
+            notifyCartBadge()
+        }
+        button_minus.setOnClickListener {
+            if (product.quantity == 1) {
+                text_view_add.visibility= View.VISIBLE
+                product.quantity = 0 // to update ui, probably unnecessary
+                App.db.deleteProduct(product)
+            } else {
+                App.db.minusProduct(product)
+            }
+            text_view_number_plus_minus.text = product.quantity.toString()
+            notifyCartBadge()
         }
     }
 }

@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:padding="16dp">
+
+    <!--        PAYMENT INFO START-->
+    <FrameLayout
+        android:id="@+id/frame_profile"
+        app:layout_constraintBottom_toBottomOf="@id/text_view_profile_value"
+        app:layout_constraintEnd_toEndOf="@id/text_view_profile_title"
+        app:layout_constraintStart_toStartOf="@id/text_view_profile_title"
+        app:layout_constraintTop_toTopOf="@id/text_view_profile_title"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="?colorBackgroundHighlight" />
+
+    <TextView
+        android:theme="@style/OverlayTitle"
+        android:id="@+id/text_view_profile_title"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="User"/>
+
+    <TextView
+        android:theme="@style/OverlayValue"
+        android:textColor="?colorVsBackgroundSoft"
+        android:id="@+id/text_view_profile_value"
+        app:layout_constraintTop_toBottomOf="@id/text_view_profile_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="(USER)" />
+
+    <FrameLayout
+        android:id="@+id/frame_address"
+        app:layout_constraintBottom_toBottomOf="@id/text_view_address_value"
+        app:layout_constraintEnd_toEndOf="@id/text_view_address_title"
+        app:layout_constraintStart_toStartOf="@id/text_view_address_title"
+        app:layout_constraintTop_toTopOf="@id/text_view_address_title"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="?colorBackgroundHighlight" />
+
+    <TextView
+        android:theme="@style/OverlayTitle"
+        android:id="@+id/text_view_address_title"
+        app:layout_constraintTop_toBottomOf="@id/frame_profile"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:text="Address" />
+
+    <TextView
+        android:theme="@style/OverlayValue"
+        android:textColor="?colorVsBackgroundSoft"
+        android:id="@+id/text_view_address_value"
+        app:layout_constraintTop_toBottomOf="@id/text_view_address_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="(ADDRESS)" />
+
+
+    <FrameLayout
+        android:id="@+id/frame_payment"
+        app:layout_constraintBottom_toBottomOf="@id/text_view_payment_value"
+        app:layout_constraintEnd_toEndOf="@id/text_view_payment_title"
+        app:layout_constraintStart_toStartOf="@id/text_view_payment_title"
+        app:layout_constraintTop_toTopOf="@id/text_view_payment_title"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="?colorBackgroundHighlight" />
+
+    <TextView
+        android:theme="@style/OverlayTitle"
+        android:id="@+id/text_view_payment_title"
+        app:layout_constraintTop_toBottomOf="@id/frame_address"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:text="Payment"/>
+
+    <TextView
+        android:theme="@style/OverlayValue"
+        android:textColor="?colorVsBackgroundSoft"
+        android:id="@+id/text_view_payment_value"
+        app:layout_constraintTop_toBottomOf="@id/text_view_payment_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="(PAYMENT)" />
+    <!--        PAYMENT INFO END-->
+
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recycler_view_order_review"
+        app:layout_constraintBottom_toTopOf="@id/includible_grand_total_calculations"
+        app:layout_constraintTop_toBottomOf="@id/frame_payment"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginTop="10dp" />
+
+    <include
+        android:id="@+id/includible_grand_total_calculations"
+        app:layout_constraintBottom_toTopOf="@id/text_view_grand_total_title"
+        layout="@layout/z_cart_last_item"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <TextView
+        android:id="@+id/text_view_grand_total_title"
+        app:layout_constraintBottom_toTopOf="@id/button_place_order"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Grand Total"
+        android:textSize="22sp" />
+
+    <TextView
+        android:id="@+id/text_view_grand_total_value"
+        app:layout_constraintBottom_toTopOf="@id/button_place_order"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="(GRAND_TOTAL)"
+        android:textSize="22sp" />
+
+    <Button
+        android:id="@+id/button_place_order"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"
+        android:background="@drawable/button_usual_background"
+        android:gravity="center_horizontal"
+        android:text="Place Order" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

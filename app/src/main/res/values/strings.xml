@@ -1,3 +1,4 @@
 <resources>
-    <string name="app_name">GroceryGo_JSONParsingAndConfig</string>
+    <string name="app_name">GroceryGo</string>
+    <string name="hello_start">Hello, %1$s</string>
 </resources>

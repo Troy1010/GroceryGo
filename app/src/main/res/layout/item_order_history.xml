@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="24dp">
+
+    <ImageView
+        android:src="@drawable/ic_order_box"
+        android:layout_margin="10dp"
+        android:id="@+id/image_view_order_history_item"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:layout_marginLeft="20dp"
+        android:id="@+id/text_view_date_value"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="(DATE)"
+        android:textSize="32sp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toEndOf="@id/image_view_order_history_item" />
+
+    <TextView
+        android:id="@+id/text_view_quantity_value"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="(Quantity)"
+        android:textColor="?colorVsBackgroundSoft"
+        android:textSize="20sp"
+        app:layout_constraintTop_toBottomOf="@id/text_view_date_value"
+        app:layout_constraintStart_toStartOf="@id/text_view_date_value" />
+
+    <TextView
+        android:id="@+id/text_view_grand_total_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Total"
+        android:textColor="?colorVsBackgroundSoft"
+        android:textSize="20sp"
+        app:layout_constraintTop_toBottomOf="@id/text_view_quantity_value"
+        app:layout_constraintStart_toStartOf="@id/text_view_date_value"  />
+
+    <TextView
+        android:id="@+id/text_view_grand_total_value"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="(TOTAL)"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="@id/text_view_grand_total_title"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

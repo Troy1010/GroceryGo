@@ -1,29 +1,139 @@
 <resources>
+<!--    I'm not sure why, but simply declaring this makes propagation work-->
+    <style name="GroceryGoLight.DefaultTheme.Propagated"/>
 
-    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
-        <item name="colorPrimary">@color/colorPrimary</item>
-        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
-        <item name="colorAccent">@color/colorAccent</item><item name="android:textSize">24sp</item>
-        <item name="android:layout_gravity">center_horizontal</item>
-        <item name="android:buttonStyle">@style/MyButtonStyle</item>
-        <item name="android:editTextStyle">@style/MyEditTextStyle</item>
+    <style name="GroceryGoLight" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="colorVsLight">#000</item>
+        <item name="colorVsLightSoft">#555</item>
+        <item name="colorVsDark">#fff</item>
+        <item name="colorVsDarkSoft">#aaa</item>
+        <item name="colorBackground">#eee</item>
+        <item name="colorBackgroundHighlight">#fff</item>
+        <item name="colorClickable">#0086bf</item>
+        <item name="colorGood">@color/colorGood</item>
+        <item name="colorWarning">@color/colorWarning</item>
+        <item name="colorBad">@color/colorBad</item>
+        <!--    inheriting-->
+        <item name="colorVsBackground">?colorVsLight</item>
+        <item name="colorVsBackgroundSoft">?colorVsLightSoft</item>
+        <!--    propagation-->
+        <item name="android:buttonStyle">@style/ColorButton</item>
         <item name="android:textViewStyle">@style/MyTextViewStyle</item>
     </style>
-    <style name="MyButtonStyle" parent="Theme.AppCompat.Light.DarkActionBar">
-        <item name="android:background">@color/colorAccent</item>
+
+    <style name="GroceryGoLight.DefaultTheme">
+        <item name="colorPrimaryLight">#00a897</item>
+        <item name="colorPrimaryDark">#003b35</item>
+        <item name="colorPrimary">#006e63</item>
+        <item name="colorHardAccent">#FF6C00</item>
+        <!--    inheriting-->
+        <item name="colorVsPrimary">?colorVsDark</item>
+        <item name="colorAccent">?colorPrimary</item>
+    </style>
+
+    <style name="GroceryGoLight.BlueTheme">
+        <item name="colorPrimaryLight">#0696BF</item>
+        <item name="colorPrimaryDark">#01313F</item>
+        <item name="colorPrimary">#03556C</item>
+        <item name="colorHardAccent">#AE5800</item>
+        <!--    inheriting-->
+        <item name="colorVsPrimary">?colorVsDark</item>
+        <item name="colorAccent">?colorPrimary</item>
+    </style>
+
+    <style name="GroceryGoLight.PurpleTheme">
+        <item name="colorPrimaryLight">#b453f5</item>
+        <item name="colorPrimaryDark">#33084d</item>
+        <item name="colorPrimary">#7111ab</item>
+        <item name="colorHardAccent">#FFFD0C</item>
+        <!--    inheriting-->
+        <item name="colorVsPrimary">?colorVsDark</item>
+        <item name="colorAccent">?colorPrimary</item>
+    </style>
+
+
+    <style name="GroceryGoDark" parent="Theme.AppCompat.NoActionBar">
+        <item name="android:theme">@style/ThemeOverlay.AppCompat.Dark</item>
+        <item name="colorVsLight">#000</item>
+        <item name="colorVsLightSoft">#555</item>
+        <item name="colorVsDark">#fff</item>
+        <item name="colorVsDarkSoft">#aaa</item>
+        <item name="colorBackground">#333</item>
+        <item name="colorBackgroundHighlight">#222</item>
+        <item name="colorClickable">#0086bf</item>
+        <item name="colorGood">@color/colorGood</item>
+        <item name="colorWarning">@color/colorWarning</item>
+        <item name="colorBad">@color/colorBad</item>
+        <!--    inheriting-->
+        <item name="colorVsBackground">?colorVsDark</item>
+        <item name="colorVsBackgroundSoft">?colorVsDarkSoft</item>
+        <!--    propagation-->
+        <item name="android:buttonStyle">@style/ColorButton</item>
+        <item name="android:textViewStyle">@style/MyTextViewStyle</item>
+    </style>
+
+    <style name="GroceryGoDark.PurpleTheme">
+        <item name="colorPrimaryLight">#b453f5</item>
+        <item name="colorPrimaryDark">#33084d</item>
+        <item name="colorPrimary">#6f0fa8</item>
+        <item name="colorHardAccent">#FFFD0C</item>
+        <!--    inheriting-->
+        <item name="colorVsPrimary">?colorVsDark</item>
+        <item name="colorAccent">?colorPrimary</item>
+    </style>
+
+    <style name="ColorButton">
+        <item name="android:background">@drawable/button_usual_background</item>
+        <item name="android:gravity">center</item>
+        <item name="android:textSize">18sp</item>
+        <item name="android:textColor">?colorVsPrimary</item>
         <item name="android:paddingLeft">16dp</item>
         <item name="android:paddingRight">16dp</item>
         <item name="android:paddingTop">8dp</item>
         <item name="android:paddingBottom">8dp</item>
     </style>
-    <style name="MyEditTextStyle" parent="AppTheme">
-        <item name="android:padding">16dp</item>
-        <item name="android:textColor">@color/colorTextDefault</item>
+    <style name="ShadeButton" parent="Theme.AppCompat.Light.DarkActionBar">
+        <item name="android:gravity">center</item>
+        <item name="android:background">?colorBackgroundHighlight</item>
+        <item name="android:textColor">?colorVsBackground</item>
+        <item name="android:paddingLeft">16dp</item>
+        <item name="android:paddingRight">16dp</item>
+        <item name="android:paddingTop">8dp</item>
+        <item name="android:paddingBottom">8dp</item>
     </style>
-    <style name="MyTextViewStyle" parent="AppTheme">
-        <item name="android:textSize">24dp</item>
-        <item name="android:textColor">@color/colorTextDefault</item>
-        <item name="android:padding">6dp</item>
+    <style name="MyTextViewStyle" parent="Theme.AppCompat.Light.DarkActionBar">
+        <item name="android:textColor">?colorVsBackground</item>
+    </style>
+    <style name="GrandTotalCalculations" parent="MyTextViewStyle">
+        <item name="android:textColor">?colorVsBackground</item>
+        <item name="android:textSize">17sp</item>
+    </style>
+    <style name="GoodOrBadIcon" parent="Theme.AppCompat.Light.DarkActionBar">
+        <item name="android:padding">3dp</item>
+        <item name="android:background">@drawable/simple_oval</item>
+        <item name="android:backgroundTint">?colorBackground</item>
+        <item name="android:layout_width">31dp</item>
+        <item name="android:layout_height">31dp</item>
+    </style>
+
+    <style name="ErrorText" parent="@android:style/TextAppearance">
+        <item name="android:textColor">?colorBad</item>
+        <item name="android:textSize">13sp</item>
+    </style>
+
+    <style name="WarningText" parent="@android:style/TextAppearance">
+        <item name="android:textColor">?colorWarning</item>
+        <item name="android:textSize">13sp</item>
+    </style>
+
+    <style name="OverlayTitle">
+        <item name="android:paddingLeft">8dp</item>
+        <item name="android:textSize">16sp</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+    <style name="OverlayValue">
+        <item name="android:paddingLeft">8dp</item>
+        <item name="android:textSize">18sp</item>
     </style>
 
 </resources>

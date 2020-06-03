@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+
+    <FrameLayout
+        android:id="@+id/frame_toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <include layout="@layout/app_toolbar" />
+    </FrameLayout>
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:padding="16dp">
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/text_input_layout_street_address"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp">
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/text_input_street_address"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:hint="Street address" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/text_input_layout_apt_num"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp">
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/text_input_apt_num"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:hint="Apt., ste., bldg." />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/text_input_layout_city"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp">
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/text_input_city"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:hint="City" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/text_input_layout_state"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp">
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/text_input_state"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:hint="State" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/text_input_layout_zip_code"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp">
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/text_input_zip_code"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:hint="ZIP code" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <Button
+            android:id="@+id/button_address_submit"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:text="Submit"
+            android:textSize="24sp"/>
+
+    </LinearLayout>
+</LinearLayout>

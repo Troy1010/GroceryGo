@@ -5,13 +5,17 @@
     <uses-permission android:name="android.permission.INTERNET" />
 
     <application
-        android:name=".app.App"
+        android:name=".extras.App"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme">
+        android:theme="@style/GroceryGoLight.DefaultTheme">
+        <activity android:name=".activities_and_frags.ActivityOrderHistory"></activity>
+        <activity android:name=".activities_and_frags.FragCart" />
+        <activity android:name=".activities_and_frags.ActivityHost" />
+        <activity android:name=".activities_and_frags.FragProfile" />
         <activity android:name=".activities_and_frags.ActivitySplashscreen">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -19,11 +23,18 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".activities_and_frags.ActivityRegister" />
-        <activity android:name=".activities_and_frags.ActivityLogin" />
         <activity android:name=".activities_and_frags.ActivityDetails" />
-        <activity android:name=".activities_and_frags.ActivitySubCatsAndProducts" />
-        <activity android:name=".activities_and_frags.ActivityHome"/>
+        <activity android:name=".activities_and_frags.ActivityPaymentInfo" />
+        <activity android:name=".activities_and_frags.ActivityOrderReview" />
+        <activity android:name=".activities_and_frags.ActivityThankYou" />
+        <activity android:name=".activities_and_frags.ActivityAddress" />
+        <activity android:name=".activities_and_frags.ActivityPayment" />
+        <activity android:name=".activities_and_frags.ActivityChooseTheme" />
+        <activity android:name=".activities_and_frags.ActivityAddresses" />
+        <activity android:name=".activities_and_frags.ActivityOrderHistoryItemDetails" />
+        <activity android:name=".activities_and_frags.ActivitySearch" />
+        <activity android:name=".activities_and_frags.FragSearchProducts" />
+        <activity android:name=".activities_and_frags.FragHome" />
     </application>
 
 </manifest>
