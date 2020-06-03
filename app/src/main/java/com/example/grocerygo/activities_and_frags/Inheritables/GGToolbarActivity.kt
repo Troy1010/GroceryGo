@@ -22,6 +22,12 @@ abstract class GGToolbarActivity(override val layout: Int) : TMActivity(layout),
     abstract val title: String
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        //setBackgroundColor to my theme's colorBackground attribute
+        val ta = obtainStyledAttributes(App.sm.theme, intArrayOf(R.attr.colorBackground))
+        val colorBackground = ta.getInt(0, 0)
+        this.getView()?.setBackgroundColor(colorBackground)
+        ta.recycle()
+        //
         if (toolbar_main != null) {
             toolbar_main.title = title
             setSupportActionBar(toolbar_main)

@@ -11,10 +11,5 @@ abstract class TMActivity(open val layout:Int): AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setTheme(App.sm.theme)
         setContentView(layout)
-        //setBackgroundColor to my theme's colorBackground attribute
-        val ta = obtainStyledAttributes(App.sm.theme, intArrayOf(R.attr.colorBackground))
-        val colorBackground = ta.getInt(0, 0)
-        this.getView()?.setBackgroundColor(colorBackground)
-        ta.recycle()
     }
 }
