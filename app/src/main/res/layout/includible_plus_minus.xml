@@ -59,7 +59,7 @@
         android:layout_height="0dp"
         android:layout_gravity="center"
         android:layout_margin="0dp"
-        android:background="#fff"
+        android:background="?colorBackgroundHighlight"
         android:gravity="center|center_vertical"
         android:padding="0dp"
         android:paddingHorizontal="15dp"

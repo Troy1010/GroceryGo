@@ -2,7 +2,6 @@ package com.example.grocerygo.activities_and_frags
 
 import android.content.Intent
 import android.graphics.Paint
-import android.os.Bundle
 import android.view.View
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -12,46 +11,37 @@ import com.android.volley.Response
 import com.android.volley.toolbox.JsonObjectRequest
 import com.android.volley.toolbox.Volley
 import com.example.grocerygo.R
-import com.example.grocerygo.activities_and_frags.Inheritables.HostCallbacks
+import com.example.grocerygo.activities_and_frags.Inheritables.GGToolbarActivity
 import com.example.grocerygo.activities_and_frags.Inheritables.ToolbarCallbacks
 import com.example.grocerygo.adapters.AdapterRecyclerView
 import com.example.grocerygo.extras.*
-import com.example.grocerygo.activities_and_frags.Inheritables.TMFragment
 import com.example.grocerygo.models.Product
 import com.example.grocerygo.models.received.ReceivedProductsObject
 import com.example.tmcommonkotlin.logz
 import com.google.gson.GsonBuilder
-import kotlinx.android.synthetic.main.frag_search_products.recycler_view_products
+import kotlinx.android.synthetic.main.activity_search.*
+import kotlinx.android.synthetic.main.frag_search_products.*
 import kotlinx.android.synthetic.main.includible_plus_minus.view.*
 import kotlinx.android.synthetic.main.item_product.view.*
 
-class FragSearchProducts : TMFragment(layout = R.layout.frag_search_products), AdapterRecyclerView.Callbacks {
-    val subCatID by lazy { arguments?.getInt(KEY_SUB_CAT_ID)?:1 }
-    lateinit var products:ArrayList<Product>
-
-    override fun onCreateViewInit() {
-        super.onCreateViewInit()
-        requestProducts(subCatID)
-        setupParent()
+class ActivitySearch : GGToolbarActivity(R.layout.activity_search), AdapterRecyclerView.Callbacks {
+    override val title = "Search"
+    lateinit var products: ArrayList<Product>
+    override fun onStart() {
+        super.onStart()
+        setupListeners()
     }
 
-    private fun setupParent() {
-        (activity as HostCallbacks).showNavigationBar(true)
-        (activity as ToolbarCallbacks).showCart(true)
-        (activity as ToolbarCallbacks).showBack(true)
-        (activity as ToolbarCallbacks).setTitle("Search")
+    private fun setupListeners() {
+        button_search.setOnClickListener {
+            requestProductsBySearch(edit_text_search.text.toString())
+        }
     }
 
-    private fun setupRecyclerView() {
-        recycler_view_products.layoutManager = LinearLayoutManager(activity!!)
-        recycler_view_products.adapter = AdapterRecyclerView(this, activity!!, R.layout.item_product)
-        recycler_view_products
-            .addItemDecoration(DividerItemDecoration(activity, RecyclerView.VERTICAL))
-    }
 
-    private fun requestProducts(subCatID: Int) {
-        val endpoint = Endpoints.getSelectedProductsEndpoint(subCatID)
-        var requestQueue = Volley.newRequestQueue(context)
+    private fun requestProductsBySearch(s:String) {
+        val endpoint = Endpoints.getSearchEndpoint(s)
+        var requestQueue = Volley.newRequestQueue(this)
         var request = JsonObjectRequest(
             Request.Method.GET, endpoint, null,
             Response.Listener { response ->
@@ -72,14 +62,12 @@ class FragSearchProducts : TMFragment(layout = R.layout.frag_search_products), A
         requestQueue.add(request)
     }
 
-    companion object {
-        @JvmStatic
-        fun newInstance(subCatID: Int = 0) =
-            FragSearchProducts().apply {
-                arguments = Bundle().apply {
-                    putInt(KEY_SUB_CAT_ID, subCatID)
-                }
-            }
+
+    private fun setupRecyclerView() {
+        recycler_view_search.layoutManager = LinearLayoutManager(this)
+        recycler_view_search.adapter = AdapterRecyclerView(this, this, R.layout.item_product)
+        recycler_view_search
+            .addItemDecoration(DividerItemDecoration(this, RecyclerView.VERTICAL))
     }
 
     override fun bindRecyclerItemView(view: View, i: Int) {
@@ -90,22 +78,22 @@ class FragSearchProducts : TMFragment(layout = R.layout.frag_search_products), A
         view.image_view_product.easyPicasso(Endpoints.getImageEndpoint(products[i].image))
         //
         view.setOnClickListener {
-            var intent = Intent(context, ActivityDetails::class.java)
+            var intent = Intent(this, ActivityDetails::class.java)
             var product = products[i]
             intent.putExtra(KEY_PRODUCT, product)
-            context?.startActivity(intent)
+            startActivity(intent)
         }
         // plus minus
         view.text_view_add.setOnClickListener {
             view.text_view_add.visibility= View.GONE
             App.db.addProduct(products[i])
-            recycler_view_products.adapter?.notifyDataSetChanged()
-            (activity as ToolbarCallbacks).notifyCartBadge()
+            recycler_view_search.adapter?.notifyDataSetChanged()
+            (this as ToolbarCallbacks).notifyCartBadge()
         }
         view.button_plus.setOnClickListener {
             App.db.addProduct(products[i])
-            recycler_view_products.adapter?.notifyDataSetChanged()
-            (activity as ToolbarCallbacks).notifyCartBadge()
+            recycler_view_search.adapter?.notifyDataSetChanged()
+            (this as ToolbarCallbacks).notifyCartBadge()
         }
         view.button_minus.setOnClickListener {
             if (products[i].quantity == 1) {
@@ -115,8 +103,8 @@ class FragSearchProducts : TMFragment(layout = R.layout.frag_search_products), A
             } else {
                 App.db.minusProduct(products[i])
             }
-            recycler_view_products.adapter?.notifyDataSetChanged()
-            (activity as ToolbarCallbacks).notifyCartBadge()
+            recycler_view_search.adapter?.notifyDataSetChanged()
+            (this as ToolbarCallbacks).notifyCartBadge()
         }
         view.text_view_number_plus_minus.text = products[i].quantity.toString()
         if (products[i].quantity > 0) {
@@ -129,6 +117,4 @@ class FragSearchProducts : TMFragment(layout = R.layout.frag_search_products), A
     override fun getRecyclerDataSize(): Int {
         return products.size
     }
-
-
 }

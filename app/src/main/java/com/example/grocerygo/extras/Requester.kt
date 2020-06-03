@@ -5,14 +5,44 @@ import com.android.volley.Response
 import com.android.volley.toolbox.JsonObjectRequest
 import com.android.volley.toolbox.Volley
 import com.example.grocerygo.models.*
+import com.example.tmcommonkotlin.easyToast
+import com.example.tmcommonkotlin.logz
 import com.google.gson.Gson
 import org.json.JSONObject
 
 object Requester {
     val requestQueue = Volley.newRequestQueue(App.instance)
+    val defaultListener = Response.Listener<JSONObject> {}
+    val defaultErrorListener = Response.ErrorListener {
+        logz("Response.ErrorListener`it:$it")
+    }
+
+    fun requestRegistration(
+        user: User,
+        listener: Response.Listener<JSONObject>? = null,
+        errorListener: Response.ErrorListener? = null
+    ) {
+        val jsonObject = JSONObject(Gson().toJson(user))
+        val request = JsonObjectRequest(
+            Request.Method.POST, Endpoints.register, jsonObject,
+            listener?:defaultListener,
+            errorListener?:defaultErrorListener)
+        requestQueue.add(request)
+    }
 
 
-    fun requestAddresses(userID:String?, listener: Response.Listener<JSONObject>) {
+    fun requestCategories(listener: Response.Listener<JSONObject>) {
+        var request = JsonObjectRequest(
+            Request.Method.GET, Endpoints.categories, null,
+            listener,
+            Response.ErrorListener {
+                logz("Response.ErrorListener`it:$it")
+            })
+        requestQueue.add(request)
+    }
+
+
+    fun requestAddresses(userID: String?, listener: Response.Listener<JSONObject>) {
         if (userID == null) {
             logz("requestAddress received a null userID")
             return
@@ -25,7 +55,8 @@ object Requester {
             })
         requestQueue.add(request)
     }
-    fun requestOrders(userID:String?, listener: Response.Listener<JSONObject>) {
+
+    fun requestOrders(userID: String?, listener: Response.Listener<JSONObject>) {
         if (userID == null) {
             logz("requestOrders received a null userID")
             return
@@ -39,7 +70,7 @@ object Requester {
         requestQueue.add(request)
     }
 
-    fun requestDeleteAddress(addressID:String, listener: Response.Listener<JSONObject>) {
+    fun requestDeleteAddress(addressID: String, listener: Response.Listener<JSONObject>) {
         val request = JsonObjectRequest(
             Request.Method.DELETE, Endpoints.getDeleteAddressEndpoint(addressID), null,
             listener,
@@ -61,9 +92,12 @@ object Requester {
         requestQueue.add(request)
     }
 
-    fun requestOrderPlacement(listener: Response.Listener<JSONObject>? = null, errorListener:Response.ErrorListener? = null) {
+    fun requestOrderPlacement(
+        listener: Response.Listener<JSONObject>? = null,
+        errorListener: Response.ErrorListener? = null
+    ) {
         val listenerToUse = listener ?: Response.Listener<JSONObject> { }
-        val errorListenerToUse = errorListener?: Response.ErrorListener {
+        val errorListenerToUse = errorListener ?: Response.ErrorListener {
             logz("Response.ErrorListener`it:$it")
         }
         val user = App.sm.user!!
@@ -85,7 +119,8 @@ object Requester {
         val request = JsonObjectRequest(
             Request.Method.POST, Endpoints.getPostOrderEndpoint(), jsonObject,
             listenerToUse,
-            errorListenerToUse)
+            errorListenerToUse
+        )
         requestQueue.add(request)
     }
 }

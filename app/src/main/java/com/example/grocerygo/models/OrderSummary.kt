@@ -1,6 +1,5 @@
 package com.example.grocerygo.models
 
-import com.example.grocerygo.extras.logz
 import com.example.grocerygo.extras.round
 
 class OrderSummary(products: ArrayList<Product>) {

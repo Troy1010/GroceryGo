@@ -21,52 +21,57 @@
         android:padding="16dp">
 
 
-
         <FrameLayout
             android:id="@+id/frame_profile"
-            android:background="?colorBackgroundHighlight"
             android:layout_width="0dp"
             android:layout_height="0dp"
-            app:layout_constraintStart_toStartOf="@id/text_view_profile_title"
+            android:background="?colorBackgroundHighlight"
+            app:layout_constraintBottom_toBottomOf="@id/text_view_profile_value"
             app:layout_constraintEnd_toEndOf="@id/image_view_profile_arrow"
-            app:layout_constraintTop_toTopOf="@id/text_view_profile_title"
-            app:layout_constraintBottom_toBottomOf="@id/text_view_profile_value"/>
+            app:layout_constraintStart_toStartOf="@id/text_view_profile_title"
+            app:layout_constraintTop_toTopOf="@id/text_view_profile_title" />
+
         <TextView
             android:id="@+id/text_view_profile_title"
-            app:layout_constraintTop_toTopOf="parent"
-            android:textStyle="bold"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="User"/>
+            android:text="User"
+            android:theme="@style/OverlayTitle"
+            app:layout_constraintTop_toTopOf="parent" />
+
         <TextView
             android:id="@+id/text_view_profile_value"
-            app:layout_constraintTop_toBottomOf="@id/text_view_profile_title"
             android:layout_width="match_parent"
-            android:textColor="?colorVsBackgroundSoft"
             android:layout_height="wrap_content"
-            android:text="(USER)"/>
+            android:text="(USER)"
+            android:textColor="?colorVsBackgroundSoft"
+            android:theme="@style/OverlayValue"
+            app:layout_constraintTop_toBottomOf="@id/text_view_profile_title" />
+
         <ImageView
-            style="@style/GoodOrBadIcon"
             android:id="@+id/image_view_profile_bad"
-            android:tint="?colorHardAccent"
+            style="@style/GoodOrBadIcon"
             android:src="@drawable/ic_red_x"
+            android:tint="?colorBad"
             app:layout_constraintBottom_toBottomOf="@id/text_view_profile_value"
             app:layout_constraintEnd_toStartOf="@id/image_view_profile_arrow"
             app:layout_constraintTop_toTopOf="@id/text_view_profile_title" />
+
         <ImageView
-            style="@style/GoodOrBadIcon"
             android:id="@+id/image_view_profile_good"
-            android:tint="?colorHardAccentGood"
+            style="@style/GoodOrBadIcon"
             android:src="@drawable/ic_green_checkmark"
+            android:tint="?colorGood"
             app:layout_constraintBottom_toBottomOf="@id/text_view_profile_value"
             app:layout_constraintEnd_toStartOf="@id/image_view_profile_arrow"
-            app:layout_constraintTop_toTopOf="@id/text_view_profile_title"  />
+            app:layout_constraintTop_toTopOf="@id/text_view_profile_title" />
+
         <ImageView
             android:id="@+id/image_view_profile_arrow"
             android:layout_width="45dp"
             android:layout_height="45dp"
-            android:tint="?colorVsBackground"
             android:src="@drawable/ic_keyboard_arrow_right_black_24dp"
+            android:tint="?colorVsBackground"
             app:layout_constraintBottom_toBottomOf="@id/text_view_profile_value"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="@id/text_view_profile_title" />
@@ -76,41 +81,47 @@
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:background="?colorBackgroundHighlight"
-            app:layout_constraintStart_toStartOf="@id/text_view_address_title"
+            app:layout_constraintBottom_toBottomOf="@id/text_view_address_value"
             app:layout_constraintEnd_toEndOf="@id/image_view_address_arrow"
-            app:layout_constraintTop_toTopOf="@id/text_view_address_title"
-            app:layout_constraintBottom_toBottomOf="@id/text_view_address_value"/>
+            app:layout_constraintStart_toStartOf="@id/text_view_address_title"
+            app:layout_constraintTop_toTopOf="@id/text_view_address_title" />
+
         <TextView
             android:id="@+id/text_view_address_title"
-            android:layout_marginTop="10dp"
-            app:layout_constraintTop_toBottomOf="@id/frame_profile"
-            android:textStyle="bold"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Address"/>
+            android:layout_marginTop="10dp"
+            android:text="Address"
+            android:theme="@style/OverlayTitle"
+            app:layout_constraintTop_toBottomOf="@id/frame_profile" />
+
         <TextView
             android:id="@+id/text_view_address_value"
-            app:layout_constraintTop_toBottomOf="@id/text_view_address_title"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:text="(ADDRESS)"
             android:textColor="?colorVsBackgroundSoft"
-            android:text="(ADDRESS)"/>
+            android:theme="@style/OverlayValue"
+            app:layout_constraintTop_toBottomOf="@id/text_view_address_title" />
+
         <ImageView
-            style="@style/GoodOrBadIcon"
             android:id="@+id/image_view_address_bad"
-            android:tint="?colorHardAccent"
+            style="@style/GoodOrBadIcon"
             android:src="@drawable/ic_red_x"
+            android:tint="?colorBad"
             app:layout_constraintBottom_toBottomOf="@id/text_view_address_value"
             app:layout_constraintEnd_toStartOf="@id/image_view_address_arrow"
             app:layout_constraintTop_toTopOf="@id/text_view_address_title" />
+
         <ImageView
-            style="@style/GoodOrBadIcon"
             android:id="@+id/image_view_address_good"
-            android:tint="?colorHardAccentGood"
+            style="@style/GoodOrBadIcon"
             android:src="@drawable/ic_green_checkmark"
+            android:tint="?colorGood"
             app:layout_constraintBottom_toBottomOf="@id/text_view_address_value"
             app:layout_constraintEnd_toStartOf="@id/image_view_address_arrow"
-            app:layout_constraintTop_toTopOf="@id/text_view_address_title"  />
+            app:layout_constraintTop_toTopOf="@id/text_view_address_title" />
+
         <ImageView
             android:id="@+id/image_view_address_arrow"
             android:layout_width="45dp"
@@ -124,50 +135,56 @@
 
         <FrameLayout
             android:id="@+id/frame_payment"
-            android:background="?colorBackgroundHighlight"
             android:layout_width="0dp"
             android:layout_height="0dp"
-            app:layout_constraintStart_toStartOf="@id/text_view_payment_title"
+            android:background="?colorBackgroundHighlight"
+            app:layout_constraintBottom_toBottomOf="@id/text_view_payment_value"
             app:layout_constraintEnd_toEndOf="@id/image_view_payment_arrow"
-            app:layout_constraintTop_toTopOf="@id/text_view_payment_title"
-            app:layout_constraintBottom_toBottomOf="@id/text_view_payment_value"/>
+            app:layout_constraintStart_toStartOf="@id/text_view_payment_title"
+            app:layout_constraintTop_toTopOf="@id/text_view_payment_title" />
+
         <TextView
             android:id="@+id/text_view_payment_title"
-            android:layout_marginTop="10dp"
-            app:layout_constraintTop_toBottomOf="@id/frame_address"
-            android:textStyle="bold"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Payment"/>
+            android:layout_marginTop="10dp"
+            android:text="Payment"
+            android:theme="@style/OverlayTitle"
+            app:layout_constraintTop_toBottomOf="@id/frame_address" />
+
         <TextView
             android:id="@+id/text_view_payment_value"
-            app:layout_constraintTop_toBottomOf="@id/text_view_payment_title"
             android:layout_width="match_parent"
-            android:textColor="?colorVsBackgroundSoft"
             android:layout_height="wrap_content"
-            android:text="(PAYMENT)"/>
+            android:text="(PAYMENT)"
+            android:textColor="?colorVsBackgroundSoft"
+            android:theme="@style/OverlayValue"
+            app:layout_constraintTop_toBottomOf="@id/text_view_payment_title" />
+
         <ImageView
-            style="@style/GoodOrBadIcon"
             android:id="@+id/image_view_payment_bad"
-            android:tint="?colorHardAccent"
+            style="@style/GoodOrBadIcon"
             android:src="@drawable/ic_red_x"
+            android:tint="?colorBad"
             app:layout_constraintBottom_toBottomOf="@id/text_view_payment_value"
             app:layout_constraintEnd_toStartOf="@id/image_view_payment_arrow"
             app:layout_constraintTop_toTopOf="@id/text_view_payment_title" />
+
         <ImageView
-            style="@style/GoodOrBadIcon"
             android:id="@+id/image_view_payment_good"
-            android:tint="?colorHardAccentGood"
+            style="@style/GoodOrBadIcon"
             android:src="@drawable/ic_green_checkmark"
+            android:tint="?colorGood"
             app:layout_constraintBottom_toBottomOf="@id/text_view_payment_value"
             app:layout_constraintEnd_toStartOf="@id/image_view_payment_arrow"
-            app:layout_constraintTop_toTopOf="@id/text_view_payment_title"  />
+            app:layout_constraintTop_toTopOf="@id/text_view_payment_title" />
+
         <ImageView
             android:id="@+id/image_view_payment_arrow"
             android:layout_width="45dp"
             android:layout_height="45dp"
-            android:tint="?colorVsBackground"
             android:src="@drawable/ic_keyboard_arrow_right_black_24dp"
+            android:tint="?colorVsBackground"
             app:layout_constraintBottom_toBottomOf="@id/text_view_payment_value"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="@id/text_view_payment_title" />
@@ -175,11 +192,11 @@
 
         <Button
             android:id="@+id/button_payment_info_send"
-            android:gravity="center_horizontal"
-            app:layout_constraintBottom_toBottomOf="parent"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Continue"/>
+            android:gravity="center_horizontal"
+            android:text="Continue"
+            app:layout_constraintBottom_toBottomOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </LinearLayout>

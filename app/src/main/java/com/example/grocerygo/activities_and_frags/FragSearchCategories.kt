@@ -2,18 +2,15 @@ package com.example.grocerygo.activities_and_frags
 
 import android.view.View
 import androidx.recyclerview.widget.GridLayoutManager
-import com.android.volley.Request
 import com.android.volley.Response
-import com.android.volley.toolbox.StringRequest
-import com.android.volley.toolbox.Volley
 import com.example.grocerygo.R
 import com.example.grocerygo.activities_and_frags.Inheritables.HostCallbacks
 import com.example.grocerygo.activities_and_frags.Inheritables.TMFragment
 import com.example.grocerygo.activities_and_frags.Inheritables.ToolbarCallbacks
 import com.example.grocerygo.adapters.AdapterRecyclerView
 import com.example.grocerygo.extras.Endpoints
+import com.example.grocerygo.extras.Requester
 import com.example.grocerygo.extras.easyPicasso
-import com.example.grocerygo.extras.logz
 import com.example.grocerygo.models.Category
 import com.example.grocerygo.models.received.ReceivedCategoriesObject
 import com.google.gson.GsonBuilder
@@ -24,7 +21,12 @@ class FragSearchCategories : TMFragment(layout = R.layout.frag_search_categories
     lateinit var categories:ArrayList<Category>
 
     override fun onCreateViewInit() {
-        requestCategories()
+        Requester.requestCategories(Response.Listener {
+            val receivedCategoriesObject = GsonBuilder().create()
+                .fromJson(it.toString(), ReceivedCategoriesObject::class.java)
+            categories = receivedCategoriesObject.data
+            setupRecyclerView()
+        })
     }
 
     override fun onStart() {
@@ -42,22 +44,6 @@ class FragSearchCategories : TMFragment(layout = R.layout.frag_search_categories
     private fun setupRecyclerView() {
         recycler_view_categories?.layoutManager = GridLayoutManager(activity!!,2)
         recycler_view_categories?.adapter = AdapterRecyclerView(this, activity!!, R.layout.item_category)
-    }
-
-    private fun requestCategories() {
-        var requestQueue = Volley.newRequestQueue(activity!!)
-        var request = StringRequest(
-            Request.Method.GET, Endpoints.categories,
-            Response.Listener { response ->
-                var receivedCategoriesObject = GsonBuilder().create()
-                    .fromJson(response, ReceivedCategoriesObject::class.java)
-                categories = receivedCategoriesObject.data
-                setupRecyclerView()
-            },
-            Response.ErrorListener {
-                logz("Response.ErrorListener`it:$it")
-            })
-        requestQueue.add(request)
     }
 
     override fun bindRecyclerItemView(view: View, i: Int) {

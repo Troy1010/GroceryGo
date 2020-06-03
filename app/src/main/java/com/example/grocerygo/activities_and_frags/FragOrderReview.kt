@@ -4,6 +4,8 @@ import android.content.Intent
 import android.graphics.Paint
 import android.os.Bundle
 import android.view.View
+import androidx.core.app.NotificationCompat
+import androidx.core.app.NotificationManagerCompat
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -15,6 +17,7 @@ import com.example.grocerygo.adapters.AdapterRecyclerView
 import com.example.grocerygo.extras.*
 import com.example.grocerygo.models.OrderSummary
 import com.example.grocerygo.models.Product
+import com.example.tmcommonkotlin.logz
 import kotlinx.android.synthetic.main.frag_order_review.*
 import kotlinx.android.synthetic.main.item_order_review.view.*
 import kotlinx.android.synthetic.main.z_cart_last_item.*
@@ -77,19 +80,33 @@ class FragOrderReview : TMFragment(R.layout.frag_order_review), AdapterRecyclerV
         text_view_price_total.text = DisplayMoney(orderSummary.totalPrice)
         text_view_tax.text = DisplayMoney(orderSummary.tax)
         text_view_shipping.text = DisplayMoney(orderSummary.deliveryFee)
-        text_view_grand_total_value.text =
-            DisplayMoney(OrderSummary(App.db.getProducts()).grandTotal)
+        text_view_grand_total_value.text = DisplayMoney(orderSummary.grandTotal)
     }
 
     private fun setupClickListeners() {
         button_place_order.setOnClickListener {
             Requester.requestOrderPlacement(Response.Listener {
                 App.db.clear()
+                sendNotification("Getting Ready") // TODO
             })
             val intent = Intent(activity!!, ActivityThankYou::class.java)
             intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
             startActivity(intent)
         }
+    }
+
+    private fun sendNotification(status:String) {
+        val builder = NotificationCompat.Builder(activity!!, Config.NOTIFICATION_CHANNEL)
+        builder
+            .setSmallIcon(R.drawable.ic_whatshot_black_24dp)
+            .setContentTitle("GroceryGo Order Sent")
+            .setContentText("Status: $status")
+            .setAutoCancel(true)
+            .setPriority(NotificationCompat.PRIORITY_DEFAULT)
+
+        NotificationManagerCompat
+            .from(activity!!)
+            .notify(Config.NOTIFICATION_ID_ORDERCONFIRMED, builder.build())
     }
 
     private fun setupRecyclerView() {

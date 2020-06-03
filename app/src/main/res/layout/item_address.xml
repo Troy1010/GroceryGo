@@ -4,12 +4,14 @@
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <TextView
+        android:padding="5dp"
         android:id="@+id/text_view_address"
         app:layout_constraintTop_toTopOf="parent"
         android:text="(ADDRESS)"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
     <ImageView
+        android:padding="16dp"
         android:id="@+id/button_trash"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"

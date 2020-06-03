@@ -12,7 +12,6 @@ import com.example.grocerygo.adapters.AdapterRecyclerView
 import com.example.grocerygo.extras.App
 import com.example.grocerygo.extras.DisplayMoney
 import com.example.grocerygo.extras.Requester
-import com.example.grocerygo.extras.logz
 import com.example.grocerygo.activities_and_frags.Inheritables.GGToolbarActivity
 import com.example.grocerygo.models.Order
 import com.example.grocerygo.models.OrderSummary
@@ -29,16 +28,6 @@ class ActivityOrderHistory : GGToolbarActivity(layout = R.layout.activity_order_
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setupRecyclerView()
-    }
-
-
-    override fun onStart() {
-        super.onStart()
-        refresh()
-    }
-
-
-    private fun refresh() {
         Requester.requestOrders(App.sm.user?._id,
             Response.Listener {
                 val receivedOrdersObject = GsonBuilder().create()
@@ -46,8 +35,20 @@ class ActivityOrderHistory : GGToolbarActivity(layout = R.layout.activity_order_
                 //
                 orders = ArrayList(receivedOrdersObject.data)
                 recycler_view_order_history.adapter?.notifyDataSetChanged()
+                //
+                refresh()
             }
         )
+        refresh()
+    }
+
+
+    private fun refresh() {
+        if (orders.size==0) {
+            text_view_order_history_is_empty.visibility = View.VISIBLE
+        } else {
+            text_view_order_history_is_empty.visibility = View.GONE
+        }
     }
 
 

@@ -13,6 +13,7 @@ import com.example.grocerygo.R
 import com.example.grocerygo.adapters.AdapterRecyclerView
 import com.example.grocerygo.extras.*
 import com.example.grocerygo.activities_and_frags.Inheritables.GGToolbarActivity
+import com.example.grocerygo.activities_and_frags.Inheritables.ToolbarCallbacks
 import com.example.grocerygo.models.Product
 import com.example.grocerygo.models.OrderSummary
 import kotlinx.android.synthetic.main.frag_order_review.*
@@ -26,5 +27,11 @@ class ActivityOrderReview : GGToolbarActivity(layout = R.layout.activity_order_r
         super.onCreate(savedInstanceState)
         val frag = FragOrderReview.newInstance(App.db.getProducts())
         supportFragmentManager.beginTransaction().replace(R.id.frame_frag_order_review, frag).commit()
+    }
+
+    // Setup Toolbar
+    override fun onPrepareOptionsMenu(menu: Menu): Boolean {
+        menu.findItem(R.id.menu_cart).isVisible = false
+        return super.onPrepareOptionsMenu(menu)
     }
 }

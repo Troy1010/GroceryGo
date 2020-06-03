@@ -12,6 +12,7 @@ import com.example.grocerygo.R
 import com.example.grocerygo.activities_and_frags.*
 import com.example.grocerygo.extras.*
 import com.example.grocerygo.models.OrderSummary
+import com.example.tmcommonkotlin.logz
 import kotlinx.android.synthetic.main.activity_host.*
 import kotlinx.android.synthetic.main.app_toolbar.*
 import kotlinx.android.synthetic.main.z_cart_icon.view.*
@@ -21,6 +22,12 @@ abstract class GGToolbarActivity(override val layout: Int) : TMActivity(layout),
     abstract val title: String
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        //setBackgroundColor to my theme's colorBackground attribute
+        val ta = obtainStyledAttributes(App.sm.theme, intArrayOf(R.attr.colorBackground))
+        val colorBackground = ta.getInt(0, 0)
+        this.getView()?.setBackgroundColor(colorBackground)
+        ta.recycle()
+        //
         if (toolbar_main != null) {
             toolbar_main.title = title
             setSupportActionBar(toolbar_main)
@@ -106,6 +113,9 @@ abstract class GGToolbarActivity(override val layout: Int) : TMActivity(layout),
             }
             R.id.menu_choose_theme -> {
                 startActivity(Intent(this, ActivityChooseTheme::class.java))
+            }
+            R.id.menu_search -> {
+                startActivity(Intent(this, ActivitySearch::class.java))
             }
         }
         return returning

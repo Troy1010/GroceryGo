@@ -12,10 +12,10 @@ import com.example.grocerygo.models.LoginObject
 import com.example.grocerygo.models.received.ReceivedLoginObject
 import com.example.grocerygo.models.User
 import com.google.gson.GsonBuilder
-import kotlinx.android.synthetic.main.frag_login.*
+import kotlinx.android.synthetic.main.frag_profile_login.*
 
 
-class FragProfileLogin : TMFragment(layout = R.layout.frag_login) {
+class FragProfileLogin : TMFragment(layout = R.layout.frag_profile_login) {
 
     override fun onStart() {
         super.onStart()

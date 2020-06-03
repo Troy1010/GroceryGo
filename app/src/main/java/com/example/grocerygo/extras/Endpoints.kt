@@ -54,5 +54,9 @@ object Endpoints {
     fun getOrdersEndpoint(userID:String):String {
         return Config.BASE_URL + URL_END_ORDERS + userID
     }
+
+    fun getSearchEndpoint(searchString:String):String {
+        return "http://apolis-grocery.herokuapp.com/api/products/search/$searchString" //TODO use Config
+    }
 }
 
